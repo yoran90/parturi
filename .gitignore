@@ -1,0 +1,21 @@
+# Node.js dependencies
+node_modules/
+client/node_modules/
+
+# Environment variables file (to keep secrets safe)
+.env
+
+# Build files
+client/build/
+server/dist/
+
+# Logs
+*.log
+
+# IDE files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
