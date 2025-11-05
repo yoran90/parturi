@@ -17,6 +17,7 @@ const YksiTuoate = ({ id, image, title, price, description }) => {
           <p className='text-red-600 font-semibold text-sm'>{price}€</p>
         </div>
         <p className='text-sm text-slate-600 line-clamp-2 mb-4 w-full'>{description}</p>
+        
       </div>
     </Link>
   )
