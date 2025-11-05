@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -137,3 +138,26 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+=======
+# Node.js dependencies
+node_modules/
+client/node_modules/
+
+# Environment variables file (to keep secrets safe)
+.env
+
+# Build files
+client/build/
+server/dist/
+
+# Logs
+*.log
+
+# IDE files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+>>>>>>> 8e92ee5 (Initial commit)
