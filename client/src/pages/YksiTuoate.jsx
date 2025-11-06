@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom'
 
 const YksiTuoate = ({ id, image, title, price, description }) => {
 
-
-
-
-
   return (
     <Link to={`/tuote/${id}`} className='bg-white shadow overflow-hidden rounded-md w-full cursor-pointer'>
       <img src={image} alt={title} />

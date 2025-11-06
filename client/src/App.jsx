@@ -7,7 +7,8 @@ import PalvelutHinta from './pages/PalvelutHinta'
 import Galleria from './pages/Galleria'
 import Tuote from './pages/Tuote'
 import Yhteystiedot from './pages/Yhteystiedot'
-import YksiTuoate from './pages/YksiTuoate'
+import TuoateSivu from './pages/TuoateSivu'
+
 
 
 const App = () => {
@@ -20,7 +21,7 @@ const App = () => {
         <Route path='/palvelut' element={<PalvelutHinta />}></Route>
         <Route path='/galaria' element={<Galleria />}></Route>
         <Route path='/tuotet' element={<Tuote />}></Route>
-        <Route path='/tuote/:id' element={<YksiTuoate />}></Route>
+        <Route path='/tuote/:id' element={<TuoateSivu />}></Route>
         <Route path='/yhteystiedot' element={<Yhteystiedot />}></Route>
       </Routes>
     </div>
