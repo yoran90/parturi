@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Main from '../components/main/Main'
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaFacebook, FaMapMarkerAlt, FaShareAlt, FaSnapchat, FaTiktok, FaTwitter, FaYoutube } from "react-icons/fa";
 import { MdPhoneInTalk } from 'react-icons/md';
 import { IoMdClock } from "react-icons/io";
 import { MdLocalPolice } from "react-icons/md";
@@ -9,36 +9,93 @@ import { VscWorkspaceTrusted } from "react-icons/vsc";
 import Map from '../components/map/Map';
 import Footer from '../components/footer/Footer';
 
+import Information from '../components/up-header/information';
+import Header from '../components/header/Header';
+
+import { CgInstagram } from 'react-icons/cg';
+import useInformation from '../hooks/useInformation';
+import Loading from '../loading/Loading';
+
 
 
 const Etusivut = () => {
 
- 
+  const { getInformation, loading } = useInformation();
+
+
+  if (loading) {
+    return (
+      <div className="w-full h-screen flex flex-col justify-center items-center text-slate-700">
+        <div className="loader"></div>
+        <p className="mt-4 text-sm">Ladataan odota...</p>
+        <style>{`
+          .loader {
+            border: 4px solid #ddd;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.8s linear infinite;
+          }
+          @keyframes spin {
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
+    );
+  }
+
 
   return (
     <div>
+      <Information />
+      <Header />
       <Main />
       <div>
         <div className='bg-white shadow border border-slate-100 md:mt-6 md:w-[90%] md:m-auto p-4 md:rounded-full -mt-20'>
           <div className='md:flex items-center md:justify-between md:px-16'>
-            <div>
-              <a className='flex md:mb-0 mb-6 flex-col items-center justify-center' href="https://www.google.com/maps/place/Maas%C3%A4lv%C3%A4ntie+6,+00710+Helsinki/@60.2366177,25.0066272,17z/data=!3m1!4b1!4m6!3m5!1s0x469208f7c6a193af:0xd672c6251afd836!8m2!3d60.2366151!4d25.0092021!16s%2Fg%2F11dzpwynv9?entry=ttu&g_ep=EgoyMDI1MTEwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
+            <div className='min-h-[100px]'>
+              <a className='flex md:mb-0 mb-6 flex-col items-center justify-center' href={getInformation?.addressUrl} target="_blank" rel="noopener noreferrer">
                 <FaMapMarkerAlt size={25} />
                 <h3 className='text-sm font-bold text-slate-600 mt-2 border-b mb-2'>OSOITE</h3>
-                <p className='text-xs font-semibold text-slate-500'>Maasäläntie 6, 00710 Helsinki</p>
+                <p className='text-xs font-semibold text-slate-500'>{getInformation?.address}</p>
               </a>
             </div>
-            <div className='flex flex-col items-center justify-center md:mb-0 mb-6'>
-              <MdPhoneInTalk size={30} />
-              <h3 className='text-sm font-bold text-slate-600 mt-2 border-b mb-2'>PUHELIN</h3>
-              <a href='tel:+358 50 123456' className='text-xs font-semibold text-slate-500'>+358 50 123456</a>
+            <div className='min-h-[100px] md:mb-0 mb-3'> 
+              <div className='flex flex-col items-center justify-center md:border-b  mb-3 gap-2'>
+                <FaShareAlt size={25} />
+                <h3>Seuraa Meitä</h3>
+              </div>
+              <div className='flex items-center justify-center gap-3.5'>
+                {
+                  getInformation?.socialMedia?.map((sm, index) => (
+                    <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
+                      {sm.platform === "facebook" && <FaFacebook size={16} />}
+                      {sm.platform === "instagram" && <CgInstagram size={16} />}
+                      {sm.platform === "tiktok" && <FaTiktok size={16} />}
+                      {sm.platform === "snapchat" && <FaSnapchat size={16} />}
+                      {sm.platform === "twitter" && <FaTwitter size={16} />}
+                      {sm.platform === "youtube" && <FaYoutube size={16} />}
+                    </a>
+                  ))
+                }
+                
+              </div>
             </div>
-            <div className='flex flex-col items-center justify-center'>
+            <div className="flex flex-col items-center justify-start min-h-[100px]">
+              <MdPhoneInTalk size={30} />
+              <h3 className="text-sm font-bold text-slate-600 mt-2 border-b mb-2">PUHELIN</h3>
+              <a
+                href={`tel:${getInformation?.phone}`}
+                className="text-xs font-semibold text-slate-500"
+              >
+                {getInformation?.phone}
+              </a>
+            </div>
+            <div className='flex flex-col items-center justify-center min-h-[140px]'>
               <IoMdClock size={30} />
               <h3 className='text-sm font-bold text-slate-600 mt-2 border-b mb-2'>AUKIOLOAJAT</h3>
-              <p className='text-xs font-semibold text-slate-500'>7️⃣ 🕖 PÄIVÄÄ VIIKOSSA</p>
-              <p className='text-xs font-semibold text-slate-500'>Ma - Pe  (10 - 19)</p>
-              <p className='text-xs font-semibold text-slate-500'>La - Su  (10 - 18)</p>
+              <div className='text-xs' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
             </div>
           </div>
         </div>

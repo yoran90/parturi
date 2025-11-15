@@ -4,3 +4,18 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+body::-webkit-scrollbar {
+  width: 0px;
+}
+
+
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
