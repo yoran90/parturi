@@ -34,7 +34,7 @@ const Header = () => {
             <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Etusivu</button>
           </Link>
           <Link to={'/palvelut'}>
-            <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Palvelut/Hinta</button>
+            <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Palvelut</button>
           </Link>
           <Link to={'/galaria'}>
             <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Galleria</button>

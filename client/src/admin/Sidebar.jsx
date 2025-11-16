@@ -3,7 +3,7 @@ import React from 'react'
 import { MdLibraryAdd } from "react-icons/md";
 import { FaPhotoVideo } from "react-icons/fa";
 import { GrUserAdmin } from "react-icons/gr";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ImDisplay } from "react-icons/im";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { FcGallery } from "react-icons/fc";
@@ -85,7 +85,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         <div className='md:flex flex md:px-0 px-2 justify-between gap-1.5 font-semibold text-red-600 items-center md:justify-center mt-4 '>
           <div className='flex items-center gap-2'>
             <GrUserAdmin size={20} />
-            <h3>Admin Pannel</h3>
+            <Link to={'/admin'}>Admin Pannel</Link>
           </div>
           <div className='md:hidden flex'>
             <button className='text-xs' onClick={() => setIsOpen(false)}>❌</button>
