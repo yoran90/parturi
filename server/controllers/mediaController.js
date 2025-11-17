@@ -87,7 +87,8 @@ export const uploadGalleriImage = async (req, res) => {
 //! get galleri images
 export const getGalleriImages = async (req, res) => {
   try {
-    const galleriImages = await Galleri.find().sort({ createdAt: -1 });
+    const limit = parseInt(req.query.limit) || 0;
+    const galleriImages = await Galleri.find().sort({ createdAt: -1 }).limit(limit);
     res.status(201).json({ success: true, data: galleriImages });
   } catch (error) {
     console.log(error);

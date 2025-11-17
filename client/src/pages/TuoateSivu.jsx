@@ -5,6 +5,7 @@ import Footer from '../components/footer/Footer'
 import Information from '../components/up-header/information'
 import Header from '../components/header/Header'
 import axios from 'axios'
+import ProductLimit from './ProductLimit'
 
 
 const TuoateSivu = () => {
@@ -107,6 +108,10 @@ const TuoateSivu = () => {
         </div>
       </div>
       {/* Tutustu myös */}
+      <div className='flex flex-col items-center mt-12 mb-12'>
+        <h3 className='text-xl text-slate-500 font-semibold mb-8'>Tutustu myös </h3>
+        <ProductLimit />
+      </div>
       <Map />
       <Footer />
     </div>

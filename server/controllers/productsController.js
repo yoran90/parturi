@@ -22,7 +22,10 @@ export const addProducts = async (req, res) => {
 //! get all products 
 export const getAllProducts = async (req, res) => {
   try {
-    const getProducts = await Product.find().sort({ createdAt: -1 });
+
+    const limit = parseInt(req.query.limit) || 0;
+
+    const getProducts = await Product.find().sort({ createdAt: -1 }).limit(limit);
     res.status(200).json(getProducts);
   } catch (error) {
     console.log(error);

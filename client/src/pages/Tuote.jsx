@@ -9,8 +9,8 @@ import axios from 'axios'
 
 const Tuote = () => {
 
-  const [products, setProdects] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const [products, setProdects] = React.useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {

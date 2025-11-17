@@ -66,7 +66,6 @@ const Galleria = () => {
             </div>
           )
         }
-        
       </div>
       <Map />
       <Footer />

@@ -8,13 +8,15 @@ import { GiBeard } from "react-icons/gi";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
 import Map from '../components/map/Map';
 import Footer from '../components/footer/Footer';
-
 import Information from '../components/up-header/information';
 import Header from '../components/header/Header';
-
 import { CgInstagram } from 'react-icons/cg';
 import useInformation from '../hooks/useInformation';
-import Loading from '../loading/Loading';
+import GallaryLimit from './GallaryLimit';
+import ProductLimit from './ProductLimit';
+import { Link } from 'react-router-dom';
+import { FaArrowRightLong } from "react-icons/fa6";
+
 
 
 
@@ -22,6 +24,11 @@ const Etusivut = () => {
 
   const { getInformation, loading } = useInformation();
 
+  
+
+ 
+
+  
 
   if (loading) {
     return (
@@ -52,7 +59,7 @@ const Etusivut = () => {
       <Header />
       <Main />
       <div>
-        <div className='bg-white shadow border border-slate-100 md:mt-6 md:w-[90%] md:m-auto p-4 md:rounded-full -mt-20'>
+        <div className='bg-white shadow border border-slate-100 md:mt-6 w-[95%] md:py-0 py-8 mx-auto md:rounded-xl -mt-20'>
           <div className='md:flex items-center md:justify-between md:px-16'>
             <div className='min-h-[100px]'>
               <a className='flex md:mb-0 mb-6 flex-col items-center justify-center' href={getInformation?.addressUrl} target="_blank" rel="noopener noreferrer">
@@ -99,11 +106,11 @@ const Etusivut = () => {
             </div>
           </div>
         </div>
-        <div className='md:flex gap-2.5 md:w-[95%] h-full m-auto mt-12 bg-white shadow border border-slate-100 p-8 md:rounded-2xl mb-12'>
+        <div className='md:flex gap-2.5 w-[95%] h-full m-auto mt-12 bg-white shadow border border-slate-100 p-8 md:rounded-2xl mb-12'>
         {/* text side */}
           <div className='flex flex-col items-center'>
             <h3 className='text-sm font-semibold text-slate-600 mb-12 mt-6'>TERVETULOA</h3>
-            <p className='text-sm text-slate-500 text-center font-semibold'>
+            <p className='text-sm text-slate-500 mb-4 font-semibold'>
               Tervetuloa Parturiin – paikkaan, jossa hiukset saavat ansaitsemansa huomion ja asiakkaat palvellaan sydämellä. Meiltä saat yksilöllistä palvelua, ammattitaitoa ja rennon tunnelman – juuri sellaisen parturikokemuksen kuin sinulle sopii.
               </p>
             <p className='text-slate-600 text-sm '>
@@ -147,14 +154,14 @@ const Etusivut = () => {
         </div>
       </div>
       {/* why choose us */}
-      <div className='flex flex-col items-center justify-center md:w-[95%] m-auto mb-12'>
+      <div className='flex flex-col w-[95%] items-center justify-center m-auto mb-12'>
         <h3 className='text-lg font-semibold mb-4 text-slate-600'>💈Miksi Valita Meidät</h3>
         <p className='text-sm text-slate-600 text-center mb-6 md:w-[70%]'>Luon Parturissa yhdistyvät ammattitaito, intohimo ja aito välittäminen.
           Olemme licensed ja kokeneita alan ammattilaisia, jotka seuraavat trendejä ja kehittävät osaamistaan jatkuvasti.
           Asiakkaamme luottavat meihin, koska jokainen leikkaus, parran muotoilu ja viimeistely tehdään huolella ja yksilöllisesti.
           Kun istut tuoliimme, voit rentoutua – olet hyvissä ja luotettavissa käsissä.
         </p>
-        <div className='flex flex-col md:flex-row gap-4 md:w-[95%] m-auto'>
+        <div className='flex flex-col md:flex-row gap-4 m-auto'>
           <div className='flex flex-col items-center justify-center bg-white shadow border border-slate-100 p-8 rounded-2xl'>
             <div className='flex flex-col gap-1.5 text-center items-center justify-center mb-6'>
               <MdLocalPolice size={30} className='text-orange-500 h-12' />
@@ -180,6 +187,40 @@ const Etusivut = () => {
           </div>
         </div>
       </div>
+      {/* products */}
+      <div className='flex flex-col gap-2 mt-12 mb-12'>
+        <div className='flex flex-col gap-2 text-center mb-6'>
+          <h3 className="text-center text-slate-600 font-semibold">Parhaat tuotteet</h3>
+          <p className='text-sm text-slate-500'>Valitsemme parhaat tuotteet ja niistä valitsemme uusimmat</p>
+        </div>
+        <ProductLimit />
+        <div className='flex items-center justify-center mt-4'>
+          <Link to={'/tuotet'}>
+            <button className='bg-red-500 hover:bg-red-600 text-white py-1.5 cursor-pointer px-4 rounded-full text-xs group'>
+              Katso kaikki tuotteet
+              <FaArrowRightLong  size={12} className='inline-block ml-2 group-hover:translate-x-1 transition-all' />
+            </button>
+          </Link>
+        </div>
+      </div>
+
+      {/* gallery image */}
+      <div className='mb-12'>
+        <div className='flex flex-col gap-2 text-center mb-6'>
+          <h3 className="text-center text-slate-600 font-semibold">Galleria kuvia</h3>
+          <p className='text-sm text-slate-500'>Kuvia liikkeestä ja tyylin muutoksista</p>
+        </div>
+        <GallaryLimit />
+        <div className='flex text-center items-center justify-center mt-4'>
+          <Link to={'/galaria'}>
+            <button className='bg-red-500 hover:bg-red-600 text-white py-1.5 cursor-pointer px-4 rounded-full text-xs group'>
+              Katso kaikki kuvat
+              <FaArrowRightLong  size={12} className='inline-block ml-2 group-hover:translate-x-1 transition-all' />
+            </button>
+          </Link>
+        </div>
+      </div>
+
       {/* map */}
       <Map />
       {/* footer */}

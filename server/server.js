@@ -3,6 +3,7 @@ import cors from 'cors'
 import mongoose, { Mongoose } from 'mongoose'
 import dotenv from 'dotenv'
 import path from 'path'
+import cookieParser from 'cookie-parser'
 import { fileURLToPath } from 'url';
 
 
@@ -14,10 +15,12 @@ import mediaRoutes from './routes/mediaRoute.js'
 import priceRoutes from './routes/priceRouter.js'
 import productRoutes from './routes/productsRoute.js'
 import emailRoutes from './routes/emailRoute.js'
+import authRoutes from './routes/authRoute.js'
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(cors({
   origin: "http://localhost:5173",  // your frontend
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -40,6 +43,7 @@ app.use("/api/media", mediaRoutes);
 app.use("/api/price", priceRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/email", emailRoutes);
+app.use("/api/auth", authRoutes);
 
 
 mongoose.connect(process.env.MONGODB_URL).then(() => {

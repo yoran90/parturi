@@ -168,40 +168,27 @@ const Yhteystiedot = () => {
         </div>
       </div>
       {/* contact form */}
-      <div className='md:flex w-full gap-8 mt-16 md:px-12 px-4 mb-12'>
+      <div className='md:flex w-full gap-4 mt-16 md:px-8 px-4 mb-12'>
         {/* form */}
         <div className='md:w-[50%]'>
           <h3>Ota yhteyttä meihin</h3>
           <p>Saatavilla 24 tuntia vuorokaudessa!</p>
-          <form onSubmit={handleSubmit} className='mt-6 flex flex-col gap-4 bg-white shadow border border-slate-100 rounded p-6'>
-            <div className='flex items-center justify-center gap-5.5'>
-            {
-              getInformation?.socialMedia?.map((sm, index) => (
-                <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
-                  {sm.platform === "facebook" && <FaFacebook size={16} />}
-                  {sm.platform === "instagram" && <CgInstagram size={16} />}
-                  {sm.platform === "tiktok" && <FaTiktok size={16} />}
-                  {sm.platform === "snapchat" && <FaSnapchat size={16} />}
-                  {sm.platform === "twitter" && <FaTwitter size={16} />}
-                  {sm.platform === "youtube" && <FaYoutube size={16} />}
-                </a>
-              ))
-            }
-          </div>
+          <form onSubmit={handleSubmit} className='mt-6 flex flex-col gap-4 bg-white shadow border border-slate-100 rounded py-10 px-6'>
+            
             <div className='text-sm flex flex-col gap-1'>
-              <label htmlFor="">👤 Nimi*</label>
+              <label htmlFor="">👤 Nimi <span className='text-red-600 font-semibold'>*</span></label>
               <input type="text" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value })} placeholder='nimesi' className='border border-slate-200 rounded p-1.5' />
             </div>
             <div className='text-sm flex flex-col gap-1'>
-              <label htmlFor="">📞 Puhelin*</label>
+              <label htmlFor="">📞 Puhelin <span className='text-red-600 font-semibold'>*</span></label>
               <input type="text" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value })} placeholder='+35812345678' className='border border-slate-200 rounded p-1.5' />
             </div>
             <div className='text-sm flex flex-col gap-1'>
-              <label htmlFor="">📧 Sähköposti*</label>
+              <label htmlFor="">📧 Sähköposti <span className='text-red-600 font-semibold'>*</span></label>
               <input type="text" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value })} placeholder='example@example.com' className='border border-slate-200 rounded p-1.5' />
             </div>
             <div className='text-sm flex flex-col gap-1'>
-              <label htmlFor="">💬 Viesti*</label>
+              <label htmlFor="">💬 Viesti <span className='text-red-600 font-semibold'>*</span></label>
               <textarea value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value })} cols="30" rows="10" placeholder='Kirjoita viesti...' className='border border-slate-200 rounded resize-none p-1.5'></textarea>
             </div>
             <div className='float-right flex justify-end'>
