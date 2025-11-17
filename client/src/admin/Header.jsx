@@ -3,6 +3,7 @@ import { HiMenu } from "react-icons/hi";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../store/admin-auth';
+import { TbLogout } from "react-icons/tb";
 
 const Header = ({ setIsSidebarOpen, isSidebarOpen }) => {
 
@@ -27,7 +28,10 @@ const Header = ({ setIsSidebarOpen, isSidebarOpen }) => {
         </button>
         <p className='text-red-600 text-sm font-semibold'>Welcome to admin page</p>
       </div>
-      <button onClick={handleLogout} className='bg-red-500 text-white py-1 px-4 rounded-full text-sm cursor-pointer'>Logout</button>
+      <button onClick={handleLogout} className='bg-red-500 text-white py-1 px-4 rounded-full text-sm cursor-pointer flex items-center gap-1'>
+        Logout
+        <TbLogout />
+      </button>
     </div>
   )
 }

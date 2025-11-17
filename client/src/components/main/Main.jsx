@@ -81,6 +81,7 @@ const Main = () => {
               className={`w-full h-full object-cover transition-opacity duration-500 ${fadeClass}`} 
               controls 
               autoPlay
+              loop
                
             />
           )
