@@ -140,7 +140,7 @@ const ImageVideo = () => {
           <input type="text" placeholder="Enter a short description" className="border border-slate-300 p-2 rounded" />
         </div>
 
-        <button type="submit" className="bg-red-600 hover:bg-red-500 text-white mt-6 mb-12 rounded py-2 px-6 text-sm font-semibold" >
+        <button type="submit" className="bg-red-600 hover:bg-red-500 cursor-pointer text-white mt-6 mb-12 rounded py-2 px-6 text-sm font-semibold" >
           {
             loading ? (
               <div className='flex items-center justify-center gap-1.5'>
