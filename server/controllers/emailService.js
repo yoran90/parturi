@@ -20,7 +20,6 @@ export const sendHotmailEmail = async ({ name, phone, email, message }) => {
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully',info);
     return info
 
   } catch (error) {

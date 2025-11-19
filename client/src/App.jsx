@@ -26,6 +26,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { checkAuth } from './store/admin-auth'
 import UnAuthPage from './unauth-page/UnAuthPage'
+import AddHeaderLogo from './admin/pages/AddHeaderLogo'
 
 
 
@@ -91,6 +92,7 @@ const App = () => {
           <Route path='displayGalleri' element={<DisplayGalleryImage />}></Route>
           <Route path='addProduct' element={<AddProduct />}></Route>
           <Route path='displayProduct' element={<DisplayProduct />}></Route>
+          <Route path='addheaderlogo' element={<AddHeaderLogo />}></Route>
         </Route>
 
         <Route path='/login' element={<Login />}></Route>

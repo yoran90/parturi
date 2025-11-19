@@ -16,6 +16,7 @@ import priceRoutes from './routes/priceRouter.js'
 import productRoutes from './routes/productsRoute.js'
 import emailRoutes from './routes/emailRoute.js'
 import authRoutes from './routes/authRoute.js'
+import headetLogoRoutes from './routes/headerLogoRoute.js'
 
 const app = express();
 app.use(express.json());
@@ -44,6 +45,7 @@ app.use("/api/price", priceRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/email", emailRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/header-logo", headetLogoRoutes)
 
 
 mongoose.connect(process.env.MONGODB_URL).then(() => {

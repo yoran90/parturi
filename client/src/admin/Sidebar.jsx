@@ -10,6 +10,7 @@ import { FcGallery } from "react-icons/fc";
 import { MdOutlineImageSearch } from "react-icons/md";
 import { AiFillProduct } from "react-icons/ai";
 import { CgDisplayFullwidth } from "react-icons/cg";
+import { MdAddToHomeScreen } from "react-icons/md";
 
 
 
@@ -61,6 +62,12 @@ const adminSidebarMenuItems = [
     label: (<div className='flex flex-col'>Display Product <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can see all product</small></div>),
     path: '/admin/displayProduct',
     icons: <CgDisplayFullwidth   size={20} />
+  },
+  {
+    id: 'addheaderlogo',
+    label: (<div className='flex flex-col'>Header Logo <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can handle header logo</small></div>),
+    path: '/admin/addheaderlogo',
+    icons: <MdAddToHomeScreen    size={20} />
   }
 ]
 

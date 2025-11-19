@@ -3,6 +3,7 @@ import headerLogo from '../../assets/header-logo-2.avif'
 import { Link } from 'react-router-dom'
 import { LuMenu } from "react-icons/lu";
 import { CgClose } from "react-icons/cg";
+import useHeaderLogo from '../../hooks/useHeaderLogo';
 
 
 
@@ -16,6 +17,8 @@ import { CgClose } from "react-icons/cg";
 const Header = () => {
 
 
+  const {headerLogo} = useHeaderLogo();
+
   const [showTheHeader, setShowTheHeader] = useState(false)
   const clickTheMenuShowHeader = () => {
     setShowTheHeader(!showTheHeader)
@@ -27,7 +30,7 @@ const Header = () => {
     <>
       <div className='md:flex sticky top-0 hidden items-center justify-between bg-black border-t-2 border-slate-800'>
         <div className='bg-black p-2'> 
-          <img src={headerLogo} alt="Header Logo" className='w-[100px] h-[50px]' />
+          <img src={headerLogo?.url} alt="Header Logo" className='w-[100px] h-[50px]' />
         </div>
         <div className='pr-10'>
           <Link to={'/'}>
