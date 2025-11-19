@@ -55,6 +55,10 @@ const AddGalleriImage = () => {
     
   }
 
+  const removeImage = (index) => {
+    const newImage = selectFile.filter((_, i) => i !== index);
+    setSelectFile(newImage);
+  }
  
 
   return (
@@ -131,8 +135,9 @@ const AddGalleriImage = () => {
             <div className='flex flex-wrap gap-4 mt-8'>
               {
                 selectFile.map((media, index) => (
-                  <div key={index}>
+                  <div key={index} className='relative'>
                     <img src={media.preview} alt='' className='w-32 h-32 object-cover rounded' />
+                    <button type='button' onClick={() => removeImage(index)} className='absolute top-0 right-0 cursor-pointer'>❎</button>
                   </div>
                 ))
               }

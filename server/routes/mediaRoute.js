@@ -1,20 +1,26 @@
 import express from "express";
 import path from "path";
-import multer from "multer";
 import { deleteGalleryImage, deleteMediaById, getGalleriImages, getMediaList, uploadGalleriImage, uploadMedia } from "../controllers/mediaController.js";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import cloudinary from "../config/cloudinary.js";
+import multer from "multer";
+
+
 
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
+//! cloudinary Storage
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "paturi",
+    resource_type: "auto",
   },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  }
-});
+})
+
+
+
 const upload = multer({ storage: storage });
 
 router.post("/upload", upload.single("file"), uploadMedia);

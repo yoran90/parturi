@@ -43,12 +43,23 @@ const UpdateProduct = ({ closeModal, product, refreshProducts }) => {
     formData.append('discount', discount);
     formData.append('description', description);
     
+   
     images.forEach(image => {
-      formData.append('images', image);
+      if (image instanceof File) {
+        formData.append('images', image);
+      }
     });
 
+    const existingImages = images.filter(img => typeof img === 'string');
+    formData.append('existingImages', JSON.stringify(existingImages));
+
     try {
-      const response = await axios.put(`http://localhost:8001/api/products/updateProduct/${product._id}`, formData);
+      setLoadingForButton(true);
+      const response = await axios.put(`http://localhost:8001/api/products/updateProduct/${product._id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       if (response.status === 200) {
         toast.success('Product updated successfully ✅');
         refreshProducts();
@@ -56,7 +67,9 @@ const UpdateProduct = ({ closeModal, product, refreshProducts }) => {
       }
     } catch (error) {
       console.log(error);
-    } 
+    } finally {
+      setLoadingForButton(false);
+    }
   }
 
   useEffect(() => {
@@ -66,14 +79,24 @@ const UpdateProduct = ({ closeModal, product, refreshProducts }) => {
       setDiscount(product.discount);
       setDescription(product.description);
 
-      setImages(product.images);
+      setImages(product.images.map(img => (typeof img === 'string' ? img : img.url || img)));
     }
   }, [product])
 
+  useEffect(() => {
+    return () => {
+      images.forEach(img => {
+        if (img instanceof File) URL.revokeObjectURL(img);
+      });
+    }
+  }, [images]);
+
+
+
 
   const handleRemoveImage = (index) => {
-    const newImage = images.filter((_, i) => i !== index);
-    setImages(newImage);
+    const newImages = images.filter((_, i) => i !== index);
+    setImages(newImages);
     
   }
 
@@ -136,7 +159,7 @@ const UpdateProduct = ({ closeModal, product, refreshProducts }) => {
           {
             images.length > 0 && images.map((image, index) => (
               <div key={index} className='flex w-[70px] h-[70px] border border-slate-300 items-center gap-1 mt-3 relative'>
-                <img src={typeof image === 'string' ? `http://localhost:8001/${image.replace(/\\/g, "/")}` : URL.createObjectURL(image)} alt="image" className='w-full h-full object-cover' />
+                <img src={typeof image === 'string' ? image : URL.createObjectURL(image)}  alt="image" className='w-full h-full object-cover' />
                 <button type='button' onClick={() => handleRemoveImage(index)} className='bg-red-500 p-1 text-white text-sm absolute top-0 right-0 cursor-pointer'>
                   <FaTrash />
                 </button>

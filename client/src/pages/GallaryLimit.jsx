@@ -1,7 +1,5 @@
 import axios from 'axios';
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
-import { FaArrowRightLong } from "react-icons/fa6";
 
 const GallaryLimit = () => {
   const [galleryImages, setGalleryImages] = React.useState([]);
@@ -28,7 +26,7 @@ const GallaryLimit = () => {
         <div className='grid md:grid-cols-4 grid-cols-2 gap-4'>
           {
             limitedImages.length > 0 && limitedImages?.map((image, index) => (
-              <img key={index} src={`http://localhost:8001/${image?.replace(/\\/g, "/")}`} className='md:w-[300px] w-full h-[260px] cursor-pointer border border-slate-500 rounded-md' alt="" />   
+              <img key={index} src={image.url} className='md:w-[300px] w-full h-[260px] cursor-pointer border border-slate-500 rounded-md' alt="" />   
             ))
           }
         </div> 

@@ -27,7 +27,7 @@ const YksiTuoate = ({ id, images, title, price, discount, description }) => {
     <Link to={`/tuote/${id}`} className='bg-white shadow border border-slate-300 overflow-hidden rounded-md w-full cursor-pointer'>
       {
         images && images.length > 0 && (
-          <img src={`http://localhost:8001/${images[0].replaceAll('\\', '/')}`} alt={title} className='w-full h-[150px] border-slate-300' />
+          <img src={images && images.length > 0 ? images[0].url : '/placeholder.png'}  alt={title} className='w-full h-[150px] border-slate-300' />
         )
       }
       <hr className='mt-2 text-slate-200' />

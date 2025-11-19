@@ -70,13 +70,13 @@ const TuoateSivu = () => {
       <Header />
       <div className='md:flex w-full mt-12 p-4 gap-3.5 mb-12'>
         <div className='md:w-[50%] h-[80vh] '>
-          <img src={ selectImages ? `http://localhost:8001/${selectImages.replaceAll('\\', '/')}` : `http://localhost:8001/${product?.images[0].replaceAll('\\', '/')}`} alt={product?.title} className='w-full h-[60vh] border border-slate-300 rounded object-contain' />
+          <img src={ selectImages ? selectImages.url : product?.images[0]?.url } alt={product?.title} className='w-full h-[60vh] border border-slate-300 rounded object-contain' />
           {
             product?.images.length > 1 && (
               <div className='flex gap-1 cursor-pointer mt-4 pb-3 overflow-x-scroll'>
                 {
                   product?.images.map((image, index) => (
-                    <img key={index} onClick={() => setSelectImages(image)} src={`http://localhost:8001/${image.replaceAll('\\', '/')}`} alt={product?.title} className='w-[24.5%] h-[15vh] border border-slate-300 rounded object-fill' />
+                    <img key={index} onClick={() => setSelectImages(image)} src={image.url} alt={product?.title} className='w-[24.5%] h-[15vh] border border-slate-300 rounded object-fill' />
                   ))
                 }
               </div>

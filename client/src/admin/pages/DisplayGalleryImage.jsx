@@ -7,14 +7,14 @@ const DisplayGalleryImage = () => {
 
   const { galleryImages, setGalleryImages, loading } = useGallery();
 
-  const handleDeleteGalleryImage = async (galleryId, imagePath) => {
+  const handleDeleteGalleryImage = async (galleryId, publicId ) => {
     try {
       const response = await axios.delete(`http://localhost:8001/api/media/deleteGalleryImage`, {
-        data: { galleryId, imagePath }
+        data: { galleryId, publicId  }
       });
 
       if (response.data.success) {
-        setGalleryImages(galleryImages.filter(image => image.path !== imagePath));
+        setGalleryImages(galleryImages.filter(image => image.publicId !== publicId ));
         toast.success('Gallery image deleted successfully');
       }
 
@@ -62,13 +62,13 @@ const DisplayGalleryImage = () => {
           {galleryImages.map((image, index) => (
             <div key={index} className='border border-slate-300 rounded p-2 flex flex-col gap-2'>
               <img
-                src={`http://localhost:8001/${image.path.replace(/\\/g, "/")}`}
+                src={image.url}
                 alt=''
                 className='w-full h-40 object-cover rounded'
               />
               <button
                 className='bg-red-600 text-white hover:bg-red-700 px-2 py-1 text-sm rounded cursor-pointer'
-                onClick={() => handleDeleteGalleryImage(image.galleryId, image.path)}
+                onClick={() => handleDeleteGalleryImage(image.galleryId, image.publicId)}
               >
                 Delete
               </button>

@@ -67,6 +67,13 @@ const Tuote = () => {
           📍 Tule käymään ja löydä uudet suosikkituotteesi!
         </p>
       </div>
+      <div>
+        {
+          products.length === 0 && (
+            <p className='text-center text-red-600 font-semibold text-xl mt-12'>Ei tuotteita</p>
+          ) 
+        }
+      </div>
       {/* product */}
       <div className='w-full mt-12 mb-12'>
         <div className='grid md:grid-cols-4 lg:grid-cols-5 grid-cols-2 gap-1.5 m-2'>

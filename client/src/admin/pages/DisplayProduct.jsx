@@ -5,6 +5,7 @@ import { FaEdit } from "react-icons/fa";
 import { BsTrash3Fill } from "react-icons/bs";
 import UpdateProduct from './UpdateProduct';
 import { toast } from 'react-toastify';
+import Loading from '../../loading/Loading';
 
 
 
@@ -14,6 +15,8 @@ const DisplayProduct = () => {
   const [openUpadetProductModel, setOpenUpadetProductModel] = React.useState(false);
   const [selectedProduct, setSelectedProduct] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
+  const [deletingId, setDeletingId] = React.useState(null);
+
 
 
   const truncateWord = (text, limit = 35) => {
@@ -42,6 +45,7 @@ const DisplayProduct = () => {
   // delete product 
   const deleteProduct = async (id) => {
     try {
+      setDeletingId(id);
       const response = await axios.delete(`http://localhost:8001/api/products/deleteProduct/${id}`);
       if (response.status === 200) {
         toast.success("Product deleted successfully.");
@@ -49,7 +53,8 @@ const DisplayProduct = () => {
       }
     } catch (error) {
       console.log(error);
-      
+    } finally {
+      setDeletingId(null);
     }
   }
 
@@ -112,7 +117,7 @@ const DisplayProduct = () => {
             <div key={product._id}>
               <div className='grid grid-cols-5 border border-slate-400 py-1 px-2 items-center justify-center gap-4' style={{ gridTemplateColumns: "0.5fr 2fr 1fr 2fr 1fr" }}>
                 <div className='w-[50px] h-[50px]'>
-                  <img src={`http://localhost:8001/${product.images[0].replaceAll('\\', '/')}`} alt={`${product.title}`} className='w-full h-full object-cover' />
+                  <img src={product?.images[0]?.url} alt={`${product.title}`} className='w-full h-full object-cover' />
                 </div>
                 <div>
                   <p className='text-sm'>{truncateTitle(product.title)}</p>
@@ -133,13 +138,21 @@ const DisplayProduct = () => {
                 </div>
                 <div className='text-black text-sm line-clamp-1' dangerouslySetInnerHTML={{__html: product.description}} />
                 <div className='pl-6'>
-                  <button onClick={() => {
+                  <button type='button' onClick={() => {
                     setOpenUpadetProductModel(true); setSelectedProduct(product)
                   }} className='text-green-600 cursor-pointer'>
                     <FaEdit size={20} />
                   </button>
-                  <button onClick={() => deleteProduct(product._id)} className='text-red-600 ml-3 cursor-pointer'>
-                    <BsTrash3Fill size={20} />
+                  <button type='button' onClick={() => deleteProduct(product._id)} className='text-red-600 ml-3 cursor-pointer'>
+                    {
+                      deletingId === product._id  ? (
+                        <div>
+                          <Loading width={20} height={20} border='3px' topBorder='3px' borderColor='red' borderTopColor='white' />
+                        </div>
+                      ) : (
+                        <BsTrash3Fill size={20} />
+                      )
+                    }
                   </button>
                 </div>
               </div>
@@ -162,7 +175,7 @@ const DisplayProduct = () => {
             <div key={product._id}>
               <div className='grid grid-cols-4 border border-slate-400 py-1 px-2 items-center justify-center gap-4' style={{ gridTemplateColumns: "0.5fr 1.5fr 1fr 1fr" }}>
                 <div className='w-[45px] h-[45px]'>
-                  <img src={`http://localhost:8001/${product.images[0].replaceAll('\\', '/')}`} alt={`${product.title}`} className='w-full h-full object-cover' />
+                  <img src={product?.images[0]?.url} alt={`${product.title}`} className='w-full h-full object-cover' />
                 </div>
                 <div>
                   <p className='text-sm'>{truncateTitle(product.title)}</p>

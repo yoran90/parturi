@@ -1,15 +1,22 @@
 import Product from "../models/Products.js";
-import fs from "fs";
-import path from "path";
+import cloudinary from "../config/cloudinary.js";
+
 
 //! create product
 export const addProducts = async (req, res) => {
   try {
-    const { title, description, images, price, discount } = req.body;
+    const { title, description, price, discount } = req.body;
 
-    const imagePath = req.files.map(file => file.path);
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ message: "No product images uploaded" });
+    }
+
+    const images = req.files.map(file => ({
+      url: file.path,        // Cloudinary URL
+      publicId: file.filename
+    }));
     
-    const newProduct = await Product.create({ title, description, images: imagePath, price, discount });
+    const newProduct = await Product.create({ title, description, images, price, discount });
     const saveProduct = await newProduct.save();
     res.status(201).json({ message: "Product added successfully ✅", product: saveProduct });
 
@@ -49,27 +56,47 @@ export const getProductById = async (req, res) => {
 export const updateProductById = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, price, discount } = req.body;
+    const { title, description, images, price, discount } = req.body;
 
-    let images;
-    if (req.files && req.files.length > 0) {
-      images = req.files.map(file => file.path);
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
 
-      const oldProduct = await Product.findById(id);
-      if (oldProduct && oldProduct.images) {
-        oldProduct.images.forEach(imagePath => {
-          const fullPath = path.join(process.cwd(), imagePath);
-          if (fs.existsSync(fullPath)) {
-            fs.unlinkSync(fullPath);
-          }
-        });
-      } else {
-        const exsistingProduct = await Product.findById(id);
-        images = exsistingProduct.images;
+    let existingImgArray = [];
+     try {
+      existingImgArray = JSON.parse(existingImages || "[]");
+    } catch (error) {
+      console.log("Failed to parse existingImages", error);
+    }
+
+    const updateImageList = product.images.filter((img) =>
+      existingImgArray.includes(img.url)
+    );
+
+    const imagesToDelete = product.images.filter((img) =>
+      !existingImgArray.includes(img.url)
+    );
+
+    for (const img of imagesToDelete) {
+      if (img.publicId) {
+        await cloudinary.uploader.destroy(img.publicId);
       }
     }
 
-    const updateProduct = await Product.findByIdAndUpdate(id, { title, description, images, price, discount }, { new: true });
+    if (req.files && req.files.length > 0) {
+      const newImages = req.files.map((file) => ({
+        url: file.path,
+        publicId: file.filename,
+      }));
+      updateImageList.push(...newImages);
+    }
+
+    const updateProduct = await Product.findByIdAndUpdate(
+      id,
+      { title, description, images: updateImageList, price, discount },
+      { new: true }
+    );
     res.status(200).json({ message: "Product updated successfully ✅", product: updateProduct });
     
   } catch (error) {
@@ -87,13 +114,10 @@ export const deleteProductBYId = async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    if (deletedProduct.images && deletedProduct.images.length > 0) {
-      deletedProduct.images.forEach(imagePath => {
-        const fullPath = path.join(process.cwd(), imagePath);
-        if (fs.existsSync(fullPath)) {
-          fs.unlinkSync(fullPath);
-        }
-      });
+    for (const img of deletedProduct.images || []) {
+     
+      await cloudinary.uploader.destroy(img.publicId);
+
     }
 
     await Product.findByIdAndDelete(id);

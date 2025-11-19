@@ -24,12 +24,12 @@ const ImagevideoDisplay = () => {
       fetchMedia();
     }, []);
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (item) => {
       try {
-        const response = await axios.delete(`http://localhost:8001/api/media/delete/${id}`);
+        const response = await axios.delete(`http://localhost:8001/api/media/delete/${item._id}`);
         if (response.data.success) {
           toast.success("Media deleted successfully.");
-          setMedia(media.filter(item => item._id !== id));
+           setMedia(media.filter(m => m._id !== item._id));
         }
       } catch (error) {
         console.log(error);
@@ -77,7 +77,7 @@ const ImagevideoDisplay = () => {
                   <video src={item.src} alt={item.alt} className='w-full h-full' controls></video>
                 ) }
               </div>
-              <button onClick={(e) => handleDelete(item._id)} className='absolute -top-4 -right-3 bg-red-500 p-2 rounded-full text-xs cursor-pointer text-white hover:bg-red-600'>
+              <button onClick={(e) => handleDelete(item)} className='absolute -top-4 -right-3 bg-red-500 p-2 rounded-full text-xs cursor-pointer text-white hover:bg-red-600'>
                 <BsTrash3Fill />
               </button>
             </div>

@@ -44,36 +44,36 @@ const AddProduct = () => {
       return;
     }
 
-    try {
-      setLoading(true);
+   try {
       setLoadingForButton(true);
+
       const formData = new FormData();
       formData.append('title', title);
       formData.append('price', price);
       formData.append('discount', Number(discount));
       formData.append('description', description);
 
-      for (let i = 0; i < images.length; i++) {
-        formData.append('images', images[i]);
-      }
+      images.forEach(img => formData.append('images', img));
 
-      const response = await axios.post("http://localhost:8001/api/products/addproduct", formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      const response = await axios.post("http://localhost:8001/api/products/addproduct", formData,
+        { headers: { 'Content-Type': 'multipart/form-data' } }
+      );
 
-      
       toast.success(response.data.message);
+
+      // reset
       setTitle('');
       setPrice('');
       setDiscount('');
       setDescription('');
       setImages([]);
+
     } catch (error) {
-      console.log(error); 
+      console.log(error);
     } finally {
       setLoadingForButton(false);
-      setLoading(false);
     }
+
   }
 
   const handleRemoveImage = (index) => {
@@ -177,7 +177,7 @@ const AddProduct = () => {
               {
                 loadingForButton ? <div className='flex items-center justify-center gap-2'>
                   <p>Adding</p>
-                  <Loading width={20} height={20} border='4px' topBorder='4px' borderColor='white' borderTopColor='red' />
+                  <Loading width={20} height={20} border='3px' topBorder='3px' borderColor='white' borderTopColor='red' />
                 </div>  
                 : 'Add Product'
               }

@@ -55,7 +55,7 @@ const Galleria = () => {
       <div className='md:grid md:grid-cols-4 flex flex-col gap-2.5 w-[95%] m-auto mt-8 mb-12'>
         {
           galleryImages?.map((image, index) => (
-            <img key={index} src={`http://localhost:8001/${image.path.replace(/\\/g, "/")}`} onClick={() => setSelectedImage(image)} className='md:w-[300px] w-full h-[300px] cursor-pointer border-3 border-slate-600 rounded-md' alt="" />
+            <img key={index} src={image.url} onClick={() => setSelectedImage(image)} className='md:w-[300px] w-full h-[300px] cursor-pointer border-3 border-slate-600 rounded-md' alt="" />
           ))
         }
         {

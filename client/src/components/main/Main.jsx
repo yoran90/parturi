@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import videoOne from '../../videos/videoOne.mp4';
-import videoTwo from '../../videos/videoTwo.mp4';
-import videoThree from '../../videos/videoThree.mp4';
 import axios from 'axios';
 import Loading from '../../loading/Loading';
 
@@ -50,7 +47,7 @@ const Main = () => {
     if (media.length === 0) return;
     const interval = setInterval(nextMedia, 5000); 
     return () => clearInterval(interval);  
-  }, []);
+  }, [media.length]);
 
 
   const  currentMedia = media[currentIndex];
@@ -62,6 +59,9 @@ const Main = () => {
       </div>
     );
   }
+
+  if (media.length === 0) return <Loading width={60} height={60} border='6px' topBorder='6px' borderColor='red' borderTopColor='white' />
+
 
   return (
     <div className='relative w-full md:h-[500px] lg:h-[600px] h-[500px] overflow-hidden'>
@@ -75,15 +75,17 @@ const Main = () => {
               className={`w-full h-full transition-opacity duration-500 ${fadeClass}`} 
             />
           ) : (
-            <video 
-              src={currentMedia.src} 
-              alt={currentMedia.alt} 
-              className={`w-full h-full object-cover transition-opacity duration-500 ${fadeClass}`} 
-              controls 
+            <video
+              src={currentMedia.src}
+              alt={currentMedia.alt}
+              className={`w-full h-full object-cover transition-opacity duration-500 ${fadeClass}`}
+              controls
               autoPlay
               loop
-               
+              muted
+              playsInline
             />
+
           )
         }
       </div>

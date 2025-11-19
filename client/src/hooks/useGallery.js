@@ -15,7 +15,8 @@ export default function useGallery() {
         const allImages = response.data.data.flatMap(gallery =>
           gallery.images.map(img => ({
             galleryId: gallery._id,
-            path: img
+            url: img.url,          
+            publicId: img.publicId 
           }))
         );
         setGalleryImages(allImages);
