@@ -27,6 +27,7 @@ import { useEffect } from 'react'
 import { checkAuth } from './store/admin-auth'
 import UnAuthPage from './unauth-page/UnAuthPage'
 import AddHeaderLogo from './admin/pages/AddHeaderLogo'
+import AddAboutUs from './admin/pages/AddAboutUs'
 
 
 
@@ -93,6 +94,7 @@ const App = () => {
           <Route path='addProduct' element={<AddProduct />}></Route>
           <Route path='displayProduct' element={<DisplayProduct />}></Route>
           <Route path='addheaderlogo' element={<AddHeaderLogo />}></Route>
+          <Route path='addaboutus' element={<AddAboutUs />}></Route>
         </Route>
 
         <Route path='/login' element={<Login />}></Route>

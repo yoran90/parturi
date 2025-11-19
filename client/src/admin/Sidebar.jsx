@@ -11,6 +11,7 @@ import { MdOutlineImageSearch } from "react-icons/md";
 import { AiFillProduct } from "react-icons/ai";
 import { CgDisplayFullwidth } from "react-icons/cg";
 import { MdAddToHomeScreen } from "react-icons/md";
+import { FcAbout } from "react-icons/fc";
 
 
 
@@ -55,19 +56,25 @@ const adminSidebarMenuItems = [
     id: 'addproduct',
     label: (<div className='flex flex-col'>Add Product <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can add product</small></div>),
     path: '/admin/addProduct',
-    icons: <AiFillProduct  size={20} />
+    icons: <AiFillProduct size={20} />
   },
   {
     id: 'displayproduct',
     label: (<div className='flex flex-col'>Display Product <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can see all product</small></div>),
     path: '/admin/displayProduct',
-    icons: <CgDisplayFullwidth   size={20} />
+    icons: <CgDisplayFullwidth size={20} />
   },
   {
     id: 'addheaderlogo',
     label: (<div className='flex flex-col'>Header Logo <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can handle header logo</small></div>),
     path: '/admin/addheaderlogo',
-    icons: <MdAddToHomeScreen    size={20} />
+    icons: <MdAddToHomeScreen size={20} />
+  },
+  {
+    id: 'addaboutus',
+    label: (<div className='flex flex-col'>Add About Us <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can handle about us</small></div>),
+    path: '/admin/addaboutus',
+    icons: <FcAbout size={20} />
   }
 ]
 
