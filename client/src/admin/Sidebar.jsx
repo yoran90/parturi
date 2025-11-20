@@ -12,7 +12,7 @@ import { AiFillProduct } from "react-icons/ai";
 import { CgDisplayFullwidth } from "react-icons/cg";
 import { MdAddToHomeScreen } from "react-icons/md";
 import { FcAbout } from "react-icons/fc";
-
+import { AiFillFileAdd } from "react-icons/ai";
 
 
 const adminSidebarMenuItems = [
@@ -75,6 +75,12 @@ const adminSidebarMenuItems = [
     label: (<div className='flex flex-col'>Add About Us <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can handle about us</small></div>),
     path: '/admin/addaboutus',
     icons: <FcAbout size={20} />
+  },
+  {
+    id: 'titleforPages',
+    label: (<div className='flex flex-col'>Add Title & Description For Pages <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can handle about us</small></div>),
+    path: '/admin/titleforPages',
+    icons: <AiFillFileAdd  size={20} />
   }
 ]
 

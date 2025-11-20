@@ -28,6 +28,7 @@ import { checkAuth } from './store/admin-auth'
 import UnAuthPage from './unauth-page/UnAuthPage'
 import AddHeaderLogo from './admin/pages/AddHeaderLogo'
 import AddAboutUs from './admin/pages/AddAboutUs'
+import TitleForPages from './admin/pages/TitleForPages'
 
 
 
@@ -95,6 +96,7 @@ const App = () => {
           <Route path='displayProduct' element={<DisplayProduct />}></Route>
           <Route path='addheaderlogo' element={<AddHeaderLogo />}></Route>
           <Route path='addaboutus' element={<AddAboutUs />}></Route>
+          <Route path='titleforPages' element={<TitleForPages />}></Route>
         </Route>
 
         <Route path='/login' element={<Login />}></Route>

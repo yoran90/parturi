@@ -21,22 +21,27 @@ const Meistä = () => {
       <Header />
       <div>
         <div className='relative'>
-          
           <img src={getAboutUs?.image} alt="" className='w-full h-[60vh]' />
+          <div className="absolute inset-0 bg-black/50"></div>
           <div className='absolute w-full text-white flex flex-col items-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-            {
-              getAboutUs && getAboutUs.imageTitles?.map((title, index) => (
-                <p key={index} className='md:text-3xl text-xl'>{title}</p>
-              ))
-            }
+            <div className='flex flex-col'>
+              {
+                getAboutUs && getAboutUs.imageTitles?.map((title, index) => (
+                  <p key={index} className='md:text-3xl text-xl'>{title}</p>
+                ))
+              }
+            </div>
           </div>
         </div>
-        <div className='flex flex-col w-[95%] m-auto gap-8 items-center text-center justify-center mt-12 mb-12'>
-          <div>
-            <h3 className='text-xl text-gray-500 mb-4 font-semibold'></h3>
-            <p className='text-slate-600 md:w-[80%] m-auto'>
-            </p>
-          </div>
+        <div className='flex flex-col w-[95%] m-auto gap-10 items-center text-center justify-center mt-12 mb-12'>
+          {
+            getAboutUs && getAboutUs?.sections?.map((section, index) => (
+              <div key={index}>
+                <h3 className='text-xl w-full text-gray-500 mb-4 font-semibold'>{section.title}</h3>
+                <div className='text-slate-600 md:w-full md:px-16 m-auto' dangerouslySetInnerHTML={{__html: section?.description}} />
+              </div>
+            ))
+          }
           <div className='flex flex-col gap-4'>
             <h3 className='text-xl font-semibold text-slate-500'>Työmme ⬇️</h3>
             <GallaryLimit />

@@ -17,6 +17,7 @@ import emailRoutes from './routes/emailRoute.js'
 import authRoutes from './routes/authRoute.js'
 import headetLogoRoutes from './routes/headerLogoRoute.js'
 import aboutRouters from './routes/aboutUsRoute.js'
+import titleForpageRoutes from './routes/titleForPageRoute.js'
 
 
 
@@ -48,7 +49,8 @@ app.use("/api/products", productRoutes);
 app.use("/api/email", emailRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/header-logo", headetLogoRoutes);
-app.use("/api/about-us", aboutRouters)
+app.use("/api/about-us", aboutRouters);
+app.use("/api/titleForPages", titleForpageRoutes);
 
 
 mongoose.connect(process.env.MONGODB_URL).then(() => {
