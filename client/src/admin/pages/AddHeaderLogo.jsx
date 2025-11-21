@@ -54,7 +54,7 @@ const AddHeaderLogo = () => {
   };
 
   return (
-    <div className="md:px-6 md:py-8 p-2 h-[93vh] overflow-y-scroll">
+    <div className="md:px-6 md:py-8 p-2 h-[93vh] overflow-y-scroll scrollbarStyle">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 bg-white md:shadow md:p-6 px-2 py-4 rounded md:border border-slate-200"

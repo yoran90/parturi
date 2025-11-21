@@ -21,7 +21,7 @@ const Header = ({ setIsSidebarOpen, isSidebarOpen }) => {
 
 
   return (
-    <div className='shadow bg-white py-3.5 pr-3 md:pl-2 flex items-center justify-between'>
+    <div className='shadow bg-white border-b py-4.5 border-slate-300 pr-3 md:pl-2 flex items-center justify-between'>
       <div className='flex items-center gap-2.5'>
         <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="md:hidden p-2 rounded hover:bg-gray-100">
           <HiMenu size={25} />

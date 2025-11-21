@@ -8,7 +8,23 @@ body::-webkit-scrollbar {
   width: 0px;
 }
 
+.scrollbarStyle::-webkit-scrollbar {
+  width: 5px;
+}
+.scrollbarStyle::-webkit-scrollbar-track {
+  background: #d9d9d9;
+  border-radius: 10px;
+}
 
+.scrollbarStyle::-webkit-scrollbar-thumb {
+  background: #8c8c8c;
+  border-radius: 10px;
+  //border: 1px solid #ffffff;
+}
+
+.scrollbarStyle::-webkit-scrollbar-thumb:hover {
+  background: #595959;
+}
 
 
 @keyframes spin {

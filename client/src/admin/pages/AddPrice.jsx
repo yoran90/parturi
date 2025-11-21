@@ -134,7 +134,9 @@ const AddPrice = () => {
  
 
   return (
-    <div className='w-full h-[94vh] overflow-y-scroll pb-12'>
+    <div className='w-full h-[94vh] bg-white overflow-y-scroll scrollbarStyle pb-12'>
+      <div className='w-[95%] m-auto bg-white shadow mt-4 py-8 border border-slate-200 rounded'>
+
       <div className='flex flex-col items-center gap-1.5 mt-2 justify-center'>
         <h3 className='font-semibold text-slate-600'>Add Price for Services</h3>
         <p className='text-sm text-slate-500 text-center'>
@@ -195,6 +197,7 @@ const AddPrice = () => {
           </button>
         </div>
       </form>
+                </div>
     </div>
   );
 };

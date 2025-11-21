@@ -80,7 +80,7 @@ const adminSidebarMenuItems = [
     id: 'titleforPages',
     label: (<div className='flex flex-col'>Add Title & Description For Pages <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can handle about us</small></div>),
     path: '/admin/titleforPages',
-    icons: <AiFillFileAdd  size={20} />
+    icons: <AiFillFileAdd className='text-gray-500'  size={20} />
   }
 ]
 
@@ -98,20 +98,22 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         ></div>
       )}
       <div
-          className={`bg-white shadow h-screen border-r border-slate-200 transform transition-transform duration-300 fixed top-0 left-0 z-50 w-[80%] 
+          className={`bg-white shadow h-screen border-r border-slate-200 transform overflow-y-scroll scrollbarStyle scrollbarStyle transition-transform duration-300 fixed top-0 left-0 z-50 w-[90%] 
             ${isOpen ? "translate-x-0" : "-translate-x-full"} 
-            md:translate-x-0 md:static md:block md:w-[25%]`}
+            md:translate-x-0 md:static md:block md:w-[28%]`}
       >
-        <div className='md:flex flex md:px-0 px-2 justify-between gap-1.5 font-semibold text-red-600 items-center md:justify-center mt-4 '>
-          <div className='flex items-center gap-2'>
-            <GrUserAdmin size={20} />
-            <Link to={'/admin'}>Admin Pannel</Link>
+        <div className='pt-6 bg-white sticky top-0'>
+          <div className='md:flex px-4 flex md:px-0 justify-between gap-1.5 font-semibold text-red-600 items-center md:justify-center '>
+            <div className='flex items-center gap-2'>
+              <GrUserAdmin size={20} />
+              <Link to={'/admin'}>Admin Pannel</Link>
+            </div>
+            <div className='md:hidden flex'>
+              <button className='text-xs' onClick={() => setIsOpen(false)}>❌</button>
+            </div>
           </div>
-          <div className='md:hidden flex'>
-            <button className='text-xs' onClick={() => setIsOpen(false)}>❌</button>
-          </div>
+          <hr className='text-slate-300 mb-4 mt-4' />
         </div>
-        <hr className='text-slate-300 mb-4 mt-4' />
         {
           adminSidebarMenuItems.map((menuItem) => {
             const isActive = loacation.pathname === menuItem.path;

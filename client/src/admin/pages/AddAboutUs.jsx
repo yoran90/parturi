@@ -157,7 +157,7 @@ const AddAboutUs = () => {
   }
 
   return (
-    <div className='w-full h-[94vh] overflow-y-scroll pb-12'>
+    <div className='w-full h-[94vh] overflow-y-scroll scrollbarStyle pb-12'>
       <div className='flex flex-col items-center gap-1.5 mt-2 justify-center'>
         <h3 className='font-semibold text-slate-600'>Add Description or Title for your About Us</h3>
         <p className='text-sm text-slate-500 text-center'>

@@ -84,7 +84,7 @@ const TitleForPages = () => {
           <input type="text" className='border border-slate-300 p-1.5 px-3 rounded' placeholder='example@example.com'/>
         </div>
         <div className='flex flex-col text-sm gap-1'>
-          <label htmlFor="">➕ Add opening hours</label>
+          <label htmlFor="">Service Description</label>
           <ReactQuill theme="snow" className="h-40 rounded-lg text-sm" placeholder="Example: <b>Ma–Pe</b> (10:00 - 19:00) <br/> La–Su (10:00 - 18:00)" />
         </div>
        
@@ -98,7 +98,6 @@ const TitleForPages = () => {
                 <Loading width={20} height={20} border='4px' topBorder='4px' borderColor='white' borderTopColor='red' />
               </div>  
               : 'Add Save'
-
             }
           </button>
         </div>
