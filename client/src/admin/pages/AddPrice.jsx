@@ -10,9 +10,9 @@ import Loading from '../../loading/Loading';
 
 
 const AddPrice = () => {
-  const [title, setTitle] = useState([]);
-  const [service, setService] = useState([]); 
-  const [priceId, setPriceId] = useState([]);
+  const [title, setTitle] = useState(['']);
+  const [service, setService] = useState(['']); 
+  const [priceId, setPriceId] = useState(['']);
   const [loadingForButton, setLoadingForButton] = React.useState(false);
   const [loading, setLoading] = useState(false);
 

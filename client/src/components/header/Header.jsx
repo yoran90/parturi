@@ -14,15 +14,19 @@ import useHeaderLogo from '../../hooks/useHeaderLogo';
 
 
 
+
 const Header = () => {
 
 
-  const {headerLogo} = useHeaderLogo();
+  const { headerLogo } = useHeaderLogo();
+ 
 
   const [showTheHeader, setShowTheHeader] = useState(false)
   const clickTheMenuShowHeader = () => {
     setShowTheHeader(!showTheHeader)
   }
+ 
+
 
 
 
@@ -33,7 +37,7 @@ const Header = () => {
           <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
         </div>
         <div className='pr-10'>
-          <Link to={'/'}>
+          <Link to={`/`}>
             <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Etusivu</button>
           </Link>
           <Link to={'/meistä'}>
@@ -42,7 +46,7 @@ const Header = () => {
           <Link to={'/palvelut'}>
             <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Palvelut</button>
           </Link>
-          <Link to={'/galaria'}>
+          <Link to={'/galleria'}>
             <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Galleria</button>
           </Link>
           <Link to={'/tuotet'}>
@@ -51,7 +55,6 @@ const Header = () => {
           <Link to={'/yhteystiedot'}>
             <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Yhteystiedot</button>
           </Link>
-          {/* language */}
         </div>
       </div>
       {/* for mobile screen */}

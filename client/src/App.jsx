@@ -29,6 +29,8 @@ import UnAuthPage from './unauth-page/UnAuthPage'
 import AddHeaderLogo from './admin/pages/AddHeaderLogo'
 import AddAboutUs from './admin/pages/AddAboutUs'
 import TitleForPages from './admin/pages/TitleForPages'
+import HeaderPagesName from './admin/pages/HeaderPagesName'
+
 
 
 
@@ -37,6 +39,8 @@ const App = () => {
 
   const { isAuthenticated, loading, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
+
 
   useEffect(() => {
     dispatch(checkAuth());
@@ -64,6 +68,8 @@ const App = () => {
     )
   }
 
+
+
   return (
     <div>
       
@@ -71,13 +77,12 @@ const App = () => {
         <Route path='/' element={<Etusivut />}></Route>
         <Route path='/meistä' element={<Meistä />}></Route>
         <Route path='/palvelut' element={<PalvelutHinta />}></Route>
-        <Route path='/galaria' element={<Galleria />}></Route>
+        <Route path='/galleria' element={<Galleria />}></Route>
         <Route path='/tuotet' element={<Tuote />}></Route>
         <Route path='/tuote/:id' element={<TuoateSivu />}></Route>
         <Route path='/yhteystiedot' element={<Yhteystiedot />}></Route>
-        
 
-        
+       
 
         <Route path='/admin' element={
           <ProtectRoute isAuthenticated={isAuthenticated} user={user}>
@@ -97,6 +102,7 @@ const App = () => {
           <Route path='addheaderlogo' element={<AddHeaderLogo />}></Route>
           <Route path='addaboutus' element={<AddAboutUs />}></Route>
           <Route path='titleforPages' element={<TitleForPages />}></Route>
+          <Route path='headerPagesName' element={<HeaderPagesName />}></Route>
         </Route>
 
         <Route path='/login' element={<Login />}></Route>

@@ -1,4 +1,4 @@
-import Price from "../models/Price.js";
+import Price from "../models/PriceModel.js";
 
 
 //! Save price or create price

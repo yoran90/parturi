@@ -13,6 +13,7 @@ import { CgDisplayFullwidth } from "react-icons/cg";
 import { MdAddToHomeScreen } from "react-icons/md";
 import { FcAbout } from "react-icons/fc";
 import { AiFillFileAdd } from "react-icons/ai";
+import { RiPagesLine } from "react-icons/ri";
 
 
 const adminSidebarMenuItems = [
@@ -81,6 +82,12 @@ const adminSidebarMenuItems = [
     label: (<div className='flex flex-col'>Add Title & Description For Pages <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can handle about us</small></div>),
     path: '/admin/titleforPages',
     icons: <AiFillFileAdd className='text-gray-500'  size={20} />
+  },
+  {
+    id: 'headerPagesName',
+    label: (<div className='flex flex-col'>Add Header Pages Name <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can handle header pages name</small></div>),
+    path: '/admin/headerPagesName',
+    icons: <RiPagesLine  className='text-gray-500'  size={20} />
   }
 ]
 

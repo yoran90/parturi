@@ -1,4 +1,4 @@
-import Information from "../models/Information.js";
+import Information from "../models/InformationModel.js";
 
 
 

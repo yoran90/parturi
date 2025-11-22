@@ -1,4 +1,4 @@
-import TitleForPage from "../models/titleForPage.js";
+import TitleForPage from "../models/titleForPageModel.js";
 
 
 //! add title for page

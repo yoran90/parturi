@@ -1,5 +1,5 @@
-import Media from "../models/Media.js";
-import Galleri from "../models/Galleri.js";
+import Media from "../models/MediaModel.js";
+import Galleri from "../models/GalleriModel.js";
 import cloudinary from "../config/cloudinary.js";
 
 

@@ -1,4 +1,4 @@
-import About from "../models/aboutUs.js";
+import About from "../models/aboutUsModel.js";
 import fs from "fs";
 import cloudinary from "../config/cloudinary.js";
 

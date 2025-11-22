@@ -1,23 +1,24 @@
-import express from 'express'
-import cors from 'cors'
-import mongoose, { Mongoose } from 'mongoose'
-import dotenv from 'dotenv'
+import express from 'express';
+import cors from 'cors';
+import mongoose, { Mongoose } from 'mongoose';
+import dotenv from 'dotenv';
 dotenv.config();
-import path from 'path'
-import cookieParser from 'cookie-parser'
+import path from 'path';
+import cookieParser from 'cookie-parser';
 import { fileURLToPath } from 'url';
 
 
 
-import informationRoutes from './routes/informationRoutes.js'
-import mediaRoutes from './routes/mediaRoute.js'
-import priceRoutes from './routes/priceRouter.js'
-import productRoutes from './routes/productsRoute.js'
-import emailRoutes from './routes/emailRoute.js'
-import authRoutes from './routes/authRoute.js'
-import headetLogoRoutes from './routes/headerLogoRoute.js'
-import aboutRouters from './routes/aboutUsRoute.js'
-import titleForpageRoutes from './routes/titleForPageRoute.js'
+import informationRoutes from './routes/informationRoute.js';
+import mediaRoutes from './routes/mediaRoute.js';
+import priceRoutes from './routes/priceRoute.js';
+import productRoutes from './routes/productsRoute.js';
+import emailRoutes from './routes/emailRoute.js';
+import authRoutes from './routes/authRoute.js';
+import headetLogoRoutes from './routes/headerLogoRoute.js';
+import aboutRouters from './routes/aboutUsRoute.js';
+import titleForpageRoutes from './routes/titleForPageRoute.js';
+import headerPagesRoutes from './routes/headrePagesRoute.js';
 
 
 
@@ -51,6 +52,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/header-logo", headetLogoRoutes);
 app.use("/api/about-us", aboutRouters);
 app.use("/api/titleForPages", titleForpageRoutes);
+app.use("/api/headerPages", headerPagesRoutes);
+
 
 
 mongoose.connect(process.env.MONGODB_URL).then(() => {

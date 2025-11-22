@@ -1,4 +1,4 @@
-import Product from "../models/Products.js";
+import Product from "../models/ProductsModel.js";
 import cloudinary from "../config/cloudinary.js";
 
 

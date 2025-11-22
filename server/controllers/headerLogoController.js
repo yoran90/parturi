@@ -1,4 +1,4 @@
-import HeaderLogo from "../models/headerLogo.js";
+import HeaderLogo from "../models/headerLogoModel.js";
 import cloudinary from "../config/cloudinary.js";
 
 export const addHeaderLogo = async (req, res) => {
