@@ -11,6 +11,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import Loading from '../loading/Loading';
 import SuccessMessage from './SuccessMessage';
+import useTitleForPage from '../hooks/useTitleForPage';
 
 
 const Yhteystiedot = () => {
@@ -18,6 +19,8 @@ const Yhteystiedot = () => {
   const { getInformation, loading } = useInformation();
   const [loadingButton, setLoadingButton] = React.useState(false);
   const [successMessage, setSuccessMessage] = React.useState("");
+
+  const { getTitleForPage } = useTitleForPage();
 
   const [formData, setFormData] = React.useState({
     name: '',
@@ -128,12 +131,19 @@ const Yhteystiedot = () => {
   }
 
 
+  
+
   return (
     <div className='flex flex-col relative'>
       <Information />
       <Header />
       <div className='flex flex-col items-center text-center gap-2.5 mt-6'>
-        <h1>Yhteystiedot & Otetaan yhteyttä</h1>
+        
+        <div className='flex flex-col gap-1 mb-4'>
+          <h1 className='text-xl font-semibold text-slate-500 mb-2'>{getTitleForPage?.titleForPage?.connectionTitle}</h1>
+          <p className='text-sm text-slate-500 md:w-[92%] w-[98%]'>{getTitleForPage?.titleForPage?.connectionDescription}</p>
+        </div>
+
         <div className='flex items-center gap-5.5'>
             {
               getInformation?.socialMedia?.map((sm, index) => (

@@ -7,6 +7,8 @@ import { MdOutlineContactSupport } from "react-icons/md";
 import { MdOutlineOnlinePrediction } from "react-icons/md";
 import { IoMdClock } from 'react-icons/io';
 import useInformation from '../../hooks/useInformation';
+import useTitleForPage from '../../hooks/useTitleForPage';
+import useHeaderLogo from '../../hooks/useHeaderLogo';
 
 const Footer = () => {
 
@@ -15,7 +17,9 @@ const Footer = () => {
     return currentYear
   }
 
-  const { getInformation, informationLoading, error } = useInformation();
+  const { getInformation } = useInformation();
+  const { getTitleForPage } = useTitleForPage();
+  const { headerLogo } = useHeaderLogo();
   
 
   return (
@@ -24,10 +28,10 @@ const Footer = () => {
         <div className="md:grid md:grid-cols-4 flex flex-col gap-8" style={{ gridTemplateColumns: "2fr 1fr 1fr 1.5fr 0.5fr" }}>
           <div className='flex flex-col gap-5.5'>
             <h3 className='text-md flex items-center gap-2'>
-              <GiBeard />
-              Parturi
+              <img src={headerLogo?.url} alt="" className='w-6 h-6 rounded-full border border-slate-300' />
+              <p>{getTitleForPage?.titleForPage?.footerTitle}</p>
             </h3>
-            <p className='text-sm text-slate-200'>Olemme pätevöityneitä ammattilaisia, joilla on alan koulutus ja virallinen osaaminen. Meille hiustenhoito ei ole vain työtä – se on ammatti, jota teemme ylpeydellä ja tarkkuudella.</p>
+            <p className='text-sm text-slate-200'>{getTitleForPage?.titleForPage?.footerDescription}</p>
           </div>
           <div className='flex flex-col md:items-center gap-2.5'>
             <IoMdClock size={30} />
@@ -89,10 +93,10 @@ const Footer = () => {
             Copyright © {getYears()} 
           </div>
           <div>
-            <GiBeard /> 
+            <img src={headerLogo?.url} alt="" className='w-5 h-5 mr-2 ml-2 rounded-full border border-slate-300' />
           </div>
           <div>
-            Parturi — Ammattitaitoa ja tyyliä joka leikkauksessa.
+            {getTitleForPage?.titleForPage?.footerFooter}
           </div>
         </div>
         {/* for mobile */}
@@ -100,11 +104,11 @@ const Footer = () => {
           <div>
             Copyright © {getYears()} 
           </div>
-          <div>
-            <GiBeard /> 
+          <div className='mt-1 mb-1'>
+            <img src={headerLogo?.url} alt="" className='w-5 h-5 rounded-full border border-slate-300' /> 
           </div>
           <div>
-            Parturi — Ammattitaitoa ja tyyliä joka leikkauksessa.
+            {getTitleForPage?.titleForPage?.footerFooter}
           </div>
         </div>
       </footer>

@@ -61,12 +61,12 @@ const AddProduct = () => {
 
       toast.success(response.data.message);
 
-      // reset
+/* 
       setTitle('');
       setPrice('');
       setDiscount('');
       setDescription('');
-      setImages([]);
+      setImages([]); */
 
     } catch (error) {
       console.log(error);

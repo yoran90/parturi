@@ -47,7 +47,7 @@ const DisplayGalleryImage = () => {
   }
 
   return (
-     <div className='mt-2 h-[95vh] overflow-y-scroll pb-12'>
+     <div className='mt-2 h-[95vh] overflow-y-scroll pb-12 scrollbarStyle'>
       <div className='flex flex-col items-center justify-center md:px-0 px-4 text-center'>
         <h3>Gallery Images</h3>
         <p className='text-slate-600 text-sm'>Here you can see all gallery images and you can delete them</p>

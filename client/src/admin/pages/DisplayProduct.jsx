@@ -87,7 +87,7 @@ const DisplayProduct = () => {
 
 
   return (
-    <div className='mt-2'>
+    <div className='mt-2 h-[90vh] overflow-y-scroll scrollbarStyle'>
       <div className='flex flex-col items-center justify-center text-center'>
         <h3>DisplayProduct </h3>
         <p className='text-slate-500 text-sm'>

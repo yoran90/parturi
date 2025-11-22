@@ -4,12 +4,16 @@ import Footer from '../components/footer/Footer'
 import Information from '../components/up-header/information'
 import Header from '../components/header/Header'
 import useGallery from '../hooks/useGallery'
+import { useState } from 'react'
+import useTitleForPage from '../hooks/useTitleForPage'
 
 const Galleria = () => {
 
-  const [selectedImage, setSelectedImage] = React.useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const { galleryImages, loading } = useGallery();
+  
+  const { getTitleForPage } = useTitleForPage();
 
   if (loading) {
     return (
@@ -33,16 +37,16 @@ const Galleria = () => {
     );
   }
 
+  
+
 
   return (
     <div>
       <Information />
       <Header />
       <div className='flex flex-col gap-3.5 items-center justify-center mt-6'>
-        <h3 className='text-lg text-slate-600'> 📸 Galleria</h3>
-        <p className='text-slate-600 text-sm md:w-[70%] text-center'>
-          Tervetuloa tutustumaan Luon Parturin tyyliin! Täältä näet esimerkkejä hiustenleikkauksista, parranmuotoiluista ja tunnelmasta liikkeessämme. Jokainen tyyli tehdään ammattitaidolla ja asiakkaan persoonallisuutta kunnioittaen.
-        </p>
+        <h3 className='text-lg text-slate-600'> {getTitleForPage?.titleForPage?.galleriTitle}</h3>
+        <p className='text-slate-600 text-sm md:w-[92%] text-center'>{getTitleForPage?.titleForPage?.galleriDescription}</p>
       </div>
       {
         galleryImages.length === 0 && (

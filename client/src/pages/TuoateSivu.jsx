@@ -6,6 +6,7 @@ import Information from '../components/up-header/information'
 import Header from '../components/header/Header'
 import axios from 'axios'
 import ProductLimit from './ProductLimit'
+import useTitleForPage from '../hooks/useTitleForPage'
 
 
 const TuoateSivu = () => {
@@ -16,6 +17,7 @@ const TuoateSivu = () => {
   const [product, setProduct] = useState(null);
   const [selectImages, setSelectImages] = useState(null);
   const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
     const fetchProductByid = async (productId) => {
@@ -70,10 +72,10 @@ const TuoateSivu = () => {
       <Header />
       <div className='md:flex w-full mt-12 p-4 gap-3.5 mb-12'>
         <div className='md:w-[50%] h-[80vh] '>
-          <img src={ selectImages ? selectImages.url : product?.images[0]?.url } alt={product?.title} className='w-full h-[60vh] border border-slate-300 rounded object-contain' />
+          <img src={ selectImages ? selectImages.url : product?.images[0]?.url } alt={product?.title} className='w-full h-[60vh] border border-slate-300 rounded object-fill' />
           {
             product?.images.length > 1 && (
-              <div className='flex gap-1 cursor-pointer mt-4 pb-3 overflow-x-scroll'>
+              <div className='flex gap-1 cursor-pointer mt-4 pb-3 overflow-x-scroll scrollbarStylex'>
                 {
                   product?.images.map((image, index) => (
                     <img key={index} onClick={() => setSelectImages(image)} src={image.url} alt={product?.title} className='w-[24.5%] h-[15vh] border border-slate-300 rounded object-fill' />
@@ -83,7 +85,7 @@ const TuoateSivu = () => {
             )
           }
         </div>
-        <div className='md:w-[50%]'>
+        <div className='md:w-[50%] md:mt-0 mt-8'>
           <h1 className='font-semibold text-sm text-slate-600'>{product?.title}</h1>
           <div className='flex items-center justify-between mb-8 mt-4'>
             {
@@ -102,7 +104,7 @@ const TuoateSivu = () => {
               )
             }
           </div>
-          <div className='text-sm h-[68vh] overflow-y-scroll pr-2'>
+          <div className='text-sm h-[68vh] overflow-y-scroll scrollbarStyle pr-2'>
             <div dangerouslySetInnerHTML={{__html: product?.description}} />
           </div>
         </div>

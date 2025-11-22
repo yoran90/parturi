@@ -101,9 +101,9 @@ const UpdateProduct = ({ closeModal, product, refreshProducts }) => {
   }
 
   return (
-     <div className='md:px-6 px-2 w-full overflow-scroll pb-12 scrollbarstyle fixed top-0 left-0 bottom-0 right-0 bg-black/80 bg-opacity-70 z-50 flex items-center justify-center'>
+     <div className='md:px-6 px-2 w-full pb-12  fixed top-0 left-0 bottom-0 right-0 bg-black/80 bg-opacity-70 z-50 flex items-center justify-center'>
       {/* form */}
-      <form onSubmit={handleSubmit} className='md:py-12 relative md:w-[80%] md:h-[87vh] h-screen overflow-y-scroll md:px-12 px-4 py-8 flex flex-col gap-4.5 bg-white md:shadow rounded md:border border-slate-200 mt-4'>
+      <form onSubmit={handleSubmit} className='md:py-12 relative md:w-[80%] md:h-[87vh] h-screen overflow-y-scroll scrollbarStyle md:px-12 px-4 py-8 flex flex-col gap-4.5 bg-white md:shadow rounded md:border border-slate-200 mt-4'>
         <button onClick={closeModal} className='flex text-sm absolute right-2 md:top-3 cursor-pointer'>
           ❌
         </button>

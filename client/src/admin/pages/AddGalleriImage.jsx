@@ -84,7 +84,7 @@ const AddGalleriImage = () => {
         </div>
         )
       }
-      <div className="md:px-6 md:py-8 p-2 h-[93vh] overflow-y-scroll">
+      <div className="md:px-6 md:py-8 p-2 h-[93vh] overflow-y-scroll scrollbarStyle">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 bg-white md:shadow md:p-6 px-2 py-4 rounded md:border border-slate-200">
           <h2 className="text-lg font-semibold text-red-600 mb-4">📸 Add Galleri (Image)</h2>
 
@@ -132,7 +132,7 @@ const AddGalleriImage = () => {
         </form>
         {
           selectFile.length > 0 && (
-            <div className='flex flex-wrap gap-4 mt-8'>
+            <div className='flex flex-wrap gap-2 w-full mt-8'>
               {
                 selectFile.map((media, index) => (
                   <div key={index} className='relative'>

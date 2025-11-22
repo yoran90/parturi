@@ -6,11 +6,14 @@ import Information from '../components/up-header/information'
 import Header from '../components/header/Header'
 import { useEffect } from 'react'
 import axios from 'axios'
+import useTitleForPage from '../hooks/useTitleForPage'
 
 const Tuote = () => {
 
   const [loading, setLoading] = React.useState(true);
   const [products, setProdects] = React.useState([]);
+
+  const { getTitleForPage } = useTitleForPage();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -51,21 +54,15 @@ const Tuote = () => {
 
 
   
+  
+  
   return (
     <div>
       <Information />
       <Header />
       <div className='flex flex-col items-center gap-2 text-center mt-6'>
-        <h3 className='text-md font-semibold text-slate-600'>🧴 Tuotteet</h3>
-        <p className='text-slate-600 text-sm mt-2 md:w-[90%] w-[98%]'>
-          Luon Parturissa käytämme ja myymme laadukkaita hiusten- ja parranhoitotuotteita, jotka tukevat täydellisesti tyyliäsi myös kotona.
-          Valikoimastamme löydät muun muassa hiusvahoja, parranöljyjä, hoitosuihkeita ja muotoilutuotteita, joita käytämme myös palveluissamme.
-          Tuotteitamme ei voi tilata verkosta, mutta voit ostaa ne helposti suoraan liikkeestämme käyntisi yhteydessä.
-          Autamme mielellämme valitsemaan juuri sinun hiuksillesi ja parrallesi sopivat tuotteet!
-        </p>
-        <p className='text-md text-slate-600'>
-          📍 Tule käymään ja löydä uudet suosikkituotteesi!
-        </p>
+        <h3 className='text-md font-semibold text-slate-600'>{getTitleForPage?.titleForPage?.productTitle}</h3>
+        <p className='text-slate-600 text-sm mt-2 md:w-[92%] w-[98%]'>{getTitleForPage?.titleForPage?.productDescription}</p>
       </div>
       <div>
         {

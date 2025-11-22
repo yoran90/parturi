@@ -11,8 +11,6 @@ import useAboutUs from '../hooks/useAboutUs'
 const Meistä = () => {
 
   const { getAboutUs } = useAboutUs();
-
-  console.log(getAboutUs);
   
 
   return (

@@ -4,8 +4,13 @@ import Header from '../components/header/Header';
 import Map from '../components/map/Map';
 import Footer from '../components/footer/Footer';
 import axios from 'axios';
+import useTitleForPage from '../hooks/useTitleForPage';
 
 const PalvelutHinta = () => {
+
+
+  const { getTitleForPage } = useTitleForPage();
+
   const [prices, setPrices] = useState([]);
   const [media, setMedia] = useState("");
   const [loading, setLoading] = useState(false);
@@ -61,6 +66,7 @@ const PalvelutHinta = () => {
     );
   }
 
+  
 
   return (
     <div>
@@ -68,11 +74,8 @@ const PalvelutHinta = () => {
       <Header />
       <div className='flex flex-col gap-5.5 mb-12'>
         <div className='flex flex-col items-center text-center gap-2.5 mt-6'>
-          <h1 className='text-lg text-slate-500 font-semibold'>💈 Hinnasto ja palvelut</h1>
-          <p className='text-sm md:w-[70%] w-[95%] m-auto text-slate-600'>
-            Luon Parturissa yhdistyvät ammattitaito, rento tunnelma ja yksilöllinen palvelu. Meiltä löydät hiustenleikkaukset,
-            parranmuotoilut ja hoidot kaikenikäisille. Käytämme laadukkaita tuotteita ja teemme jokaisesta käynnistä miellyttävän kokemuksen.
-          </p>
+          <h1 className='text-lg text-slate-500 font-semibold'>{getTitleForPage?.titleForPage?.serviceTitle}</h1>
+          <p className='text-sm md:w-[92%] w-[95%] m-auto text-slate-600'>{getTitleForPage?.titleForPage?.serviceDescription}</p>
         </div>
 
         <div className='flex md:flex-row flex-col w-full md:px-8 px-2 mt-6 gap-6 justify-center items-center'>
