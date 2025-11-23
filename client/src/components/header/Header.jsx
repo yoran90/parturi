@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import headerLogo from '../../assets/header-logo-2.avif'
 import { Link } from 'react-router-dom'
 import { LuMenu } from "react-icons/lu";
 import { CgClose } from "react-icons/cg";
 import useHeaderLogo from '../../hooks/useHeaderLogo';
-
+import { FaUser } from "react-icons/fa";
+import { FaUserLock } from "react-icons/fa";
 
 
 
@@ -36,7 +36,7 @@ const Header = () => {
         <div className='bg-black p-2'> 
           <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
         </div>
-        <div className='pr-10'>
+        <div className='flex justify-end'>
           <Link to={`/`}>
             <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Etusivu</button>
           </Link>
@@ -55,6 +55,20 @@ const Header = () => {
           <Link to={'/yhteystiedot'}>
             <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Yhteystiedot</button>
           </Link>
+          <div className='flex items-center ml-4'>
+            <Link to={'/kirjaudu'}>
+              <button  className='text-blue-400 flex items-center gap-1 -mr-1 justify-center cursor-pointer text-sm p-2 hover:text-blue-300'>
+                <FaUser />
+                kirjautu
+              </button>
+            </Link>
+            <Link to={'/register'}>
+              <button className='flex items-center gap-1 justify-center cursor-pointer p-2 text-red-600 text-sm hover:text-red-800'>
+                <FaUserLock  />
+                rekisteröidy
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
       {/* for mobile screen */}
@@ -89,6 +103,20 @@ const Header = () => {
           <Link to={'/yhteystiedot'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Yhteystiedot</button>
           </Link>
+          <div className='flex flex-col'>
+            <Link to={'/kirjaudu'}>
+              <button  className='text-blue-400 flex items-center gap-1 -mr-1 justify-center cursor-pointer text-sm p-2 hover:text-blue-300'>
+                <FaUser />
+                kirjautu
+              </button>
+            </Link>
+            <Link to={'/register'}>
+              <button className='flex items-center gap-1 justify-center cursor-pointer p-2 text-red-400 text-sm hover:text-red-800'>
+                <FaUserLock  />
+                rekisteröidy
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </>

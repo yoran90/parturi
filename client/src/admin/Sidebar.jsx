@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { MdLibraryAdd } from "react-icons/md";
-import { FaPhotoVideo } from "react-icons/fa";
+import { FaPhotoVideo, FaUser } from "react-icons/fa";
 import { GrUserAdmin } from "react-icons/gr";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ImDisplay } from "react-icons/im";
@@ -17,6 +17,12 @@ import { RiPagesLine } from "react-icons/ri";
 
 
 const adminSidebarMenuItems = [
+  {
+    id: 'myaccount',
+    label: (<div className='flex flex-col'>My Account <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Here you can handle your account</small></div>),
+    path: '/admin/myaccount',
+    icons: <FaUser size={20} />
+  },
   {
     id: 'information',
     label: (<div className='flex flex-col'>Information <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Address,phone, opening hours</small></div>),
@@ -82,12 +88,6 @@ const adminSidebarMenuItems = [
     label: (<div className='flex flex-col'>Add Title & Description For Pages <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can handle about us</small></div>),
     path: '/admin/titleforPages',
     icons: <AiFillFileAdd className='text-gray-500'  size={20} />
-  },
-  {
-    id: 'headerPagesName',
-    label: (<div className='flex flex-col'>Add Header Pages Name <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can handle header pages name</small></div>),
-    path: '/admin/headerPagesName',
-    icons: <RiPagesLine  className='text-gray-500'  size={20} />
   }
 ]
 

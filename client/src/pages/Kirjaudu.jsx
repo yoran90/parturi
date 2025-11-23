@@ -1,21 +1,15 @@
-import React, { useEffect } from 'react'
-import { FaEye } from "react-icons/fa";
-import { FaEyeSlash } from "react-icons/fa";
-import { IoIosArrowUp } from "react-icons/io";
-import { IoIosArrowDown } from "react-icons/io";
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { enUser, fiUser } from '../languages/loginTranslations'
 import { toast } from 'react-toastify';
-import { useState } from 'react';
-import { en, fi } from '../../languages/loginTranslations.js'
-import { adminLogin } from '../../store/admin-auth/index.js';
-import Flag from 'react-world-flags'
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import Flag from 'react-world-flags';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
+const Kirjaudu = () => {
 
-const Login = () => {
-
-  const { isAuthenticated, admin, loading } = useSelector((state) => state.adminAuth);
-
+  //const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   const [showPassword, setShowPassword] = useState(false);
   const [selectLanguage, setSelectLanguage] = useState(false);
@@ -26,62 +20,40 @@ const Login = () => {
 
 
 
-  const translate = language === "fi" ? fi : en;
+  const translate = language === "fi" ? fiUser : enUser;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
 
 
-
-  useEffect(() => {
-    if (!loading && isAuthenticated) {
-      if (admin?.role === 'admin') {
-        navigate('/admin');
+  /* useEffect(() => {
+    if (isAuthenticated) {
+      if (user?.role === "user") {
+        navigate("/");
       } else {
-        navigate('/unauth-page');
+        navigate("/unauth-page");
       }
     }
-  }, [isAuthenticated, admin, loading, navigate]);
+  }, [isAuthenticated, user, navigate]); */
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email) {
-      toast.error("Please enter your email");
-      return;
-    }
-    if (!password) {
-      toast.error("Please enter your password");
-      return;
-    }
-
-    dispatch(adminLogin({ email, password }))
-    .unwrap()
-    .then((res) => {
-      if (res?.admin?.role === "admin") { 
-        toast.success("Logged in successfully!");
-        navigate("/admin");
-      }
-    })
-    .catch((err) => {
-      toast.error("Login failed try again!");
-    });
+    
   }
 
 
-
-
   return (
-    <div className='w-full flex flex-col justify-center h-screen bg-slate-800'>
+     <div className='w-full flex flex-col justify-center h-screen bg-slate-800'>
       <div className='md:w-[45%] w-[95%] m-auto'>
         <div className='md:flex md:justify-between'>
           <div className='flex flex-col gap-1 mb-8'>
-            <h2 className='text-white'>🌍 {translate.welcome}</h2>
-            <p className='text-white text-sm'>⚙️ {translate.subtitle}</p>
+            <h2 className='text-white'>🌍 {translate.welcomeuser}</h2>
+            <p className='text-white text-sm'>⚙️ {translate.subtitleuser}</p>
           </div>
           <div className='text-white absolute right-4 top-4' onClick={() => setSelectLanguage(!selectLanguage)}>
-            <h3 className='flex items-center text-sm gap-2.5 cursor-pointer'>{translate.selectLanguage}
+            <h3 className='flex items-center text-sm gap-2.5 cursor-pointer'>{translate.selectLanguageuser}
               {
                 selectLanguage ? (
                   <IoIosArrowDown />
@@ -123,11 +95,11 @@ const Login = () => {
         {/* form */}
         <form onSubmit={handleSubmit} className='text-white flex flex-col gap-4.5'>
           <div className='flex flex-col gap-1.5'>
-            <label> 📧 {translate.email} <span className='text-red-600 font-semibold'>*</span></label>
+            <label> 📧 {translate.emailuser} <span className='text-red-600 font-semibold'>*</span></label>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Sähköpostiosoitteesi' className='border border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
           </div>
           <div className='flex flex-col gap-1.5'>
-            <label> 🔑 {translate.password} <span className='text-red-600 font-semibold'>*</span></label>
+            <label> 🔑 {translate.passworduser} <span className='text-red-600 font-semibold'>*</span></label>
             <div className='flex justify-between border border-slate-200 rounded py-2 px-4'>
               <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder='*******************' className='border-none w-full focus:outline-none bg-transparent text-sm' />
               {
@@ -142,12 +114,20 @@ const Login = () => {
             </div>
           </div>
           <div className='flex justify-end mt-6'>
-            <button type='submit' className='bg-red-700 text-white py-2 px-4 rounded text-sm cursor-pointer'>{translate.login}</button>
+            <button type='submit' className='bg-red-700 text-white py-2 px-4 rounded text-sm cursor-pointer'>{translate.loginuser}</button>
           </div>
         </form>
+        <hr className='text-slate-400 mt-4' />
+        <div className='flex items-center justify-between'>
+          <p className='text-white text-sm mt-6'>{translate.donthaveaccountuser} <Link to="/register" className='text-blue-400 cursor-pointer ml-2'>{translate.registeruser}</Link></p>
+          <Link to={'/'} className='text-blue-400 flex items-center gap-1 mt-4 text-sm cursor-pointer'>
+            <p>🔙</p>
+            {translate.back}
+          </Link>
+        </div>
       </div>
     </div>
   )
 }
 
-export default Login
+export default Kirjaudu

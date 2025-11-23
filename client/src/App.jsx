@@ -24,12 +24,14 @@ import ProtectRoute from './admin/ProtectRoute'
 import NoFoundPage from './NoFound/NoFoundPage'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { checkAuth } from './store/admin-auth'
+import { checkAdminAuth } from './store/admin-auth'
 import UnAuthPage from './unauth-page/UnAuthPage'
 import AddHeaderLogo from './admin/pages/AddHeaderLogo'
 import AddAboutUs from './admin/pages/AddAboutUs'
 import TitleForPages from './admin/pages/TitleForPages'
-import HeaderPagesName from './admin/pages/HeaderPagesName'
+import Kirjaudu from './pages/Kirjaudu'
+import Register from './pages/Register'
+import MyAccount from './admin/pages/MyAccount'
 
 
 
@@ -37,14 +39,16 @@ import HeaderPagesName from './admin/pages/HeaderPagesName'
 
 const App = () => {
 
-  const { isAuthenticated, loading, user } = useSelector((state) => state.auth);
+  const { isAuthenticated, loading, admin } = useSelector((state) => state.adminAuth);
+
   const dispatch = useDispatch();
 
 
-
   useEffect(() => {
-    dispatch(checkAuth());
+    dispatch(checkAdminAuth());
   }, [dispatch]);
+
+  
 
   if (loading) {
     return (
@@ -81,16 +85,19 @@ const App = () => {
         <Route path='/tuotet' element={<Tuote />}></Route>
         <Route path='/tuote/:id' element={<TuoateSivu />}></Route>
         <Route path='/yhteystiedot' element={<Yhteystiedot />}></Route>
+        <Route path='/kirjaudu' element={<Kirjaudu />}></Route>
+        <Route path='/register' element={<Register />}></Route>
 
        
 
         <Route path='/admin' element={
-          <ProtectRoute isAuthenticated={isAuthenticated} user={user}>
+          <ProtectRoute isAuthenticated={isAuthenticated} admin={admin} loading={loading}>
             <Home />
           </ProtectRoute>
         }>
           <Route index element={<AdminPageText />}></Route>
           <Route path='sidebar' element={<Sidebar />}></Route>
+          <Route path='myaccount' element={<MyAccount />}></Route>
           <Route path='addinformation' element={<AddInformation />}></Route>
           <Route path='imagevideo' element={<ImageVideo />}></Route>
           <Route path='imagevideoDisplay' element={<ImagevideoDisplay />}></Route>
@@ -102,7 +109,6 @@ const App = () => {
           <Route path='addheaderlogo' element={<AddHeaderLogo />}></Route>
           <Route path='addaboutus' element={<AddAboutUs />}></Route>
           <Route path='titleforPages' element={<TitleForPages />}></Route>
-          <Route path='headerPagesName' element={<HeaderPagesName />}></Route>
         </Route>
 
         <Route path='/login' element={<Login />}></Route>

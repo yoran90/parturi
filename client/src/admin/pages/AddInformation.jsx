@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { FaShareAlt } from 'react-icons/fa'
 import { BsTrash3Fill } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
-import { addInformationFiled } from '../../store/admin-auth';
 import { toast } from 'react-toastify';
 import Loading from '../../loading/Loading';
 import ReactQuill from 'react-quill-new';
@@ -12,18 +11,6 @@ import axios from 'axios';
 const AddInformation = () => {
 
   const [loadingForButton, setLoadingForButton] = React.useState(false);
-
-  const [formData, setFormData] = React.useState({
-    phone: '',
-    email: '',
-    address: '',
-    addressUrl: '',
-    addressUrlForMap: '',
-    openingHours: '',
-    holyday: '',
-    socialMedia: [{ platform: "", url: "" }]
-
-  });
 
   const [phone, setPhone] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -37,7 +24,7 @@ const AddInformation = () => {
   const [loading, setLoading] = React.useState(false);
   
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.adminAuth);
 
 
 
@@ -59,7 +46,7 @@ const AddInformation = () => {
 
     setLoadingForButton(true);
     try {
-      dispatch(addInformationFiled({ phone, email, address, addressUrl, addressUrlForMap, openingHours, holyday, socialMedia }));
+      const response = await axios.post("http://localhost:8001/api/information/addInformation", { phone, email, address, addressUrl, addressUrlForMap, openingHours, holyday, socialMedia });
       toast.success('Information added successfully');
     } catch (error) {
       console.log(error);

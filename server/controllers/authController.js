@@ -3,12 +3,12 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 
-//! register
+//! register for user and admin
 export const register = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { firstName, lastName, gender, email, password } = req.body;
 
-    if (!email || !password) {
+    if ( !firstName || !lastName || !gender || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -20,7 +20,7 @@ export const register = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user = await Auth.create({ email, password: hashedPassword });
+    const user = await Auth.create({ firstName, lastName, gender, email, password: hashedPassword });
     res.status(201).json({ success: true, message: "User created successfully", user });
 
   } catch (error) {
@@ -29,7 +29,7 @@ export const register = async (req, res) => {
   }
 }
 
-//! login 
+//! login FOR ADMIN
 export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -48,6 +48,10 @@ export const login = async (req, res) => {
 
     const token = jwt.sign({
       id: checkUser._id,
+      firstName: checkUser.firstName,
+      lastName: checkUser.lastName,
+      gender: checkUser.gender,
+      profileImage: checkUser.profileImage,
       email: checkUser.email,
       role: checkUser.role
     }, process.env.JWT_SECRET, {expiresIn: "60m"});
@@ -59,7 +63,7 @@ export const login = async (req, res) => {
       secure: false,
     };
 
-    res.cookie("token", token, cookie);
+    res.cookie("adminToken", token, cookie);
     res.status(200).json({ 
       success: true,
       message: "Logged in successfully ✅",
@@ -77,18 +81,18 @@ export const login = async (req, res) => {
   }
 };
 
-//! logout
+//! logout FOR ADMIN
 export const logout = async (req, res) => {
-  res.clearCookie("token").json({
+  res.clearCookie("adminToken").json({
     success: true,
     message: "Logged out successfully",
   })
 };
 
 
-//! Auth Middleware
+//! Auth Middleware FOR ADMIN
 export const authMiddleware = (req, res, next) => {
-  const token = req.cookies.token;
+  const token = req.cookies.adminToken;
   
   if (!token) {
     return res.status(401).json({
@@ -99,13 +103,12 @@ export const authMiddleware = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+    if (decoded.role !== "admin") {
+      return res.status(403).json({ success: false, message: "Forbidden" });
+    }
+    req.admin = decoded;
     next();
   } catch (error) {
-    console.log(error);
-    return res.status(401).json({
-      success: false,
-      message: "Unauthorized user. Invalid token.",
-    });
+    return res.status(401).json({ success: false, message: "Unauthorized user. Invalid token." });
   }
 }

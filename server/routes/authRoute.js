@@ -4,11 +4,12 @@ import {  authMiddleware, login, logout, register } from "../controllers/authCon
 const router = express.Router();
 
 router.post("/register", register);
-
 router.post("/login", login);
 router.post("/logout", logout);
+
+
 router.get("/check-auth", authMiddleware, (req, res) => {
-  const user = req.user;
+  const user = req.admin;
   res.status(200).json({
     success: true,
     message: "User is authenticated",
