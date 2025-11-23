@@ -6,7 +6,6 @@ const socialSchema = new mongoose.Schema({
   },
   url: {
     type: String,
-    required: true,
   }
 });
 
@@ -28,6 +27,9 @@ const informationSchema = new mongoose.Schema({
   },
   openingHours: { 
     type: String 
+  },
+  holyday: {
+    type: String
   },
   socialMedia: [socialSchema] 
 }, { timestamps: true });

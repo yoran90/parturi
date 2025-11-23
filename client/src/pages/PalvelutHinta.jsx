@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Information from '../components/up-header/information';
+import Information from '../components/up-header/Information';
 import Header from '../components/header/Header';
 import Map from '../components/map/Map';
 import Footer from '../components/footer/Footer';
 import axios from 'axios';
 import useTitleForPage from '../hooks/useTitleForPage';
+import HolyDay from '../components/holy-day/HolyDay';
 
 const PalvelutHinta = () => {
 
@@ -71,11 +72,12 @@ const PalvelutHinta = () => {
   return (
     <div>
       <Information />
+      <HolyDay />
       <Header />
       <div className='flex flex-col gap-5.5 mb-12'>
         <div className='flex flex-col items-center text-center gap-2.5 mt-6'>
           <h1 className='text-lg text-slate-500 font-semibold'>{getTitleForPage?.titleForPage?.serviceTitle}</h1>
-          <p className='text-sm md:w-[92%] w-[95%] m-auto text-slate-600'>{getTitleForPage?.titleForPage?.serviceDescription}</p>
+          <div className='text-sm md:w-[92%] w-[95%] m-auto text-slate-600' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.serviceDescription}} />
         </div>
 
         <div className='flex md:flex-row flex-col w-full md:px-8 px-2 mt-6 gap-6 justify-center items-center'>

@@ -15,8 +15,8 @@ const Information = () => {
     <>
       <div className='bg-black hidden md:flex items-center justify-between text-white/90 py-2 px-4'>
         <div className='text-xs flex items-center gap-1 text-red-500'>
-          <IoMdClock className='text-white' />
-          <div dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
+          {/* <IoMdClock className='text-white' /> */}
+          <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
         </div>
         <div className='flex items-center gap-5.5'>
           {
@@ -54,8 +54,8 @@ const Information = () => {
       {/* for mobile screen */}
       <div className='bg-black flex flex-col gap-2 md:hidden items-center text-white/90 py-3'>
         <div className='text-xs flex items-center gap-1 text-red-500'>
-          <IoMdClock className='text-white' />
-          <div dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
+          {/* <IoMdClock className='text-white' /> */}
+          <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
         </div>
         <div className='flex items-center gap-5.5 mb-2 mt-2'>
           {

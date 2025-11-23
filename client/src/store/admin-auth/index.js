@@ -9,8 +9,8 @@ const initialState = {
 
 
 //! login
-export const login = createAsyncThunk("auth/login", async (formData) => {
-  const response = await axios.post("http://localhost:8001/api/auth/login", formData, { withCredentials: true });
+export const login = createAsyncThunk("auth/login", async ({ email, password }) => {
+  const response = await axios.post("http://localhost:8001/api/auth/login", { email, password }, { withCredentials: true });
   return response.data;
 });
 
@@ -21,8 +21,19 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 }) 
 
 //! Add information
-export const addInformationFiled = createAsyncThunk("auth/addInformation", async ({email, password}) => {
-    const response = await axios.post("http://localhost:8001/api/information/addInformation", {email, password});
+export const addInformationFiled = createAsyncThunk("auth/addInformation", async ({
+  phone,
+  email,
+  address,
+  addressUrl,
+  addressUrlForMap,
+  openingHours,
+  holyday,
+  socialMedia
+}) => {
+    const response = await axios.post("http://localhost:8001/api/information/addInformation", {
+      phone, email, address, addressUrl, addressUrlForMap, openingHours, holyday, socialMedia }, 
+      { withCredentials: true });
     return response.data;
   }
 );
@@ -56,7 +67,6 @@ const authSlice = createSlice({
       })
       .addCase(addInformationFiled.fulfilled, (state, action) => {
         state.loading = false;
-        console.log("Information added:", action.payload);
       })
       .addCase(addInformationFiled.rejected, (state) => {
         state.loading = false;

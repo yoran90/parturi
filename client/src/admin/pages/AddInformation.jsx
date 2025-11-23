@@ -12,12 +12,26 @@ import axios from 'axios';
 const AddInformation = () => {
 
   const [loadingForButton, setLoadingForButton] = React.useState(false);
+
+  const [formData, setFormData] = React.useState({
+    phone: '',
+    email: '',
+    address: '',
+    addressUrl: '',
+    addressUrlForMap: '',
+    openingHours: '',
+    holyday: '',
+    socialMedia: [{ platform: "", url: "" }]
+
+  });
+
   const [phone, setPhone] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [address, setAddress] = React.useState('');
   const [addressUrl, setAddressUrl] = React.useState('');
   const [addressUrlForMap, setAddressUrlForMap] = React.useState('');
   const [openingHours, setOpeningHours] = React.useState('');
+  const [holyday, setHolyday] = React.useState('');
   const [socialMedia, setSocialMedia] = React.useState([{ platform: "", url: "" }]);
 
   const [loading, setLoading] = React.useState(false);
@@ -43,17 +57,9 @@ const AddInformation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    for (let sm of socialMedia) {
-      if (!sm.url || !sm.platform) {
-        toast.error('Please fill all social media fields and select a platform');
-        return;
-      }
-    }
-
-
     setLoadingForButton(true);
     try {
-      dispatch(addInformationFiled({ phone, email, address, addressUrl, addressUrlForMap, openingHours, socialMedia }));
+      dispatch(addInformationFiled({ phone, email, address, addressUrl, addressUrlForMap, openingHours, holyday, socialMedia }));
       toast.success('Information added successfully');
     } catch (error) {
       console.log(error);
@@ -97,6 +103,7 @@ const AddInformation = () => {
       setAddressUrl(getInformation.addressUrl || "");
       setAddressUrlForMap(getInformation.addressUrlForMap || "");
       setOpeningHours(getInformation.openingHours || "");
+      setHolyday(getInformation.holyday || "");
       setSocialMedia(getInformation.socialMedia?.length ? getInformation.socialMedia : [{ platform: "", url: "" }]);
     }
   }, [getInformation]);
@@ -160,7 +167,14 @@ const AddInformation = () => {
           <label htmlFor="">➕ Add opening hours</label>
           <ReactQuill theme="snow" className="h-40 rounded-lg text-sm"  value={openingHours} onChange={setOpeningHours} placeholder="Example: <b>Ma–Pe</b> (10:00 - 19:00) <br/> La–Su (10:00 - 18:00)" />
         </div>
-        <hr className='text-slate-200' />
+        <hr className='text-slate-300 mt-12' />
+        {/* add holy days */}
+        <div className='flex flex-col text-sm gap-1'>
+          <label htmlFor="">➕ Add Holy Days</label>
+          <ReactQuill theme="snow" className="h-40 rounded-lg text-sm"  value={holyday} onChange={setHolyday} placeholder="Example: 22/12/2022 - 23/12/2022 we are closed" />
+        </div>
+        <small className='text-red-600 mt-8'>Add holy days so if you have any holy days you can add them here.</small>
+        <hr className='text-slate-200 mt-4' />
         <div className='mt-4'>
           <p className='text-xs text-red-500 font-semibold'>You can add multiple social media links down ⬇️ if you want just click add another socialmedia.</p>
         </div>

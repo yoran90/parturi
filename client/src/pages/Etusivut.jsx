@@ -8,7 +8,7 @@ import { GiBeard } from "react-icons/gi";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
 import Map from '../components/map/Map';
 import Footer from '../components/footer/Footer';
-import Information from '../components/up-header/information';
+import Information from '../components/up-header/Information';
 import Header from '../components/header/Header';
 import { CgInstagram } from 'react-icons/cg';
 import useInformation from '../hooks/useInformation';
@@ -16,6 +16,9 @@ import GallaryLimit from './GallaryLimit';
 import ProductLimit from './ProductLimit';
 import { Link } from 'react-router-dom';
 import { FaArrowRightLong } from "react-icons/fa6";
+import HolyDay from '../components/holy-day/HolyDay';
+
+import useTitleForPage from '../hooks/useTitleForPage';
 
 
 
@@ -23,12 +26,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 const Etusivut = () => {
 
   const { getInformation, loading } = useInformation();
-
-  
-
- 
-
-  
+  const { getTitleForPage } = useTitleForPage();
 
   if (loading) {
     return (
@@ -52,10 +50,13 @@ const Etusivut = () => {
     );
   }
 
+  console.log(getTitleForPage);
+  
 
   return (
     <div>
       <Information />
+      <HolyDay />
       <Header />
       <Main />
       <div>
@@ -102,7 +103,7 @@ const Etusivut = () => {
             <div className='flex flex-col items-center justify-center min-h-[140px]'>
               <IoMdClock size={30} />
               <h3 className='text-sm font-bold text-slate-600 mt-2 border-b mb-2'>AUKIOLOAJAT</h3>
-              <div className='text-xs' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
+              <div className='text-xs flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
             </div>
           </div>
         </div>
@@ -190,8 +191,8 @@ const Etusivut = () => {
       {/* products */}
       <div className='flex flex-col gap-2 mt-12 mb-12'>
         <div className='flex flex-col gap-2 text-center mb-6'>
-          <h3 className="text-center text-slate-600 font-semibold">Parhaat tuotteet</h3>
-          <p className='text-sm text-slate-500'>Valitsemme parhaat tuotteet ja niistä valitsemme uusimmat</p>
+          <h3 className="text-center text-slate-600 font-semibold">{getTitleForPage?.titleForPage?.productTitle}</h3>
+          <div className='text-sm text-slate-500 w-[95%] m-auto line-clamp-3' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.productDescription}} />
         </div>
         <ProductLimit />
         <div className='flex items-center justify-center mt-4'>
@@ -207,8 +208,8 @@ const Etusivut = () => {
       {/* gallery image */}
       <div className='mb-12'>
         <div className='flex flex-col gap-2 text-center mb-6'>
-          <h3 className="text-center text-slate-600 font-semibold">Galleria kuvia</h3>
-          <p className='text-sm text-slate-500'>Kuvia liikkeestä ja tyylin muutoksista</p>
+          <h3 className="text-center text-slate-600 font-semibold">{getTitleForPage?.titleForPage?.galleriTitle}</h3>
+          <div className='text-sm text-slate-500 w-[95%] m-auto line-clamp-3' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.galleriDescription}} />
         </div>
         <GallaryLimit />
         <div className='flex text-center items-center justify-center mt-4'>

@@ -2,11 +2,12 @@ import React from 'react'
 import Map from '../components/map/Map'
 import Footer from '../components/footer/Footer'
 import YksiTuoate from './YksiTuoate'
-import Information from '../components/up-header/information'
+import Information from '../components/up-header/Information'
 import Header from '../components/header/Header'
 import { useEffect } from 'react'
 import axios from 'axios'
 import useTitleForPage from '../hooks/useTitleForPage'
+import HolyDay from '../components/holy-day/HolyDay'
 
 const Tuote = () => {
 
@@ -59,10 +60,11 @@ const Tuote = () => {
   return (
     <div>
       <Information />
+      <HolyDay /> 
       <Header />
       <div className='flex flex-col items-center gap-2 text-center mt-6'>
         <h3 className='text-md font-semibold text-slate-600'>{getTitleForPage?.titleForPage?.productTitle}</h3>
-        <p className='text-slate-600 text-sm mt-2 md:w-[92%] w-[98%]'>{getTitleForPage?.titleForPage?.productDescription}</p>
+        <div className='text-slate-600 text-sm mt-2 md:w-[92%] w-[98%]' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.productDescription}} />
       </div>
       <div>
         {

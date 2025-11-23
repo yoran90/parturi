@@ -1,12 +1,13 @@
 import React from 'react'
 import Header from '../components/header/Header'
-import Information from '../components/up-header/information'
+import Information from '../components/up-header/Information'
 import Map from '../components/map/Map'
 import Footer from '../components/footer/Footer'
 import { MdArrowOutward } from "react-icons/md";
 import GallaryLimit from './GallaryLimit'
 import { Link } from 'react-router-dom'
 import useAboutUs from '../hooks/useAboutUs'
+import HolyDay from '../components/holy-day/HolyDay'
 
 const Meistä = () => {
 
@@ -16,6 +17,7 @@ const Meistä = () => {
   return (
     <div>
       <Information />
+      <HolyDay /> 
       <Header />
       <div>
         <div className='relative'>

@@ -7,6 +7,7 @@ import Header from '../components/header/Header'
 import axios from 'axios'
 import ProductLimit from './ProductLimit'
 import useTitleForPage from '../hooks/useTitleForPage'
+import HolyDay from '../components/holy-day/HolyDay'
 
 
 const TuoateSivu = () => {
@@ -69,6 +70,7 @@ const TuoateSivu = () => {
   return (
     <div>
       <Information />
+      <HolyDay />
       <Header />
       <div className='md:flex w-full mt-12 p-4 gap-3.5 mb-12'>
         <div className='md:w-[50%] h-[80vh] '>

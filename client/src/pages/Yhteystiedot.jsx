@@ -4,7 +4,7 @@ import { FaPhone } from "react-icons/fa6";
 import { MdAttachEmail } from "react-icons/md";
 import Footer from '../components/footer/Footer';
 import { CgInstagram } from 'react-icons/cg';
-import Information from '../components/up-header/information';
+import Information from '../components/up-header/Information';
 import Header from '../components/header/Header';
 import useInformation from '../hooks/useInformation';
 import axios from 'axios';
@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 import Loading from '../loading/Loading';
 import SuccessMessage from './SuccessMessage';
 import useTitleForPage from '../hooks/useTitleForPage';
+import HolyDay from '../components/holy-day/HolyDay';
 
 
 const Yhteystiedot = () => {
@@ -136,12 +137,13 @@ const Yhteystiedot = () => {
   return (
     <div className='flex flex-col relative'>
       <Information />
+      <HolyDay />
       <Header />
       <div className='flex flex-col items-center text-center gap-2.5 mt-6'>
         
         <div className='flex flex-col gap-1 mb-4'>
           <h1 className='text-xl font-semibold text-slate-500 mb-2'>{getTitleForPage?.titleForPage?.connectionTitle}</h1>
-          <p className='text-sm text-slate-500 md:w-[92%] w-[98%]'>{getTitleForPage?.titleForPage?.connectionDescription}</p>
+          <div className='text-sm text-slate-500 md:w-[92%] w-[98%]' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.connectionDescription}} />
         </div>
 
         <div className='flex items-center gap-5.5'>

@@ -25,19 +25,16 @@ const Footer = () => {
   return (
     <div className='bg-black text-white md:p-12 py-12 px-4'>
       <footer>
-        <div className="md:grid md:grid-cols-4 flex flex-col gap-8" style={{ gridTemplateColumns: "2fr 1fr 1fr 1.5fr 0.5fr" }}>
+        <div className="md:grid md:grid-cols-5 flex flex-col gap-8" style={{ gridTemplateColumns: "2fr 1fr 1.5fr 1fr" }}>
           <div className='flex flex-col gap-5.5'>
             <h3 className='text-md flex items-center gap-2'>
               <img src={headerLogo?.url} alt="" className='w-6 h-6 rounded-full border border-slate-300' />
               <p>{getTitleForPage?.titleForPage?.footerTitle}</p>
             </h3>
-            <p className='text-sm text-slate-200'>{getTitleForPage?.titleForPage?.footerDescription}</p>
+            <div className='text-sm text-slate-200' dangerouslySetInnerHTML={{ __html: getTitleForPage?.titleForPage?.footerDescription}} />
           </div>
-          <div className='flex flex-col md:items-center gap-2.5'>
-            <IoMdClock size={30} />
-            <h3 className='text-sm font-bold text-slate-300'>AUKIOLOAJAT</h3>
-            <div className='text-xs' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
-          </div>
+          
+          
           <div className='flex flex-col gap-5.5'>
             <h3 className='text-md flex items-center gap-2'>
               <FaHandsHelping />
@@ -95,9 +92,7 @@ const Footer = () => {
           <div>
             <img src={headerLogo?.url} alt="" className='w-5 h-5 mr-2 ml-2 rounded-full border border-slate-300' />
           </div>
-          <div>
-            {getTitleForPage?.titleForPage?.footerFooter}
-          </div>
+          <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
         </div>
         {/* for mobile */}
          <div className='md:hidden flex flex-col items-center justify-center mt-8 text-xs gap-1'>
@@ -107,9 +102,7 @@ const Footer = () => {
           <div className='mt-1 mb-1'>
             <img src={headerLogo?.url} alt="" className='w-5 h-5 rounded-full border border-slate-300' /> 
           </div>
-          <div>
-            {getTitleForPage?.titleForPage?.footerFooter}
-          </div>
+          <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
         </div>
       </footer>
     </div>

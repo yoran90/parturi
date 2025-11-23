@@ -27,9 +27,6 @@ export const saveInformation = async (req, res) => {
 export const getInformation = async (req, res) => {
   try {
     const info = await Information.findOne();
-    if (!info) {
-      return res.status(404).json({ message: "Information not found" });
-    }
     res.status(200).json(info);
   } catch (err) {
     console.log(err);

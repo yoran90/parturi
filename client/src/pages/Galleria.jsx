@@ -1,11 +1,12 @@
 import React from 'react'
 import Map from '../components/map/Map'
 import Footer from '../components/footer/Footer'
-import Information from '../components/up-header/information'
+import Information from '../components/up-header/Information'
 import Header from '../components/header/Header'
 import useGallery from '../hooks/useGallery'
 import { useState } from 'react'
 import useTitleForPage from '../hooks/useTitleForPage'
+import HolyDay from '../components/holy-day/HolyDay'
 
 const Galleria = () => {
 
@@ -43,10 +44,11 @@ const Galleria = () => {
   return (
     <div>
       <Information />
+      <HolyDay />
       <Header />
       <div className='flex flex-col gap-3.5 items-center justify-center mt-6'>
         <h3 className='text-lg text-slate-600'> {getTitleForPage?.titleForPage?.galleriTitle}</h3>
-        <p className='text-slate-600 text-sm md:w-[92%] text-center'>{getTitleForPage?.titleForPage?.galleriDescription}</p>
+        <div className='text-slate-600 text-sm md:w-[92%] text-center' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.galleriDescription}} />
       </div>
       {
         galleryImages.length === 0 && (

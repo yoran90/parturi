@@ -3,6 +3,32 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 
+//! register
+export const register = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const checkUser = await Auth.findOne({ email });
+    if (checkUser) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const user = await Auth.create({ email, password: hashedPassword });
+    res.status(201).json({ success: true, message: "User created successfully", user });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
+
 //! login 
 export const login = async (req, res) => {
   const { email, password } = req.body;
