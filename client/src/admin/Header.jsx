@@ -26,12 +26,12 @@ const Header = ({ setIsSidebarOpen, isSidebarOpen }) => {
 
 
   return (
-    <div className='shadow bg-white border-b py-4.5 border-slate-300 pr-3 md:pl-2 flex items-center justify-between'>
+    <div className='shadow sticky top-0 bg-white border-b py-4.5 border-slate-300 pr-3 md:pl-2 flex items-center justify-between'>
       <div className='flex items-center gap-2.5'>
         <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="md:hidden p-2 rounded hover:bg-gray-100">
           <HiMenu size={25} />
         </button>
-        <p className='text-red-600 text-sm font-semibold'>Welcome to admin page</p>
+        <p className='text-red-600 text-sm font-semibold md:block hidden'>Welcome to admin page</p>
       </div>
       <div className='flex gap-2.5 items-center justify-center'>
         <Link to={'/admin/myaccount'} className='flex items-center gap-1 text-sm cursor-pointer'>

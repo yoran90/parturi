@@ -9,7 +9,7 @@ const MyAccount = () => {
   
 
   return (
-    <div className='flex flex-col items-center justify-center mt-4'>
+    <div className='flex flex-col items-center justify-center mt-4 mb-12'>
       <div className='flex flex-col items-center justify-center gap-1.5'>
         {
           admin?.profileImage?.url ? (
@@ -38,7 +38,7 @@ const MyAccount = () => {
         </button>
       </div>
 
-      <form className='mt-4 w-full px-26 flex flex-col gap-3.5' style={{zoom: '98%'}}>
+      <form className='mt-4 w-full md:px-26 px-4 flex flex-col gap-3.5' style={{zoom: '98%'}}>
         <div className='flex flex-col gap-1 text-sm'>
           <label htmlFor="">First Name</label>
           <input type="text" placeholder='First name' className='border border-slate-400 rounded outline-none focus:none py-1.5 px-3' />

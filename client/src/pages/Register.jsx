@@ -6,15 +6,22 @@ import { toast } from 'react-toastify';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import Flag from 'react-world-flags';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { userRegister } from '../store/user-auth';
+import Loading from '../loading/Loading';
 
 const Register = () => {
 
-  //const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const { isAuthenticated, user, loading } = useSelector((state) => state.userAuth);
 
   const [showPassword, setShowPassword] = useState(false);
   const [selectLanguage, setSelectLanguage] = useState(false);
   const [language, setLanguage] = useState("fi");
 
+  const [loadingForButton, setLoadingForButton] = useState(false);
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [gender, setGender] = useState("none");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -27,21 +34,35 @@ const Register = () => {
 
 
 
-  /* useEffect(() => {
+  useEffect(() => {
     if (isAuthenticated) {
       if (user?.role === "user") {
-        navigate("/");
+        navigate("/login");
       } else {
         navigate("/unauth-page");
       }
     }
-  }, [isAuthenticated, user, navigate]); */
+  }, [isAuthenticated, user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!firstName || !lastName || !gender || !email || !password) {
+      toast.error("All fields are required!");
+      return;
+    }
 
-    
+    try {
+      setLoadingForButton(true);
+      const result = await dispatch(userRegister({ firstName, lastName, gender, email, password })).unwrap();
+      toast.success("Registered successfully! ✅");
+      navigate("/login");
+    } catch (error) {
+      toast.error(error.message || "Registration failed!");
+    } finally {
+      setLoadingForButton(false);
+    }
   }
+
 
 
   return (
@@ -98,20 +119,20 @@ const Register = () => {
           <div className='flex w-full gap-2'>
             <div className='flex flex-col gap-1.5 w-full'>
               <label> 📧 {translate.firstname} <span className='text-red-600 font-semibold'>*</span></label>
-              <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Sähköpostiosoitteesi' className='border w-full border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
+              <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder='Sähköpostiosoitteesi' className='border bg-transparent w-full border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
             </div>
             <div className='flex flex-col gap-1.5 w-full'>
               <label> 📧 {translate.lastname} <span className='text-red-600 font-semibold'>*</span></label>
-              <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Sähköpostiosoitteesi' className='border w-full border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
+              <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder='Sähköpostiosoitteesi' className='border w-full border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
             </div>
           </div>
           <div className='flex flex-col gap-1.5'>
             <label>{translate.selectGender}</label>
-          <select className='border py-2 rounded px-4'>
-            <option value="men" className='bg-black'>{translate.men}</option>
-            <option value="women" className='bg-black'>{translate.women}</option>
-            <option value="none" className='bg-black'>{translate.notChoosenGender}</option>
-          </select>
+            <select value={gender} onChange={(e) => setGender(e.target.value)} className='border bg-transparent py-2 rounded px-4'>
+              <option value="men" className='bg-black hover:bg-black'>{translate.men}</option>
+              <option value="women" className='bg-black hover:bg-black'>{translate.women}</option>
+              <option value="none" className='bg-black hover:bg-black'>{translate.notChoosenGender}</option>
+            </select>
           </div>
           <div className='flex flex-col gap-1.5'>
             <label> 📧 {translate.emailuser} <span className='text-red-600 font-semibold'>*</span></label>
@@ -133,7 +154,21 @@ const Register = () => {
             </div>
           </div>
           <div className='flex justify-end mt-6'>
-            <button type='submit' className='bg-red-700 text-white py-2 px-4 rounded text-sm cursor-pointer'>{translate.loginuser}</button>
+            <button type='submit' className='bg-red-700 text-white py-2 px-4 rounded text-sm cursor-pointer'>
+              {
+                loadingForButton ? (
+                  <div className='flex items-center gap-2'>
+                    <p>{translate.registeruser}</p>
+                    <Loading width={20} height={20} border='4px' topBorder='4px' borderColor='white' borderTopColor='red' />
+                  </div>
+                ) : (
+                  <div>
+                    {translate.registeruser}
+                  </div>
+                )
+              }
+
+            </button>
           </div>
         </form>
         <hr className='text-slate-400 mt-4' />
