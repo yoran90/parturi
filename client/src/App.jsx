@@ -32,6 +32,7 @@ import TitleForPages from './admin/pages/TitleForPages'
 import Kirjaudu from './pages/Kirjaudu'
 import Register from './pages/Register'
 import MyAccount from './admin/pages/MyAccount'
+import AllUsers from './admin/pages/AllUsers'
 
 
 
@@ -98,6 +99,7 @@ const App = () => {
           <Route index element={<AdminPageText />}></Route>
           <Route path='sidebar' element={<Sidebar />}></Route>
           <Route path='myaccount' element={<MyAccount />}></Route>
+          <Route path='allusers' element={<AllUsers />}></Route>
           <Route path='addinformation' element={<AddInformation />}></Route>
           <Route path='imagevideo' element={<ImageVideo />}></Route>
           <Route path='imagevideoDisplay' element={<ImagevideoDisplay />}></Route>

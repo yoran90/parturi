@@ -36,7 +36,7 @@ const Login = () => {
 
   useEffect(() => {
     if (!loading && isAuthenticated) {
-      if (admin?.role === 'admin') {
+      if (admin?.role === 'admin' || admin?.role === 'super-admin') {
         navigate('/admin');
       } else {
         navigate('/unauth-page');

@@ -35,6 +35,7 @@ const authSchema = new mongoose.Schema({
   },
   role: {
     type: String,
+    enum: ["user", "admin", "super-admin"],
     default: "user",
   }
 }, { timestamps: true });

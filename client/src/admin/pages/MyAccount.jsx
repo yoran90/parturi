@@ -5,8 +5,28 @@ import { MdAdminPanelSettings } from "react-icons/md";
 
 const MyAccount = () => {
 
-  const { admin } = useSelector((state) => state.adminAuth);
+  const { admin, loading } = useSelector((state) => state.adminAuth);
   
+  if (loading || !admin) {
+    return (
+      <div className='flex flex-col items-center justify-center mt-4 mb-12'>
+        <div className='loader'></div>
+        <style>{`
+          .loader {
+            border: 4px solid #ddd;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.8s linear infinite;
+          }
+          @keyframes spin {
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
+    )
+  }
 
   return (
     <div className='flex flex-col items-center justify-center mt-4 mb-12'>

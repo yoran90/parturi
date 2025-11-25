@@ -55,16 +55,16 @@ const Header = () => {
           <Link to={'/yhteystiedot'}>
             <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Yhteystiedot</button>
           </Link>
-          <div className='flex items-center ml-4'>
+          <div className='flex items-center ml-4 gap-1.5'>
             <Link to={'/kirjaudu'}>
-              <button  className='text-blue-400 flex items-center gap-1 -mr-1 justify-center cursor-pointer text-sm p-2 hover:text-blue-300'>
-                <FaUser />
+              <button  className='text-black bg-white/90 hover:bg-white flex items-center gap-1 border border-slate-300 justify-center cursor-pointer text-xs px-3 py-1.5 rounded-full'>
+                {/* <FaUser /> */}
                 kirjautu
               </button>
             </Link>
             <Link to={'/register'}>
-              <button className='flex items-center gap-1 justify-center cursor-pointer p-2 text-red-600 text-sm hover:text-red-800'>
-                <FaUserLock  />
+              <button className='flex items-center gap-1 border border-slate-300 hover:bg-slate-900 text-white justify-center cursor-pointer text-xs px-3 py-1.5 rounded-full'>
+                {/* <FaUserLock  /> */}
                 rekisteröidy
               </button>
             </Link>
@@ -106,13 +106,13 @@ const Header = () => {
           <div className='flex flex-col'>
             <Link to={'/kirjaudu'}>
               <button  className='text-blue-400 flex items-center gap-1 -mr-1 justify-center cursor-pointer text-sm p-2 hover:text-blue-300'>
-                <FaUser />
+                {/* <FaUser /> */}
                 kirjautu
               </button>
             </Link>
             <Link to={'/register'}>
               <button className='flex items-center gap-1 justify-center cursor-pointer p-2 text-red-400 text-sm hover:text-red-800'>
-                <FaUserLock  />
+                {/* <FaUserLock  /> */}
                 rekisteröidy
               </button>
             </Link>

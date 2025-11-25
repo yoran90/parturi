@@ -27,7 +27,28 @@ export const register = async (req, res) => {
     console.log(error);
     res.status(500).json({ success: false, message: error.message });
   }
+};
+
+//! get all user for admin
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await Auth.find();
+    res.status(200).json({ success: true, data: users });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
 }
+
+//! admin update user
+const adminUpdateUserRole = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 //! login FOR ADMIN
 export const login = async (req, res) => {
@@ -57,13 +78,23 @@ export const login = async (req, res) => {
     }, process.env.JWT_SECRET, {expiresIn: "60m"});
 
 
-    const cookie = {
-      expires: new Date(Date.now() + 60 * 60 * 1000),
+    /* const cookie = {
       httpOnly: true,
-      secure: false,
-    };
+      secure: true,
+      sameSite: "none",
+      expires: new Date(Date.now() + 60 * 60 * 1000),
+    }; */
 
-    res.cookie("adminToken", token, cookie);
+    res.cookie("adminToken", token, {
+      httpOnly: true,           
+      secure: false,             
+      sameSite: "lax",          
+      path: "/",                 
+      expires: new Date(Date.now() + 60 * 60 * 1000),
+    });
+
+
+   // res.cookie("adminToken", token, cookie);
     res.status(200).json({ 
       success: true,
       message: "Logged in successfully ✅",
@@ -71,6 +102,10 @@ export const login = async (req, res) => {
       user: {
         id: checkUser._id,
         email: checkUser.email,
+        firstName: checkUser.firstName,
+        lastName: checkUser.lastName,
+        gender: checkUser.gender,
+        profileImage: checkUser.profileImage,
         role: checkUser.role
       }
     });
@@ -103,7 +138,7 @@ export const authMiddleware = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    if (decoded.role !== "admin") {
+    if (decoded.role !== "admin" && decoded.role !== "super-admin") {
       return res.status(403).json({ success: false, message: "Forbidden" });
     }
     req.admin = decoded;

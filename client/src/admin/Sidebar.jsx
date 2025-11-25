@@ -14,6 +14,11 @@ import { MdAddToHomeScreen } from "react-icons/md";
 import { FcAbout } from "react-icons/fc";
 import { AiFillFileAdd } from "react-icons/ai";
 import { RiPagesLine } from "react-icons/ri";
+import { FaUsers } from "react-icons/fa";
+import { useSelector } from 'react-redux';
+
+
+
 
 
 const adminSidebarMenuItems = [
@@ -22,6 +27,13 @@ const adminSidebarMenuItems = [
     label: (<div className='flex flex-col'>My Account <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Here you can handle your account</small></div>),
     path: '/admin/myaccount',
     icons: <FaUser size={20} />
+  },
+  {
+    id: 'allusers',
+    label: (<div className='flex flex-col'>All Users <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Here you can handle all users</small></div>),
+    path: '/admin/allusers',
+    icons: <FaUsers  size={20} />,
+    role: ["super-admin"]
   },
   {
     id: 'information',
@@ -93,6 +105,8 @@ const adminSidebarMenuItems = [
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
 
+  const { admin } = useSelector(state => state.adminAuth);
+
   const navigate = useNavigate();
   const loacation = useLocation();
 
@@ -122,7 +136,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           <hr className='text-slate-300 mb-4 mt-4' />
         </div>
         {
-          adminSidebarMenuItems.map((menuItem) => {
+          adminSidebarMenuItems.filter(item => !item.role || item.role.includes(admin?.role)) .map((menuItem) => {
             const isActive = loacation.pathname === menuItem.path;
             return (
               <div key={menuItem.id} onClick={() => {navigate(menuItem.path), setIsOpen(false)}} className={`${isActive ? 'bg-slate-100' : ''} flex items-center justify-between py-3 px-5 hover:bg-slate-100 cursor-pointer`}>

@@ -34,15 +34,15 @@ const Register = () => {
 
 
 
-  useEffect(() => {
+ /*  useEffect(() => {
     if (isAuthenticated) {
       if (user?.role === "user") {
-        navigate("/login");
+        navigate("/kirjaudu");
       } else {
         navigate("/unauth-page");
       }
     }
-  }, [isAuthenticated, user, navigate]);
+  }, [isAuthenticated, user, navigate]); */
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,7 +55,7 @@ const Register = () => {
       setLoadingForButton(true);
       const result = await dispatch(userRegister({ firstName, lastName, gender, email, password })).unwrap();
       toast.success("Registered successfully! ✅");
-      navigate("/login");
+      navigate("/kirjaudu");
     } catch (error) {
       toast.error(error.message || "Registration failed!");
     } finally {
@@ -119,11 +119,11 @@ const Register = () => {
           <div className='flex w-full gap-2'>
             <div className='flex flex-col gap-1.5 w-full'>
               <label> 📧 {translate.firstname} <span className='text-red-600 font-semibold'>*</span></label>
-              <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder='Sähköpostiosoitteesi' className='border bg-transparent w-full border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
+              <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder={translate.firstname} className='border bg-transparent w-full border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
             </div>
             <div className='flex flex-col gap-1.5 w-full'>
               <label> 📧 {translate.lastname} <span className='text-red-600 font-semibold'>*</span></label>
-              <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder='Sähköpostiosoitteesi' className='border w-full border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
+              <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder={translate.lastname} className='border w-full border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
             </div>
           </div>
           <div className='flex flex-col gap-1.5'>
@@ -136,7 +136,7 @@ const Register = () => {
           </div>
           <div className='flex flex-col gap-1.5'>
             <label> 📧 {translate.emailuser} <span className='text-red-600 font-semibold'>*</span></label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Sähköpostiosoitteesi' className='border border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={translate.emailuser} className='border border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
           </div>
           <div className='flex flex-col gap-1.5'>
             <label> 🔑 {translate.passworduser} <span className='text-red-600 font-semibold'>*</span></label>
