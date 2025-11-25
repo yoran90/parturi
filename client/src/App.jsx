@@ -33,6 +33,10 @@ import Kirjaudu from './pages/Kirjaudu'
 import Register from './pages/Register'
 import MyAccount from './admin/pages/MyAccount'
 import AllUsers from './admin/pages/AllUsers'
+import EditUser from './admin/pages/EditUser'
+import { userMiddleware } from './store/user-auth'
+import ProfileUser from './pages/ProfileUser'
+import ProtectUserRoute from './pages/protectUser/ProtectUserRoute'
 
 
 
@@ -41,6 +45,7 @@ import AllUsers from './admin/pages/AllUsers'
 const App = () => {
 
   const { isAuthenticated, loading, admin } = useSelector((state) => state.adminAuth);
+  const { isAuthenticated: userIsAuthenticated, user } = useSelector((state) => state.userAuth);
 
   const dispatch = useDispatch();
 
@@ -49,6 +54,10 @@ const App = () => {
     dispatch(checkAdminAuth());
   }, [dispatch]);
 
+
+  useEffect(() => {
+    dispatch(userMiddleware());
+  }, [dispatch]);
   
 
   if (loading) {
@@ -89,6 +98,15 @@ const App = () => {
         <Route path='/kirjaudu' element={<Kirjaudu />}></Route>
         <Route path='/register' element={<Register />}></Route>
 
+
+        <Route path='/profile' element={
+          <ProtectUserRoute isAuthenticated={userIsAuthenticated} user={user} loading={loading}>
+            <ProfileUser />
+          </ProtectUserRoute>
+        }>
+
+
+        </Route>
        
 
         <Route path='/admin' element={
@@ -111,6 +129,7 @@ const App = () => {
           <Route path='addheaderlogo' element={<AddHeaderLogo />}></Route>
           <Route path='addaboutus' element={<AddAboutUs />}></Route>
           <Route path='titleforPages' element={<TitleForPages />}></Route>
+          <Route path='edit-user/:id' element={<EditUser />}></Route>
         </Route>
 
         <Route path='/login' element={<Login />}></Route>

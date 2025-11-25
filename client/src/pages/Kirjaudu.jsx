@@ -6,10 +6,12 @@ import { toast } from 'react-toastify';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import Flag from 'react-world-flags';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import Loading from '../loading/Loading';
+import { userLogin } from '../store/user-auth';
 
 const Kirjaudu = () => {
 
-  //const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state.userAuth);
 
   const [showPassword, setShowPassword] = useState(false);
   const [selectLanguage, setSelectLanguage] = useState(false);
@@ -17,6 +19,7 @@ const Kirjaudu = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loadingForButton, setLoadingForButton] = useState(false);
 
 
 
@@ -27,7 +30,7 @@ const Kirjaudu = () => {
 
 
 
-  /* useEffect(() => {
+  useEffect(() => {
     if (isAuthenticated) {
       if (user?.role === "user") {
         navigate("/");
@@ -35,12 +38,22 @@ const Kirjaudu = () => {
         navigate("/unauth-page");
       }
     }
-  }, [isAuthenticated, user, navigate]); */
+  }, [isAuthenticated, user, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     
+    try {
+     setLoadingForButton(true);
+      dispatch(userLogin({ email, password })).unwrap();
+      toast.success("Logged in successfully!");
+      navigate("/"); 
+    } catch (error) {
+      console.log(error);
+      
+    } finally {
+      setLoadingForButton(false);
+    }
   }
 
 
@@ -114,7 +127,20 @@ const Kirjaudu = () => {
             </div>
           </div>
           <div className='flex justify-end mt-6'>
-            <button type='submit' className='bg-red-700 text-white py-2 px-4 rounded text-sm cursor-pointer'>{translate.loginuser}</button>
+            <button type='submit' className='bg-red-700 text-white py-2 px-4 rounded text-sm cursor-pointer'>
+              {
+                loadingForButton ? (
+                  <div className='flex items-center gap-2'>
+                    {translate.loginuser}
+                    <Loading width={20} height={20} border='4px' topBorder='4px' borderColor='white' borderTopColor='red' />
+                  </div>
+                ) : (
+                  <>
+                    {translate.loginuser}
+                  </>
+                )
+              }
+            </button>
           </div>
         </form>
         <hr className='text-slate-400 mt-4' />

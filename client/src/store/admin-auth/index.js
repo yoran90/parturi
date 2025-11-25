@@ -21,6 +21,18 @@ export const adminLogout = createAsyncThunk("adminAuth/logout", async () => {
   }
 );
 
+//! get user by id for admin
+export const getUserById = createAsyncThunk("adminAuth/getUserById", async (id, { rejectWithValue}) => {
+    const response = await axios.get(`http://localhost:8001/api/auth/user/${id}`, { withCredentials: true });
+    return response.data;
+  }
+);
+
+//! super admin get user data by id
+export const getUserDataById = createAsyncThunk("adminAuth/getUserDataById", async (id, { rejectWithValue}) => {
+    const response = await axios.get(`http://localhost:8001/api/auth/getUserDataById/${id}`, { withCredentials: true });
+    return response.data;
+}) 
 
 //! CHECK ADMIN AUTH
 export const checkAdminAuth = createAsyncThunk("adminAuth/check-auth", async (_, { rejectWithValue }) => {
@@ -72,6 +84,32 @@ const adminAuthSlice = createSlice({
       .addCase(adminLogout.rejected, (state) => {
         state.loading = false;
         state.isAuthenticated = false;
+        state.admin = null;
+      })
+
+      //! get user by id for admin
+      .addCase(getUserById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getUserById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.admin = action.payload.data;
+      })
+      .addCase(getUserById.rejected, (state) => {
+        state.loading = false;
+        state.admin = null;
+      })
+
+      //! super admin get user data by id
+      .addCase(getUserDataById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getUserDataById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.admin = action.payload.data;
+      })
+      .addCase(getUserDataById.rejected, (state) => {
+        state.loading = false;
         state.admin = null;
       })
 

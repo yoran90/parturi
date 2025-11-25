@@ -54,8 +54,18 @@ const Header = ({ setIsSidebarOpen, isSidebarOpen }) => {
         <p className='text-red-600 text-sm font-semibold md:block hidden'>Welcome to admin page</p>
       </div>
       <div className='flex mr-4 relative'>
-        <button onClick={handleOpenModel} className='flex items-center gap-1 text-sm cursor-pointer border-2 border-slate-400 p-2 rounded-full'>
-          <FaUser size={20} className='text-slate-500' />
+        <button onClick={handleOpenModel} className='flex items-center gap-1 w-10 h-10 text-sm cursor-pointer border-2 border-slate-400 rounded-full'>
+          {
+            admin?.profileImage?.url ? (
+              <img className='w-full h-full rounded-full' src={admin?.profileImage?.url} alt="" />
+            ) : (
+              admin?.gender === 'men' ? (
+                <img className='w-full h-full rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+              ) : (
+                <img className='w-full h-full rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+              )
+            )
+          }
         </button> 
         <div className={`${openModel ? "block" : "hidden"} absolute top-13.5 w-[300px] right-0 bg-white border border-slate-100 py-5 px-8 flex flex-col gap-4 rounded shadow-lg z-10`}>
           <div className='flex flex-col gap-1'>
@@ -63,7 +73,7 @@ const Header = ({ setIsSidebarOpen, isSidebarOpen }) => {
               <Link to={'/admin/myaccount'} onClick={handleOpenModel} className='flex gap-1 items-center'>
                 {
                   admin?.profileImage?.url ? (
-                    <img className='w-6 h-6 border rounded-full' src={admin?.profileImage} alt="" />
+                    <img className='w-6 h-6 border rounded-full' src={admin?.profileImage?.url} alt="" />
                   ) : (
                     admin?.gender === 'men' ? (
                       <img className='w-6 h-6 rounded-full border ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />

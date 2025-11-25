@@ -49,8 +49,6 @@ const Etusivut = () => {
       </div>
     );
   }
-
-  console.log(getTitleForPage);
   
 
   return (

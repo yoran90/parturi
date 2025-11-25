@@ -4,12 +4,18 @@ import { useEffect } from 'react';
 import { FaEdit } from "react-icons/fa";
 import { BsTrash3Fill } from "react-icons/bs";
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
+import { useNavigate } from 'react-router-dom';
+import { getUserDataById } from '../../store/admin-auth';
 
 const AllUsers = () => {
 
 
   const { admin } = useSelector((state) => state.adminAuth);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [getAllusersForAdmin, setGetAllusersForAdmin] = React.useState([]);
 
   useEffect(() => {
@@ -27,6 +33,13 @@ const AllUsers = () => {
       </div>
     )
   }
+
+
+  const handleEditUser = (id) => {
+    dispatch(getUserDataById(id));
+    navigate(`/admin/edit-user/${id}`);
+  }
+
 
   return (
 
@@ -70,15 +83,17 @@ const AllUsers = () => {
                 <td className='py-1'>{user?.gender}</td>
                 <td className='py-1'>
                   {
-                    user.role === "user" ? (
+                    user?.role === "user" ? (
                       <span className='bg-green-600 text-white w-fit text-sm rounded px-4 py-1'>User</span>
-                    ) : (
+                    ) : user?.role === "admin" ? (
                       <span className='bg-red-600 text-white text-sm rounded w-fit px-2.5 py-1'>Admin</span>
+                    ) : (
+                      <span className='bg-[#e69500] text-white text-sm rounded w-fit px-2.5 py-1'>Owner</span>
                     )
                   }
                 </td>
                 <td className='py-1 flex items-center justify-center gap-2 mt-1'>
-                  <button className='cursor-pointer'>
+                  <button className='cursor-pointer' onClick={() => handleEditUser(user._id)}>
                     <FaEdit size={20} className='text-green-600' />
                   </button>
                   <button className='cursor-pointer'>
