@@ -1,12 +1,20 @@
 import express from "express"
-import { getUserById, userLogin, userLogout, userMiddleware } from "../controllers/userController.js"
-
+import { getUserById, userLogin, userLogout, userUpdateOwnData } from "../controllers/userController.js"
+import multer from "multer";
+import { userMiddleware } from "../middleware/userMiddleware.js";
 
 const router = express.Router()
+
+
+
+const storage = multer.diskStorage({});
+export const upload = multer({ storage });
+
 
 router.post("/userLogin", userLogin);
 router.get("/getUser/:id", userMiddleware, getUserById);
 router.post('/userLogout', userMiddleware, userLogout);
+router.put('/userUpdateData', userMiddleware, upload.single("image"), userUpdateOwnData);
 
 
 router.get("/check-user", userMiddleware, (req, res) => {

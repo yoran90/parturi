@@ -34,6 +34,8 @@ const Kirjaudu = () => {
     if (isAuthenticated) {
       if (user?.role === "user") {
         navigate("/");
+      } else if (!user) {
+        navigate("/unauth-page");
       } else {
         navigate("/unauth-page");
       }
@@ -42,15 +44,26 @@ const Kirjaudu = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!email) {
+      toast.error("Please enter your email");
+      return;
+    }
+    if (!password) {
+      toast.error("Please enter your password");
+      return;
+    }
+
     
     try {
      setLoadingForButton(true);
-      dispatch(userLogin({ email, password })).unwrap();
+      await dispatch(userLogin({ email, password })).unwrap();
       toast.success("Logged in successfully!");
       navigate("/"); 
     } catch (error) {
       console.log(error);
-      
+      toast.error("Login failed try again!");
+
     } finally {
       setLoadingForButton(false);
     }

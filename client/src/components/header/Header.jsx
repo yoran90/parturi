@@ -64,9 +64,25 @@ const Header = () => {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen w-full">
+        <div className="loader"></div>
+        <style>{`
+          .loader {
+            border: 4px solid #ddd;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.8s linear infinite;
+          }
+          @keyframes spin {
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
+    );
   }
-  
 
 
 
@@ -101,7 +117,7 @@ const Header = () => {
                 <button className='cursor-pointer' onClick={handleOpenUserMenu}>
                   {
                     user?.profileImage?.url ? (
-                      <img className='w-8.5 h-8.5 border border-slate-100 rounded-full' src={admin?.profileImage?.url} alt="" />
+                      <img className='w-8.5 h-8.5 border border-slate-100 rounded-full' src={user?.profileImage?.url} alt="" />
                     ) : (
                       user?.gender === 'men' ? (
                         <img className='w-8.5 h-8.5 rounded-full border border-slate-100 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
@@ -118,7 +134,7 @@ const Header = () => {
                         <Link to={`/profile`} className='flex flex-col items-center justify-center py-4'>
                           {
                             user?.profileImage?.url ? (
-                              <img className='w-10 h-10 border border-slate-400 rounded-full' src={admin?.profileImage?.url} alt="" />
+                              <img className='w-10 h-10 border border-slate-400 rounded-full' src={user?.profileImage?.url} alt="" />
                             ) : (
                               user?.gender === 'men' ? (
                                 <img className='w-10 h-10 rounded-full border border-slate-400 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
@@ -204,7 +220,7 @@ const Header = () => {
                 <Link to={'/profile'} className='cursor-pointer flex flex-col items-center gap-2'>
                   {
                     user?.profileImage?.url ? (
-                      <img className='w-8.5 h-8.5 border border-slate-100 rounded-full' src={admin?.profileImage?.url} alt="" />
+                      <img className='w-8.5 h-8.5 border border-slate-100 rounded-full' src={user?.profileImage?.url} alt="" />
                     ) : (
                       user?.gender === 'men' ? (
                         <img className='w-8.5 h-8.5 rounded-full border border-slate-100 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />

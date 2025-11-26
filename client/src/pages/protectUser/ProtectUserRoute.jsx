@@ -28,7 +28,7 @@ const ProtectUserRoute = ({ isAuthenticated, user, loading, children}) => {
     );
   }
 
-  if (!isAuthenticated && location.pathname !== "/kirjaudu") {
+  if (!isAuthenticated && location.pathname !== "/kirjaudu" && location.pathname !== "/register") {
     return <Navigate to="/kirjaudu" />
   }
 

@@ -1,6 +1,11 @@
 import Auth from "../models/authModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import cloudinary from "cloudinary";
+
+
+
+
 
 //! user login
 export const userLogin = async (req, res) => {
@@ -39,13 +44,13 @@ export const userLogin = async (req, res) => {
       phoneNumber: checkUser.phoneNumber,
       notes: checkUser.notes,
       timezone: checkUser.timezone
-    }, process.env.JWT_SECRET, { expiresIn: "60m" });
+    }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
     const cookie = {
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      maxAge: 60 * 60 * 1000,
+      secure: false,
+      sameSite: "lax",
+      maxAge: 24 * 60 * 60 * 1000,
     };
 
     res.cookie("userToken", token, cookie);
@@ -96,6 +101,55 @@ export const getUserById = async (req, res) => {
   }
 }
 
+//! update own user by id
+export const userUpdateOwnData = async (req, res) => {
+  try {
+    const { id } = req.user;
+
+    const user = await Auth.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    user.favoriteName = req.body.favoriteName;
+    user.firstName = req.body.firstName;
+    user.lastName = req.body.lastName;
+    user.gender = req.body.gender;
+    user.email = req.body.email;
+    user.bio = req.body.bio;
+    user.addressOne = req.body.addressOne;
+    user.addressTwo = req.body.addressTwo;
+    user.country = req.body.country;
+    user.city = req.body.city;
+    user.postalCode = req.body.postalCode;
+    user.phoneNumber = req.body.phoneNumber;
+    user.notes = req.body.notes;
+    user.timezone = req.body.timezone;
+
+
+    if (req.file) {
+      if (user?.profileImage?.publicId) {
+        await cloudinary.v2.uploader.destroy(user?.profileImage?.publicId);
+      }
+
+      const result = await cloudinary.v2.uploader.upload(req.file.path, {
+        folder: "paturi",
+      });
+      user.profileImage = {
+        url: result.secure_url,
+        publicId: result.public_id,
+      };
+    }
+
+    await user.save();
+    res.status(200).json({ success: true, message: "User updated successfully ✅ Please login again", user });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+}
 
 //! user logout
 export const userLogout = async (req, res) => {
@@ -105,20 +159,5 @@ export const userLogout = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });
-  }
-}
-
-//! user midlleware
-export const userMiddleware = async (req, res, next) => {
-  try {
-    const token = req.cookies.userToken;
-    if (!token) {
-      return res.status(401).json({ message: "Unauthorized user normal. Invalid token." });
-    }
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (error) {
-    res.status(401).json({ message: "Unauthorized user normal. Invalid token." });
   }
 }

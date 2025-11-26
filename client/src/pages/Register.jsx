@@ -34,15 +34,13 @@ const Register = () => {
 
 
 
- /*  useEffect(() => {
+  useEffect(() => {
     if (isAuthenticated) {
-      if (user?.role === "user") {
-        navigate("/kirjaudu");
-      } else {
-        navigate("/unauth-page");
-      }
+      navigate("/kirjaudu");
     }
-  }, [isAuthenticated, user, navigate]); */
+  }, [isAuthenticated, navigate]);
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,7 +51,12 @@ const Register = () => {
 
     try {
       setLoadingForButton(true);
-      const result = await dispatch(userRegister({ firstName, lastName, gender, email, password })).unwrap();
+      const result = dispatch(userRegister({ firstName, lastName, gender, email, password }));
+
+      if (result.error) {
+        toast.error(result.error.message);
+        return;
+      }
       toast.success("Registered successfully! ✅");
       navigate("/kirjaudu");
     } catch (error) {
