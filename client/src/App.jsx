@@ -37,6 +37,7 @@ import EditUser from './admin/pages/EditUser'
 import { userMiddleware } from './store/user-auth'
 import ProfileUser from './pages/ProfileUser'
 import ProtectUserRoute from './pages/protectUser/ProtectUserRoute'
+import OpinionUser from './pages/opinion/OpinionUser'
 
 
 
@@ -105,8 +106,14 @@ const App = () => {
           </ProtectUserRoute>
         }>
 
-
         </Route>
+        {
+          user ? (
+            <Route path='/opinion' element={<OpinionUser />}></Route>
+          ) : (
+            <Route path='/opinion' element={<Kirjaudu />}></Route>
+          )
+        }
        
 
         <Route path='/admin' element={

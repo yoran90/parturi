@@ -1,22 +1,11 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
+import useInformation from '../../hooks/useInformation';
 
 const Map = () => {
 
-  const [getInformation, setGetInformation] = React.useState(null);
-
-  useEffect(() => {
-      const fetchInfo = async () => {
-        try {
-          const response = await axios.get("http://localhost:8001/api/information/getInformation")
-          setGetInformation(response.data)
-        } catch (error) {
-          console.log(error);
-          
-        } 
-      }
-      fetchInfo()
-    }, []);
+  const { getInformation } = useInformation();
+    
 
   return (
     <div className="w-full h-[500px] md:h-[600px]">

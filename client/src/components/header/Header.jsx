@@ -108,6 +108,9 @@ const Header = () => {
           <Link to={'/tuotet'}>
             <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Tuote</button>
           </Link>
+          <Link to={'/opinion'}>
+            <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Mielipide</button>
+          </Link>
           <Link to={'/yhteystiedot'}>
             <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Yhteystiedot</button>
           </Link>
@@ -210,6 +213,9 @@ const Header = () => {
           </Link>
           <Link to={'/tuotet'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Tuote</button>
+          </Link>
+          <Link to={'/opinion'}>
+            <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Mielipide</button>
           </Link>
           <Link to={'/yhteystiedot'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Yhteystiedot</button>
