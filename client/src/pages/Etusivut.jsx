@@ -19,6 +19,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import HolyDay from '../components/holy-day/HolyDay';
 
 import useTitleForPage from '../hooks/useTitleForPage';
+import ReviewForHome from './opinion/ReviewForHome';
 
 
 
@@ -218,6 +219,17 @@ const Etusivut = () => {
             </button>
           </Link>
         </div>
+      </div>
+
+      {/* reviews */}
+      <div>
+        <div className='text-center mb-4 text-slate-600  font-semibold flex flex-col gap-2'>
+          <h3 >Arvostelut</h3>
+          <div className='text-lg'>
+            ⭐⭐⭐⭐⭐
+          </div>
+        </div>
+        <ReviewForHome />
       </div>
 
       {/* map */}

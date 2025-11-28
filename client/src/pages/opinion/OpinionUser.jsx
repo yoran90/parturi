@@ -5,7 +5,12 @@ import HolyDay from '../../components/holy-day/HolyDay'
 import { useSelector } from 'react-redux'
 import useInformation from '../../hooks/useInformation'
 import Footer from '../../components/footer/Footer'
-import { FaCamera } from 'react-icons/fa'
+import OpinionForm from './OpinionForm'
+import Reviews from './Reviews'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+
+
 
 
 const OpinionUser = () => {
@@ -65,10 +70,13 @@ const OpinionUser = () => {
   ]
 
   const { getInformation } = useInformation();
-
   const { user } = useSelector((state) => state.userAuth);
 
   const [selectedImage, setSelectedImage] = React.useState(0);
+  const [activeTab, setActiveTab] = React.useState("reviews");
+  const [openOpinionForm, setOpenOpinionForm] = React.useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (images.length > 0) {
@@ -145,47 +153,49 @@ const OpinionUser = () => {
         {/* left side form */}
         <div className='w-full pr-4'>
           <div>
-            <h3 className='text-lg font-semibold text-gray-500 mb-4'>Kirjoita arvostelu</h3>
+            <h3 className='text-lg font-semibold text-gray-500 mb-4'>Arvostelut</h3>
           </div>
-          <div>
-            <div className='flex items-center gap-2'>
-              {
-                user?.profileImage?.url ? (
-                  <img className='w-12 h-12 border border-slate-500 rounded-full' src={user?.profileImage?.url} alt="" />
-                ) : (
-                  user?.gender === 'men' ? (
-                    <img className='w-12 h-12 rounded-full border border-slate-500 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
-                  ) : (
-                    <img className='w-12 h-12  rounded-full border border-slate-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
-                  )
-                )
+          <p className='text-sm text-slate-800'>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, qui? Iusto sint saepe harum neque quos optio, voluptas quas voluptates unde commodi cum nam laboriosam expedita provident quasi nulla natus.
+          </p>
+          <div className='flex items-center justify-evenly border border-slate-300 rounded mt-4 overflow-hidden'>
+            <button onClick={() => {
+              if (!user) {
+                toast.error("Sinun tulee kirjautua sisään, jotta voit lisätä arvosteluja.")
+                navigate("/kirjaudu")
+                return
               }
-              <div className='flex flex-col'>
-                <p className='text-sm font-semibold text-slate-700'>{user?.firstName} {user?.lastName}</p>
-                <small>Julkaistaan tästä parturi kotisivus palveluissa</small>
-              </div>
-            </div>
+              setActiveTab("form")
+              setOpenOpinionForm(true)
+            }} 
+            className={`${activeTab === "form" ? "bg-black text-white"  : "" } text-sm py-2 font-semibold  cursor-pointer w-full text-slate-600`}>Kirjoita arvostelu</button>
+            <button onClick={() => {
+              setActiveTab("reviews")
+              setOpenOpinionForm(false)
+            }} className={`${activeTab === "reviews" ? "bg-red-800 text-white"  : "" } text-sm py-2 w-full font-semibold cursor-pointer text-slate-600`}>Arvostelut</button>
           </div>
-
-          {/* form */}
-          <form className='w-full'>
-            <div>
-              <div className='flex flex-col gap-1.5 my-4'>
-                <label className='text-sm font-semibold text-gray-500'>Arvostelu</label>
-                <textarea name="" id="" cols="30" rows="10" className='border border-slate-400 rounded resize-none w-full text-sm p-2' placeholder='Kerro mista kokemuksistasi tässä paikassa...'></textarea>
+          {
+            activeTab === "reviews" ? (
+              <div className='mt-4'>
+                <div className='mb-4'>
+                  <p className='text-slate-700 text-sm'>Arvostelut tästä paikasta</p>
+                </div>
+                <div className='w-full h-[55vh] overflow-y-scroll pr-3 scrollbarStyle'>
+                  <Reviews />
+                </div>
               </div>
-              <div className='flex flex-col gap-1.5 my-4'>
-                <p className='text-sm font-semibold text-gray-500'>Lisää kuva</p>
-                <label htmlFor="image" className='border border-dashed h-28 rounded items-center justify-center text-center flex'>
-                  <div className='flex flex-col items-center justify-center text-center gap-1'>
-                    <FaCamera className='text-slate-500 text-2xl'/>
-                    <p className='text-sm text-slate-500'>Valitse kuva</p>
-                  </div>
-                  <input type="file" id='image' hidden />
-                </label>
+            ) : (
+              null
+            )
+          }
+          {
+            openOpinionForm && user && (
+              <div>
+                <OpinionForm closeModel={() => { setOpenOpinionForm(false); setActiveTab("reviews") }}  />
               </div>
-            </div>
-          </form>
+            )
+          }
+        
         </div>
       </div>
       {/* footer */}

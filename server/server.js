@@ -20,6 +20,7 @@ import headetLogoRoutes from './routes/headerLogoRoute.js';
 import aboutRouters from './routes/aboutUsRoute.js';
 import titleForpageRoutes from './routes/titleForPageRoute.js';
 import headerPagesRoutes from './routes/headrePagesRoute.js';
+import reviewsRoutes from './routes/reviewsRoute.js';
 
 
 
@@ -56,6 +57,7 @@ app.use("/api/header-logo", headetLogoRoutes);
 app.use("/api/about-us", aboutRouters);
 app.use("/api/titleForPages", titleForpageRoutes);
 app.use("/api/headerPages", headerPagesRoutes);
+app.use("/api/reviwes", reviewsRoutes);
 
 
 

@@ -105,16 +105,12 @@ const App = () => {
             <ProfileUser />
           </ProtectUserRoute>
         }>
-
         </Route>
-        {
-          user ? (
-            <Route path='/opinion' element={<OpinionUser />}></Route>
-          ) : (
-            <Route path='/opinion' element={<Kirjaudu />}></Route>
-          )
-        }
-       
+   
+        <Route path='/opinion' element={<OpinionUser />}></Route>
+        <Route path='/opinion' element={<Kirjaudu />}></Route>
+     
+        
 
         <Route path='/admin' element={
           <ProtectRoute isAuthenticated={isAuthenticated} admin={admin} loading={loading}>
