@@ -32,7 +32,7 @@ const ReviewText = ({ text }) => {
         <div className="flex justify-end mt-1">
           <button
             onClick={() => setExpanded(!expanded)}
-            className="text-xs text-blue-500"
+            className="text-xs text-blue-500 cursor-pointer"
           >
             {expanded ? "Read less" : "Read more"}
           </button>

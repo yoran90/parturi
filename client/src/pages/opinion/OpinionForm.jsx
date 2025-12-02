@@ -54,7 +54,7 @@ const OpinionForm = ({ closeModel }) => {
 
   return (
     <div className='fixed top-0 bottom-0 left-0 right-0 bg-black/60 flex items-center justify-center z-50'>
-      <div className='flex flex-col bg-white w-full max-w-2xl px-12 py-14 rounded-lg relative'>
+      <div className='flex flex-col bg-white w-full max-w-2xl md:px-12 px-4 py-14 h-[85vh] md:h-[88vh] rounded-lg relative md:overscroll-none overflow-y-scroll screollStyle'>
         <button onClick={closeModel} className='absolute top-4 right-4 text-sm cursor-pointer'>❌</button>
       <div>
         <div className='flex items-center gap-2'>

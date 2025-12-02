@@ -1,73 +1,112 @@
 import mongoose from 'mongoose';
 
 const reviewsSchema = new mongoose.Schema({
+
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  firstNmae: {
+  firstName: {
     type: String,
-    required: true,
   },
   lastName: {
     type: String,
-    required: true,
   },
   profileImage: {
     type: String,
   },
   gender: {
     type: String,
-    required: true
   },
   reviewText: {
     type: String,
     required: true,
-    minlength: 5,
+    minlength: 5
   },
   image: {
-    url: { type: String, required: false },
-    public_id: { type: String, required: false }
+    url: String,
+    public_id: String
   },
   rating: {
     type: Number,
     required: true,
     min: 1,
-    max: 5,
+    max: 5
   },
- /*  likes: {
-    count: {
-      type: Number,
-      default: 0
-    },
-    likedBy: [
-      {
-        type: [String],
-        default: []
-      }
-    ]
-  },
-  comments: {
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true
-    },
-    comment: {
-      type: String,
-      required: true
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now
-    }
-  }, */
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+
+  /* LIKES */
+  likes: {
+    count: { 
+      type: Number, 
+      default: 0 
+    },
+    likedBy: [
+      {
+        userId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Auth",
+          required: true
+        },
+        firstName: { type: String },
+        lastName: { type: String },
+        profileImage: { type: String },
+        gender: { type: String },
+        likedAt: { type: Date, default: Date.now }
+      }
+    ]
+  },
+
+  /* COMMENTS + REPLIES (recursive, same style) */
+  comments: [
+    {
+      userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Auth",
+        required: true
+      },
+      firstName: { type: String },
+      lastName: { type: String },
+      profileImage: { type: String },
+      gender: { type: String },
+      comment: { type: String },
+      reply: { type: String },
+      imageComment: {
+        url: String,
+        public_id: String
+      },
+      imageReply: {
+        url: String,
+        public_id: String
+      },
+      createdAt: { type: Date, default: Date.now },
+      replies: [] 
+    }
+  ]
+
 }, { timestamps: true });
 
 const Reviews = mongoose.model('Reviews', reviewsSchema);
 export default Reviews;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

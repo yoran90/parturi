@@ -1,5 +1,7 @@
 import React from 'react'
 import useInformation from '../../hooks/useInformation';
+import '../../style/holyDay.css'
+
 
 const HolyDay = () => {
 
@@ -26,8 +28,8 @@ const HolyDay = () => {
 
   return (
     <div>
-      <div className='bg-black sticky top-0 flex items-center text-red-500 border font-medium border-red-500 rounded text-center justify-center py-3 text-sm'>
-        <div dangerouslySetInnerHTML={{__html: getInformation?.holyday}} />
+      <div className='sticky top-0 flex items-center text-red-600 bg-black text-sm text-center justify-center py-4 holyDaysAnimation'>
+        <div className='z-50' dangerouslySetInnerHTML={{__html: getInformation?.holyday}} />
       </div>
     </div>
   )

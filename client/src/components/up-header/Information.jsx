@@ -92,6 +92,7 @@ const Information = () => {
           </div>
         </div>
       </div>
+      <hr className='text-slate-800' />
     </>
   )
 }

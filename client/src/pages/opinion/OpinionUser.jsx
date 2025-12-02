@@ -110,7 +110,7 @@ const OpinionUser = () => {
             </div>
           </div>
           <hr className='text-slate-200 mt-2' />
-          <div className="w-full h-[120px] mt-2 border border-slate-300 rounded">
+          <div className="w-full h-[200px] mt-2 border border-slate-300 rounded">
             {/* Embed Google Maps using iframe */}
             <iframe 
               src={getInformation?.addressUrlForMap} 

@@ -1,3 +1,6 @@
 fetch("http://localhost:8001/api/auth/check-auth", { credentials: "include" })
   .then(r => r.json())
   .then(console.log);
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum nemo, repudiandae ex exercitationem animi architecto qui, quas pariatur molestias dolores reprehenderit, tenetur maxime. Quisquam earum accusamus ex amet laborum repellendus!
+
+  

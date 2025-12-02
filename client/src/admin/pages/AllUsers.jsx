@@ -52,8 +52,7 @@ const AllUsers = () => {
         <thead className='bg-black text-white text-sm'>
           <tr>
             <th className='py-1.5'>Image</th>
-            <th className='py-1.5'>First Name</th>
-            <th className='py-1.5'>Last Name</th>
+            <th className='py-1.5 md:block hidden'>Full Name</th>
             <th className='py-1.5'>Email</th>
             <th className='py-1.5'>Gender</th>
             <th className='py-1.5'>Role</th>
@@ -77,18 +76,17 @@ const AllUsers = () => {
                     )
                   }
                 </td>
-                <td className='py-1'>{user?.firstName}</td>
-                <td className='py-1'>{user?.lastName}</td>
+                <td className='py-1 md:block hidden'>{user?.firstName} {user?.lastName}</td>
                 <td className='py-1 text-slate-500'>{user?.email}</td>
                 <td className='py-1'>{user?.gender}</td>
                 <td className='py-1'>
                   {
                     user?.role === "user" ? (
-                      <span className='bg-green-600 text-white w-fit text-sm rounded px-4 py-1'>User</span>
+                      <span className='bg-green-600 text-white w-fit text-sm rounded md:px-4 px-2 py-1'>User</span>
                     ) : user?.role === "admin" ? (
-                      <span className='bg-red-600 text-white text-sm rounded w-fit px-2.5 py-1'>Admin</span>
+                      <span className='bg-red-600 text-white text-sm rounded w-fit md:px-2.5 px-1 py-1'>Admin</span>
                     ) : (
-                      <span className='bg-[#e69500] text-white text-sm rounded w-fit px-2.5 py-1'>Owner</span>
+                      <span className='bg-[#e69500] text-white text-sm rounded w-fit md:px-2.5 px-1 py-1'>Owner</span>
                     )
                   }
                 </td>
