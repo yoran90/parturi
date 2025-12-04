@@ -17,7 +17,7 @@ import ProductLimit from './ProductLimit';
 import { Link } from 'react-router-dom';
 import { FaArrowRightLong } from "react-icons/fa6";
 import HolyDay from '../components/holy-day/HolyDay';
-
+import { GoArrowUpRight } from "react-icons/go";
 import useTitleForPage from '../hooks/useTitleForPage';
 import ReviewForHome from './opinion/ReviewForHome';
 
@@ -222,14 +222,20 @@ const Etusivut = () => {
       </div>
 
       {/* reviews */}
-      <div>
-        <div className='text-center mb-4 text-slate-600  font-semibold flex flex-col gap-2'>
+      <div className='md:mb-16 mb-8'>
+        <div className='text-center mb-8 text-slate-600  font-semibold flex flex-col gap-2'>
           <h3 >Arvostelut</h3>
           <div className='text-lg'>
             ⭐⭐⭐⭐⭐
           </div>
         </div>
         <ReviewForHome />
+        <Link to={'/opinion'} className='flex items-center justify-center -mt-6'>
+          <button className='text-blue-500 hover:text-blue-600 py-1.5 cursor-pointer px-4 rounded-full text-xs group'>
+            Katso kaikki arvostelut
+            <GoArrowUpRight   size={12} className='inline-block ml-2 ' />
+          </button>
+        </Link>
       </div>
 
       {/* map */}

@@ -5,9 +5,10 @@ import { FaEdit } from "react-icons/fa";
 import { BsTrash3Fill } from "react-icons/bs";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { getUserDataById } from '../../store/admin-auth';
+import { adminDeleteUserOrAdmin, superAdminUpdateUserRole } from '../../store/admin-auth';
+import ConfirmDelete from './ConfirmDelete';
 
 const AllUsers = () => {
 
@@ -17,6 +18,8 @@ const AllUsers = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [getAllusersForAdmin, setGetAllusersForAdmin] = React.useState([]);
+  const [confirmDeleteUser, setConfirmDeleteUser] = React.useState(false);
+  const [userToDelete, setUserToDelete] = React.useState(null);
 
   useEffect(() => {
     const fetchAllUsres = async () => {
@@ -34,10 +37,25 @@ const AllUsers = () => {
     )
   }
 
+  
 
-  const handleEditUser = (id) => {
-    dispatch(getUserDataById(id));
-    navigate(`/admin/edit-user/${id}`);
+  const handleEditUser = async (id) => {
+    try {
+      await dispatch(superAdminUpdateUserRole(id)).unwrap();
+      navigate(`/admin/edit-user/${id}`);
+      console.log("user", id);
+      
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+      
+    }
+  }
+
+
+  const handleDelete = async (id) => {
+   setUserToDelete(id);
+   setConfirmDeleteUser(true);
   }
 
 
@@ -94,16 +112,42 @@ const AllUsers = () => {
                   <button className='cursor-pointer' onClick={() => handleEditUser(user._id)}>
                     <FaEdit size={20} className='text-green-600' />
                   </button>
-                  <button className='cursor-pointer'>
+                  <button className='cursor-pointer' onClick={() => handleDelete(user._id)}>
                     <BsTrash3Fill size={20} className='text-red-500' />
                   </button>
                 </td>
               </tr>
             ))
           }
-          
         </tbody>
       </table>
+
+      {
+        confirmDeleteUser && (
+          <ConfirmDelete 
+            closeModel={() => setConfirmDeleteUser(false)} 
+            onConfirm={
+              async () => {
+                try {
+                  await dispatch(adminDeleteUserOrAdmin(userToDelete)).unwrap().then(() => {
+                    toast.success("User deleted successfully");
+                    setConfirmDeleteUser(false);
+                    setGetAllusersForAdmin(getAllusersForAdmin.filter((user) => user._id !== userToDelete));
+                  });
+                } catch (error) {
+                  console.log(error);
+                  toast.error(error.message);
+                }
+              }
+            }
+            headerTitle="ConfirmDelete User Or Admin" 
+            headerDescription="Are you sure you want to delete this user or admin?" 
+            cacelButton="Cancel"
+            confirmButton="Delete"
+            warningMessage="Warning if you delete this user or admin, all of their data will be permanently deleted."
+          />
+        )
+      }
 
     </div>
   )

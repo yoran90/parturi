@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import useAboutUs from '../hooks/useAboutUs'
 import HolyDay from '../components/holy-day/HolyDay'
 
+
 const Meistä = () => {
 
   const { getAboutUs } = useAboutUs();

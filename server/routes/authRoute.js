@@ -1,11 +1,13 @@
 import express from "express";
 import {  
+  adminDeleteUserOrAdmin,
   authMiddleware, 
   getAllUsers, 
-  getUserById, 
+  getUserByIdInAdmin, 
   login, 
   logout, 
   register, 
+  superAdminGetUserByIdForChangeRole, 
   superAdminGetUserDataById, 
   superAdminUpdateUserRole, 
   updateUserById 
@@ -25,10 +27,12 @@ router.post("/register", register);
 router.post("/login", login);
 router.post("/logout", logout);
 router.get("/allUsers", authMiddleware, getAllUsers);
-router.get("/user/:id", authMiddleware, getUserById);
+router.get("/userForAdmin/:id", authMiddleware, getUserByIdInAdmin);
 router.put("/updateUser", upload.single("image"), authMiddleware, updateUserById);
-router.put("/updateUserRole/:id", authMiddleware, superAdminUpdateUserRole);
 router.get("/getUserDataById/:id", authMiddleware, superAdminGetUserDataById);
+router.put("/updateUserRole/:id", authMiddleware, superAdminUpdateUserRole);
+router.get("/getUserForAdminForChangeRole/:id", authMiddleware, superAdminGetUserByIdForChangeRole);
+router.delete("/adminDeleteUserOrAdmin/:id", authMiddleware, adminDeleteUserOrAdmin);
 
 
 

@@ -5,6 +5,7 @@ const initialState = {
   isAuthenticated: false,
   loading: false,
   admin: null,
+  editUser: null
 };
 
 //! ADMIN LOGIN
@@ -22,17 +23,50 @@ export const adminLogout = createAsyncThunk("adminAuth/logout", async () => {
 );
 
 //! get user by id for admin
-export const getUserById = createAsyncThunk("adminAuth/getUserById", async (id, { rejectWithValue}) => {
-    const response = await axios.get(`http://localhost:8001/api/auth/user/${id}`, { withCredentials: true });
+export const getUserByIdInAdmin = createAsyncThunk("adminAuth/getUserByIdInAdmin", async (id, { rejectWithValue}) => {
+  try {
+    const response = await axios.get(`http://localhost:8001/api/auth/userForAdmin/${id}`, { withCredentials: true });
     return response.data;
+  } catch (error) {
+    console.log(error);
   }
-);
+});
 
 //! super admin get user data by id
 export const getUserDataById = createAsyncThunk("adminAuth/getUserDataById", async (id, { rejectWithValue}) => {
     const response = await axios.get(`http://localhost:8001/api/auth/getUserDataById/${id}`, { withCredentials: true });
     return response.data;
 }) 
+
+//! SUPER ADMIN UPDATE USER ROLE (CHANGE USER ROLE)
+export const superAdminUpdateUserRole = createAsyncThunk("adminAuth/superAdminUpdateUserRole", async ({ id, role }, { rejectWithValue }) => {
+  try {
+    const response = await axios.put(`http://localhost:8001/api/auth/updateUserRole/${id}`, { role }, { withCredentials: true });
+    return response.data
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//! SUPER ADMIN GET USER DATA BY ID FOR CHANGE ROLE (CHANGE USER ROLE)
+export const getUserForAdminForChangeRole = createAsyncThunk("adminAuth/getUserForAdminForChangeRole", async (id, { rejectWithValue }) => {
+  try {
+    const response = await axios.get(`http://localhost:8001/api/auth/getUserForAdminForChangeRole/${id}`, { withCredentials: true });
+    return response.data
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+//! super admin delete user or admin
+export const adminDeleteUserOrAdmin = createAsyncThunk("adminAuth/adminDeleteUserOrAdmin", async (id, { rejectWithValue }) => {
+  try {
+    const response = await axios.delete(`http://localhost:8001/api/auth/adminDeleteUserOrAdmin/${id}`, { withCredentials: true });
+    return response.data
+  } catch (error) {
+    console.log(error);
+  }
+})
 
 //! CHECK ADMIN AUTH
 export const checkAdminAuth = createAsyncThunk("adminAuth/check-auth", async (_, { rejectWithValue }) => {
@@ -88,14 +122,14 @@ const adminAuthSlice = createSlice({
       })
 
       //! get user by id for admin
-      .addCase(getUserById.pending, (state) => {
+      .addCase(getUserByIdInAdmin.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getUserById.fulfilled, (state, action) => {
+      .addCase(getUserByIdInAdmin.fulfilled, (state, action) => {
         state.loading = false;
         state.admin = action.payload.data;
       })
-      .addCase(getUserById.rejected, (state) => {
+      .addCase(getUserByIdInAdmin.rejected, (state) => {
         state.loading = false;
         state.admin = null;
       })
@@ -111,6 +145,29 @@ const adminAuthSlice = createSlice({
       .addCase(getUserDataById.rejected, (state) => {
         state.loading = false;
         state.admin = null;
+      })
+      
+      //! SUPER ADMIN UPDATE USER ROLE
+      .addCase(superAdminUpdateUserRole.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(superAdminUpdateUserRole.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(superAdminUpdateUserRole.rejected, (state) => {
+        state.loading = false;
+      })
+
+      //! SUPER ADMIN GET USER DATA FOR CHANGE ROLE
+      .addCase(getUserForAdminForChangeRole.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getUserForAdminForChangeRole.fulfilled, (state, action) => {
+        state.loading = false;        
+        state.editUser = action.payload.data || null;
+      })
+      .addCase(getUserForAdminForChangeRole.rejected, (state) => {
+        state.loading = false;
       })
 
       //! CHECK ADMIN AUTH

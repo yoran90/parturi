@@ -33,7 +33,7 @@ export const register = async (req, res) => {
 };
 
 //! get user by id for admin
-export const getUserById = async (req, res) => {
+export const getUserByIdInAdmin = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -122,30 +122,6 @@ export const getAllUsers = async (req, res) => {
   }
 }
 
-//! super admin update user
-export const superAdminUpdateUserRole = async (req, res) => {
-  try {
-
-    if (req.admin.role !== "super-admin") {
-      return res.status(403).json({ success: false, message: "Forbidden" });
-    }
-
-    const { id } = req.params;
-
-    const user = await Auth.findById(id);
-    if (!user) {
-      return res.status(404).json({ success: false, message: "User not found" });
-    }
-
-    user.role = req.body.role;
-    await user.save();
-    res.status(200).json({ success: true, message: "User role updated successfully", user });
-
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: error.message });
-  }
-};
 //! super admin get all user data
 export const superAdminGetUserDataById = async (req, res) => {
   try {
@@ -233,9 +209,90 @@ export const logout = async (req, res) => {
 };
 
 
+//! SUPER ADMIN UPDATE USER ROLE
+export const superAdminUpdateUserRole = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { role } = req.body;
+
+    if (req.admin.role !== "super-admin") {
+      return res.status(403).json({ success: false, message: "Forbidden" });
+    }
+
+    const validRole = ["user", "admin", "super-admin"];
+    if (!validRole.includes(role)) {
+      return res.status(400).json({ success: false, message: "Invalid role" });
+    }
+
+    const user = await Auth.findById(id);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    if (user.role === "super-admin" && req.admin.id !== id) {
+      return res.status(403).json({ success: false, message: "Forbidden" });
+    }
+
+    user.role = role;
+    await user.save();
+    res.status(200).json({ success: true, message: "User role updated successfully", user });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+//! super admin get user by id for update role
+export const superAdminGetUserByIdForChangeRole = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (req.admin.role !== "super-admin") {
+      return res.status(403).json({ success: false, message: "Forbidden" });
+    }
+
+    const user = await Auth.findById(id);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+    res.status(200).json({ success: true, data: user });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
+
+//! admin delete user 
+export const adminDeleteUserOrAdmin = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (req.admin.role !== "super-admin") {
+      return res.status(403).json({ success: false, message: "Forbidden" });
+    }
+
+    const user = await Auth.findById(id);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    if (user.role === "super-admin") {
+      return res.status(403).json({ success: false, message: "You can't delete super admin" });
+    }
+
+    await Auth.findByIdAndDelete(id);
+    res.status(200).json({ success: true, message: "User deleted successfully" });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+}
+
 //! Auth Middleware FOR ADMIN //
 export const authMiddleware = (req, res, next) => {
-  const token = req.cookies.adminToken;
+  const token = req.cookies.adminToken || req.headers.authorization?.split(" ")[1];;
   
   if (!token) {
     return res.status(401).json({

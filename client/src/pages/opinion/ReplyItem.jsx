@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BsHandThumbsUp } from 'react-icons/bs';
 import { FaReply } from 'react-icons/fa6';
 import { IoIosArrowDown, IoIosArrowUp, IoMdImage } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
   const [showReplyBox, setShowReplyBox] = useState(false);
@@ -29,7 +30,7 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
       <div className="p-1 rounded-md">
 
         {/* Reply User Info */}
-        <div className="flex items-center gap-3 mb-2">
+        <Link to={`/profile/${reply?.userId}`} className="flex items-center gap-3 mb-2">
           <img className="w-7 h-7 rounded-full border border-slate-500"src={reply?.profileImage?.url ||
             (reply?.gender === "men"
               ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s"
@@ -49,7 +50,7 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
             </small>
 
           </div>
-        </div>
+        </Link>
 
         {/* Reply Text */}
         <p className="text-[13px] ml-8">{reply?.reply || ""}</p>

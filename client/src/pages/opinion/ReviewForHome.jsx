@@ -1,41 +1,74 @@
-import React from 'react'
-import useReviews from '../../hooks/useReviews';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { GoStar, GoStarFill } from 'react-icons/go';
 
 const ReviewForHome = () => {
+  const [getReviews, setGetReviews] = useState([]);
 
-  const { getReview } = useReviews();
+  useEffect(() => {
+    const fetchReviwes = async () => {
+      const response = await axios.get("http://localhost:8001/api/reviwes/getReviews?limit=3");
+      setGetReviews(response.data || []);
+    }
+    fetchReviwes();
+  }, []);
+
+
+  console.log(getReviews);
+  
 
   return (
     <div>
       <div className='flex flex-col w-[95%] items-center justify-center m-auto mb-12'>
-        <div className='flex flex-col md:flex-row gap-4 m-auto'>
-          <div className='flex flex-col items-center justify-center bg-white shadow border border-slate-100 p-8 rounded-2xl'>
-            <div className='flex flex-col gap-1.5 text-center items-center justify-center mb-6'>
-              
-              <h3 className='text-md font-semibold text-slate-600'>Ammattilainen</h3>
+        <div className='grid md:grid-cols-3 lg:grid-cols-3 grid-cols-1 gap-4 m-auto'>
+          {getReviews.map((review) => (
+            <div key={review._id} className='flex flex-col items-center justify-center bg-white shadow border border-slate-100 py-4 px-2 rounded-2xl'>
+              <div className='flex items-center gap-2.5 mb-6'>
+                {
+                  review?.profileImage ? (
+                    <img className='w-10 h-10 border border-slate-500 rounded-full' src={review?.profileImage} alt="" />
+                  ) : (
+                    review?.gender === 'men' ? (
+                      <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                    ) : (
+                      <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                    )
+                  )
+                }
+                <div className='flex flex-col'>
+                  <h3 className='text-sm font-semibold text-slate-500'>{review.firstName} {review.lastName}</h3>
+                  <small className='text-[11px] text-slate-400'>{new Date(review?.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</small>
+                </div>
+              </div>
+              <div className='text-sm flex flex-col items-center mb-4'>
+                <div className='flex gap-0.5'>
+                  {
+                    [...Array(5)].map((_, index) => {
+                      return (
+                        index < review.rating ? 
+                          <div key={index}>
+                            <GoStarFill className='text-yellow-500' size={20} /> 
+                          </div>
+                        : 
+                          <div key={index}>
+                            <GoStar size={20}  className='text-slate-500' />
+                          </div>
+                      )
+                    })
+                  }
+                
+                </div>
+                <span className='text-slate-600'>{review?.rating} / 5</span>
+              </div>
+              <div>
+                <p className='text-sm text-slate-600 line-clamp-4 px-2'>{review.reviewText}</p>
+              </div>
             </div>
-            <p className='text-sm text-slate-600 text-center items-center'>Olemme pätevöityneitä ammattilaisia, joilla on alan koulutus ja virallinen osaaminen. Meille hiustenhoito ei ole vain työtä – se on ammatti, jota teemme ylpeydellä ja tarkkuudella.</p>
-          </div>
-
-          <div className='flex flex-col items-center justify-center bg-white shadow border border-slate-100 p-8 rounded-2xl'>
-            <div className='flex flex-col gap-1.5 text-center items-center justify-center mb-6'>
-              
-              <h3 className='text-md font-semibold text-slate-600'>Mestari / huippuosaaja</h3>
-            </div>
-            <p className='text-sm text-slate-600 text-center items-center'>Työmme perustuu mestarin varmuuteen ja tarkkaan silmään. Vuodet kokemusta ja jatkuva kouluttautuminen takaavat, että jokainen leikkaus ja tyyli tehdään huippuosaamisella.</p>
-          </div>
-
-          <div className='flex flex-col items-center justify-center bg-white shadow border border-slate-100 p-8 rounded-2xl'>
-            <div className='flex flex-col gap-1.5 text-center items-center justify-center mb-6'>
-              
-              <h3 className='text-md font-semibold text-slate-600'>Luotettu / asiakkaiden suosima</h3>
-            </div>
-            <p className='text-sm text-slate-600 text-center items-center'>Asiakkaamme palaavat luoksemme kerta toisensa jälkeen, sillä olemme luotettu valinta hiustenleikkauksessa ja tyylinmuutoksissa. Luottamus ansaitaan – me teemme sen joka käynnillä.</p>
-          </div>
+          ))}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ReviewForHome
+export default ReviewForHome;

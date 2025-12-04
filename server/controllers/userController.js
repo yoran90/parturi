@@ -90,7 +90,7 @@ export const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const user = await Auth.findById(id);
+    const user = await Auth.findById(id).select("-password");
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found" });
     }

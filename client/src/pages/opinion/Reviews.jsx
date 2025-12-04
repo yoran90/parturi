@@ -11,7 +11,7 @@ import { IoMdImage } from 'react-icons/io';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { BsHandThumbsUp } from "react-icons/bs";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import ReplyItem from './ReplyItem';
@@ -174,7 +174,6 @@ setGetReviews(prevReviews =>
   };
 
 
-console.log(getReviews);
 
 
   return (
@@ -190,7 +189,7 @@ console.log(getReviews);
           return (
             <div key={index} className='border-t border-b border-slate-300 pt-5 pb-5'>
               <div className='flex justify-between gap-2'>
-                <div className='flex gap-2'>
+                <Link to={`/profile/${item?.userId}`} className='flex gap-2'>
                   {
                     item?.profileImage ? (
                       <img className='w-8.5 h-8.5 border border-slate-100 rounded-full' src={item?.profileImage} alt="" />
@@ -212,7 +211,7 @@ console.log(getReviews);
                       })}
                     </small>
                   </div>
-                </div>
+                </Link>
                 <div className='text-sm flex flex-col items-center'>
                   <div className='flex gap-0.5'>
                     {
@@ -338,7 +337,7 @@ console.log(getReviews);
                           {
                             item?.comments?.map((comment) => (
                               <div key={comment._id} className='border-b last:border-b-0 border-slate-300 pt-2 pb-2'>
-                                <div className='flex items-center gap-3'>
+                                <Link to={`/profile/${comment?.userId}`} className='flex items-center gap-3'>
                                   {
                                     comment?.profileImage ? (
                                       <img className='w-7 h-7 border border-slate-500 rounded-full' src={comment?.profileImage} alt="" />
@@ -354,7 +353,7 @@ console.log(getReviews);
                                     <p className='text-xs text-slate-700'>{comment?.firstName} {comment?.lastName}</p>
                                     <small className='text-[11px] text-slate-400'>{new Date(comment?.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</small>
                                   </div>
-                                </div>
+                                </Link>
                                 <p className='text-[13px] ml-10 mt-2'>{typeof comment?.comment === 'string' ? comment.comment : comment?.comment?.comment || ''}</p>
                                 <div className='ml-10 overflow-hidden'>
 

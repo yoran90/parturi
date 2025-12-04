@@ -48,10 +48,16 @@ export const createReview = async (req, res) => {
 //! get reviwes
 export const getReviews = async (req, res) => {
   try {
+    const limit = parseInt(req.query.limit) || 0;
     const reviews = await Reviews.find().sort({ createdAt: -1 });
     if (!reviews) {
       return res.status(404).json({ message: "Reviews not found" });
     }
+
+    if (limit > 0) {
+      reviews.splice(limit);
+    }
+
     res.status(200).json(reviews);
   } catch (error) {
     console.log(error);
@@ -111,16 +117,21 @@ export const getComments = async (req, res) => {
   try {
     const { reviewId } = req.params;
 
+    const limit = parseInt(req.query.limit) || 0;
+
     const review = await Reviews.findById(reviewId)
       .populate("comments.userId", "firstName lastName profileImage gender")
-      .populate("comments.replies.userId", "firstName lastName profileImage gender");
+      .populate("comments.replies.userId", "firstName lastName profileImage gender")
 
     if (!review) {
       return res.status(404).json({ message: "Comment not found" });
     }
+
+    const comments = limit > 0 ? review.comments.slice(0, limit) : review.comments;
+
     res.status(200).json({
       success: true,
-      comments: review.comments
+      comments
     });
   } catch (error) {
     console.log(error);

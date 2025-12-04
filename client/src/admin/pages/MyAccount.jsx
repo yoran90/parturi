@@ -3,7 +3,7 @@ import { FaUpload } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdAdminPanelSettings } from "react-icons/md";
 import { useEffect } from 'react';
-import { getUserById, setAdmin } from '../../store/admin-auth';
+import { getUserByIdInAdmin, setAdmin } from '../../store/admin-auth';
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -65,7 +65,7 @@ const MyAccount = () => {
 
   useEffect(() => {
     if (admin && admin?.id) {
-      dispatch(getUserById(admin.id));
+      dispatch(getUserByIdInAdmin(admin.id));
 
     }
   }, [dispatch]);

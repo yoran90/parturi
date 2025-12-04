@@ -6,6 +6,7 @@ const initialState = {
   isAuthenticated: false,
   loading: false,
   user: null,
+  userProfile: null
 };
 
 //! user register 
@@ -32,6 +33,17 @@ export const userLogin = createAsyncThunk("userAuth/login", async ({ email, pass
 export const getUserById = createAsyncThunk("userAuth/getUserById", async (id, { rejectWithValue }) => {
   try {
     const response = await axios.get(`http://localhost:8001/api/user/${id}`, { withCredentials: true });
+    return response.data;  
+  } catch (error) {
+    console.log(error);
+    
+  }
+});
+
+//! get profile user by id
+export const getProfileUserById = createAsyncThunk("userAuth/getProfileUserById", async (id, { rejectWithValue }) => {
+  try {
+    const response = await axios.get(`http://localhost:8001/api/user/getUser/${id}`, { withCredentials: true });
     return response.data;  
   } catch (error) {
     console.log(error);
@@ -119,6 +131,20 @@ const authSlice = createSlice({
         state.loading = false;
         state.isAuthenticated = false;
         state.user = null;
+      })
+
+      //! GET profile USER BY ID
+      .addCase(getProfileUserById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getProfileUserById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userProfile = action.payload.data;
+      })
+      .addCase(getProfileUserById.rejected, (state) => {
+        state.loading = false;
+        state.isAuthenticated = false;
+        state.userProfile = null;
       })
 
       //! USER LOGOUT
