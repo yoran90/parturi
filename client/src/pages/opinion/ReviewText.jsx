@@ -21,7 +21,7 @@ const ReviewText = ({ text }) => {
     <div className="text-justify">
       <p
         ref={textRef}
-        className={`text-[13px] text-slate-700 mt-4 ${
+        className={`text-[14px] text-slate-700 mt-4 ${
           expanded ? "line-clamp-none" : "line-clamp-3"
         }`}
       >

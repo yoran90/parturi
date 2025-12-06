@@ -169,7 +169,8 @@ const MyAccount = () => {
 
 
   return (
-    <div className='flex flex-col items-center mt-4 mb-12 w-full h-[85vh] pt-2 overflow-y-scroll scrollbarStyle'>
+    <>
+    <div className='flex flex-col items-center mt-4 mb-12  md:h-[85vh] pt-2 overflow-y-scroll scrollbarStyle'>
       <div className='flex flex-col items-center justify-center gap-1.5'>
         <div>
           <img className="w-28 h-28 rounded-full border" src={profileSrc} alt="Profile" />
@@ -190,7 +191,7 @@ const MyAccount = () => {
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className='w-full md:px-26 px-4 py-12 flex flex-col gap-3.5' style={{zoom: '98%'}}>
+      <form onSubmit={handleSubmit} className='px-4 py-12 flex flex-col gap-3.5' style={{zoom: '98%'}}>
         <div className='flex flex-col gap-1 text-sm'>
           <label htmlFor="">My Bio</label>
           <textarea value={bio} onChange={(e) => setBio(e.target.value)} cols="30" rows="6" className='border resize-none overflow-y-scroll scrollbarStyle border-slate-400 rounded focus:outline-none py-1.5 px-3'></textarea>
@@ -284,10 +285,11 @@ const MyAccount = () => {
           </button>
         </div>
       </form>
-      <p className='text-slate-400 text-xs md:px-26 px-4 w-full'>
+      <p className='text-slate-400 text-xs px-4'>
         Here you can update your account details, such as your name, email, and gender. also you can put your profile picture and so on
       </p>
     </div>
+    </>
   )
 }
 

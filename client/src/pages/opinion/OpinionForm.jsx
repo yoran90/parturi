@@ -24,6 +24,10 @@ const OpinionForm = ({ closeModel }) => {
       toast.error('Please enter a review text.');
       return;
     }
+    if (reviewText.length < 5) {
+      toast.error('Review text must be at least 5 characters long.');
+      return;
+    }
 
     if (rating === 0) {
       toast.error('Please select a rating.');

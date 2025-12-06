@@ -85,6 +85,18 @@ const OpinionUser = () => {
     
   }, []);
 
+  function hasVisibleText(html) {
+    if (!html) return false;
+
+    const tmp = document.createElement("div");
+    tmp.innerHTML = html;
+    return tmp.textContent.trim().length > 0;
+  }
+
+
+
+  
+
   return (
     <div>
       <Information />
@@ -133,31 +145,31 @@ const OpinionUser = () => {
               <h3 className='text-slate-700 font-semibold text-sm'>Puhelinnumero:</h3>
               <h3 className='text-sm'>{getInformation?.phone}</h3>
             </div>
-            {
-              getInformation?.holyday ? (
-                <div className='flex gap-2.5'>
-                  <h3 className='text-slate-700 font-semibold text-sm'>Avoina:</h3>
-                  <div className='text-sm mt-1' dangerouslySetInnerHTML={{__html: getInformation?.holyday}} />
-                </div>
-              ) : (
-                <>
-                <div className='flex gap-2.5'>
-                  <h3>Avoina:</h3>
-                  <div className='text-sm mt-1' dangerouslySetInnerHTML={{__html: getInformation?.openingHours}} />
-                </div>
-                </>
-              )
-            }
+            <div className='flex mt-4 gap-2.5'>
+              <h3 className='text-slate-700 font-semibold text-sm'>Avoina:</h3>
+              {
+                hasVisibleText(getInformation?.holyday) ? (
+                  <div>
+                    <div className='text-sm' dangerouslySetInnerHTML={{__html: getInformation?.holyday}} />
+                  </div>
+                ) : (
+                  <div>
+                    <div className='text-sm text-black' dangerouslySetInnerHTML={{__html: getInformation?.openingHours}} />
+                  </div>
+                )
+              }
+              
+            </div>
           </div>
         </div>
         {/* left side form */}
-        <div className='w-full pr-4'>
+        <div className='w-full'>
           <div>
             <h3 className='text-lg font-semibold text-gray-500 mb-4'>Arvostelut</h3>
           </div>
-          <p className='text-sm text-slate-800'>
+          {/* <p className='text-sm text-slate-800'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, qui? Iusto sint saepe harum neque quos optio, voluptas quas voluptates unde commodi cum nam laboriosam expedita provident quasi nulla natus.
-          </p>
+          </p> */}
           <div className='flex items-center justify-evenly border border-slate-300 rounded mt-4 overflow-hidden'>
             <button onClick={() => {
               if (!user) {
@@ -180,7 +192,7 @@ const OpinionUser = () => {
                 <div className='mb-4'>
                   <p className='text-slate-700 text-sm'>Arvostelut tästä paikasta</p>
                 </div>
-                <div className='w-full h-[55vh] overflow-y-scroll pr-3 scrollbarStyle'>
+                <div className='w-full md:h-[70vh] md:overflow-y-scroll pr-3 scrollbarStyle'>
                   <Reviews />
                 </div>
               </div>

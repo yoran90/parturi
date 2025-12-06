@@ -13,6 +13,7 @@ import {
   updateUserById 
 } from "../controllers/authController.js";
 import multer from "multer";
+import { getReviewById, getReviewByIdAndDelete } from "../controllers/reviewsController.js";
 
 
 const router = express.Router();
@@ -35,6 +36,10 @@ router.get("/getUserForAdminForChangeRole/:id", authMiddleware, superAdminGetUse
 router.delete("/adminDeleteUserOrAdmin/:id", authMiddleware, adminDeleteUserOrAdmin);
 
 
+
+//! get review by id
+router.get("/getReview/:id", authMiddleware, getReviewById);
+router.delete("/deleteReview/:id", authMiddleware, getReviewByIdAndDelete);
 
 
 router.get("/check-auth", authMiddleware, (req, res) => {

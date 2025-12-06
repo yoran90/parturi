@@ -66,7 +66,8 @@ export const adminDeleteUserOrAdmin = createAsyncThunk("adminAuth/adminDeleteUse
   } catch (error) {
     console.log(error);
   }
-})
+});
+
 
 //! CHECK ADMIN AUTH
 export const checkAdminAuth = createAsyncThunk("adminAuth/check-auth", async (_, { rejectWithValue }) => {

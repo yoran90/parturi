@@ -39,6 +39,9 @@ import ProfileUser from './pages/ProfileUser'
 import ProtectUserRoute from './pages/protectUser/ProtectUserRoute'
 import OpinionUser from './pages/opinion/OpinionUser'
 import UserProfile from './pages/UserProfile'
+import AllReviews from './admin/pages/AllReviews'
+import SingleReview from './admin/pages/SingleReview'
+import AddReview from './admin/pages/AddReview'
 
 
 
@@ -124,6 +127,8 @@ const App = () => {
           <Route path='sidebar' element={<Sidebar />}></Route>
           <Route path='myaccount' element={<MyAccount />}></Route>
           <Route path='allusers' element={<AllUsers />}></Route>
+          <Route path='allreviews' element={<AllReviews />}></Route>
+          <Route path='addreviews' element={<AddReview />}></Route>
           <Route path='addinformation' element={<AddInformation />}></Route>
           <Route path='imagevideo' element={<ImageVideo />}></Route>
           <Route path='imagevideoDisplay' element={<ImagevideoDisplay />}></Route>
@@ -136,6 +141,7 @@ const App = () => {
           <Route path='addaboutus' element={<AddAboutUs />}></Route>
           <Route path='titleforPages' element={<TitleForPages />}></Route>
           <Route path='edit-user/:id' element={<EditUser />}></Route>
+          <Route path="review/:id" element={<SingleReview />}></Route>
         </Route>
 
         <Route path='/login' element={<Login />}></Route>

@@ -14,7 +14,6 @@ const ReviewForHome = () => {
   }, []);
 
 
-  console.log(getReviews);
   
 
   return (

@@ -10,35 +10,58 @@ import { useSelector } from 'react-redux';
 import { IoMdImage } from 'react-icons/io';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { BsHandThumbsUp } from "react-icons/bs";
+import { BsThreeDots } from "react-icons/bs";
 import { Link, useNavigate } from 'react-router-dom';
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import ReplyItem from './ReplyItem';
-
-
-
-
-
-
-
+import { BsTrash3Fill } from "react-icons/bs";
+import { MdModeEdit } from "react-icons/md";
+import { IoTrashOutline } from "react-icons/io5";
+import Loading from '../../loading/Loading';
+import EditReview from './EditReview';
+import ConfirmDelete from '../../admin/pages/ConfirmDelete';
 
 
 
 const Reviews = () => {
 
   const { user } = useSelector((state) => state.userAuth);
-  const { getReviews, setGetReviews } = useReviews();
+  const { getReviews, setGetReviews, fetchReviwes } = useReviews();
 
   const navigate = useNavigate();
 
   const [comment, setComment] = useState({});
-  const [imageComment, setImageComment] = useState(null);
+  const [imageComment, setImageComment] = useState({});
   const [showTheComment, setShowTheComment] = useState(false);
   const [showLiked, setShowLiked] = useState(false);
   const [openReplyInput, setOpenReplyInput] = useState({reviewId: null, commentId: null});
   const [reply, setReply] = useState({});
   const [imageReply, setImageReply] = useState({});
+  const [loadingUserDeleteReview, setLoadingUserDeleteReview] = useState(false);
+  const [confirmuserDeleteReview, setConfirmuserDeleteReview] = useState(null);
+  const [loadinComment, setLoadingComment] = useState(false);
+  const [loadingReply, setLoadingReply] = useState(false);
+  const [openReviewModel, setOpenReviewModel] = useState(null);
+  const [openUserMenu, setOpenUserMenu] = useState(false);
+
+
+  const handleToggleOpenUserMenu = (reviewId) => {
+    setOpenUserMenu(prev => prev === reviewId ? null : reviewId);
+  }
+  
+  const menuRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutsite = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpenUserMenu(null);
+      }
+    }
+    document.addEventListener("click", handleClickOutsite);
+    return () => {
+      document.removeEventListener("click", handleClickOutsite);
+    }
+  }, [openUserMenu]);
 
   /* Open comment */
   const handleToggleComment = (itemId) => {
@@ -77,10 +100,11 @@ const Reviews = () => {
     }
 
     try {
+      setLoadingComment((prev) => ({ ...prev, [reviewId]: true }));
       const formData = new FormData();
       formData.append("comment", text); 
 
-      const thisImage = imageComment;
+      const thisImage = imageComment?.[reviewId];
 
       if (thisImage) {
         formData.append("imageComment", thisImage);
@@ -96,10 +120,12 @@ const Reviews = () => {
       setGetReviews(updatedReviews);
       setComment((prev) => ({ ...prev, [reviewId]: "" }));
       setImageComment((prev) => ({ ...prev, [reviewId]: null }));
-      handleToggleComment(reviewId);
-
+      setShowTheComment(reviewId);
+      setOpenUserMenu(null);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingComment(false);
     }
   };
 
@@ -111,6 +137,7 @@ const Reviews = () => {
   const handleSubmitReply = async (reviewId, parentId, formData) => {
 
     try {
+      setLoadingReply(true);
       const token = localStorage.getItem("token");
       const response = await axios.post(`http://localhost:8001/api/reviwes/${reviewId}/comments/${parentId}/reply`, formData, { 
         withCredentials: true,
@@ -128,17 +155,16 @@ const Reviews = () => {
 
       const updatedReview = response.data.review;
 
-setGetReviews(prevReviews =>
-  prevReviews.map(r =>
-    r._id === updatedReview._id ? updatedReview : r
-  )
-);
-
-
-    
-      setGetReviews(updatedReviews);
+      setGetReviews(prevReviews =>
+        prevReviews.map(r =>
+          r._id === updatedReview._id ? updatedReview : r
+        )
+      );
+      setOpenUserMenu(null);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingReply(false);
     }
   };
 
@@ -152,21 +178,38 @@ setGetReviews(prevReviews =>
     }
     try {
       const response = await axios.post(`http://localhost:8001/api/reviwes/${reviewId}/like`, {}, { withCredentials: true });
-
-
       const updatedReviews = getReviews.map(review => {
         if (review._id === reviewId) {
           return { ...review, likes: response.data.likes };
         }
         return review;
       });
-
       setGetReviews(updatedReviews);
-
+      setOpenUserMenu(null);
     } catch (error) {
       console.log(error);
     }
   };
+
+  
+  /* remove user own review */
+/*   const handleDeleteReviewByUser = async (reviewId) => {
+    setConfirmuserDeleteReview(reviewId);
+  } */
+  const handleDeleteConfirmReviewByUser = async (reviewId) => {
+    try {
+      setLoadingUserDeleteReview(true);
+      const response = await axios.delete(`http://localhost:8001/api/reviwes/deleteReview/${reviewId}`, { withCredentials: true });
+      const updatedReviews = getReviews.filter(review => review._id !== reviewId);
+      setGetReviews(updatedReviews);
+      setOpenUserMenu(null);
+      toast.success("Review deleted successfully.");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingUserDeleteReview(false);
+    }
+  }
 
   /* Remove comment image */
   const removeCommentImage = (reviewId) => {
@@ -174,7 +217,15 @@ setGetReviews(prevReviews =>
   };
 
 
+  const handleRemoveImageReply = (reviewId, parentId) => {
+    const key = `${reviewId}-${parentId}`;
+    setImageReply(prev => ({ ...prev, [key]: null }));
+  }
 
+
+
+
+  
 
   return (
     <div>
@@ -188,7 +239,52 @@ setGetReviews(prevReviews =>
         getReviews?.map((item, index) => {
           return (
             <div key={index} className='border-t border-b border-slate-300 pt-5 pb-5'>
-              <div className='flex justify-between gap-2'>
+               {item?.userId === user?.id && (
+                <div className='flex items-end justify-end mb-2 -mt-4 relative'>
+                   <div className='cursor-pointer' onClick={() => handleToggleOpenUserMenu(item?._id)}>
+                    <BsThreeDots size={18} />
+                  </div>
+                  {
+                    openUserMenu === item?._id && (
+                      <div className='bg-white shadow w-[30%] border border-slate-200 rounded p-4 absolute top-5 z-50'>
+                        <div className='flex flex-col items-start gap-2'>
+                          <button onClick={() => {setConfirmuserDeleteReview(item?._id); setOpenUserMenu(null)}} className='text-red-600 text-sm flex items-center gap-2.5 cursor-pointer' >
+                            <IoTrashOutline />
+                            <p>Remove</p>
+                          </button>
+                          <button onClick={() => {setOpenReviewModel(item?._id); setOpenUserMenu(null)}} className='text-green-500 text-sm flex items-center gap-2.5 cursor-pointer'>
+                            <MdModeEdit />
+                            Edit
+                          </button>
+                        </div>
+                      </div>
+                    )
+                  }
+                </div>
+                )}
+                {/* OPEN CONFIRM DELETE  REVIEW */}
+                {
+                  confirmuserDeleteReview === item?._id && (
+                    <ConfirmDelete 
+                      closeModel={() => setConfirmuserDeleteReview(false)}
+                      headerTitle="Remove Review"
+                      headerDescription="Are you sure you want to remove this review?"
+                      warningMessage="This action cannot be undone."
+                      cacelButton="Cancel"
+                      confirmButton="Remove"
+                      onConfirm={() => handleDeleteConfirmReviewByUser(item?._id)}
+                      loading={loadingUserDeleteReview}
+                       
+                    />
+                  )
+                }
+                {/* OPEN EDIT MODEL REVIEW */}
+                {
+                  openReviewModel === item?._id && (
+                    <EditReview item={item} closeModel={() => setOpenReviewModel(false)} fetchReviwes={fetchReviwes}  />
+                  )
+                }
+              <div className='flex justify-between gap-2 relative'>
                 <Link to={`/profile/${item?.userId}`} className='flex gap-2'>
                   {
                     item?.profileImage ? (
@@ -212,6 +308,7 @@ setGetReviews(prevReviews =>
                     </small>
                   </div>
                 </Link>
+                
                 <div className='text-sm flex flex-col items-center'>
                   <div className='flex gap-0.5'>
                     {
@@ -228,10 +325,10 @@ setGetReviews(prevReviews =>
                         )
                       })
                     }
-                  
                   </div>
                   <span className='text-slate-600'>{item?.rating} / 5</span>
                 </div>
+                
               </div>
               <div className='relative gap-2 text-justify'>
                 <div className={`text-[13px] text-slate-700 mt-4`}>
@@ -388,7 +485,7 @@ setGetReviews(prevReviews =>
                                   <div className='ml-10 mt-2.5'>
                                     {comment.replies.map((childReply, index) => (
                                       <ReplyItem
-                                        key={`${reply?._id || 'parent'}-${childReply?._id || index}`}
+                                        key={childReply._id || `temp-${index}`}
                                         reply={childReply}
                                         reviewId={item._id}
                                         parentId={comment._id}
@@ -405,36 +502,60 @@ setGetReviews(prevReviews =>
                                       <hr className='mb-3 text-slate-200' />
                                       {
                                         user && (
-                                          <div className='flex items-center gap-1 cursor-pointer'>
-                                            {
-                                              user?.profileImage?.url ? (
-                                                <img className='w-7 h-7 border border-slate-500 rounded-full' src={user?.profileImage?.url} alt="" />
-                                              ) : (
-                                                user?.gender === 'men' ? (
-                                                  <img className='w-7 h-7 rounded-full border border-slate-500 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                                          <div className='flex flex-col items-center gap-1 cursor-pointer'>
+                                            <div className='flex items-center gap-1.5 w-full'>
+                                              {
+                                                user?.profileImage?.url ? (
+                                                  <img className='w-7 h-7 border border-slate-500 rounded-full' src={user?.profileImage?.url} alt="" />
                                                 ) : (
-                                                  <img className='w-7 h-7  rounded-full border border-slate-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                                                  user?.gender === 'men' ? (
+                                                    <img className='w-7 h-7 rounded-full border border-slate-500 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                                                  ) : (
+                                                    <img className='w-7 h-7  rounded-full border border-slate-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                                                  )
                                                 )
-                                              )
-                                            }
-                                            <form onSubmit={(e) => {
-                                                e.preventDefault();
-                                                const key = `${item._id}-${comment._id}`;
-                                                
-                                                const formData = new FormData();
-                                                formData.append("reply", reply[key] || "");
-                                                if (imageReply[key]) formData.append("imageReply", imageReply[key]);
+                                              }
+                                              <form onSubmit={(e) => {
+                                                  e.preventDefault();
+                                                  const key = `${item._id}-${comment._id}`;
+                                                  
+                                                  const formData = new FormData();
+                                                  formData.append("reply", reply[key] || "");
+                                                  if (imageReply[key]) formData.append("imageReply", imageReply[key]);
 
-                                                handleSubmitReply(item._id, comment._id, formData);
-                                              }} 
-                                              className='w-full flex rounded-full text-[12px] px-3 py-1 border border-slate-300'
-                                            >
-                                              <input type="text" value={reply[`${item._id}-${comment._id}`] || ''} onChange={(e) => setReply({ ...reply, [`${item._id}-${comment._id}`]: e.target.value })} className='border-none w-full outline-none' placeholder='Kirjoittaa kommentti...'/>
-                                              <label htmlFor={`imageReply-${item._id}-${comment._id}`} className='pl-4'>
-                                                <IoMdImage size={15} className='text-slate-500 cursor-pointer' />
-                                                <input type="file" id={`imageReply-${item._id}-${comment._id}`} onChange={(e) => setImageReply({ ...imageReply, [`${item._id}-${comment._id}`]: e.target.files[0], })} className='hidden' />
-                                              </label>
-                                            </form>
+                                                  handleSubmitReply(item._id, comment._id, formData);
+                                                }} 
+                                                className='w-full flex rounded-full text-[12px] px-3 py-1 border border-slate-300'
+                                              >
+                                                <input type="text" value={reply[`${item._id}-${comment._id}`] || ''} onChange={(e) => setReply({ ...reply, [`${item._id}-${comment._id}`]: e.target.value })} className='border-none w-full outline-none' placeholder='Kirjoittaa kommentti...'/>
+                                                <label htmlFor={`imageReply-${item._id}-${comment._id}`} className='pl-4'>
+                                                  {
+                                                    loadingReply ? (
+                                                      <div>
+                                                        <Loading width={16} height={16} border='3px' topBorder='3px' borderColor='red' borderTopColor='white' />
+                                                      </div>
+                                                    ) : (
+                                                      <IoMdImage size={15} className='text-slate-500 cursor-pointer' />
+                                                    )
+                                                  }
+                                                  <input type="file" id={`imageReply-${item._id}-${comment._id}`} onChange={(e) => setImageReply({ ...imageReply, [`${item._id}-${comment._id}`]: e.target.files[0], })} className='hidden' />
+                                                </label>
+                                              </form>
+                                            </div>
+                                            <div className='w-full relative overflow-hidden'>
+                                              {
+                                                imageReply[`${item._id}-${comment._id}`] && (
+                                                 <button type='button' onClick={() => handleRemoveImageReply(item._id, comment._id)} className='bg-red-500 text-white p-1 absolute top-0 right-0 mt-2 cursor-pointer'>
+                                                    <BsTrash3Fill />
+                                                 </button>
+                                                )
+                                              }
+                                              {
+                                                imageReply[`${item._id}-${comment._id}`] && (
+                                                  <img className='w-full mt-2 h-42 border border-slate-500 rounded overflow-hidden' src={URL.createObjectURL(imageReply[`${item._id}-${comment._id}`])} alt="" />
+                                                )
+                                              }
+                                            </div>
                                           </div>
                                         )
                                       }
@@ -477,7 +598,15 @@ setGetReviews(prevReviews =>
                       <form onSubmit={(e) => { e.preventDefault(); handleSubmit(item._id) }} className='w-full flex rounded-full text-[12px] px-3 py-1 border border-slate-300'>
                         <input type="text" value={comment[item._id] || ''} onChange={(e) => setComment({ ...comment, [item._id]: e.target.value })} className='border-none w-full outline-none' placeholder='Kirjoittaa kommentti...'/>
                         <label htmlFor={`imageComment-${item._id}`} className='pl-4'>
-                          <IoMdImage size={15} className='text-slate-500 cursor-pointer' />
+                          {
+                            loadinComment ? (
+                              <div>
+                                <Loading width={16} height={16} border='3px' topBorder='3px' borderColor='red' borderTopColor='white' />
+                              </div>
+                            ) : (
+                              <IoMdImage size={15} className='text-slate-500 cursor-pointer' />
+                            )
+                          }
                           <input type="file" id={`imageComment-${item._id}`} onChange={(e) => setImageComment({ ...imageComment, [item._id]: e.target.files[0] })} className='hidden' />
                         </label>
                       </form>
@@ -495,7 +624,7 @@ setGetReviews(prevReviews =>
                     <img
                       src={URL.createObjectURL(imageComment[item._id])}
                       alt=""
-                      className="w-full h-52 object-cover ml-2 rounded"
+                      className="w-full h-52 object-cover border border-slate-300 ml-2 rounded"
                       
                       />
                   </div>

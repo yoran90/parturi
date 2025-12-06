@@ -13,9 +13,10 @@ import { CgDisplayFullwidth } from "react-icons/cg";
 import { MdAddToHomeScreen } from "react-icons/md";
 import { FcAbout } from "react-icons/fc";
 import { AiFillFileAdd } from "react-icons/ai";
-import { RiPagesLine } from "react-icons/ri";
+import { RiApps2AddFill } from "react-icons/ri";
 import { FaUsers } from "react-icons/fa";
 import { useSelector } from 'react-redux';
+import { MdReviews } from "react-icons/md";
 
 
 
@@ -34,6 +35,18 @@ const adminSidebarMenuItems = [
     path: '/admin/allusers',
     icons: <FaUsers  size={20} />,
     role: ["super-admin"]
+  },
+  {
+    id: 'allreviews',
+    label: (<div className='flex flex-col'>All Reviews <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Here you can handle all reviews</small></div>),
+    path: '/admin/allreviews',
+    icons: <MdReviews   size={20} />,
+  },
+  {
+    id: 'addreviews',
+    label: (<div className='flex flex-col'>Add Reviews <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Here you can handle all reviews</small></div>),
+    path: '/admin/addreviews',
+    icons: <RiApps2AddFill    size={20} />,
   },
   {
     id: 'information',

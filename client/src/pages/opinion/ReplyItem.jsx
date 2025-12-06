@@ -1,29 +1,41 @@
 import React, { useState } from 'react';
-import { BsHandThumbsUp } from 'react-icons/bs';
 import { FaReply } from 'react-icons/fa6';
 import { IoIosArrowDown, IoIosArrowUp, IoMdImage } from "react-icons/io";
 import { Link } from 'react-router-dom';
+import { BsTrash3Fill } from "react-icons/bs";
+import Loading from '../../loading/Loading';
 
 const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
   const [showReplyBox, setShowReplyBox] = useState(false);
   const [replyText, setReplyText] = useState("");
   const [replyImage, setReplyImage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSend = () => {
     if (!replyText.trim() && !replyImage) return;
+    try {
+      setLoading(true);
+      const formData = new FormData();
+      formData.append("reply", replyText);
+      if (replyImage) {
+        formData.append("imageReply", replyImage);
+      } 
 
-    const formData = new FormData();
-    formData.append("reply", replyText);
-    if (replyImage) {
-      formData.append("imageReply", replyImage);
-    } 
-
-    // Send reply to PARENT ID (reply._id)
-    onReply(reviewId, parentId, formData);
-    setReplyText("");
-    setReplyImage(null);
-    setShowReplyBox(false);
+      onReply(reviewId, parentId, formData);
+      setReplyText("");
+      setReplyImage(null);
+      setShowReplyBox(false);
+    } catch (error) {
+      console.log(error);
+      
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const handleImageRemobe = () => {
+    setReplyImage(null);
+  }
 
   return (
     <div className="mt-2">
@@ -84,20 +96,48 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
         </div>
         {/* Reply Input Box */}
         {showReplyBox && (
-          <div className="md:ml-8 mt-3 flex items-center gap-2">
-            <img className="w-6 h-6 rounded-full border border-slate-500"src={reply?.profileImage?.url ||
-              (reply?.gender === "men"
-                ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s"
-                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s")
+          <div className="md:ml-8 mt-3 flex flex-col items-center gap-2">
+            <div className='flex items-center gap-1.5 w-full'>
+              <img className="w-6 h-6 rounded-full border border-slate-500"src={reply?.profileImage?.url ||
+                (reply?.gender === "men"
+                  ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s"
+                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s")
+                }
+                />
+              <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className='flex items-center justify-between w-full border border-slate-300 px-2 py-1 rounded-full'>
+                <input type="text" value={replyText} onChange={(e) => setReplyText(e.target.value)} className="w-full outline-none text-xs" placeholder="Kirjoita vastaus..."/>
+                <label>
+                  {
+                    loading ? (
+                      <>
+                        <Loading width={16} height={16} border='3px' topBorder='3px' borderColor='red' borderTopColor='white' />
+                      </>
+                    ) : (
+                      <>
+                        <IoMdImage size={14} className="text-slate-600 cursor-pointer" />
+                      </>
+                    )
+                  }
+                  <input type="file" className="hidden" onChange={(e) => setReplyImage(e.target.files[0])} />
+                </label>
+              </form>
+            </div>
+            <div className='w-full relative'>
+              {
+                replyImage && (
+                  <button type='button' onClick={handleImageRemobe} className='text-md cursor-pointer absolute top-0 right-0 bg-red-400 text-white py-1 px-1 '>
+                    <BsTrash3Fill  />
+                  </button>
+                )
               }
-            />
-            <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className='flex items-center justify-between w-full border border-slate-300 px-2 py-1 rounded-full'>
-              <input type="text" value={replyText} onChange={(e) => setReplyText(e.target.value)} className="w-full outline-none text-xs" placeholder="Kirjoita vastaus..."/>
-              <label>
-                <IoMdImage size={14} className="text-slate-600 cursor-pointer" />
-                <input type="file" className="hidden" onChange={(e) => setReplyImage(e.target.files[0])} />
-              </label>
-            </form>
+              {replyImage && (
+                <img
+                src={URL.createObjectURL(replyImage)}
+                alt="preview"
+                className="w-full h-42 border border-slate-300 rounded-md object-cover"
+                />
+              )}
+            </div>
           </div>
         )}
       </div>

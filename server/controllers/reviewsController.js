@@ -9,6 +9,10 @@ export const createReview = async (req, res) => {
   try {
     const { reviewText, rating } = req.body;
 
+    if (reviewText.length < 5) {
+      return res.status(400).json({ message: "Review text must be at least 5 characters long" });
+    }
+
     if (!reviewText && !rating && !req.file) {
       return res.status(400).json({ message: "All fields are required" });
     }
@@ -22,13 +26,14 @@ export const createReview = async (req, res) => {
       });
       image = {
         url: result.secure_url,
-        publicId: result.public_id,
+        public_id: result.public_id,
       }
     }
 
 
     const review = await Reviews.create({ 
       userId,
+      email: req.user.email,
       firstName: req.user.firstName,
       lastName: req.user.lastName,
       profileImage: req.user.profileImage?.url || null,
@@ -64,6 +69,173 @@ export const getReviews = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 } 
+//! get review by id 
+export const getReviewById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const review = await Reviews.findById(id);
+    if (!review) {
+      return res.status(404).json({ message: "Review not found" });
+    }
+    res.status(200).json(review);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+//! user delete own review
+export const deleteReviewByUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const review = await Reviews.findById(id);
+    if (!review) {
+      return res.status(404).json({ message: "Review not found" });
+    }
+
+    if (review.userId.toString() !== req.user.id.toString()) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+
+    if (review.image?.public_id) {
+      await cloudinary.uploader.destroy(review.image.public_id);
+    }
+
+    const deleteAllImages = async (comments) => {
+      for (const comment of comments) {
+        if (comment.imageComment?.public_id) {
+          await cloudinary.uploader.destroy(comment.imageComment.public_id);
+        }
+
+        if (comment.imageReply?.publicId) {
+          await cloudinary.uploader.destroy(comment.imageReply.publicId);
+        }
+
+        if (comment.replies && comment.replies.length > 0) {
+          await deleteAllImages(comment.replies);
+        }
+      }
+    };
+
+    if (review.comments && review.comments.length > 0) {
+      await deleteAllImages(review.comments);
+    }
+
+    await Reviews.findByIdAndDelete(id);
+    res.status(200).json({ message: "Review deleted successfully" });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+}
+
+//! user update own review
+export const userUpdateOwnReview = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {reviewText, rating } = req.body;
+
+    const review = await Reviews.findById(id);
+    if (!review) {
+      return res.status(404).json({ message: "Review not found" });
+    }
+
+    if (review.userId.toString() !== req.user.id.toString()) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+
+    if (reviewText !== undefined) {
+      review.reviewText = reviewText;
+    }
+    if (rating !== undefined) {
+      review.rating = rating;
+    }
+    if (req.file) {
+      if (review.image?.public_id) {
+        await cloudinary.uploader.destroy(review.image.public_id);
+      }
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "paturi",
+      });
+      review.image = {
+        url: result.secure_url,
+        public_id: result.public_id,
+      }
+    }
+
+    await review.save();
+    res.status(200).json({ message: "Review updated successfully", review });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+}
+
+const deleteImageFromCloudinary = async (publicId) => {
+  try {
+    if (!publicId) return;
+    await cloudinary.uploader.destroy(publicId);
+  } catch (err) {
+    console.log("Cloudinary delete error:", err);
+  }
+};
+
+//! admin get review by id and delete
+export const getReviewByIdAndDelete = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const review = await Reviews.findById(id);
+    if (!review) {
+      return res.status(404).json({ message: "Review not found" });
+    }
+   
+    if (review.image?.public_id) {
+      await cloudinary.uploader.destroy(review.image.public_id);
+    }
+
+
+    const deleteCommentImages = async (comments) => {
+      for (let c of comments) {
+        
+        // delete comment image
+        if (c.imageComment?.public_id) {
+          await cloudinary.uploader.destroy(c.imageComment.public_id);
+        }
+
+        // delete replies images recursively
+        const deleteReplies = async (replies) => {
+          for (let r of replies) {
+            if (r.imageReply?.publicId) {
+              await deleteImageFromCloudinary(r.imageReply.publicId);
+            }
+            if (Array.isArray(r.replies) && r.replies.length > 0) {
+              await deleteReplies(r.replies);
+            }
+          }
+        };
+
+        if (Array.isArray(c.replies) && c.replies.length > 0) {
+          await deleteReplies(c.replies);
+        }
+      }
+    };
+
+    await deleteCommentImages(review.comments);
+    await Reviews.findByIdAndDelete(id);
+
+    res.status(200).json({ message: "Review deleted successfully" });
+
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+}
 
 //! create comments
 export const createComments = async (req, res) => {
@@ -84,12 +256,13 @@ export const createComments = async (req, res) => {
       });
       imageComment = {
         url: result.secure_url,
-        publicId: result.public_id,
+        public_id: result.public_id,
       }
     }
 
     const newComment = {
       userId: userId,
+      email: req.user.email,
       firstName: req.user.firstName,
       lastName: req.user.lastName,
       profileImage: req.user.profileImage?.url || null,

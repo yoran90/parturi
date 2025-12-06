@@ -7,6 +7,9 @@ const reviewsSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  email: {
+    type: String
+  },
   firstName: {
     type: String,
   },
