@@ -215,11 +215,15 @@ export const superAdminUpdateUserRole = async (req, res) => {
     const { id } = req.params;
     const { role } = req.body;
 
+    if (!role || typeof role !== "string") {
+      return res.status(400).json({ success: false, message: "Invalid role" });
+    }
+
     if (req.admin.role !== "super-admin") {
       return res.status(403).json({ success: false, message: "Forbidden" });
     }
 
-    const validRole = ["user", "admin", "super-admin"];
+    const validRole = ["user", "admin"];
     if (!validRole.includes(role)) {
       return res.status(400).json({ success: false, message: "Invalid role" });
     }
@@ -229,19 +233,19 @@ export const superAdminUpdateUserRole = async (req, res) => {
       return res.status(404).json({ success: false, message: "User not found" });
     }
 
-    if (user.role === "super-admin" && req.admin.id !== id) {
-      return res.status(403).json({ success: false, message: "Forbidden" });
+    if (user.role === "super-admin") {
+      return res.status(403).json({ success: false, message: "Cannot change super-admin role" });
     }
 
     user.role = role;
     await user.save();
     res.status(200).json({ success: true, message: "User role updated successfully", user });
-
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
 //! super admin get user by id for update role
 export const superAdminGetUserByIdForChangeRole = async (req, res) => {
   try {

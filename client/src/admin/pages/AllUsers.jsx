@@ -21,36 +21,35 @@ const AllUsers = () => {
   const [confirmDeleteUser, setConfirmDeleteUser] = React.useState(false);
   const [userToDelete, setUserToDelete] = React.useState(null);
 
+  
+
   useEffect(() => {
-    const fetchAllUsres = async () => {
-      const response = await axios.get("http://localhost:8001/api/auth/allUsers", { withCredentials: true });
-      setGetAllusersForAdmin(response.data.data);
-    }
-    fetchAllUsres();
+    const fetchAllUsers = async () => {
+      try {
+        const response = await axios.get("http://localhost:8001/api/auth/allUsers", { withCredentials: true });
+        setGetAllusersForAdmin(response.data.data);
+      } catch (error) {
+        console.log(error);
+        toast.error("Failed to fetch users");
+      }
+    };
+
+    fetchAllUsers();
   }, []);
   
-  if (admin?.role !== "super-admin") {
+  if (!admin || admin.role !== "super-admin") {
     return (
       <div className='mt-2 px-2'>
         <h1 className='text-center'>You are not authorized to access this page</h1>
       </div>
-    )
+    );
   }
 
   
 
-  const handleEditUser = async (id) => {
-    try {
-      await dispatch(superAdminUpdateUserRole(id)).unwrap();
-      navigate(`/admin/edit-user/${id}`);
-      console.log("user", id);
-      
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
-      
-    }
-  }
+   const handleEditUser = (id) => {
+    navigate(`/admin/edit-user/${id}`);
+  };
 
 
   const handleDelete = async (id) => {

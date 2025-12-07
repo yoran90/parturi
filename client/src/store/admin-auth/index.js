@@ -55,7 +55,7 @@ export const getUserForAdminForChangeRole = createAsyncThunk("adminAuth/getUserF
     const response = await axios.get(`http://localhost:8001/api/auth/getUserForAdminForChangeRole/${id}`, { withCredentials: true });
     return response.data
   } catch (error) {
-    console.log(error);
+    return rejectWithValue(error.response?.data || error.message);
   }
 })
 
@@ -170,6 +170,8 @@ const adminAuthSlice = createSlice({
       })
       .addCase(getUserForAdminForChangeRole.rejected, (state) => {
         state.loading = false;
+        state.editUser = null;
+        state.error = action.payload?.message || "Failed to fetch user";
       })
 
       //! CHECK ADMIN AUTH
