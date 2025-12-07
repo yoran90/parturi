@@ -24,7 +24,7 @@ const UserProfile = () => {
 
   const { userProfile, loading } = useSelector((state) => state.userAuth);
 
-  console.log(userProfile);
+ 
   
 
   useEffect(() => {

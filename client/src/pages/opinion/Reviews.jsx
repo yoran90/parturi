@@ -335,9 +335,13 @@ const Reviews = () => {
                  <ReviewText text={item?.reviewText} />          
                 </div>
               </div>
-              {item?.image && (
-                <img className='w-full h-72 object-fill border border-slate-300 rounded mt-2' src={item?.image?.url} alt="" />
-              )
+              {item?.mediaReview?.type === 'image' ? (
+                <img className='w-full h-72 object-fill border border-slate-300 rounded mt-2' src={item?.mediaReview?.url} alt="" />
+              ) : (
+                  <video className='w-full h-72 object-fill border border-slate-300 rounded mt-2' controls autoPlay>
+                    <source src={item?.mediaReview?.url} type="video/mp4" />
+                  </video>
+                )
               }
               {/* like comments icon */}
               <hr className='text-slate-300 mb-3 mt-3' />
@@ -635,7 +639,7 @@ const Reviews = () => {
         })
       }
       {/* end reviews */}
-
+      <div className='mb-12'></div>
     </div>
   )
 }

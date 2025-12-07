@@ -12,7 +12,7 @@ const EditReview = ({ closeModel, item, fetchReviwes }) => {
 
 
   const [reviewText, setReviewText] = React.useState('');
-  const [image, setImage] = React.useState(null);
+  const [mediaReview, setMediaReview] = React.useState(null);
   const [rating, setRating] = React.useState(0);
   const [loading, setLoading] = React.useState(false);
 
@@ -28,8 +28,8 @@ const EditReview = ({ closeModel, item, fetchReviwes }) => {
       if (reviewText) {
         formData.append('reviewText', reviewText);
       }
-      if (image) {
-        formData.append('image', image);
+      if (mediaReview) {
+        formData.append('mediaReview', mediaReview);
       }
       if (rating) {
         formData.append('rating', rating);
@@ -47,7 +47,7 @@ const EditReview = ({ closeModel, item, fetchReviwes }) => {
 
   useEffect(() => {
     setReviewText(item?.reviewText || '');
-    setImage(item?.image?.url || null);
+    setMediaReview(item?.image?.url || null);
     setRating(item?.rating || 0);
   }, [item]);
 
@@ -66,13 +66,49 @@ const EditReview = ({ closeModel, item, fetchReviwes }) => {
         <form onSubmit={handleSubmit} className='flex flex-col gap-4 mt-8'>
           <textarea value={reviewText} onChange={(e) => setReviewText(e.target.value)} cols="30" rows="8" className='border border-slate-300 p-4 rounded resize-none'></textarea>
           <label htmlFor="image">
-            {
-              item?.image?.url && (
-                <img src={image ? URL.createObjectURL(image) : item?.image?.url} alt="" className='w-full h-[250px] rounded cursor-pointer border border-slate-300' />
+            {mediaReview ? (
+              mediaReview.type.startsWith("image") ? (
+                <img
+                  src={URL.createObjectURL(mediaReview)}
+                  alt=""
+                  className="w-full h-[250px] rounded cursor-pointer border border-slate-300"
+                />
+              ) : (
+                <video
+                  className="w-full h-[250px] rounded cursor-pointer border border-slate-300"
+                  src={URL.createObjectURL(mediaReview)}
+                  controls
+                >
+                  <source src={URL.createObjectURL(mediaReview)} type={mediaReview.type} />
+                </video>
               )
-            }
-            <input type="file" id='image' hidden onChange={(e) => setImage(e.target.files[0])} />
+            ) : (
+              item?.mediaReview?.type === "image" ? (
+                <img
+                  src={item.mediaReview.url}
+                  alt=""
+                  className="w-full h-[250px] rounded cursor-pointer border border-slate-300"
+                />
+              ) : (
+                <video
+                  src={item.mediaReview.url}
+                  controls
+                  className="w-full h-[250px] rounded cursor-pointer border border-slate-300 pointer-events-none"
+                >
+                  <source src={item.mediaReview.url} type="video/mp4" />
+                </video>
+              )
+            )}
+
+            <input
+              type="file"
+              id="image"
+              hidden
+              accept="image/*, video/*"
+              onChange={(e) => setMediaReview(e.target.files[0])}
+            />
           </label>
+
           <div className='flex gap-0.5'>
             <StarRating rating={rating} setRating={setRating} />
           </div>

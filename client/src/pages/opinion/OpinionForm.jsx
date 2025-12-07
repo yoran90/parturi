@@ -1,10 +1,13 @@
 import React from 'react'
-import { FaCamera } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import StartRating from './StartRating';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Loading from '../../loading/Loading';
+import { ImVideoCamera } from "react-icons/im";
+import { FaPhotoVideo } from "react-icons/fa";
+
+
 
 const OpinionForm = ({ closeModel }) => {
 
@@ -14,7 +17,10 @@ const OpinionForm = ({ closeModel }) => {
   const [loadingForImage, setLoadingForImage] = React.useState(false);
   const [reviewText, setReviewText] = React.useState('');
   const [rating, setRating] = React.useState(0);
-  const [image, setImage] = React.useState(null);
+  const [mediaReview, setMediaReview] = React.useState(null);
+  const [preview, setPreview] = React.useState(null);
+
+
 
 
   const handleSubmit = async (e) => {
@@ -40,8 +46,8 @@ const OpinionForm = ({ closeModel }) => {
       formData.append('reviewText', reviewText);
       formData.append('rating', rating);
 
-      if (image) {
-        formData.append('image', image);
+      if (mediaReview) {
+        formData.append('mediaReview', mediaReview);
       }
 
       const response = await axios.post("http://localhost:8001/api/reviwes/addReview", formData, { withCredentials: true });
@@ -58,7 +64,7 @@ const OpinionForm = ({ closeModel }) => {
 
   return (
     <div className='fixed top-0 bottom-0 left-0 right-0 bg-black/60 flex items-center justify-center z-50'>
-      <div className='flex flex-col bg-white w-full max-w-2xl md:px-12 px-4 py-14 h-[85vh] md:h-[88vh] rounded-lg relative md:overscroll-none overflow-y-scroll screollStyle'>
+      <div className='flex flex-col bg-white w-full max-w-2xl md:px-12 px-4 py-14 h-[92vh] md:h-auto rounded-lg relative md:overscroll-none md:overflow-hidden overflow-y-scroll screollStyle'>
         <button onClick={closeModel} className='absolute top-4 right-4 text-sm cursor-pointer'>❌</button>
       <div>
         <div className='flex items-center gap-2'>
@@ -89,29 +95,54 @@ const OpinionForm = ({ closeModel }) => {
             </div>
             <div className='flex flex-col gap-1.5 my-4'>
               <p className='text-sm font-semibold text-gray-500'>Lisää kuva</p>
-              <label htmlFor="image" className='border border-dashed h-62 rounded items-center justify-center text-center flex'>
+              <label htmlFor="image" className='border border-dashed h-62 rounded items-center justify-center text-center flex cursor-pointer hover:bg-slate-100'>
                 {
-                  image ? (
-                    <img className='w-full h-full object-fill' src={URL.createObjectURL(image)} alt="" />
+                  preview ? (
+                    preview.type === "image" ? (
+                      <img className="w-full h-full object-cover" src={preview.src} alt="" />
+                    ) : (
+                      <video className="w-full h-full object-cover" src={preview.src} controls />
+                    )
+                  ) : mediaReview ? (
+                    mediaReview.type === "image" ? (
+                      <img className="w-full h-full object-cover" src={mediaReview.url} alt="" />
+                    ) : (
+                      <video className="w-full h-full object-cover" src={mediaReview.url} controls />
+                    )
                   ) : (
-                    <div className='flex flex-col items-center justify-center text-center gap-1'>
+                    <div className="flex flex-col items-center justify-center text-center gap-1">
                       {
                         loadingForImage ? (
-                          <div className='flex items-center gap-1.5'>
-                            <Loading width={55} height={55} border='4px' topBorder='4px' borderColor='red' borderTopColor='white' />
-                          </div>
+                          <Loading width={55} height={55} border="4px" topBorder="4px" borderColor="red" borderTopColor="white" />
                         ) : (
-                          <div className='flex flex-col items-center gap-1.5'>
-                            <FaCamera className='text-slate-500 text-2xl'/>
-                            <p className='text-sm text-slate-500'>Valitse kuva</p>
+                          <div className='flex flex-col gap-1.5'>
+                            <div className='flex items-center justify-center gap-2.5'>
+                              <FaPhotoVideo className="text-slate-500 text-3xl" /> /
+                              <ImVideoCamera  className="text-slate-500 text-3xl" />
+                            </div>
+                            <p className="text-sm text-slate-500">Valitse kuva tai video</p>
                           </div>
                         )
                       }
                     </div>
                   )
                 }
-                
-                <input type="file" id='image' onChange={(e) => setImage(e.target.files[0])} hidden />
+                <input type="file" id="image" accept="video/*, image/*" hidden
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+
+                    const isImage = file.type.startsWith("image");
+                    const isVideo = file.type.startsWith("video");
+
+                    setPreview({
+                      type: isImage ? "image" : "video",
+                      src: URL.createObjectURL(file)
+                    });
+
+                    setMediaReview(file);
+                  }}
+                />
               </label>
             </div>
             <div className='flex flex-col gap-1.5'>

@@ -19,15 +19,21 @@ export const createReview = async (req, res) => {
 
     const userId = req.user.id;
 
-    let image = null;
+    let mediaReview = null;
     if (req.file) {
+      const fileType = req.file.mimetype.startsWith("image") ? "image" : "video";
+
       const result = await cloudinary.uploader.upload(req.file.path, {
         folder: "paturi",
+        resource_type: fileType === "image" ? "image" : "video",
       });
-      image = {
+
+      mediaReview = {
+        type: fileType,
         url: result.secure_url,
-        public_id: result.public_id,
-      }
+        publicId: result.public_id
+      };
+      
     }
 
 
@@ -39,7 +45,7 @@ export const createReview = async (req, res) => {
       profileImage: req.user.profileImage?.url || null,
       gender: req.user.gender,
       reviewText, 
-      image,
+      mediaReview,
       rating 
     });
     res.status(201).json({ message: "Review added successfully", review });
@@ -154,15 +160,18 @@ export const userUpdateOwnReview = async (req, res) => {
       review.rating = rating;
     }
     if (req.file) {
-      if (review.image?.public_id) {
-        await cloudinary.uploader.destroy(review.image.public_id);
+      if (review.mediaReview?.publicId) {
+        await cloudinary.uploader.destroy(review.mediaReview.publicId);
       }
+      const fileType = req.file.mimetype.startsWith("image") ? "image" : "video";
       const result = await cloudinary.uploader.upload(req.file.path, {
         folder: "paturi",
+        resource_type: fileType === "image" ? "image" : "video",
       });
-      review.image = {
+      review.mediaReview = {
+        type: fileType,
         url: result.secure_url,
-        public_id: result.public_id,
+        publicId: result.public_id
       }
     }
 

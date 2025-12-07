@@ -35,6 +35,8 @@ const ProtectUserRoute = ({ isAuthenticated, user, loading, children}) => {
   if (isAuthenticated && location.pathname.includes("/kirjaudu")) {
     if (user?.role === "user") {
       return <Navigate to="/profile" />
+    } else if (user?.role === "admin" || user?.role === "super-admin") {
+      return <Navigate to="/login" />
     } else {
       return <Navigate to="/unauth-page" />
     }

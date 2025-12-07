@@ -5,7 +5,8 @@ const initialState = {
   isAuthenticated: false,
   loading: false,
   admin: null,
-  editUser: null
+  editUser: null,
+  shopMedia: null
 };
 
 //! ADMIN LOGIN

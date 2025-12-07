@@ -1,30 +1,29 @@
 import mongoose from "mongoose";
 
 
-const shopSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
+const mediaSchema = new mongoose.Schema({
   type: {
     type: String,
     enum: ['image', 'video'],
-    required: true
   },
   src: {
     type: String,
-    required: true
   },
   publicId: {
     type: String
-  },
-  alt: {
-    type: String,
   }
+})
+
+
+const shopSchema = new mongoose.Schema({
+  title: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },
+  media: [mediaSchema],
+  
 }, { timestamps: true });
 
 const Shop = mongoose.model('Shop', shopSchema);

@@ -7,11 +7,11 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import Flag from 'react-world-flags';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Loading from '../loading/Loading';
-import { userLogin } from '../store/user-auth';
+import { userLogin, userLogout } from '../store/user-auth';
 
 const Kirjaudu = () => {
 
-  const { isAuthenticated, user } = useSelector((state) => state.userAuth);
+  const { isAuthenticated, user} = useSelector((state) => state.userAuth);
 
   const [showPassword, setShowPassword] = useState(false);
   const [selectLanguage, setSelectLanguage] = useState(false);
@@ -34,8 +34,10 @@ const Kirjaudu = () => {
     if (isAuthenticated) {
       if (user?.role === "user") {
         navigate("/");
-      } else if (!user) {
-        navigate("/unauth-page");
+      } else if (user?.role === "admin" || user?.role === "super-admin") {
+        navigate("/login");
+        toast.error("You are not allowed to login here! Please login from admin panel.");
+        dispatch(userLogout());
       } else {
         navigate("/unauth-page");
       }
@@ -57,9 +59,15 @@ const Kirjaudu = () => {
     
     try {
      setLoadingForButton(true);
-      await dispatch(userLogin({ email, password })).unwrap();
-      toast.success("Logged in successfully!");
-      navigate("/"); 
+      const result =  await dispatch(userLogin({ email, password })).unwrap();
+      if (result?.user?.role === "user") {
+        toast.success("Logged in successfully!");
+        navigate("/"); 
+      } else if (result?.user?.role === "admin" || result?.user?.role === "super-admin") {
+        navigate("/login");
+      } else {
+        navigate("/unauth-page");
+      }
     } catch (error) {
       console.log(error);
       toast.error("Login failed try again!");

@@ -81,8 +81,6 @@ const ProfileUser = () => {
       setTimezone(user.timezone || '');
     }
   }, [user]);
-  console.log(user);
-  
 
 
   const profileSrc = useMemo(() => {

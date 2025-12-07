@@ -27,9 +27,17 @@ const reviewsSchema = new mongoose.Schema({
     required: true,
     minlength: 5
   },
-  image: {
-    url: String,
-    public_id: String
+  mediaReview: {
+    type: {
+      type: String,
+      enum: ['image', 'video'],
+    },
+    url: {
+      type: String
+    },
+    publicId: {
+      type: String
+    }
   },
   rating: {
     type: Number,

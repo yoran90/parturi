@@ -41,9 +41,9 @@ const SingleReview = () => {
                 <img className='w-52 h-52 border border-slate-500 rounded' src={getReview?.profileImage} alt="" />
               ) : (
                 getReview?.gender === 'men' ? (
-                  <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                  <img className='w-52 h-52 border border-slate-500 rounded' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
                 ) : (
-                  <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                  <img className='w-52 h-52 border border-slate-500 rounded' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
                 )
               )
             }
@@ -126,9 +126,11 @@ const SingleReview = () => {
         </div>
         <div className='mb-4'>
           {
-            getReview?.image?.url ? (
-              <img className='w-full h-62 border border-slate-500 rounded' src={getReview?.image?.url} alt="" />
-            ) : null
+            getReview?.mediaReview?.type === 'image' ? (
+              <img className='w-full h-62 object-fill border border-slate-500 rounded' src={getReview?.mediaReview?.url} alt="" />
+            ) : (
+              <video src={getReview?.mediaReview?.url} className='w-full h-62 border border-slate-500 rounded' controls></video>
+            )
           }
         </div>
         <div className='flex flex-col gap-1.5 md:h-[30vh] md:overflow-y-scroll scrollbarStyle'>

@@ -11,10 +11,19 @@ const AllReviews = () => {
 
   return (
     <div className='mt-4 px-2'>
-      <div className='flex flex-col items-center justify-center mb-6'>
-        <h1 className='text-lg font-semibold'>All Reviews</h1>
-        <p>Here you can see all the reviews</p>
-      </div>
+      
+      {
+        getReviews?.length === 0 ? (
+          <div className='h-[81vh] flex justify-center items-center'>
+            <h1 className='text-2xl font-medium text-red-500'>No reviews found ⛔</h1>
+          </div>
+        ) : (
+          <div className='flex flex-col items-center justify-center mb-6'>
+            <h1 className='text-lg font-semibold'>All Reviews</h1>
+            <p>Here you can see all the reviews</p>
+          </div>
+        )
+      }
       <div className='h-[81vh] overflow-y-scroll scrollbarStyle'>
         {
           getReviews?.map((review) => {
@@ -71,20 +80,20 @@ const AllReviews = () => {
                       </div>
                     </div>
                   </div>
-                  <div className='flex'>
-                    <div className='flex-1'>
+                  <div className='flex flex-col w-full gap-2'> 
+                    <div className='flex w-full'>
                       {
-                        review?.image?.url && (
-                          <img className='w-full h-64 object-cover border border-slate-500 rounded' src={review?.image?.url} alt="" />
+                        review?.mediaReview?.type === 'image' ? (
+                          <img className='w-full h-64 object-cover border border-slate-500 rounded' src={review?.mediaReview?.url} alt="" />
+                        ) : (
+                          <video className='w-full h-64 object-cover border border-slate-500 rounded' src={review?.mediaReview?.url} controls></video>
                         )
                       }
                     </div>
+                    <div className='flex flex-col gap-2 w-full'>
+                      <p className='text-sm line-clamp-3'>{review?.reviewText}</p>
+                    </div>
                   </div>
-                  <div className='flex flex-col gap-2'>
-                   
-                    <p className='text-sm line-clamp-3'>{review?.reviewText}</p>
-                  </div>
-
                 </div>
               </Link>
             )
