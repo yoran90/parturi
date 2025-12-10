@@ -1,5 +1,5 @@
 import express from "express"
-import { getUserById, userLogin, userLogout, userUpdateOwnData } from "../controllers/userController.js"
+import { getUserById, userDeleteOwnAccount, userLogin, userLogout, userUpdateOwnData } from "../controllers/userController.js"
 import multer from "multer";
 import { userMiddleware } from "../middleware/userMiddleware.js";
 
@@ -15,6 +15,7 @@ router.post("/userLogin", userLogin);
 router.get("/getUser/:id", userMiddleware, getUserById);
 router.post('/userLogout', userMiddleware, userLogout);
 router.put('/userUpdateData', userMiddleware, upload.single("image"), userUpdateOwnData);
+router.delete("/userDeleteOwnAccount", userMiddleware, userDeleteOwnAccount);
 
 
 router.get("/check-user", userMiddleware, (req, res) => {

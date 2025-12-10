@@ -4,6 +4,7 @@ import { FaPhotoVideo } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import Loading from '../../loading/Loading';
 import useShop from '../../hooks/useShop';
+import { BsTrash3Fill } from "react-icons/bs";
 
 
 
@@ -20,6 +21,7 @@ const AddReview = () => {
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [media, setMedia] = React.useState([]);
+  const [existingMedia, setExistingMedia] = React.useState([]);
  
 
   const handleMediaChange = (e) => {
@@ -38,19 +40,22 @@ const AddReview = () => {
     
     try {
       setLoading(true);
-      const formDatToSend = new FormData();
+      const formDataToSend = new FormData();
       if (title) {
-        formDatToSend.append('title', title);
+        formDataToSend.append('title', title);
       }
       if (description) {
-        formDatToSend.append('description', description);
+        formDataToSend.append('description', description);
       }
+
+      formDataToSend.append("existingMedia", JSON.stringify(existingMedia));
+
       if (media.length > 0) {
         for (let i = 0; i < media.length; i++) {
-          formDatToSend.append('shopMedia', media[i]);
+          formDataToSend.append('shopMedia', media[i]);
         }
       }
-      const response = await axios.post("http://localhost:8001/api/shopMedia/createShopeMedia", formDatToSend, { withCredentials: true });
+      const response = await axios.post("http://localhost:8001/api/shopMedia/createShopeMedia", formDataToSend, { withCredentials: true });
       toast.success(response.data.message);
     } catch (error) {
       console.log(error);
@@ -59,13 +64,25 @@ const AddReview = () => {
     }
   }
 
+  useEffect(() => {
+    if (!getShope) return;
+
+    setTitle(getShope.title || "");
+    setDescription(getShope.description || "");
+    setExistingMedia(getShope.media || []);
+
+  }, [getShope]);
+
+  const handleRemoveMedia = (index) => {
+    setExistingMedia((prev) => prev.filter((_, i) => i !== index));
+  }; 
  
 
   return (
     <div className=' bg-white shadow border border-slate-300 rounded m-4 py-6 px-4 md:h-[90vh] md:overflow-y-scroll scrollbarStyle'>
       <div className='flex flex-col items-center justify-center'>
-        <h3>Add Review</h3>
-        <p className='text-sm'>Here you can add title description multiply images or video</p>
+        <h3>Add Shop For Review</h3>
+        <p className='text-sm'>Here you can add title description multiply images or video for beside review</p>
       </div>
       <form onSubmit={handleSubmit} className='mt-8 md:px8 px-2 flex flex-col gap-4'>
         <div className='flex flex-col gap-1.5 text-sm'>
@@ -103,7 +120,30 @@ const AddReview = () => {
                 />
               );
             })}
+        </div>
+        <div>
+          <h4 className='text-sm font-semibold'>Existing Media:</h4>
+          <div className='grid md:grid-cols-5 grid-cols-2 gap-2.5 mt-2'>
+            {existingMedia?.map((item, index) => (
+              <div key={item._id} className="relative w-32 h-32 border rounded overflow-hidden">
+                
+                {item.type === "image" ? (
+                  <img src={item.src} className="w-full h-full object-cover" />
+                ) : (
+                  <video src={item.src} controls className="w-full h-full" />
+                )}
 
+                <button 
+                  type="button" 
+                  onClick={() => handleRemoveMedia(index)} 
+                  className="absolute cursor-pointer top-0 right-0 bg-red-500 text-white p-1"
+                >
+                  <BsTrash3Fill />
+                </button>
+
+              </div>
+            ))}
+          </div>  
         </div>
         <div className='flex items-end justify-end mt-8 mb-8'>
           <button type='submit' className='bg-red-600 hover:bg-red-500 text-white text-sm py-2 px-4 rounded cursor-pointer'>

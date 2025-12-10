@@ -44,7 +44,7 @@ const adminSidebarMenuItems = [
   },
   {
     id: 'addreviews',
-    label: (<div className='flex flex-col'>Add Reviews <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Here you can handle all reviews</small></div>),
+    label: (<div className='flex flex-col'>Add Shop Reviews <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Here you can handle all reviews</small></div>),
     path: '/admin/addreviews',
     icons: <RiApps2AddFill    size={20} />,
   },

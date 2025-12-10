@@ -82,13 +82,23 @@ const AllReviews = () => {
                   </div>
                   <div className='flex flex-col w-full gap-2'> 
                     <div className='flex w-full'>
-                      {
-                        review?.mediaReview?.type === 'image' ? (
-                          <img className='w-full h-64 object-cover border border-slate-500 rounded' src={review?.mediaReview?.url} alt="" />
+                      {review?.mediaReview && (
+                        review.mediaReview.type === 'image' ? (
+                          <img
+                            className='w-full h-72 object-cover border border-slate-300 rounded mt-2'
+                            src={review.mediaReview.url}
+                            alt="review"
+                          />
                         ) : (
-                          <video className='w-full h-64 object-cover border border-slate-500 rounded' src={review?.mediaReview?.url} controls></video>
+                          <video
+                            className='w-full h-72 object-cover border border-slate-300 rounded mt-2'
+                            controls
+                            autoPlay={false}
+                          >
+                            <source src={review.mediaReview.url} type="video/mp4" />
+                          </video>
                         )
-                      }
+                      )}
                     </div>
                     <div className='flex flex-col gap-2 w-full'>
                       <p className='text-sm line-clamp-3'>{review?.reviewText}</p>

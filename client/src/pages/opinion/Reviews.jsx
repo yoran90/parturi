@@ -21,6 +21,7 @@ import { IoTrashOutline } from "react-icons/io5";
 import Loading from '../../loading/Loading';
 import EditReview from './EditReview';
 import ConfirmDelete from '../../admin/pages/ConfirmDelete';
+import { RiSendPlaneFill } from "react-icons/ri";
 
 
 
@@ -193,9 +194,6 @@ const Reviews = () => {
 
   
   /* remove user own review */
-/*   const handleDeleteReviewByUser = async (reviewId) => {
-    setConfirmuserDeleteReview(reviewId);
-  } */
   const handleDeleteConfirmReviewByUser = async (reviewId) => {
     try {
       setLoadingUserDeleteReview(true);
@@ -232,7 +230,7 @@ const Reviews = () => {
       {/* reviews */}
       {
         getReviews?.length === 0 && (
-          <div className='text-center text-slate-500 text-sm mt-12'>No Reviews yet</div>
+          <div className='text-center text-slate-500 text-sm mt-12'>Ei vielä arvosteluja</div>
         )
       }
       {
@@ -335,14 +333,22 @@ const Reviews = () => {
                  <ReviewText text={item?.reviewText} />          
                 </div>
               </div>
-              {item?.mediaReview?.type === 'image' ? (
-                <img className='w-full h-72 object-fill border border-slate-300 rounded mt-2' src={item?.mediaReview?.url} alt="" />
-              ) : (
-                  <video className='w-full h-72 object-fill border border-slate-300 rounded mt-2' controls autoPlay>
-                    <source src={item?.mediaReview?.url} type="video/mp4" />
+              {item?.mediaReview && (item.mediaReview.type === 'image' ? (
+                  <img
+                    className='w-full h-72 object-cover border border-slate-300 rounded mt-2'
+                    src={item.mediaReview.url}
+                    alt="review"
+                  />
+                ) : (
+                  <video
+                    className='w-full h-72 object-cover border border-slate-300 rounded mt-2'
+                    controls
+                    autoPlay={false}
+                  >
+                    <source src={item.mediaReview.url} type="video/mp4" />
                   </video>
                 )
-              }
+              )}
               {/* like comments icon */}
               <hr className='text-slate-300 mb-3 mt-3' />
               <div className='flex items-center gap-[30%] relative'>
@@ -415,11 +421,6 @@ const Reviews = () => {
                     
                 </div>
                 <div onClick={() => {
-                  if (!user) {
-                    toast.error("Sinun tulee kirjautua sisään, jotta voit commentoida");
-                    navigate('/kirjaudu');
-                    return
-                  }
                   handleToggleComment(item._id);
                 }} className='flex gap-1 cursor-pointer'>
                   <FaRegCommentDots className='text-slate-500' />
@@ -544,6 +545,9 @@ const Reviews = () => {
                                                   }
                                                   <input type="file" id={`imageReply-${item._id}-${comment._id}`} onChange={(e) => setImageReply({ ...imageReply, [`${item._id}-${comment._id}`]: e.target.files[0], })} className='hidden' />
                                                 </label>
+                                                <button type='submit'>
+                                                  <RiSendPlaneFill className='-mt-0.5 ml-1 mr-1' size={15} />
+                                                </button>
                                               </form>
                                             </div>
                                             <div className='w-full relative overflow-hidden'>
@@ -561,8 +565,9 @@ const Reviews = () => {
                                               }
                                             </div>
                                           </div>
-                                        )
+                                        )  
                                       }
+                                   
                                     </div>
                                   )
                                 }
@@ -581,12 +586,11 @@ const Reviews = () => {
                   </>
                 )
               }
-              
               <hr className='text-slate-300 mb-3 mt-3' />
               {/* add comment in input */}
               <div>
                 {
-                  user && (
+                  user ? (
                     <div className='flex items-center gap-1 cursor-pointer'>
                       {
                         user?.profileImage?.url ? (
@@ -613,7 +617,25 @@ const Reviews = () => {
                           }
                           <input type="file" id={`imageComment-${item._id}`} onChange={(e) => setImageComment({ ...imageComment, [item._id]: e.target.files[0] })} className='hidden' />
                         </label>
+                        <button type='submit'>
+                          <RiSendPlaneFill className='-mt-0.5 ml-1 mr-1' size={15} />
+                        </button>
                       </form>
+                    </div>
+                  ) : (
+                    <div onClick={() => {navigate('/kirjaudu'); toast.error('Jos hattaa kommentoida, kirjaudu sisään täältä. tai rekisteröidy')}} className='w-full flex justify-between rounded-full text-[12px] px-3 py-1 border border-slate-300'>
+                      <p className='text-slate-500'>Kirjaudu sisään kommentoidaksesi ...</p>
+                      <label className='pl-4'>
+                        {
+                          loadinComment ? (
+                            <div>
+                              <Loading width={16} height={16} border='3px' topBorder='3px' borderColor='red' borderTopColor='white' />
+                            </div>
+                          ) : (
+                            <IoMdImage size={15} className='text-slate-500 cursor-pointer' />
+                          )
+                        }
+                      </label>
                     </div>
                   )
                 }

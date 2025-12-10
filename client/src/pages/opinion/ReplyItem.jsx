@@ -4,6 +4,7 @@ import { IoIosArrowDown, IoIosArrowUp, IoMdImage } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { BsTrash3Fill } from "react-icons/bs";
 import Loading from '../../loading/Loading';
+import { RiSendPlaneFill } from 'react-icons/ri';
 
 const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
   const [showReplyBox, setShowReplyBox] = useState(false);
@@ -71,7 +72,7 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
         {reply?.imageReply?.url && (
           <img
             src={reply?.imageReply?.url}
-            className="w-32 h-28 ml-8 mt-2 rounded-md object-cover"
+            className="w-42 h-32 ml-8 mt-2 rounded-md object-cover"
           />
         )}
 
@@ -120,6 +121,9 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
                   }
                   <input type="file" className="hidden" onChange={(e) => setReplyImage(e.target.files[0])} />
                 </label>
+                <button type='submit'>
+                  <RiSendPlaneFill className='ml-1 mr-1' size={15} />
+                </button>
               </form>
             </div>
             <div className='w-full relative'>

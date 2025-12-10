@@ -43,9 +43,14 @@ const __dirname = path.dirname(__filename);
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 
+
+
 app.get("/test", (req, res) => {
   res.json("API is working!");
 });
+
+
+
 
 app.use("/api/information", informationRoutes);
 app.use("/api/media", mediaRoutes);
@@ -62,14 +67,19 @@ app.use("/api/reviwes", reviewsRoutes);
 app.use("/api/shopMedia", shopMediaRoutes);
 
 
-mongoose.connect(process.env.MONGODB_URL).then(() => {
-  console.log("Connected to MongoDB successfully 🌍");
-}).catch((error) => {
-  console.log(error)
-});
+mongoose.connect(process.env.MONGODB_URL)
+  .then(() => console.log("Connected to MongoDB successfully 🌍"))
+  .catch((err) => console.log(err));
 
-const PORT = process.env.PORT || 8001;
+let server;
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port... ${PORT} ✅`);
-});
+// Only start server if not testing
+if (process.env.NODE_ENV !== "test") {
+  const PORT = process.env.PORT || 8001;
+  server = app.listen(PORT, () =>
+    console.log(`Server running on port ${PORT} ✅`)
+  );
+}
+
+export { server };
+export default app;

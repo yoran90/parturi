@@ -34,10 +34,8 @@ export function useReviewById(id) {
 
   return { getReview, setGetReview };
 }
-
+//! admin delete user review post by id
 export function useDeleteReviewById(id) {
-
-
   const [deleteReview, setDeleteReview] = useState(null);
   const [loadingForButton, setLoadingForButton] = useState(false);
 
@@ -57,3 +55,28 @@ export function useDeleteReviewById(id) {
 
   return { deleteReview, deleteReviewHnadler, loadingForButton };
 }
+
+//! user delete own review post by id
+export function useDeleteReviewByUser() {
+
+
+  const [userDeleteOwnReview, setUserDeleteOwnReview] = useState(null);
+  const [loadingForDeleteUserReview, setLoadingForDeleteUserReview] = useState(false);
+ 
+
+  const userDeleteOwnreviewPost = async (id) => {
+    try {
+      setLoadingForDeleteUserReview(true);
+      const response = await axios.delete(`http://localhost:8001/api/reviwes/deleteReview/${id}`, { withCredentials: true });
+      setUserDeleteOwnReview(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingForDeleteUserReview(false);
+    }
+  }
+
+
+  return { userDeleteOwnReview, userDeleteOwnreviewPost, loadingForDeleteUserReview };
+
+};

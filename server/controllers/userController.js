@@ -1,7 +1,9 @@
 import Auth from "../models/authModel.js";
-import bcrypt from "bcryptjs";
+import bcrypt, { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 import cloudinary from "cloudinary";
+import Reviews from "../models/reviewsModel.js";
+import mongoose from "mongoose";
 
 
 
@@ -161,3 +163,102 @@ export const userLogout = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 }
+
+//! DELETE USER OWN ACCOUNT BY ID  WHEN DELETE USER ALSO DELETE PROFILE IMAGE FROM CLOUDINARY
+//! ( AND DELETE USER REVIEW AND LIKES AND COMMENTS AND ETC WHAT EVER IF IN FUTEURE NEED TO DELETE )
+const deleteUserReplies = async (replies, userId) => {
+  const updatedReplies = [];
+
+  for (const reply of replies) {
+    if (reply.userId.equals(userId)) {
+      // Delete Cloudinary image if exists
+      if (reply.imageReply?.publicId) {
+        await cloudinary.v2.uploader.destroy(reply.imageReply.publicId);
+      }
+    } else {
+      // Recursively process nested replies
+      if (reply.replies && reply.replies.length > 0) {
+        reply.replies = await deleteUserReplies(reply.replies, userId);
+      }
+      updatedReplies.push(reply);
+    }
+  }
+
+  return updatedReplies;
+};
+
+export const userDeleteOwnAccount = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    if (!userId) return res.status(404).json({ success: false, message: "User Unauthorized" });
+
+    const user = await Auth.findById(userId);
+    if (!user) return res.status(404).json({ success: false, message: "User not found" });
+
+    // Delete profile image
+    if (user?.profileImage?.publicId) {
+      await cloudinary.v2.uploader.destroy(user.profileImage.publicId);
+    }
+
+    // Delete user's own reviews
+    const userReviews = await Reviews.find({ userId });
+    for (const review of userReviews) {
+      // Delete mediaReview image/video
+      if (review?.mediaReview?.publicId) {
+        const resourceType = review.mediaReview.type === "image" ? "image" : "video";
+        await cloudinary.v2.uploader.destroy(review.mediaReview.publicId, { resource_type: resourceType });
+      }
+
+      // Delete comment images and replies
+      for (const comment of review.comments) {
+        if (comment.imageComment?.public_id) {
+          await cloudinary.v2.uploader.destroy(comment.imageComment.public_id);
+        }
+        comment.replies = await deleteUserReplies(comment.replies || [], userId);
+      }
+
+      await Reviews.findByIdAndDelete(review._id);
+    }
+
+    // Delete user's comments on other reviews
+    const reviewsWithUserComments = await Reviews.find({ "comments.userId": userId });
+    for (const review of reviewsWithUserComments) {
+      for (const comment of review.comments) {
+        if (comment.userId.equals(userId) && comment.imageComment?.public_id) {
+          await cloudinary.v2.uploader.destroy(comment.imageComment.public_id);
+        }
+        comment.replies = await deleteUserReplies(comment.replies || [], userId);
+      }
+      review.comments = review.comments.filter(comment => !comment.userId.equals(userId));
+      await review.save();
+    }
+
+    // Delete user's replies on other reviews
+    const reviewsWithUserReplies = await Reviews.find({ "comments.replies.userId": userId });
+    for (const review of reviewsWithUserReplies) {
+      for (const comment of review.comments) {
+        comment.replies = await deleteUserReplies(comment.replies || [], userId);
+      }
+      await review.save();
+    }
+
+    // Delete user's likes
+    await Reviews.updateMany(
+      {},
+      { $pull: { "likes.likedBy": { userId: new mongoose.Types.ObjectId(String(userId)) } } }
+    );
+
+    // Delete user account
+    await Auth.findByIdAndDelete(userId);
+
+    // Clear cookie
+    res.clearCookie("userToken", { httpOnly: true, secure: true, sameSite: "none" });
+
+    res.status(200).json({ success: true, message: "käyttäjätili poistettu onnistuneesti ✅" });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+};

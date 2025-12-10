@@ -91,6 +91,22 @@ export const getReviewById = async (req, res) => {
   }
 };
 
+//! user get all own review
+export const getOwnReviews = async (req, res) => {
+  try {
+
+    const reviews = await Reviews.find({ userId: req.user._id }).sort({ createdAt: -1 });
+    if (!reviews) {
+      return res.status(404).json({ message: "Reviews not found" });
+    }
+    res.status(200).json(reviews);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+}
+
 //! user delete own review
 export const deleteReviewByUser = async (req, res) => {
   try {
@@ -105,8 +121,12 @@ export const deleteReviewByUser = async (req, res) => {
       return res.status(403).json({ message: "Forbidden" });
     }
 
-    if (review.image?.public_id) {
-      await cloudinary.uploader.destroy(review.image.public_id);
+    if (review.mediaReview?.publicId) {
+      const resourceType = review.mediaReview.type === "image" ? "image" : "video";
+      
+      await cloudinary.uploader.destroy(review.mediaReview.publicId, {
+        resource_type: resourceType,
+      });
     }
 
     const deleteAllImages = async (comments) => {
@@ -203,8 +223,12 @@ export const getReviewByIdAndDelete = async (req, res) => {
       return res.status(404).json({ message: "Review not found" });
     }
    
-    if (review.image?.public_id) {
-      await cloudinary.uploader.destroy(review.image.public_id);
+    if (review.mediaReview?.publicId) {
+      const resourceType = review.mediaReview.type === "image" ? "image" : "video";
+      
+      await cloudinary.uploader.destroy(review.mediaReview.publicId, {
+        resource_type: resourceType,
+      });
     }
 
 
