@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { LuMenu } from "react-icons/lu";
 import { CgClose } from "react-icons/cg";
 import useHeaderLogo from '../../hooks/useHeaderLogo';
@@ -88,32 +88,32 @@ const Header = () => {
 
   return (
     <>
-      <div ref={menuRef} className='md:flex sticky top-0 hidden items-center justify-between bg-black border-t-2 border-slate-800 z-50'>
+      <div ref={menuRef} className='md:flex sticky top-0 hidden items-center justify-between bg-black border-t-2 border-b-2  border-slate-800 z-50'>
         <div className='bg-black p-2'> 
           <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
         </div>
-        <div className='flex justify-end'>
-          <Link to={`/`}>
-            <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Etusivu</button>
-          </Link>
-          <Link to={'/meistä'}>
-            <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Meistä</button>
-          </Link>
-          <Link to={'/palvelut'}>
-            <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Palvelut</button>
-          </Link>
-          <Link to={'/galleria'}>
-            <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Galleria</button>
-          </Link>
-          <Link to={'/tuotet'}>
-            <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Tuote</button>
-          </Link>
-          <Link to={'/opinion'}>
-            <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Mielipide</button>
-          </Link>
-          <Link to={'/yhteystiedot'}>
-            <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Yhteystiedot</button>
-          </Link>
+        <div className='flex justify-end px-4.5'>
+          <NavLink to={`/`} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-sm p-2 hover:border-slate-400 hover:border-b-2`}>
+            Etusivu
+          </NavLink>
+          <NavLink to={'/meistä'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-sm p-2 hover:border-slate-400 hover:border-b-2`}>
+            Meistä
+          </NavLink>
+          <NavLink to={'/palvelut'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-sm p-2 hover:border-slate-400 hover:border-b-2`}>
+            Palvelut
+          </NavLink>
+          <NavLink to={'/galleria'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-sm p-2 hover:border-slate-400 hover:border-b-2`}>
+           Galleria
+          </NavLink>
+          <NavLink to={'/tuotet'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-sm p-2 hover:border-slate-400 hover:border-b-2`}>
+            Tuote
+          </NavLink>
+          <NavLink to={'/opinion'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-sm p-2 hover:border-slate-400 hover:border-b-2`}>
+            Mielipide
+          </NavLink>
+          <NavLink to={'/yhteystiedot'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-sm p-2 hover:border-slate-400 hover:border-b-2`}>
+            Yhteystiedot
+          </NavLink>
           {
             user ? (
               <div ref={menuRef} className='ml-4 mr-2 relative z-50'>
@@ -165,15 +165,15 @@ const Header = () => {
               </div>
             ) : (
               <>
-               <div className='flex items-center ml-4 gap-1.5'>
+               <div className='flex items-center ml-4 gap-1.5 mb-1'>
                 <Link to={'/kirjaudu'}>
-                  <button  className='text-black bg-white/90 hover:bg-white flex items-center gap-1 border border-slate-300 justify-center cursor-pointer text-xs px-3 py-1.5 rounded-full'>
+                  <button  className='text-black bg-white/90 hover:bg-white flex items-center gap-1 border border-slate-300 justify-center cursor-pointer text-xs px-3 py-[5px] rounded-full'>
                     {/* <FaUser /> */}
                     kirjautu
                   </button>
                 </Link>
                 <Link to={'/register'}>
-                  <button className='flex items-center gap-1 border border-slate-300 hover:bg-slate-900 text-white justify-center cursor-pointer text-xs px-3 py-1.5 rounded-full'>
+                  <button className='flex items-center gap-1 border border-slate-300 hover:bg-slate-900 text-white justify-center cursor-pointer text-xs px-3 py-[5.5px] rounded-full'>
                     {/* <FaUserLock  /> */}
                     rekisteröidy
                   </button>
@@ -199,27 +199,27 @@ const Header = () => {
           }
         </div>
         <div className={`${showTheHeader ? 'absolute flex flex-col bg-black z-50 top-14 right-0 w-full pl-3.5 py-6' : 'hidden'}`}>
-          <Link to={'/'}>
+          <NavLink to={'/'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Etusivu</button>
-          </Link>
-          <Link to={'/meistä'}>
+          </NavLink>
+          <NavLink to={'/meistä'}>
             <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Meistä</button>
-          </Link>
-          <Link to={'/palvelut'}>
+          </NavLink>
+          <NavLink to={'/palvelut'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Palvelut</button>
-          </Link>
-          <Link to={'/galaria'}>
+          </NavLink>
+          <NavLink to={'/galaria'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Galleria</button>
-          </Link>
-          <Link to={'/tuotet'}>
+          </NavLink>
+          <NavLink to={'/tuotet'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Tuote</button>
-          </Link>
-          <Link to={'/opinion'}>
+          </NavLink>
+          <NavLink to={'/opinion'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Mielipide</button>
-          </Link>
-          <Link to={'/yhteystiedot'}>
+          </NavLink>
+          <NavLink to={'/yhteystiedot'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Yhteystiedot</button>
-          </Link>
+          </NavLink>
           {
             user ? (
               <div className='ml-4 mr-2 mt-2'>

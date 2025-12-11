@@ -64,7 +64,7 @@ const Tuote = () => {
       <Header />
       <div className='flex flex-col items-center gap-2 text-center mt-6'>
         <h3 className='text-md font-semibold text-slate-600'>{getTitleForPage?.titleForPage?.productTitle}</h3>
-        <div className='text-slate-600 text-sm mt-2 md:w-[92%] w-[98%]' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.productDescription}} />
+        <div className='text-slate-600 text-sm mt-2 md:w-[96%] w-[98%]' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.productDescription}} />
       </div>
       <div>
         {
@@ -75,7 +75,7 @@ const Tuote = () => {
       </div>
       {/* product */}
       <div className='w-full mt-12 mb-12'>
-        <div className='grid md:grid-cols-4 lg:grid-cols-5 grid-cols-2 gap-1.5 m-2'>
+        <div className='grid md:grid-cols-4 lg:grid-cols-4 grid-cols-2 gap-1.5 m-2'>
           {
             products.map((product) => {
               return (

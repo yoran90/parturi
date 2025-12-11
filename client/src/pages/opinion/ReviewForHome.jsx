@@ -18,7 +18,7 @@ const ReviewForHome = () => {
 
   return (
     <div>
-      <div className='flex flex-col w-[95%] items-center justify-center m-auto mb-12'>
+      <div className='flex flex-col w-[98%] items-center justify-center m-auto mb-12'>
         <div className='grid md:grid-cols-3 lg:grid-cols-3 grid-cols-1 gap-4 m-auto'>
           {getReviews.map((review) => (
             <div key={review._id} className='flex flex-col items-center justify-center bg-white shadow border border-slate-100 py-4 px-2 rounded-2xl'>

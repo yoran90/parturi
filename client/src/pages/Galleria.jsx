@@ -48,7 +48,7 @@ const Galleria = () => {
       <Header />
       <div className='flex flex-col gap-3.5 items-center justify-center mt-6'>
         <h3 className='text-lg text-slate-600'> {getTitleForPage?.titleForPage?.galleriTitle}</h3>
-        <div className='text-slate-600 text-sm md:w-[92%] text-center' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.galleriDescription}} />
+        <div className='text-slate-600 text-sm md:w-[98%] text-center' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.galleriDescription}} />
       </div>
       {
         galleryImages.length === 0 && (
@@ -58,10 +58,10 @@ const Galleria = () => {
         )
       }
       {/* image gallery */}
-      <div className='md:grid md:grid-cols-4 flex flex-col gap-2.5 w-[95%] m-auto mt-8 mb-12'>
+      <div className='md:grid md:grid-cols-4 flex flex-col gap-2.5 w-[98%] m-auto mt-8 mb-12'>
         {
           galleryImages?.map((image, index) => (
-            <img key={index} src={image?.url} onClick={() => setSelectedImage(image)} className='md:w-[300px] w-full h-[300px] cursor-pointer border-3 border-slate-600 rounded-md' alt="" />
+            <img key={index} src={image?.url} onClick={() => setSelectedImage(image)} className='md:w-[300px] w-full h-[300px] cursor-pointer border border-slate-300 shadow-lg rounded-md' alt="" />
           ))
         }
         {

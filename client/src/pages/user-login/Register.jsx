@@ -70,51 +70,51 @@ const Register = () => {
 
   return (
      <div className='w-full flex flex-col justify-center md:h-screen md:pt-0 pt-20 pb-20 md:pb-0 bg-slate-800'>
+      <div className='text-white flex flex-col items-end justify-end mt-4 mr-6' onClick={() => setSelectLanguage(!selectLanguage)}>
+        <h3 className='flex items-center text-sm gap-2.5 cursor-pointer'>{translate.selectLanguageuser}
+          {
+            selectLanguage ? (
+              <IoIosArrowDown />
+            ) : (
+              <IoIosArrowUp />
+            )
+          }
+        </h3>
+
+        {
+          selectLanguage && (
+            <div className='flex flex-col text-start w-[120px] text-sm justify-start gap-4 mt-2 text-black bg-white shadow rounded py-4 px-2'>
+              <button className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("en");
+                  setSelectLanguage(false);
+                }}
+              >
+                <Flag code="US" width={30} height={30} />
+                English
+              </button>
+
+              <button
+                className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("fi");
+                  setSelectLanguage(false);
+                }}
+              >
+                <Flag code="FI" width={30} height={30} />
+                Suomi
+              </button>
+              
+            </div>
+          )
+        }
+      </div>
       <div className='md:w-[50%] w-[95%] m-auto'>
         <div className='md:flex md:justify-between'>
           <div className='flex flex-col gap-1 mb-8'>
             <h2 className='text-white'>🌍 {translate.welcomeRegister}</h2>
             <p className='text-white text-sm'>{translate.headerRegister}</p>
             <p className='text-white text-sm mt-2'>{translate.titleRegister}</p>
-          </div>
-          <div className='text-white absolute right-4 top-4' onClick={() => setSelectLanguage(!selectLanguage)}>
-            <h3 className='flex items-center text-sm gap-2.5 cursor-pointer'>{translate.selectLanguageuser}
-              {
-                selectLanguage ? (
-                  <IoIosArrowDown />
-                ) : (
-                  <IoIosArrowUp />
-                )
-              }
-            </h3>
-
-            {
-              selectLanguage && (
-                <div className='flex flex-col text-start w-[120px] text-sm justify-start gap-4 mt-2 text-black bg-white shadow rounded py-4 px-2'>
-                  <button className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
-                    onClick={() => {
-                      setLanguage("en");
-                      setSelectLanguage(false);
-                    }}
-                  >
-                    <Flag code="US" width={30} height={30} />
-                    English
-                  </button>
-
-                  <button
-                    className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
-                    onClick={() => {
-                      setLanguage("fi");
-                      setSelectLanguage(false);
-                    }}
-                  >
-                    <Flag code="FI" width={30} height={30} />
-                    Suomi
-                  </button>
-                  
-                </div>
-              )
-            }
           </div>
         </div>
         {/* form */}
@@ -176,7 +176,7 @@ const Register = () => {
         </form>
         <hr className='text-slate-400 mt-4' />
         <div className='flex items-center justify-between'>
-          <p className='text-white text-sm mt-6'>{translate.haveaccountuser} <Link to="/kirjaudu" className='text-red-600 cursor-pointer ml-2'>{translate.loginuser}</Link></p>
+          <p className='text-white text-sm mt-6'>{translate.haveaccountuser} <Link to="/kirjaudu" className='text-blue-400 cursor-pointer ml-2'>{translate.loginuser}</Link></p>
           <Link to={'/'} className='text-blue-400 flex items-center gap-1 mt-4 text-sm cursor-pointer'>
             <p>🔙</p>
             {translate.back}

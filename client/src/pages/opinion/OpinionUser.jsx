@@ -65,19 +65,20 @@ const OpinionUser = () => {
                   <h3 className='text-md font-semibold text-gray-500 mb-4'>{getShope?.title}</h3>
                   <p className='text-sm text-slate-800 text-justify'>{getShope?.description}</p>
                 </div>
-                <div className='flex w-full gap-1.5'>
-                  <div className='flex flex-col w-[120px] py-2 gap-1.5 h-[40vh] overflow-y-scroll px-2 scrollbarStyle'>
+                <div className='flex flex-col w-full gap-1.5'>
+                  <div className='flex gap-1 cursor-pointer mt-4 pb-3 overflow-x-scroll scrollbarStylex flex-nowrap w-full'>
+
                     {
                       getShope?.media.map((media, index) => {
                         return (
-                          <div key={index} onClick={() => setSelectedImage(index)}>
+                          <div key={index} onClick={() => setSelectedImage(index)} className='flex-none'>
                             {
                               media.type === 'image' ? (
                                 <div>
-                                <img key={index} src={media.src} alt="" className='w-full h-22 border border-slate-300 rounded' />
+                                <img key={index} src={media.src} alt="" className='w-32 h-22 border border-slate-300 rounded' />
                                 </div>
                               ) : (
-                                <video key={index} src={media.src}  className='w-full h-22 border border-slate-300 rounded'></video>
+                                <video key={index} src={media.src}  className='w-32 h-22 border border-slate-300 rounded'></video>
                               )
                             }
                           </div>
@@ -85,7 +86,7 @@ const OpinionUser = () => {
                       })
                     }
                   </div>
-                  <div className='w-full h-[40vh]'>
+                  <div className='w-full h-[60vh]'>
                     {
                       getShope?.media[selectedImage]?.type === 'image' ? (
                         <img src={getShope?.media[selectedImage]?.src} alt="" className='w-full h-full rounded' />

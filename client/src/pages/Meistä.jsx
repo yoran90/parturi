@@ -22,7 +22,7 @@ const Meistä = () => {
       <Header />
       <div>
         <div className='relative'>
-          <img src={getAboutUs?.image} alt="" className='w-full h-[60vh]' />
+          <img src={getAboutUs?.image} alt="" className='w-full h-[80vh]' />
           <div className="absolute inset-0 bg-black/50"></div>
           <div className='absolute w-full text-white flex flex-col items-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
             <div className='flex flex-col'>
@@ -34,12 +34,12 @@ const Meistä = () => {
             </div>
           </div>
         </div>
-        <div className='flex flex-col w-[95%] m-auto gap-10 items-center text-center justify-center mt-12 mb-12'>
+        <div className='flex flex-col m-auto gap-10 items-center text-center justify-center mt-12 mb-12'>
           {
             getAboutUs && getAboutUs?.sections?.map((section, index) => (
               <div key={index}>
                 <h3 className='text-xl w-full text-gray-500 mb-4 font-semibold'>{section.title}</h3>
-                <div className='text-slate-600 md:w-full md:px-16 m-auto' dangerouslySetInnerHTML={{__html: section?.description}} />
+                <div className='text-slate-600 md:w-full md:px-4 px-2 m-auto' dangerouslySetInnerHTML={{__html: section?.description}} />
               </div>
             ))
           }

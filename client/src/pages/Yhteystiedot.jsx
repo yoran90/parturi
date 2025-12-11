@@ -180,7 +180,7 @@ const Yhteystiedot = () => {
         </div>
       </div>
       {/* contact form */}
-      <div className='md:flex w-full gap-4 mt-16 md:px-8 px-4 mb-12'>
+      <div className='md:flex w-full gap-2 mt-16 px-2 mb-12'>
         {/* form */}
         <div className='md:w-[50%]'>
           <h3>Ota yhteyttä meihin</h3>

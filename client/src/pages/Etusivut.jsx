@@ -59,7 +59,7 @@ const Etusivut = () => {
       <Header />
       <Main />
       <div>
-        <div className='bg-white shadow border border-slate-100 md:mt-6 w-[95%] md:py-0 py-8 mx-auto md:rounded-xl -mt-20'>
+        <div className='bg-white shadow border border-slate-100 md:mt-6 w-[98%] md:py-0 py-8 mx-auto md:rounded-xl -mt-20'>
           <div className='md:flex items-center md:justify-between md:px-16'>
             <div className='min-h-[100px]'>
               <a className='flex md:mb-0 mb-6 flex-col items-center justify-center' href={getInformation?.addressUrl} target="_blank" rel="noopener noreferrer">
@@ -106,7 +106,7 @@ const Etusivut = () => {
             </div>
           </div>
         </div>
-        <div className='md:flex gap-2.5 w-[95%] h-full m-auto mt-12 bg-white shadow border border-slate-100 p-8 md:rounded-2xl mb-12'>
+        <div className='md:flex gap-2.5 w-[98%] h-full m-auto mt-12 bg-white shadow border border-slate-100 p-8 md:rounded-2xl mb-12'>
         {/* text side */}
           <div className='flex flex-col items-center'>
             <h3 className='text-sm font-semibold text-slate-600 mb-12 mt-6'>TERVETULOA</h3>
@@ -128,7 +128,7 @@ const Etusivut = () => {
         <div>
           <h3 className='text-slate-500 font-semibold text-center mb-4'>Parturipalvelut</h3>
           <p className='text-sm text-slate-600 text-center font-semibold mb-4'>Parturiin saavat ansaitsemansa huomion ja asiakkaat palvellaan sydaremellä.</p>
-          <div className='md:flex gap-2.5 w-[95%] m-auto' style={{zoom: '0.8'}}>
+          <div className='md:flex gap-2.5 w-[98%] m-auto' style={{zoom: '0.8'}}>
             <div className='md:w-[50%]'>
               <img className='rounded-2xl' src="https://assets.nicepagecdn.com/d2cc3eaa/6401142/images/handsome-man-cutting-beard-barber-4.jpg" alt="" />
             </div>
@@ -154,9 +154,9 @@ const Etusivut = () => {
         </div>
       </div>
       {/* why choose us */}
-      <div className='flex flex-col w-[95%] items-center justify-center m-auto mb-12'>
+      <div className='flex flex-col w-[98%] items-center justify-center m-auto mb-12'>
         <h3 className='text-lg font-semibold mb-4 text-slate-600'>💈Miksi Valita Meidät</h3>
-        <p className='text-sm text-slate-600 text-center mb-6 md:w-[70%]'>Luon Parturissa yhdistyvät ammattitaito, intohimo ja aito välittäminen.
+        <p className='text-sm text-slate-600 text-center mb-6 md:w-[95%]'>Luon Parturissa yhdistyvät ammattitaito, intohimo ja aito välittäminen.
           Olemme licensed ja kokeneita alan ammattilaisia, jotka seuraavat trendejä ja kehittävät osaamistaan jatkuvasti.
           Asiakkaamme luottavat meihin, koska jokainen leikkaus, parran muotoilu ja viimeistely tehdään huolella ja yksilöllisesti.
           Kun istut tuoliimme, voit rentoutua – olet hyvissä ja luotettavissa käsissä.

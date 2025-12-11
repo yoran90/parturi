@@ -27,7 +27,7 @@ const ProductLimit = () => {
   }, []);
 
   return (
-    <div className="w-[95%] m-auto">
+    <div className="w-[98%] m-auto">
       {loadingProduct ? (
         <p>Ladataan tuotteita...</p>
       ) : (

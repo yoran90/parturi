@@ -112,51 +112,52 @@ const Kirjaudu = () => {
 
   return (
      <div className='w-full flex flex-col justify-center h-screen bg-slate-800'>
-      <div className='md:w-[45%] w-[95%] m-auto'>
+      <div className='text-white justify-end flex flex-col items-end mt-4 mr-6' onClick={() => setSelectLanguage(!selectLanguage)}>
+        <h3 className='flex items-center text-sm gap-2.5 cursor-pointer'>{translate.selectLanguageuser}
+          {
+            selectLanguage ? (
+              <IoIosArrowDown />
+            ) : (
+              <IoIosArrowUp />
+            )
+          }
+        </h3>
+
+        {
+          selectLanguage && (
+            <div className='flex flex-col text-start w-[120px] text-sm justify-start gap-4 mt-2 text-black bg-white shadow rounded py-4 px-2'>
+              <button className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("en");
+                  setSelectLanguage(false);
+                }}
+              >
+                <Flag code="US" width={30} height={30} />
+                English
+              </button>
+
+              <button
+                className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("fi");
+                  setSelectLanguage(false);
+                }}
+              >
+                <Flag code="FI" width={30} height={30} />
+                Suomi
+              </button>
+              
+            </div>
+          )
+        }
+      </div>
+      <div className='md:w-[50%] w-[95%] m-auto'>
         <div className='md:flex md:justify-between'>
           <div className='flex flex-col gap-1 mb-8'>
             <h2 className='text-white'>🌍 {translate.welcomeuser}</h2>
             <p className='text-white text-sm'>⚙️ {translate.subtitleuser}</p>
           </div>
-          <div className='text-white absolute right-4 top-4' onClick={() => setSelectLanguage(!selectLanguage)}>
-            <h3 className='flex items-center text-sm gap-2.5 cursor-pointer'>{translate.selectLanguageuser}
-              {
-                selectLanguage ? (
-                  <IoIosArrowDown />
-                ) : (
-                  <IoIosArrowUp />
-                )
-              }
-            </h3>
-
-            {
-              selectLanguage && (
-                <div className='flex flex-col text-start w-[120px] text-sm justify-start gap-4 mt-2 text-black bg-white shadow rounded py-4 px-2'>
-                  <button className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
-                    onClick={() => {
-                      setLanguage("en");
-                      setSelectLanguage(false);
-                    }}
-                  >
-                    <Flag code="US" width={30} height={30} />
-                    English
-                  </button>
-
-                  <button
-                    className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
-                    onClick={() => {
-                      setLanguage("fi");
-                      setSelectLanguage(false);
-                    }}
-                  >
-                    <Flag code="FI" width={30} height={30} />
-                    Suomi
-                  </button>
-                  
-                </div>
-              )
-            }
-          </div>
+          
         </div>
         {/* form */}
         <form onSubmit={handleSubmit} className='text-white flex flex-col gap-1'>

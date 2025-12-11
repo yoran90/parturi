@@ -21,7 +21,7 @@ const GallaryLimit = () => {
   const limitedImages = allImages.slice(0, 4);
 
   return (
-    <div className='w-[95%] m-auto'>
+    <div className='w-[98%] m-auto'>
       {
         <div className='grid md:grid-cols-4 grid-cols-2 gap-4'>
           {
