@@ -20,12 +20,14 @@ export const userRegister = createAsyncThunk("userAuth/register", async ({ first
 });
 
 //! user login
-export const userLogin = createAsyncThunk("userAuth/login", async ({ email, password }) => {
+export const userLogin = createAsyncThunk("userAuth/login", async ({ email, password }, { rejectWithValue }) => {
   try {
     const response = await axios.post("http://localhost:8001/api/user/userLogin", { email, password }, { withCredentials: true });
     return response.data;
   } catch (error) {
     console.log(error);
+    const message = error.response?.data?.message || error.message;
+    return rejectWithValue(message); 
   }
 })
 
@@ -110,7 +112,7 @@ const authSlice = createSlice({
       .addCase(userLogin.fulfilled, (state, action) => {
         state.loading = false;
         state.isAuthenticated = true;
-        state.user = action.payload.user;
+        state.user = action.payload?.user || action.payload || null;
       })
       .addCase(userLogin.rejected, (state) => {
         state.loading = false;
@@ -169,7 +171,7 @@ const authSlice = createSlice({
       .addCase(userMiddleware.fulfilled, (state, action) => {
         state.loading = false;
         state.isAuthenticated = true;
-        state.user = action.payload.user;
+        state.user = action.payload?.user || action.payload || null;
       })
       .addCase(userMiddleware.rejected, (state) => {
         state.loading = false;

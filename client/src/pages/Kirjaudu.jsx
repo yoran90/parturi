@@ -8,6 +8,7 @@ import Flag from 'react-world-flags';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Loading from '../loading/Loading';
 import { userLogin, userLogout } from '../store/user-auth';
+import axios from 'axios';
 
 const Kirjaudu = () => {
 
@@ -20,6 +21,7 @@ const Kirjaudu = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loadingForButton, setLoadingForButton] = useState(false);
+  const [loadingVerification, setLoadingVerification] = useState(false);
 
 
 
@@ -35,14 +37,20 @@ const Kirjaudu = () => {
       if (user?.role === "user") {
         navigate("/");
       } else if (user?.role === "admin" || user?.role === "super-admin") {
-        navigate("/login");
         toast.error("You are not allowed to login here! Please login from admin panel.");
-        dispatch(userLogout());
+        setTimeout(() => {
+          navigate("/login");
+          dispatch(userLogout());
+        }, 100); // small delay ensures toast displays
       } else {
-        navigate("/unauth-page");
+        toast.error("Unauthorized access!");
+        setTimeout(() => {
+          navigate("/unauth-page");
+        }, 100);
       }
     }
-  }, [isAuthenticated, user, navigate]);
+  }, [isAuthenticated, user, navigate, dispatch]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,13 +78,33 @@ const Kirjaudu = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Login failed try again!");
+      toast.error(error);
 
     } finally {
       setLoadingForButton(false);
     }
   }
 
+  /* this for if user want send verfication email again for login */
+  const resentVerificationEmail = async (email) => {
+    if (!email) {
+      toast.error("Please enter your email to resend verification email!");
+      return;
+    }
+    try {
+      setLoadingVerification(true);
+      const response = await axios.post(`http://localhost:8001/api/user/send-verification-email`, {
+        email
+      });
+      toast.success(response.data.message);
+      
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message || "Failed to resend verification email!");
+    } finally {
+      setLoadingVerification(false);
+    }
+  };
 
   return (
      <div className='w-full flex flex-col justify-center h-screen bg-slate-800'>
@@ -127,10 +155,26 @@ const Kirjaudu = () => {
           </div>
         </div>
         {/* form */}
-        <form onSubmit={handleSubmit} className='text-white flex flex-col gap-4.5'>
+        <form onSubmit={handleSubmit} className='text-white flex flex-col gap-1'>
           <div className='flex flex-col gap-1.5'>
             <label> 📧 {translate.emailuser} <span className='text-red-600 font-semibold'>*</span></label>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Sähköpostiosoitteesi' className='border border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
+            <div className='flex justify-end mt-0.5'>
+              <button type='button' className='text-blue-400 text-sm cursor-pointer' onClick={() => resentVerificationEmail(email)}>
+                {
+                  loadingVerification ? (
+                      <div className='flex items-center gap-1.5'>
+                        <p>{translate.resendVerifyAgain}</p>
+                        <Loading width={16} height={16} border='3px' topBorder='3px' borderColor='white' borderTopColor='black' />
+                      </div>
+                  ) : (
+                    <div>
+                      {translate.resendVerificationEmail}?
+                    </div>
+                  )
+                }
+              </button>
+            </div>
           </div>
           <div className='flex flex-col gap-1.5'>
             <label> 🔑 {translate.passworduser} <span className='text-red-600 font-semibold'>*</span></label>
@@ -146,6 +190,9 @@ const Kirjaudu = () => {
                 )
               }
             </div>
+          </div>
+          <div className='flex justify-end mt-1'>
+            <Link to="/forgot-password" className='text-blue-400 text-sm cursor-pointer'>{translate.forgotPassword}</Link>
           </div>
           <div className='flex justify-end mt-6'>
             <button type='submit' className='bg-red-700 text-white py-2 px-4 rounded text-sm cursor-pointer'>

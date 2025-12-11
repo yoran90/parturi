@@ -57,7 +57,7 @@ const Register = () => {
         toast.error(result.error.message);
         return;
       }
-      toast.success("Registered successfully! ✅");
+      toast.success("Registration successful! Please check your email to verify your account! without verification you can't login.");
       navigate("/kirjaudu");
     } catch (error) {
       toast.error(error.message || "Registration failed!");

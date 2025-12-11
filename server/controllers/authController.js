@@ -1,8 +1,10 @@
 import Auth from "../models/authModel.js";
 import bcrypt from "bcryptjs";
+import crypto from "crypto";
 import jwt from "jsonwebtoken";
 //import { v2 as cloudinaryV2 } from "cloudinary";
 import cloudinary from "cloudinary";
+import sendEmail from "../utlis/sendEmail.js";
 
 
 
@@ -23,14 +25,96 @@ export const register = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user = await Auth.create({ firstName, lastName, gender, email, password: hashedPassword });
-    res.status(201).json({ success: true, message: "User created successfully", user });
+    const user = await Auth.create({ 
+      firstName, 
+      lastName, 
+      gender, 
+      email, 
+      password: hashedPassword, 
+      isVerified: false
+    });
+
+    // Generate verification URL
+    const verifyToken = user.generateEmailVerificationToken();
+    await user.save();
+
+    // Create URL for email verification (frontend URL)
+    const verifyURL = `http://localhost:5173/verify-email/${verifyToken}`;
+
+    await sendEmail(user.email, "Email Verification", `Click the below link to verify your email ⬇️\n\n ${verifyURL}`);
+
+    res.status(201).json({ success: true, message: "Registration successful. Please check your email to verify your account.", user });
 
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+//! send Email for verify email
+export const sendVerificationEmail = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await Auth.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    if (user.isEmailVerified) {
+      return res.status(400).json({ success: false, message: "Email is already verified" });
+    }
+
+    // Generate token using Auth model
+    const token = user.generateEmailVerificationToken();
+    await user.save();
+
+    // Create URL for email verification (frontend URL)
+    const verifyURL = `http://localhost:5173/verify-email/${token}`;
+
+    await sendEmail(user.email, "Email Verification", `Click the below link to verify your email ⬇️\n\n ${verifyURL}`);
+
+    res.status(200).json({ success: true, message: "Verification email sent. Please check your email." });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+//! now verify email to actiove account
+export const verifyEmail = async (req, res) => {
+  try {
+    const { token } = req.params;
+    if (!token) {
+      return res.status(400).json({ success: false, message: "Token is required" });
+    }
+
+    const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+
+    const user = await Auth.findOne({ 
+      emailVerificationToken: hashedToken,
+      emailVerificationExpires: { $gt: Date.now() }
+    });
+
+    if (!user) {
+      return res.status(400).json({ success: false, message: "Invalid or expired token" });
+    }
+
+    user.isEmailVerified = true;
+    user.emailVerificationToken = undefined;
+    user.emailVerificationExpires = undefined;
+
+    await user.save();
+
+    res.status(200).json({ success: true, message: "Email verified successfully. You can now login." });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 
 //! get user by id for admin
 export const getUserByIdInAdmin = async (req, res) => {

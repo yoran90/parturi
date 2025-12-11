@@ -11,8 +11,8 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <div style={{zoom: '80%'}}>
-          <ToastContainer autoClose={3000} theme="colored" position="top-center" />
+        <div className='w-fit' style={{zoom: '80%'}}>
+          <ToastContainer autoClose={5000} theme="colored" position="top-center"   />
         </div>
         <App />
       </BrowserRouter>

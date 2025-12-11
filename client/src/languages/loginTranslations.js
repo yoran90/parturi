@@ -37,6 +37,9 @@ export const fiUser = {
   registeruser: "Rekisteröidy",
   loginuser: "Kirjaudu sisän",
   back: "Takaisin",
+  forgotPassword: "Unohtuiko salasana?",
+  resendVerificationEmail: "Lähetä vahvistussähköposti uudelleen",
+  resendVerifyAgain: "lähetetään vahvistussähköposti uudelleen"
 };
 
 export const enUser = {
@@ -60,4 +63,7 @@ export const enUser = {
   registeruser: "Sign up",
   loginuser: "Login",
   back: "Back",
+  forgotPassword: "Forgot Password?",
+  resendVerificationEmail: "Resend Verification Email",
+  resendVerifyAgain: "sending verify email again"
 };

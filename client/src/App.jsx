@@ -43,6 +43,11 @@ import AllReviews from './admin/pages/AllReviews'
 import SingleReview from './admin/pages/SingleReview'
 import AddReview from './admin/pages/AddReview'
 
+import ResetPassword from './pages/forgot-password/ResetPassword'
+import ForgotPassword from './pages/forgot-password/ForgotPassword'
+import VerifyEmail from './pages/verifyEmail/VerifyEmail'
+
+
 
 
 
@@ -102,6 +107,10 @@ const App = () => {
         <Route path='/yhteystiedot' element={<Yhteystiedot />}></Route>
         <Route path='/kirjaudu' element={<Kirjaudu />}></Route>
         <Route path='/register' element={<Register />}></Route>
+        <Route path='/forgot-password' element={<ForgotPassword />}></Route>
+        <Route path='/reset-password/:token' element={<ResetPassword />}></Route>
+        <Route path='/verify-email/:token' element={<VerifyEmail />}></Route>
+
 
 
         <Route path='/profile' element={

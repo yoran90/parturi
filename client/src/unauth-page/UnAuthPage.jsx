@@ -1,6 +1,19 @@
 import React from 'react'
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const UnAuthPage = () => {
+
+  const loaction = useLocation();
+  const message = loaction.state?.message;
+
+  useEffect(() => {
+    if (message) {
+      toast.error(message);
+    }
+  }, [message]);
+
   return (
     <div className='h-screen flex justify-center items-center'>
       <div className='flex flex-col gap-1 justify-center items-center bg-white shadow border border-slate-100 text-red-600 h-fit py-20 px-6 rounded w-[90%]'>

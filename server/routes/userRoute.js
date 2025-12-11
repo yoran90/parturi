@@ -1,7 +1,8 @@
 import express from "express"
-import { getUserById, userDeleteOwnAccount, userLogin, userLogout, userUpdateOwnData } from "../controllers/userController.js"
+import { getUserById, userDeleteOwnAccount, userForgetPassword, userLogin, userLogout, userResetPassword, userUpdateOwnData } from "../controllers/userController.js"
 import multer from "multer";
 import { userMiddleware } from "../middleware/userMiddleware.js";
+import { sendVerificationEmail, verifyEmail } from "../controllers/authController.js";
 
 const router = express.Router()
 
@@ -16,6 +17,19 @@ router.get("/getUser/:id", userMiddleware, getUserById);
 router.post('/userLogout', userMiddleware, userLogout);
 router.put('/userUpdateData', userMiddleware, upload.single("image"), userUpdateOwnData);
 router.delete("/userDeleteOwnAccount", userMiddleware, userDeleteOwnAccount);
+
+//! user forget password
+router.post("/forgetPassword", userForgetPassword);
+
+//! user reset password
+router.post("/reset-password/:token", userResetPassword);
+
+//! verify user is logged in or not
+router.post("/send-verification-email", sendVerificationEmail);
+
+//! verify email token active
+router.post("/verify-email/:token", verifyEmail);
+
 
 
 router.get("/check-user", userMiddleware, (req, res) => {

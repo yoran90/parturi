@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import crypto from "crypto";
 
 
 const authSchema = new mongoose.Schema({
@@ -79,7 +80,44 @@ const authSchema = new mongoose.Schema({
     default: "Not timezone yet",
   },
 
+  // Add reset password token and expired for change password feature
+  resetPasswordToken: {type: String},
+  resetPasswordExpires: {type: Date},
+
+  // Verify email token and verified field for verify email feature
+  emailVerificationToken: {type: String},
+  emailVerificationExpires: {type: Date},
+  isEmailVerified: {
+    type: Boolean,
+    default: false,
+  }
+
 }, { timestamps: true });
+
+//! Method to generate password reset token
+authSchema.methods.generatePasswordReset = function () {
+  const ersetToken = crypto.randomBytes(20).toString("hex");
+
+  this.resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(ersetToken)
+    .digest("hex");
+
+  this.resetPasswordExpires = Date.now() + 10 * 60 * 1000; 
+  return ersetToken;
+};
+//! Method to generate email verification token
+authSchema.methods.generateEmailVerificationToken  = function () {
+  const verifyToken = crypto.randomBytes(20).toString("hex");
+
+  this.emailVerificationToken = crypto
+    .createHash("sha256")
+    .update(verifyToken)
+    .digest("hex");
+
+  this.emailVerificationExpires = Date.now() + 30 * 60 * 1000; 
+  return verifyToken;
+}
 
 const Auth = mongoose.model("Auth", authSchema);
 export default Auth;

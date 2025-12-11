@@ -1,9 +1,11 @@
 import Auth from "../models/authModel.js";
-import bcrypt, { compare } from "bcryptjs";
+import bcrypt from "bcryptjs";
+import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import cloudinary from "cloudinary";
 import Reviews from "../models/reviewsModel.js";
 import mongoose from "mongoose";
+import sendEmail from "../utlis/sendEmail.js";
 
 
 
@@ -21,6 +23,10 @@ export const userLogin = async (req, res) => {
     const checkUser = await Auth.findOne({ email });
     if (!checkUser) {
       return res.status(404).json({ message: "User not found" });
+    }
+
+    if (!checkUser.isEmailVerified) {
+      return res.status(401).json({ message: "Please verify your email before logging in" });
     }
 
     const correctPassword = await bcrypt.compare(password, checkUser.password);
@@ -86,6 +92,62 @@ export const userLogin = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 }
+
+//! user forget password
+export const userForgetPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    
+    const user = await Auth.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    const resetToken = user.generatePasswordReset();
+    await user.save();
+
+    // Create URL for reset password (frontend URL)
+    const resetURL = `http://localhost:5173/reset-password/${resetToken}`;
+
+    await sendEmail(user.email, "Password Reset Request", `Ignore if you don't want reset password if you want reset password\n\n Click the below link to reset your password ⬇️\n\n ${resetURL}`);
+    res.json({ message: "Password reset link sent to email" });
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+//! user reset password
+export const userResetPassword = async (req, res) => {
+  try {
+    const { token } = req.params;
+    const { password } = req.body;
+
+    const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+
+    // find user by token and expiration resetPasswordToken and resetPasswordExpires from Auth model
+    const user = await Auth.findOne({
+      resetPasswordToken: hashedToken,
+      resetPasswordExpires: { $gt: Date.now() }
+    });
+    if (!user) {
+      return res.status(400).json({ success: false, message: "Invalid or expired password reset token" });
+    }
+
+    // now hash new password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    user.password = hashedPassword;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+
+    await user.save();
+
+    res.status(200).json({ success: true, message: "Password reset successful ✅ Please login with your new password" });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+};
 
 //! GET USER BY ID
 export const getUserById = async (req, res) => {
