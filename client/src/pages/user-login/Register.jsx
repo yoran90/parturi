@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { enUser, fiUser } from '../languages/loginTranslations'
+import { enUser, fiUser } from '../../languages/loginTranslations'
 import { toast } from 'react-toastify';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import Flag from 'react-world-flags';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { userRegister } from '../store/user-auth';
-import Loading from '../loading/Loading';
+import { userRegister } from '../../store/user-auth';
+import Loading from '../../loading/Loading';
 
 const Register = () => {
 

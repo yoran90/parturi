@@ -39,7 +39,8 @@ export const fiUser = {
   back: "Takaisin",
   forgotPassword: "Unohtuiko salasana?",
   resendVerificationEmail: "Lähetä vahvistussähköposti uudelleen",
-  resendVerifyAgain: "lähetetään vahvistussähköposti uudelleen"
+  resendVerifyAgain: "lähetetään vahvistussähköposti uudelleen",
+  loginWithGoogle: "Kirjaudu sisään Googlella"
 };
 
 export const enUser = {
@@ -65,5 +66,6 @@ export const enUser = {
   back: "Back",
   forgotPassword: "Forgot Password?",
   resendVerificationEmail: "Resend Verification Email",
-  resendVerifyAgain: "sending verify email again"
+  resendVerifyAgain: "sending verify email again",
+  loginWithGoogle: "Login with Google"
 };

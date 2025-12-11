@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { enUser, fiUser } from '../languages/loginTranslations'
+import { enUser, fiUser } from '../../languages/loginTranslations'
 import { toast } from 'react-toastify';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import Flag from 'react-world-flags';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import Loading from '../loading/Loading';
-import { userLogin, userLogout } from '../store/user-auth';
+import Loading from '../../loading/Loading';
+import { userLogin, userLogout } from '../../store/user-auth';
 import axios from 'axios';
+import GoogleLoginButton from '../google-login/GoogleLoginButton';
 
 const Kirjaudu = () => {
 
@@ -106,6 +107,9 @@ const Kirjaudu = () => {
     }
   };
 
+  /* login with google */
+  const handleGoogleLogin = async (response) => {};
+
   return (
      <div className='w-full flex flex-col justify-center h-screen bg-slate-800'>
       <div className='md:w-[45%] w-[95%] m-auto'>
@@ -194,8 +198,8 @@ const Kirjaudu = () => {
           <div className='flex justify-end mt-1'>
             <Link to="/forgot-password" className='text-blue-400 text-sm cursor-pointer'>{translate.forgotPassword}</Link>
           </div>
-          <div className='flex justify-end mt-6'>
-            <button type='submit' className='bg-red-700 text-white py-2 px-4 rounded text-sm cursor-pointer'>
+          <div className='flex flex-col mt-6'>
+            <button type='submit' className='bg-red-700 text-white py-2 w-full px-4 rounded border cursor-pointer'>
               {
                 loadingForButton ? (
                   <div className='flex items-center gap-2'>
@@ -211,6 +215,9 @@ const Kirjaudu = () => {
             </button>
           </div>
         </form>
+        <div className='w-full'>
+          <GoogleLoginButton onSuccess={handleGoogleLogin} />
+        </div>
         <hr className='text-slate-400 mt-4' />
         <div className='flex items-center justify-between'>
           <p className='text-white text-sm mt-6'>{translate.donthaveaccountuser} <Link to="/register" className='text-blue-400 cursor-pointer ml-2'>{translate.registeruser}</Link></p>
