@@ -47,7 +47,7 @@ const DisplayGalleryImage = () => {
   }
 
   return (
-     <div className='mt-2 h-[95vh] overflow-y-scroll pb-12 scrollbarStyle'>
+     <div className='mt-2 h-[92vh] w-full overflow-y-scroll pb-12 scrollbarStyle'>
       <div className='flex flex-col items-center justify-center md:px-0 px-4 text-center'>
         <h3>Gallery Images</h3>
         <p className='text-slate-600 text-sm'>Here you can see all gallery images and you can delete them</p>
@@ -58,16 +58,16 @@ const DisplayGalleryImage = () => {
           <h4 className='text-red-600'>No Gallery Images Found</h4>
         </div>
       ) : (
-        <div className='grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2 md:p-4 p-2 mt-4'>
+        <div className='grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-1 md:p-1.5 p-2 mt-4'>
           {galleryImages.map((image, index) => (
-            <div key={index} className='border border-slate-300 rounded p-2 flex flex-col gap-2'>
+            <div key={index} className='border border-slate-300 rounded flex flex-col gap-2'>
               <img
                 src={image.url}
                 alt=''
                 className='w-full h-40 object-cover rounded'
               />
               <button
-                className='bg-red-600 text-white hover:bg-red-700 px-2 py-1 text-sm rounded cursor-pointer'
+                className='bg-red-600 text-white hover:bg-red-700 px-2 m-0.5 py-1 text-sm rounded cursor-pointer'
                 onClick={() => handleDeleteGalleryImage(image.galleryId, image.publicId)}
               >
                 Delete

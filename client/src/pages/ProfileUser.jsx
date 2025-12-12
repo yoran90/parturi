@@ -358,7 +358,7 @@ const ProfileUser = () => {
           )
         }
       {/* USER Post */}
-      <div className='md:w-[60%] flex-flex-col gap-1.5 mb-12'>
+      <div className='md:w-[60%] w-full flex-flex-col gap-1.5 mb-12'>
         {/* menu for user perofile for mobile screen */}
         <div onClick={() => setOpenUserProfileMenu(true)} className='m-2 md:hidden flex items-center gap-0.5'>
           <div>
@@ -378,11 +378,11 @@ const ProfileUser = () => {
        {/* user review postedt */}
        <div className='m-2'>
         <div className='bg-white sticky shadow py-4 px-2 mt-2 -z-10 mb-2 border border-slate-200 rounded text-sm'>
-          <h3>Arvostelusi julkaistu</h3>
+          <h3 className='w-full'>Arvostelusi julkaistu</h3>
         </div>
         {
           getOwnReviwes?.length === 0 && (
-            <div className='flex flex-col gap-2.5 mt-32 items-center justify-center py-4'>
+            <div className='flex flex-col items-center justify-center gap-2.5 h-screen py-4'>
               <p className='text-sm text-red-600'>Ei arvosteluja</p>
             </div>
           )

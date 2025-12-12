@@ -10,7 +10,7 @@ const AllReviews = () => {
   
 
   return (
-    <div className='mt-4 px-2'>
+    <div className='mt-4 px-1.5'>
       
       {
         getReviews?.length === 0 ? (

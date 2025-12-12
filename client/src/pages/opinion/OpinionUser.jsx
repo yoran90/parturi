@@ -176,7 +176,7 @@ const OpinionUser = () => {
                 <div className='mb-4'>
                   <p className='text-slate-700 text-sm'>Arvostelut tästä paikasta</p>
                 </div>
-                <div className='w-full md:h-screen md:overflow-y-scroll pr-3 scrollbarStyle'>
+                <div className='w-full md:h-[1150px] md:overflow-y-scroll pr-3 scrollbarStyle'>
                   <Reviews />
                 </div>
               </div>

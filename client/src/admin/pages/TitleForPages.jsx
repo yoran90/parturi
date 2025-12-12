@@ -128,10 +128,10 @@ const TitleForPages = () => {
 
 
   return (
-    <div className='md:px-6 px-2 h-[95vh] w-full overflow-y-scroll pb-12 scrollbarStyle'>
+    <div className='md:px-1.5 px-2 h-[95vh] w-full overflow-y-scroll pb-12 scrollbarStyle'>
       {/* form */}
-      <form onSubmit={handleSubmit} className='md:py-12 md:px-4 p-2 flex flex-col gap-4.5 bg-white md:shadow rounded md:border border-slate-200 mt-4'>
-        <div className='flex flex-col items-center justify-center'>
+      <form onSubmit={handleSubmit} className='md:py-12 md:px-2 p-2 flex flex-col gap-4.5 bg-white md:shadow rounded md:border border-slate-200 mt-4'>
+        <div className='flex flex-col items-center justify-center text-center'>
           <h3 className='text-red-600'>Add Title and Decription For All Pages In Here</h3>
           <p className='text-sm text-red-700'>Here you can handle and add title and description for all pages in here and what evere you want.</p>
         </div>

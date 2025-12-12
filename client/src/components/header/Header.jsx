@@ -182,7 +182,6 @@ const Header = () => {
               </>
             )
           }
-          
         </div>
       </div>
       {/* for mobile screen */}
@@ -208,7 +207,7 @@ const Header = () => {
           <NavLink to={'/palvelut'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Palvelut</button>
           </NavLink>
-          <NavLink to={'/galaria'}>
+          <NavLink to={'/galleria'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Galleria</button>
           </NavLink>
           <NavLink to={'/tuotet'}>
@@ -222,7 +221,7 @@ const Header = () => {
           </NavLink>
           {
             user ? (
-              <div className='ml-4 mr-2 mt-2'>
+              <div className='ml-4 mr-2 mt-2 mb-8'>
                 <Link to={'/profile'} className='cursor-pointer flex flex-col items-center gap-2'>
                   {
                     user?.profileImage?.url ? (
@@ -237,6 +236,10 @@ const Header = () => {
                   }
                   <p className='text-white'>{user?.firstName} {user?.lastName}</p>
                 </Link>
+                <button onClick={handleLogout} className='flex items-center justify-center gap-2 py-1 w-full text-red-400 tex-sm mt-2 px-2 cursor-pointer rounded'>
+                  Lougout
+                  <TbLogout className='text-md' />
+                </button>
               </div>
             ) : (
               <>

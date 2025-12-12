@@ -134,7 +134,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       <div
           className={`bg-white shadow h-screen border-r border-slate-200 transform overflow-y-scroll scrollbarStyle scrollbarStyle transition-transform duration-300 fixed top-0 left-0 z-50 w-[90%] 
             ${isOpen ? "translate-x-0" : "-translate-x-full"} 
-            md:translate-x-0 md:static md:block md:w-[28%]`}
+            md:translate-x-0 md:static md:block md:w-[30%]`}
       >
         <div className='pt-6 bg-white sticky top-0'>
           <div className='md:flex px-4 flex md:px-0 justify-between gap-1.5 font-semibold text-red-600 items-center md:justify-center '>

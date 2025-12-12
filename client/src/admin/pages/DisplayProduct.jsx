@@ -24,7 +24,7 @@ const DisplayProduct = () => {
     return text.length > limit ? text.substring(0, limit) + '...' : text;
   };
 
-  const truncateTitle = (text, limit = 20) => {
+  const truncateTitle = (text, limit = 15) => {
     if (!text) return '';
     return text.length > limit ? text.substring(0, limit) + '...' : text;
   };
@@ -87,7 +87,7 @@ const DisplayProduct = () => {
 
 
   return (
-    <div className='mt-2 h-[90vh] overflow-y-scroll scrollbarStyle'>
+    <div className='mt-2 w-full h-[90vh] overflow-y-scroll scrollbarStyle'>
       <div className='flex flex-col items-center justify-center text-center'>
         <h3>DisplayProduct </h3>
         <p className='text-slate-500 text-sm'>
@@ -115,7 +115,7 @@ const DisplayProduct = () => {
         {
           products.length > 0 && products.map((product) => (
             <div key={product._id}>
-              <div className='grid grid-cols-5 border border-slate-400 py-1 px-2 items-center justify-center gap-4' style={{ gridTemplateColumns: "0.5fr 2fr 1fr 2fr 1fr" }}>
+              <div className='grid grid-cols-5 border border-slate-400 py-1 px-2 items-center justify-center gap-4' style={{ gridTemplateColumns: "0.5fr 2fr 1fr 2fr 1.5fr" }}>
                 <div className='w-[50px] h-[50px]'>
                   <img src={product?.images[0]?.url} alt={`${product.title}`} className='w-full h-full object-cover' />
                 </div>

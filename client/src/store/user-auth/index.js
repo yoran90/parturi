@@ -31,6 +31,18 @@ export const userLogin = createAsyncThunk("userAuth/login", async ({ email, pass
   }
 })
 
+//! GOOGLE LOGIN (user login with google account)
+export const googleLogin = createAsyncThunk("userAuth/googleLogin", async ({ credential }, { rejectWithValue }) => {
+  try {
+    const response = await axios.post("http://localhost:8001/api/user/google-login", { credential  }, { withCredentials: true });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    const message = error.response?.data?.message || error.message;
+    return rejectWithValue(message);
+  }
+});
+
 //! get user by id
 export const getUserById = createAsyncThunk("userAuth/getUserById", async (id, { rejectWithValue }) => {
   try {
@@ -115,6 +127,21 @@ const authSlice = createSlice({
         state.user = action.payload?.user || action.payload || null;
       })
       .addCase(userLogin.rejected, (state) => {
+        state.loading = false;
+        state.isAuthenticated = false;
+        state.user = null;
+      })
+
+      //! GOOGLE LOGIN
+      .addCase(googleLogin.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(googleLogin.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isAuthenticated = true;
+        state.user = action.payload?.user || action.payload || null;
+      })
+      .addCase(googleLogin.rejected, (state) => {
         state.loading = false;
         state.isAuthenticated = false;
         state.user = null;

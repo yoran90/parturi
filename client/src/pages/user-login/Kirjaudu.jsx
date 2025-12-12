@@ -7,7 +7,7 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import Flag from 'react-world-flags';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Loading from '../../loading/Loading';
-import { userLogin, userLogout } from '../../store/user-auth';
+import { googleLogin, userLogin, userLogout } from '../../store/user-auth';
 import axios from 'axios';
 import GoogleLoginButton from '../google-login/GoogleLoginButton';
 
@@ -108,7 +108,10 @@ const Kirjaudu = () => {
   };
 
   /* login with google */
-  const handleGoogleLogin = async (response) => {};
+  const handleGoogleLogin = (response) => {
+      dispatch(googleLogin({ credential: response.credential }));
+  };
+
 
   return (
      <div className='w-full flex flex-col justify-center h-screen bg-slate-800'>

@@ -1,5 +1,5 @@
 import express from "express"
-import { getUserById, userDeleteOwnAccount, userForgetPassword, userLogin, userLogout, userResetPassword, userUpdateOwnData } from "../controllers/userController.js"
+import { getUserById, googleLogin, userDeleteOwnAccount, userForgetPassword, userLogin, userLogout, userResetPassword, userUpdateOwnData } from "../controllers/userController.js"
 import multer from "multer";
 import { userMiddleware } from "../middleware/userMiddleware.js";
 import { sendVerificationEmail, verifyEmail } from "../controllers/authController.js";
@@ -29,6 +29,9 @@ router.post("/send-verification-email", sendVerificationEmail);
 
 //! verify email token active
 router.post("/verify-email/:token", verifyEmail);
+
+//! google login
+router.post("/google-login", googleLogin);
 
 
 

@@ -19,21 +19,23 @@ const ReviewForHome = () => {
   return (
     <div>
       <div className='flex flex-col w-[98%] items-center justify-center m-auto mb-12'>
-        <div className='grid md:grid-cols-3 lg:grid-cols-3 grid-cols-1 gap-4 m-auto'>
+        <div className='grid md:grid-cols-3 lg:grid-cols-3 grid-cols-1 gap-1.5 m-auto'>
           {getReviews.map((review) => (
-            <div key={review._id} className='flex flex-col items-center justify-center bg-white shadow border border-slate-100 py-4 px-2 rounded-2xl'>
+            <div key={review._id} className='flex flex-col items-center  bg-white shadow border border-slate-100 p-4 rounded-2xl'>
               <div className='flex items-center gap-2.5 mb-6'>
-                {
-                  review?.profileImage ? (
-                    <img className='w-10 h-10 border border-slate-500 rounded-full' src={review?.profileImage} alt="" />
-                  ) : (
-                    review?.gender === 'men' ? (
-                      <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                <div>
+                  {
+                    review?.profileImage ? (
+                      <img className='w-10 h-10 border border-slate-500 rounded-full' src={review?.profileImage} alt="" />
                     ) : (
-                      <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                      review?.gender === 'men' ? (
+                        <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                      ) : (
+                        <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                      )
                     )
-                  )
-                }
+                  }
+                </div>
                 <div className='flex flex-col'>
                   <h3 className='text-sm font-semibold text-slate-500'>{review.firstName} {review.lastName}</h3>
                   <small className='text-[11px] text-slate-400'>{new Date(review?.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</small>

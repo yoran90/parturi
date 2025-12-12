@@ -31,7 +31,7 @@ const ProductLimit = () => {
       {loadingProduct ? (
         <p>Ladataan tuotteita...</p>
       ) : (
-        <div className='grid md:grid-cols-4 grid-cols-2 gap-4'>
+        <div className='grid md:grid-cols-4 grid-cols-2 gap-1.5'>
           {products.map(product => (
             <YksiTuoate key={product._id} id={product._id} images={product.images} title={product.title} price={product.price} discount={product.discount} description={product.description}  />
           ))}

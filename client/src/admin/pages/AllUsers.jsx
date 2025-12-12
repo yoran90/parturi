@@ -60,7 +60,7 @@ const AllUsers = () => {
 
   return (
 
-    <div className='mt-2 px-2'>
+    <div className='mt-2 px-1.5'>
       <div className='flex flex-col items-center text-center justify-center'>
         <h1>All Usres</h1>
         <h3 className='text-sm text-slate-600'>Here you can handle all users</h3>

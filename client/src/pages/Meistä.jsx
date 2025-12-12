@@ -22,7 +22,7 @@ const Meistä = () => {
       <Header />
       <div>
         <div className='relative'>
-          <img src={getAboutUs?.image} alt="" className='w-full h-[80vh]' />
+          <img src={getAboutUs?.image} alt="" className='w-full h-[60vh]' />
           <div className="absolute inset-0 bg-black/50"></div>
           <div className='absolute w-full text-white flex flex-col items-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
             <div className='flex flex-col'>

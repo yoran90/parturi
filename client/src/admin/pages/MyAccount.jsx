@@ -7,7 +7,6 @@ import { getUserByIdInAdmin, setAdmin } from '../../store/admin-auth';
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import Loading from '../../loading/Loading';
 
 const countries = [
@@ -169,9 +168,8 @@ const MyAccount = () => {
 
 
   return (
-    <>
-    <div className='flex flex-col items-center mt-4 mb-12  md:h-[85vh] pt-2 overflow-y-scroll scrollbarStyle'>
-      <div className='flex flex-col items-center justify-center gap-1.5'>
+    <div className='px-3'>
+      <div className='flex flex-col mt-4 items-center justify-center gap-1.5'>
         <div>
           <img className="w-28 h-28 rounded-full border" src={profileSrc} alt="Profile" />
         </div>
@@ -190,16 +188,19 @@ const MyAccount = () => {
           {admin?.role}
         </button>
       </div>
+      {/* form */}
+      <form onSubmit={handleSubmit} className='flex flex-col gap-3.5 h-[65vh] pb-6 overflow-y-scroll scrollbarStyle pr-2'>
 
-      <form onSubmit={handleSubmit} className='px-4 py-12 flex flex-col gap-3.5' style={{zoom: '98%'}}>
         <div className='flex flex-col gap-1 text-sm'>
           <label htmlFor="">My Bio</label>
           <textarea value={bio} onChange={(e) => setBio(e.target.value)} cols="30" rows="6" className='border resize-none overflow-y-scroll scrollbarStyle border-slate-400 rounded focus:outline-none py-1.5 px-3'></textarea>
         </div>
+
         <div className='flex flex-col w-full gap-1 text-sm'>
-            <label htmlFor="">Favorite Name</label>
-            <input type="text" value={favoriteName} onChange={(e) => setFavoriteName(e.target.value)} placeholder='Enter your favorite name' className='border border-slate-400 rounded focus:outline-none py-1.5 px-3' />
-          </div>
+          <label htmlFor="">Favorite Name</label>
+          <input type="text" value={favoriteName} onChange={(e) => setFavoriteName(e.target.value)} placeholder='Enter your favorite name' className='border border-slate-400 rounded focus:outline-none py-1.5 px-3' />
+        </div>
+
         <div className='flex gap-1'>
           <div className='flex flex-col w-full gap-1 text-sm'>
             <label htmlFor="">First Name</label>
@@ -210,6 +211,7 @@ const MyAccount = () => {
             <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder='First name' className='border border-slate-400 rounded focus:outline-none py-1.5 px-3' />
           </div>
         </div>
+
         <div className='flex gap-1'>
           <div className='flex flex-col w-full gap-1 text-sm'>
             <label htmlFor="">Address One</label>
@@ -220,20 +222,22 @@ const MyAccount = () => {
             <input type="text" value={addressTwo} onChange={(e) => setAddressTwo(e.target.value)} placeholder='Enter your address Two' className='border border-slate-400 rounded focus:outline-none py-1.5 px-3' />
           </div>
         </div>
+
+        <div className='flex flex-col w-full gap-1 text-sm'>
+          <label htmlFor="">Country</label>
+          <select value={country || ''} onChange={(e) => setCountry(e.target.value)} className='border text-black border-slate-400 rounded py-2 px-3'>
+            <option value="">Select Country</option>
+            {
+              countries?.map((c, index) => {
+                return (
+                  <option className='text-black' key={index} value={c}>{c}</option>
+                )
+              })
+            }
+          </select>
+        </div>
+
         <div className='flex gap-1'>
-          <div className='flex flex-col w-full gap-1 text-sm'>
-            <label htmlFor="">Country</label>
-            <select value={country || ''} onChange={(e) => setCountry(e.target.value)} className='border text-black border-slate-400 rounded py-2 px-3'>
-              <option value="">Select Country</option>
-              {
-                countries?.map((c, index) => {
-                  return (
-                    <option className='text-black' key={index} value={c}>{c}</option>
-                  )
-                })
-              }
-            </select>
-          </div>
           <div className='flex flex-col w-full gap-1 text-sm'>
             <label htmlFor="">City</label>
             <input type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder='Enter your address Two' className='border border-slate-400 rounded focus:outline-none py-1.5 px-3' />
@@ -243,7 +247,8 @@ const MyAccount = () => {
             <input type="text" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} placeholder='Enter your address Two' className='border border-slate-400 rounded focus:outline-none py-1.5 px-3' />
           </div>
         </div>
-        <div className='flex flex-col gap-1 text-sm'>
+
+         <div className='flex flex-col gap-1 text-sm'>
           <label htmlFor="">Gender</label>
           <select value={gender} onChange={(e) => setGender(e.target.value)} className='border border-slate-400 rounded py-2 px-3'>
             <option value="">Select Gender</option>
@@ -252,6 +257,7 @@ const MyAccount = () => {
             <option value="none">None</option>
           </select>
         </div>
+
         <div className='flex flex-col gap-1 text-sm'>
           <label htmlFor="">Email</label>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' className={`border border-slate-400 rounded focus:outline-none py-1.5 px-3`} />
@@ -268,6 +274,7 @@ const MyAccount = () => {
           <label htmlFor="">My Notes</label>
           <textarea value={notes} onChange={(e) => setNotes(e.target.value)} cols="30" rows="8" className='border resize-none overflow-y-scroll scrollbarStyle border-slate-400 rounded focus:outline-none py-1.5 px-3'></textarea>
         </div>
+
         <div className='w-full justify-end flex'>
           <button className='bg-red-500 py-1.5 tex-sm rounded px-5 mt-4 text-white cursor-pointer'>
             {
@@ -284,12 +291,11 @@ const MyAccount = () => {
             }
           </button>
         </div>
+        
+
       </form>
-      <p className='text-slate-400 text-xs px-4'>
-        Here you can update your account details, such as your name, email, and gender. also you can put your profile picture and so on
-      </p>
+      
     </div>
-    </>
   )
 }
 

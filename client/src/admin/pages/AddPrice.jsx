@@ -134,8 +134,8 @@ const AddPrice = () => {
  
 
   return (
-    <div className='w-full h-[94vh] bg-white overflow-y-scroll scrollbarStyle pb-12'>
-      <div className='w-[95%] m-auto bg-white shadow mt-4 py-8 border border-slate-200 rounded'>
+    <div className='w-full md:px-1.5 px-1.5 h-[94vh] bg-white overflow-y-scroll scrollbarStyle pb-12'>
+      <div className='w-full m-auto bg-white shadow mt-4 py-8 border border-slate-200 rounded'>
 
       <div className='flex flex-col items-center gap-1.5 mt-2 justify-center'>
         <h3 className='font-semibold text-slate-600'>Add Price for Services</h3>
@@ -144,7 +144,7 @@ const AddPrice = () => {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className='py-4 md:px-8 px-3 flex flex-col gap-4 mt-6'>
+      <form onSubmit={handleSubmit} className='py-4 md:px-2 px-2 flex flex-col gap-4 mt-6'>
         
         {service.map((price, index) => (
           <div key={index} className='flex flex-col gap-2 mb-14 relative'>

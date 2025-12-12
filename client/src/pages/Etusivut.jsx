@@ -106,20 +106,22 @@ const Etusivut = () => {
             </div>
           </div>
         </div>
-        <div className='md:flex gap-2.5 w-[98%] h-full m-auto mt-12 bg-white shadow border border-slate-100 p-8 md:rounded-2xl mb-12'>
+        <div className='md:flex gap-2.5 w-[98%] h-auto m-auto mt-12 bg-white shadow border border-slate-100 md:rounded-2xl mb-12'>
         {/* text side */}
           <div className='flex flex-col items-center'>
             <h3 className='text-sm font-semibold text-slate-600 mb-12 mt-6'>TERVETULOA</h3>
-            <p className='text-sm text-slate-500 mb-4 font-semibold'>
-              Tervetuloa Parturiin – paikkaan, jossa hiukset saavat ansaitsemansa huomion ja asiakkaat palvellaan sydämellä. Meiltä saat yksilöllistä palvelua, ammattitaitoa ja rennon tunnelman – juuri sellaisen parturikokemuksen kuin sinulle sopii.
+            <div className='px-4 py-4 w-full'>
+              <p className='text-sm text-slate-500 mb-4 font-semibold'>
+                Tervetuloa Parturiin – paikkaan, jossa hiukset saavat ansaitsemansa huomion ja asiakkaat palvellaan sydämellä. Meiltä saat yksilöllistä palvelua, ammattitaitoa ja rennon tunnelman – juuri sellaisen parturikokemuksen kuin sinulle sopii.
+                </p>
+              <p className='text-slate-600 text-sm'>
+                Olitpa tulossa pieneen siistimiseen tai isompaan tyylimuutokseen, autamme löytämään juuri sinulle sopivan ilmeen. Käytämme laadukkaita tuotteita ja pidämme huolta, että jokainen käynti on mukava hetki arjen keskellä. Astut sisään, rentoudut – ja lähdet pois raikkaana, hyvällä mielellä ja tyylikkäänä.
               </p>
-            <p className='text-slate-600 text-sm '>
-              Olitpa tulossa pieneen siistimiseen tai isompaan tyylimuutokseen, autamme löytämään juuri sinulle sopivan ilmeen. Käytämme laadukkaita tuotteita ja pidämme huolta, että jokainen käynti on mukava hetki arjen keskellä. Astut sisään, rentoudut – ja lähdet pois raikkaana, hyvällä mielellä ja tyylikkäänä.
-            </p>
+            </div>
           </div>
           {/* image side */}
-          <div className='mt-4'>
-            <img className='rounded-md' src="https://plus.unsplash.com/premium_photo-1661645788141-8196a45fb483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFyYmVyfGVufDB8fDB8fHww&fm=jpg&q=60&w=3000" alt="" />
+          <div >
+            <img className='rounded-md w-full h-full' src="https://plus.unsplash.com/premium_photo-1661645788141-8196a45fb483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFyYmVyfGVufDB8fDB8fHww&fm=jpg&q=60&w=3000" alt="" />
           </div>
         </div>
       </div>
@@ -161,7 +163,7 @@ const Etusivut = () => {
           Asiakkaamme luottavat meihin, koska jokainen leikkaus, parran muotoilu ja viimeistely tehdään huolella ja yksilöllisesti.
           Kun istut tuoliimme, voit rentoutua – olet hyvissä ja luotettavissa käsissä.
         </p>
-        <div className='flex flex-col md:flex-row gap-4 m-auto'>
+        <div className='flex flex-col md:flex-row gap-1.5 m-auto'>
           <div className='flex flex-col items-center justify-center bg-white shadow border border-slate-100 p-8 rounded-2xl'>
             <div className='flex flex-col gap-1.5 text-center items-center justify-center mb-6'>
               <MdLocalPolice size={30} className='text-orange-500 h-12' />

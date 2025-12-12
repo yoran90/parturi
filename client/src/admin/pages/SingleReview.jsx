@@ -31,7 +31,7 @@ const SingleReview = () => {
   
 
   return (
-    <div className='p-4'>
+    <div className='px-1.5 mt-4'>
       <div className='flex flex-col gap-3.5'>
         <div className='flex justify-between gap-2.5'>
           <div className='md:flex gap-4.5'>

@@ -7,6 +7,9 @@ import Reviews from "../models/reviewsModel.js";
 import mongoose from "mongoose";
 import sendEmail from "../utlis/sendEmail.js";
 
+import { OAuth2Client } from "google-auth-library";
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 
 
@@ -89,6 +92,73 @@ export const userLogin = async (req, res) => {
 
   } catch (error) {
     console.log();
+    res.status(500).json({ message: error.message });
+  }
+}
+
+//! user google login
+export const googleLogin = async (req, res) => {
+  try {
+    const { credential } = req.body;
+    if (!credential) return res.status(400).json({ message: "Credential is required" });
+
+    const ticket = await client.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+
+    const { email, name, family_name, picture } = payload;
+
+    let user = await Auth.findOne({ email });
+
+    if (!user) {
+      user = await Auth({
+        firstName: name,
+        lastName: family_name,
+        email: email,
+        isEmailVerified: true,
+        profileImage: { url: picture },
+        role: "user",
+        password: crypto.randomBytes(20).toString("hex"),
+        gender: "Not specified",
+      });
+    }
+
+    await user.save();
+
+    const token = jwt.sign(
+      {
+        id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.family_name,
+        profileImage: user.profileImage,
+        role: user.role,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d"}
+    );
+
+    const cookie = {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+      maxAge: 24 * 60 * 60 * 1000,
+    };
+
+    res.cookie("userToken", token, cookie);
+    res.status(200).json({
+      success: true,
+      message: "User logged in successfully",
+      token,
+      user
+    });
+
+
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ message: error.message });
   }
 }

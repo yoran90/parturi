@@ -157,16 +157,17 @@ const AddAboutUs = () => {
   }
 
   return (
-    <div className='w-full h-[94vh] overflow-y-scroll scrollbarStyle pb-12'>
-      <div className='flex flex-col items-center gap-1.5 mt-2 justify-center'>
+    <div className='mt-4 px-1.5'>
+    <div className='w-full h-[90vh] overflow-y-scroll scrollbarStyle pb-12 bg-white rounded-lg shadow-lg border border-slate-200'>
+      <div className='flex flex-col items-center gap-1.5 mt-2 py-6 justify-center'>
         <h3 className='font-semibold text-slate-600'>Add Description or Title for your About Us</h3>
         <p className='text-sm text-slate-500 text-center'>
           Here you can add description or title for your About Us page and also what ever you want.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className='py-4 md:px-8 px-3 flex flex-col gap-4 mt-6'>
-        <hr />
+      <form onSubmit={handleSubmit} className='md:px-4 px-3 flex flex-col gap-4 mt-6'>
+        <hr className='text-slate-300'/>
 
         {
           imageTitleExtra.map((item, index) => (
@@ -180,7 +181,7 @@ const AddAboutUs = () => {
                     setImageTitles(newTitle);
                   }}
                   className='w-full border border-slate-300 rounded px-3 py-2 mt-1 text-sm focus:outline-none focus:border-slate-500' placeholder='We make your hair look good...' 
-                />
+                  />
               </div>
               <div className='flex flex-col gap-1'>
                 <small className='text-red-600'>You can add multiple image title</small>
@@ -216,7 +217,7 @@ const AddAboutUs = () => {
         <div>
           {getAboutUs?.image && (
             <img 
-              src={getAboutUs.image} 
+            src={getAboutUs.image} 
               alt="Current" 
               className="w-full h-72 object-cover rounded border"
             />
@@ -235,8 +236,8 @@ const AddAboutUs = () => {
                   newTitle[index] = e.target.value
                   setTitle(newTitle)
                 }
-                } 
-                className='w-full border border-slate-300 rounded px-3 py-2 mt-1 text-sm focus:outline-none focus:border-slate-500' placeholder='We are here to make your hair look good...' 
+              } 
+              className='w-full border border-slate-300 rounded px-3 py-2 mt-1 text-sm focus:outline-none focus:border-slate-500' placeholder='We are here to make your hair look good...' 
               />
             </div>
             <div className='flex flex-col gap-2 mt-2'>
@@ -287,6 +288,7 @@ const AddAboutUs = () => {
           </button>
         </div>
       </form>
+    </div>
     </div>
   )
 }

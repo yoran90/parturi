@@ -62,7 +62,7 @@ const AddGalleriImage = () => {
  
 
   return (
-    <div className='relative'>
+    <div className=''>
       {
         loadingNetwork && (
           <div className="w-full h-screen flex flex-col justify-center items-center text-slate-700">
@@ -84,7 +84,7 @@ const AddGalleriImage = () => {
         </div>
         )
       }
-      <div className="md:px-6 md:py-8 p-2 h-[93vh] overflow-y-scroll scrollbarStyle">
+      <div className="md:px-1.5 md:py-8 p-2 h-[93vh] overflow-y-scroll scrollbarStyle">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 bg-white md:shadow md:p-6 px-2 py-4 rounded md:border border-slate-200">
           <h2 className="text-lg font-semibold text-red-600 mb-4">📸 Add Galleri (Image)</h2>
 
