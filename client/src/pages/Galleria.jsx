@@ -1,0 +1,82 @@
+import React from 'react'
+import Map from '../components/map/Map'
+import Footer from '../components/footer/Footer'
+import Information from '../components/up-header/Information'
+import Header from '../components/header/Header'
+import useGallery from '../hooks/useGallery'
+import { useState } from 'react'
+import useTitleForPage from '../hooks/useTitleForPage'
+import HolyDay from '../components/holy-day/HolyDay'
+
+const Galleria = () => {
+
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const { galleryImages, loading } = useGallery();
+  
+  const { getTitleForPage } = useTitleForPage();
+
+  if (loading) {
+    return (
+      <div className="w-full h-screen flex flex-col justify-center items-center text-slate-700">
+        <div className="loader"></div>
+        <p className="mt-4 text-sm">Ladataan galleria...</p>
+        <style>{`
+          .loader {
+            border: 4px solid #ddd;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.8s linear infinite;
+          }
+          @keyframes spin {
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
+    );
+  }
+
+  
+
+
+  return (
+    <div>
+      <Information />
+      <HolyDay />
+      <Header />
+      <div className='flex flex-col gap-3.5 items-center justify-center mt-6'>
+        <h3 className='text-lg text-slate-600'> {getTitleForPage?.titleForPage?.galleriTitle}</h3>
+        <div className='text-slate-600 text-sm md:w-[98%] text-center' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.galleriDescription}} />
+      </div>
+      {
+        galleryImages.length === 0 && (
+          <div className='flex flex-col items-center justify-center mt-6'>
+            <h4 className='text-red-600'>No Gallery Images Found</h4>
+          </div>
+        )
+      }
+      {/* image gallery */}
+      <div className='md:grid md:grid-cols-4 flex flex-col gap-2.5 w-[98%] m-auto mt-8 mb-12'>
+        {
+          galleryImages?.map((image, index) => (
+            <img key={index} src={image?.url} onClick={() => setSelectedImage(image)} className='md:w-[300px] w-full h-[300px] cursor-pointer border border-slate-300 shadow-lg rounded-md' alt="" />
+          ))
+        }
+        {
+          selectedImage && (
+            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={() => setSelectedImage(null)}>
+              <button className='flex absolute z-100 top-2.5 right-2.5 cursor-pointer' onClick={() => setSelectedImage(false)}>❌</button>
+              <img className="max-w-full max-h-full w-[90%] h-[90%]" src={selectedImage?.url} alt="" />
+            </div>
+          )
+        }
+      </div>
+      <Map />
+      <Footer />
+    </div>
+  )
+}
+
+export default Galleria

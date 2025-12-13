@@ -1,0 +1,23 @@
+.holyDaysAnimation {
+  position: relative;
+  overflow: hidden;
+}
+.holyDaysAnimation::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 120%;
+  background: red;
+  animation: rotate 3s linear infinite;
+
+}
+.holyDaysAnimation::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: black;
+}
+@keyframes rotate {
+  from { transform:  rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
