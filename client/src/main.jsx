@@ -13,7 +13,7 @@ import { useState } from 'react'
 
 function Root() {
 
-  const [bgColor, setBgColor] = useState('#ffffff')
+  const [bgColor, setBgColor] = useState('#f2f2f2e0')
 
   return (
     <StrictMode>
