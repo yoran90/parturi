@@ -110,7 +110,7 @@ const Kirjaudu = () => {
   /* login with google */
   const handleGoogleLogin = (response) => {
       dispatch(googleLogin({ credential: response.credential }));
-  };
+};
 
 
   return (

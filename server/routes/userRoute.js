@@ -1,8 +1,8 @@
 import express from "express"
-import { getUserById, googleLogin, userDeleteOwnAccount, userForgetPassword, userLogin, userLogout, userResetPassword, userUpdateOwnData } from "../controllers/userController.js"
+import { getUserById, googleLogin, sendVerificationEmail, userDeleteOwnAccount, userForgetPassword, userLogin, userLogout, userResetPassword, userUpdateOwnData } from "../controllers/userController.js"
 import multer from "multer";
 import { userMiddleware } from "../middleware/userMiddleware.js";
-import { sendVerificationEmail, verifyEmail } from "../controllers/authController.js";
+import { verifyEmail } from "../controllers/authController.js";
 
 const router = express.Router()
 

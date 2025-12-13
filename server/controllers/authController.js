@@ -70,7 +70,7 @@ export const sendVerificationEmail = async (req, res) => {
     await user.save();
 
     // Create URL for email verification (frontend URL)
-    const verifyURL = `http://localhost:5173/verify-email/${token}`;
+    const verifyURL = `http://localhost:5173/admin-verify-email/${token}`;
 
     await sendEmail(user.email, "Email Verification", `Click the below link to verify your email ⬇️\n\n ${verifyURL}`);
 
@@ -251,6 +251,13 @@ export const login = async (req, res) => {
       });
     }
 
+    if (!checkUser.isEmailVerified) {
+      return res.status(401).json({ 
+        success: false,
+        message: "Please verify your email before logging in" 
+      });
+    }
+
     const token = jwt.sign({
       id: checkUser._id,
       firstName: checkUser.firstName,
@@ -299,12 +306,42 @@ export const logout = async (req, res) => {
   })
 };
 
+//! admin forgot password
+export const adminForgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ success: false, message: "Email is required" });
+    }
+
+    const user = await Auth.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Generate token using Auth model
+    const token = user.generatePasswordReset();
+    await user.save();
+
+    // Create URL for reset password (frontend URL)
+    const resetURL = `http://localhost:5173/admin-reset-password/${token}`;
+    await sendEmail(user.email, "Password Reset Request", `Ignore if you don't want reset password if you want reset password\n\n Click the below link to reset your password ⬇️\n\n ${resetURL}`);
+
+    res.status(200).json({ success: true, message: "Password reset link sent to email" });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 //! SUPER ADMIN UPDATE USER ROLE
 export const superAdminUpdateUserRole = async (req, res) => {
   try {
     const { id } = req.params;
     const { role } = req.body;
+
 
     if (!role || typeof role !== "string") {
       return res.status(400).json({ success: false, message: "Invalid role" });

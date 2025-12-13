@@ -4,7 +4,10 @@ export const fi = {
   email: "Sähköposti",
   password: "Salasana",
   login: "Kirjaudu sisään",
-  selectLanguage: "Valitse Kieli"
+  selectLanguage: "Valitse Kieli",
+  forgotPasswordAdmin: "Unohtuiko salasana?",
+  resendVerificationEmail: "Lähetä vahvistussähköposti uudelleen",
+  resendVerifyAgain: "lähetetään vahvistussähköposti uudelleen",
 };
 
 export const en = {
@@ -13,7 +16,10 @@ export const en = {
   email: "Email",
   password: "Password",
   login: "Login",
-  selectLanguage: "Select Language"
+  selectLanguage: "Select Language",
+  forgotPasswordAdmin: "Forgot password?",
+  resendVerificationEmail: "Resend Verification Email",
+  resendVerifyAgain: "sending verify email again",
 };
 
 export const fiUser = {

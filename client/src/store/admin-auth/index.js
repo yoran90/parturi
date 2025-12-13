@@ -10,9 +10,15 @@ const initialState = {
 };
 
 //! ADMIN LOGIN
-export const adminLogin = createAsyncThunk("adminAuth/login", async ({ email, password }) => {
+export const adminLogin = createAsyncThunk("adminAuth/login", async ({ email, password }, { rejectWithValue }) => {
+  try {
     const response = await axios.post("http://localhost:8001/api/auth/login", { email, password }, { withCredentials: true });
     return response.data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue(error.response?.data || error.message);
+    
+  }
   }
 );
 

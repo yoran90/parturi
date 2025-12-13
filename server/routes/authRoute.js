@@ -1,19 +1,23 @@
 import express from "express";
 import {  
   adminDeleteUserOrAdmin,
+  adminForgotPassword,
   authMiddleware, 
   getAllUsers, 
   getUserByIdInAdmin, 
   login, 
   logout, 
   register, 
+  sendVerificationEmail, 
   superAdminGetUserByIdForChangeRole, 
   superAdminGetUserDataById, 
   superAdminUpdateUserRole, 
-  updateUserById 
+  updateUserById, 
+  verifyEmail
 } from "../controllers/authController.js";
 import multer from "multer";
 import { getReviewById, getReviewByIdAndDelete } from "../controllers/reviewsController.js";
+import { userResetPassword } from "../controllers/userController.js";
 
 
 const router = express.Router();
@@ -41,6 +45,17 @@ router.delete("/adminDeleteUserOrAdmin/:id", authMiddleware, adminDeleteUserOrAd
 router.get("/getReview/:id", authMiddleware, getReviewById);
 router.delete("/deleteReview/:id", authMiddleware, getReviewByIdAndDelete);
 
+
+//! user forget password <-> is mean both can be used admin and user bc have only one model and use it only userController
+router.post("/admin-forget-password", adminForgotPassword);
+
+//! user reset password <-> is mean both can be used admin and user bc have only one model and use it only userController
+router.post("/admin-reset-password/:token", userResetPassword);
+
+//! admin send verificaton email again for admin for user same controller API 
+router.post("/admin-send-verification-email", sendVerificationEmail);
+
+router.post("/admin-verify-email/:token", verifyEmail);
 
 router.get("/check-auth", authMiddleware, (req, res) => {
   const admin = req.admin;

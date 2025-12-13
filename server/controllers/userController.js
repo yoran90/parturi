@@ -192,6 +192,11 @@ export const userResetPassword = async (req, res) => {
     const { token } = req.params;
     const { password } = req.body;
 
+    if (!password) {
+      return res.status(400).json({ success: false, message: "Password is required" });
+    }
+
+
     const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
 
     // find user by token and expiration resetPasswordToken and resetPasswordExpires from Auth model
@@ -212,6 +217,38 @@ export const userResetPassword = async (req, res) => {
     await user.save();
 
     res.status(200).json({ success: true, message: "Password reset successful ✅ Please login with your new password" });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+//! user send verify email again
+export const sendVerificationEmail = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await Auth.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    if (user.isEmailVerified) {
+      return res.status(400).json({ success: false, message: "Email is already verified" });
+    }
+
+    // Generate token using Auth model
+    const token = user.generateEmailVerificationToken();
+    await user.save();
+
+    // Create URL for email verification (frontend URL)
+    const verifyURL = `http://localhost:5173/verify-email/${token}`;
+
+    await sendEmail(user.email, "Email Verification", `Click the below link to verify your email ⬇️\n\n ${verifyURL}`);
+
+    res.status(200).json({ success: true, message: "Verification email sent. Please check your email." });
+
 
   } catch (error) {
     console.log(error);

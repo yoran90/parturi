@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom';
-import Loading from '../../loading/Loading';
+import Loading from '../../../loading/Loading';
 import { HiArrowSmLeft } from 'react-icons/hi';
 import { toast } from 'react-toastify';
 import { BsFillEyeFill } from "react-icons/bs";
@@ -10,7 +10,7 @@ import axios from 'axios';
 
 
 
-const ResetPassword = () => {
+const AdminResetPasssword = () => {
 
   const { token } = useParams();
   
@@ -24,26 +24,26 @@ const ResetPassword = () => {
   const  handleSubmit = async (e) => {
     e.preventDefault();
     if (!password || !confirmPassword) {
-      toast.error("Täytä kaikki kentät");
+      toast.error("All fields are required");
       return;
     }
     if (password !== confirmPassword) {
-      toast.error("Salasanat eivät täsmää");
+      toast.error("Passwords do not match");
       return;
     }
 
     try {
       setLoading(true);
-      const response = await axios.post(`http://localhost:8001/api/user/reset-password/${token}`, {
+      const response = await axios.post(`http://localhost:8001/api/auth/admin-reset-password/${token}`, {
         password,
         confirmPassword
       });
-      toast.success(response?.data?.message || "Salasana vaihdettu onnistuneesti");
+      toast.success(response?.data?.message || "Password reset successful ✅ Please login with your new password");
       setPassword("");
       setConfirmPassword("");
     } catch (error) {
       console.log(error);
-      toast.error(error?.response?.data?.message || "Tapahtui virhe");
+      toast.error(error?.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false)
     }
@@ -55,23 +55,23 @@ const ResetPassword = () => {
       <div className='flex gap-2.5 flex-col md:w-[50%] w-[95%] m-auto text-white'>
         <div className='text-white flex items-center justify-center flex-col md:-mt-16'>
           <div>
-            <img src="https://cdn-icons-png.freepik.com/256/11220/11220414.png" className='w-42 h-42 rounded-full p-0' alt="" />
+            <img src="https://cdn-icons-png.flaticon.com/512/9710/9710382.png" className='w-42 h-42 rounded-full p-0' alt="" />
           </div>
           <div className='mt-4'>
-            <h2 className='text-md font-bold text-center text-white mb-6'>Salasanan vaihto</h2>
+            <h2 className='text-md font-bold text-center text-white mb-6'>Password Reset</h2>
           </div>
           <div>
             <p className='text-xs'>
-              voit saada uuden salasanan helpostioit saada uuden salasanan helposti. Syötä uusi salasanasi alla olevaan kenttään.           
+              you can easily get a new password you can easily get a new password. Enter your new password in the field below.          
             </p>
           </div>
         </div>
         {/* form */}
         <form onSubmit={handleSubmit} className='flex flex-col gap-4.5 text-sm mt-6'>
           <div className='flex flex-col gap-1.5'>
-            <label htmlFor="">🔑 Uusi salasana <span className='text-red-600'>*</span></label>
+            <label htmlFor="">🔑 New password <span className='text-red-600'>*</span></label>
             <div className='border border-slate-300 flex items-center justify-between py-2 px-3 rounded'>
-              <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} className='w-full  border-none outline-none' placeholder='Kirjoita uusi salasana' />
+              <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} className='w-full  border-none outline-none' placeholder='type your password' />
               {
                 showPassword ? (
                   <BsFillEyeSlashFill onClick={() => setShowPassword(false)} size={18} className='cursor-pointer' />
@@ -82,9 +82,9 @@ const ResetPassword = () => {
             </div>
           </div>
           <div className='flex flex-col gap-1.5'>
-            <label htmlFor="">🔑 vahvista uusi salasana <span className='text-red-600'>*</span></label>
+            <label htmlFor="">🔑 Confirm new password <span className='text-red-600'>*</span></label>
             <div className='border border-slate-300 flex items-center justify-between py-2 px-3 rounded'>
-              <input type={showConfirmPassword ? "text" : "password"} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className='w-full border-none outline-none' placeholder='Kirjoita vahvistu salasana' />
+              <input type={showConfirmPassword ? "text" : "password"} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className='w-full border-none outline-none' placeholder='type your confirm new password' />
               {
                 showConfirmPassword ? (
                   <BsFillEyeSlashFill onClick={() => setShowConfirmPassword(false)} size={18} className='cursor-pointer' />
@@ -99,11 +99,11 @@ const ResetPassword = () => {
               {
                 loading ? (
                   <div className='flex items-center justify-center gap-1.5'>
-                    <p>nollaaminen</p>
+                    <p>Resetting</p>
                     <Loading width={20} height={20} border='3px' topBorder='3px' borderColor='white' borderTopColor='red' />
                   </div>
                 ) : (
-                  "salasanan vaihto"
+                  "Change Password"
                 )
               }
             </button>
@@ -111,11 +111,11 @@ const ResetPassword = () => {
         </form>
         <div className='flex justify-end mt-2 items-center gap-1'>
           <HiArrowSmLeft className='text-blue-400' />
-          <Link to="/forgot-password" className='text-blue-400 text-sm cursor-pointer'>Takaisin kirjautumissivulle</Link>
+          <Link to="/admin-forgot-password" className='text-blue-400 text-sm cursor-pointer'>Back</Link>
         </div>
       </div>
     </div>
   )
 }
 
-export default ResetPassword
+export default AdminResetPasssword

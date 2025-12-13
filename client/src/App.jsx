@@ -7,7 +7,6 @@ import Tuote from './pages/Tuote'
 import Yhteystiedot from './pages/Yhteystiedot'
 import TuoateSivu from './pages/TuoateSivu'
 import Home from './admin/Home'
-
 import ImageVideo from './admin/pages/ImageVideo'
 import AddInformation from './admin/pages/AddInformation'
 import ImagevideoDisplay from './admin/pages/ImagevideoDisplay'
@@ -42,10 +41,16 @@ import UserProfile from './pages/UserProfile'
 import AllReviews from './admin/pages/AllReviews'
 import SingleReview from './admin/pages/SingleReview'
 import AddReview from './admin/pages/AddReview'
-
 import ResetPassword from './pages/forgot-password/ResetPassword'
 import ForgotPassword from './pages/forgot-password/ForgotPassword'
 import VerifyEmail from './pages/verifyEmail/VerifyEmail'
+import AdminForgotPassword from './admin/pages/forgotPassword/AdminForgotPassword'
+import AdminResetPasssword from './admin/pages/forgotPassword/AdminResetPasssword'
+import AdminVerifyEmail from './admin/pages/verifyEmail/AdminVerifyEmail'
+import UserLayout from './User-Layouts/UserLayout'
+import AdminLayout from './Admin-Layouts/AdminLayout'
+import AuthLayout from './User-Layouts/Register-Login/AuthLayout'
+
 
 
 
@@ -95,71 +100,90 @@ const App = () => {
 
 
   return (
-    <div>
+    <Routes>
+
+      {/* USER SIDE */}
+
+        <Route element={<UserLayout />}>
+          <Route path='/' element={<Etusivut />}></Route>
+          <Route path='/meistä' element={<Meistä />}></Route>
+          <Route path='/palvelut' element={<PalvelutHinta />}></Route>
+          <Route path='/galleria' element={<Galleria />}></Route>
+          <Route path='/tuotet' element={<Tuote />}></Route>
+          <Route path='/tuote/:id' element={<TuoateSivu />}></Route>
+          <Route path='/yhteystiedot' element={<Yhteystiedot />}></Route>
+
+          //! USER FORGOT PASSWORD
+          <Route path='/forgot-password' element={<ForgotPassword />}></Route>
+          <Route path='/reset-password/:token' element={<ResetPassword />}></Route>
+          //! USER VERIFY EMAIL
+          <Route path='/verify-email/:token' element={<VerifyEmail />}></Route>
+          <Route path='/profile' element={
+            <ProtectUserRoute isAuthenticated={userIsAuthenticated} user={user} loading={loading}>
+              <ProfileUser />
+            </ProtectUserRoute>
+          }>
+          </Route>
+          <Route path='/opinion' element={<OpinionUser />}></Route>
+          <Route path='/profile/:id' element={<UserProfile />}></Route>
+        </Route>
       
-      <Routes>
-        <Route path='/' element={<Etusivut />}></Route>
-        <Route path='/meistä' element={<Meistä />}></Route>
-        <Route path='/palvelut' element={<PalvelutHinta />}></Route>
-        <Route path='/galleria' element={<Galleria />}></Route>
-        <Route path='/tuotet' element={<Tuote />}></Route>
-        <Route path='/tuote/:id' element={<TuoateSivu />}></Route>
-        <Route path='/yhteystiedot' element={<Yhteystiedot />}></Route>
-        <Route path='/kirjaudu' element={<Kirjaudu />}></Route>
-        <Route path='/register' element={<Register />}></Route>
-        <Route path='/forgot-password' element={<ForgotPassword />}></Route>
-        <Route path='/reset-password/:token' element={<ResetPassword />}></Route>
-        <Route path='/verify-email/:token' element={<VerifyEmail />}></Route>
-
-
-
-        <Route path='/profile' element={
-          <ProtectUserRoute isAuthenticated={userIsAuthenticated} user={user} loading={loading}>
-            <ProfileUser />
-          </ProtectUserRoute>
-        }>
-        </Route>
-   
-        <Route path='/opinion' element={<OpinionUser />}></Route>
-        <Route path='/opinion' element={<Kirjaudu />}></Route>
-
-        <Route path='/profile/:id' element={<UserProfile />}></Route>
-     
-        
-
-        <Route path='/admin' element={
-          <ProtectRoute isAuthenticated={isAuthenticated} admin={admin} loading={loading}>
-            <Home />
-          </ProtectRoute>
-        }>
-          <Route index element={<AdminPageText />}></Route>
-          <Route path='sidebar' element={<Sidebar />}></Route>
-          <Route path='myaccount' element={<MyAccount />}></Route>
-          <Route path='allusers' element={<AllUsers />}></Route>
-          <Route path='allreviews' element={<AllReviews />}></Route>
-          <Route path='addreviews' element={<AddReview />}></Route>
-          <Route path='addinformation' element={<AddInformation />}></Route>
-          <Route path='imagevideo' element={<ImageVideo />}></Route>
-          <Route path='imagevideoDisplay' element={<ImagevideoDisplay />}></Route>
-          <Route path='addprice' element={<AddPrice />}></Route>
-          <Route path='galleri' element={<AddGalleriImage />}></Route>
-          <Route path='displayGalleri' element={<DisplayGalleryImage />}></Route>
-          <Route path='addProduct' element={<AddProduct />}></Route>
-          <Route path='displayProduct' element={<DisplayProduct />}></Route>
-          <Route path='addheaderlogo' element={<AddHeaderLogo />}></Route>
-          <Route path='addaboutus' element={<AddAboutUs />}></Route>
-          <Route path='titleforPages' element={<TitleForPages />}></Route>
-          <Route path='edit-user/:id' element={<EditUser />}></Route>
-          <Route path="review/:id" element={<SingleReview />}></Route>
+        {/* USER LOGIN REGISTER */}
+        <Route element={<AuthLayout />}>
+          <Route path='/register' element={<Register />}></Route>
+          <Route path='/kirjaudu' element={<Kirjaudu />}></Route>
         </Route>
 
-        <Route path='/login' element={<Login />}></Route>
-        {/* No Found Page */}
+      {/* END USER SIDE */}
+
+
+      {/* ADMIN SIDE */}
+
+        <Route element={<AdminLayout />}>
+          <Route path='/admin' element={
+            <ProtectRoute isAuthenticated={isAuthenticated} admin={admin} loading={loading}>
+              <Home />
+            </ProtectRoute>
+          }>
+            <Route index element={<AdminPageText />}></Route>
+            <Route path='sidebar' element={<Sidebar />}></Route>
+            <Route path='myaccount' element={<MyAccount />}></Route>
+            <Route path='allusers' element={<AllUsers />}></Route>
+            <Route path='allreviews' element={<AllReviews />}></Route>
+            <Route path='addreviews' element={<AddReview />}></Route>
+            <Route path='addinformation' element={<AddInformation />}></Route>
+            <Route path='imagevideo' element={<ImageVideo />}></Route>
+            <Route path='imagevideoDisplay' element={<ImagevideoDisplay />}></Route>
+            <Route path='addprice' element={<AddPrice />}></Route>
+            <Route path='galleri' element={<AddGalleriImage />}></Route>
+            <Route path='displayGalleri' element={<DisplayGalleryImage />}></Route>
+            <Route path='addProduct' element={<AddProduct />}></Route>
+            <Route path='displayProduct' element={<DisplayProduct />}></Route>
+            <Route path='addheaderlogo' element={<AddHeaderLogo />}></Route>
+            <Route path='addaboutus' element={<AddAboutUs />}></Route>
+            <Route path='titleforPages' element={<TitleForPages />}></Route>
+            <Route path='edit-user/:id' element={<EditUser />}></Route>
+            <Route path="review/:id" element={<SingleReview />}></Route>
+          </Route>
+
+          <Route path='/login' element={<Login />}></Route>
+          //! ADMIN FORGOT PASSWORD
+          <Route path='/admin-forgot-password' element={<AdminForgotPassword />}></Route>
+          <Route path='/admin-reset-password/:token' element={<AdminResetPasssword />}></Route>
+          //! ADMIN VERIFY EMAIL
+          <Route path='/admin-verify-email/:token' element={<AdminVerifyEmail />}></Route>
+        </Route>
+
+      {/* END ADMIN SIDE */}
+
+  
+      {/* No Found Page */}
         <Route path='*' element={<NoFoundPage />}></Route>
-        {/* Unauth Page */}
+      
+      {/* Unauth Page */}
         <Route path='/unauth-page' element={<UnAuthPage />} />
-      </Routes>
-    </div>
+
+    </Routes>
   )
 }
 

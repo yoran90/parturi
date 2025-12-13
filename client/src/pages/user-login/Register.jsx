@@ -157,7 +157,7 @@ const Register = () => {
             </div>
           </div>
           <div className='flex justify-end mt-6'>
-            <button type='submit' className='bg-red-700 text-white py-2 px-4 rounded text-sm cursor-pointer'>
+            <button type='submit' className='bg-red-700 text-white py-2 px-4 rounded w-full text-sm cursor-pointer'>
               {
                 loadingForButton ? (
                   <div className='flex items-center gap-2'>
