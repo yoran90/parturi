@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 const AdminLayout = () => {
   return (
-    <div className='w-[90%] m-auto bg-white border-l border-r border-slate-100 shadow-xl'>
+    <div className='w-[70%] m-auto bg-white border-l border-r border-slate-100 shadow-xl'>
       <Outlet />
     </div>
   )
