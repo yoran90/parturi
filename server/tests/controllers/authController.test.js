@@ -3,7 +3,7 @@ import Auth from "../../models/authModel.js";
 import bcrypt from "bcryptjs";
 import { createTestToken } from "../utils/createTestToken.js";
 import jwt from "jsonwebtoken";
-
+import mongoose from "mongoose";
 
 
 
@@ -550,9 +550,12 @@ describe("POST /api/auth/logout", () => {
 
 
 //! SUPER ADMIN DELETE USER
+
 let superAdminToken, adminToken, userToDelete;
 
 beforeAll(async () => {
+  await Auth.deleteMany({});
+
   const superAdmin = await Auth.create({
     email: "superadmin@test.com",
     firstName: "Super",
@@ -583,21 +586,57 @@ beforeAll(async () => {
     isEmailVerified: true,
   });
 
-  superAdminToken = createTestToken({ id: superAdmin._id.toString(), role: "super-admin" });
-  adminToken = createTestToken({ id: admin._id.toString(), role: "admin" });
+  superAdminToken = createTestToken({ id: superAdmin._id, role: "super-admin" });
+  adminToken = createTestToken({ id: admin._id, role: "admin" });
+
   userToDelete = user;
+});
+
+afterAll(async () => {
+  await mongoose.disconnect();
 });
 
 describe("DELETE /api/auth/adminDeleteUserOrAdmin/:id", () => {
 
-  test("shuold return 403 if not super-admin", async () => {
+  test("should return 403 if not super-admin", async () => {
     const res = await request(app)
-    .delete(`/api/auth/adminDeleteUserOrAdmin/${userToDelete._id}`)
-    .set("Authorization", `Bearer ${adminToken}`);
+      .delete(`/api/auth/adminDeleteUserOrAdmin/${userToDelete._id}`)
+      .set("Authorization", `Bearer ${adminToken}`);
 
-    expect(res.statusCode).toBe(403);
+    expect(res.status).toBe(403);
     expect(res.body.success).toBe(false);
     expect(res.body.message).toBe("Forbidden");
+  });
+
+  test("shuold return 403 if deleting super-admin", async () => {
+    const superAdmin = await Auth.findOne({ role: "super-admin" });
+    const res = await request(app)
+      .delete(`/api/auth/adminDeleteUserOrAdmin/${superAdmin._id}`)
+      .set("Authorization", `Bearer ${adminToken}`);
+
+    expect(res.status).toBe(403);
+    expect(res.body.success).toBe(false);
+    expect(res.body.message).toBe("Forbidden");
+  });
+
+  test("deletes user successfully", async () => {
+    const newUser = await Auth.create({
+      email: "delete@now.com",
+      firstName: "Delete",
+      lastName: "Me",
+      gender: "male",
+      role: "user",
+      password: "hashed",
+      isEmailVerified: true,
+    });
+
+    const res = await request(app)
+      .delete(`/api/auth/adminDeleteUserOrAdmin/${newUser._id}`)
+      .set("Authorization", `Bearer ${superAdminToken}`);
+
+    expect(res.status).toBe(200);
+    expect(res.body.success).toBe(true);
+    expect(res.body.message).toBe("User deleted successfully");
   });
 
 });

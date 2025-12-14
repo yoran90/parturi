@@ -24,10 +24,13 @@ export const adminLogin = createAsyncThunk("adminAuth/login", async ({ email, pa
 
 //! ADMIN LOGOUT
 export const adminLogout = createAsyncThunk("adminAuth/logout", async () => {
-    const response = await axios.post("http://localhost:8001/api/auth/logout",{}, { withCredentials: true });
-    return response.data;
-  }
-);
+    try {
+      const response = await axios.post("http://localhost:8001/api/auth/logout",{}, { withCredentials: true });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+});
 
 //! get user by id for admin
 export const getUserByIdInAdmin = createAsyncThunk("adminAuth/getUserByIdInAdmin", async (id, { rejectWithValue}) => {
@@ -71,7 +74,10 @@ export const adminDeleteUserOrAdmin = createAsyncThunk("adminAuth/adminDeleteUse
     const response = await axios.delete(`http://localhost:8001/api/auth/adminDeleteUserOrAdmin/${id}`, { withCredentials: true });
     return response.data
   } catch (error) {
-    console.log(error);
+    if (error.response && error.response.data) {
+      return rejectWithValue(error.response.data);
+    }
+    return rejectWithValue({ success: false, message: error.message });
   }
 });
 

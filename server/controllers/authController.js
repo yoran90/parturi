@@ -8,6 +8,7 @@ import sendEmail from "../utlis/sendEmail.js";
 
 
 
+
 //! register for user and admin
 export const register = async (req, res) => {
   try {
@@ -400,25 +401,37 @@ export const adminDeleteUserOrAdmin = async (req, res) => {
   try {
     const { id } = req.params;
 
+    // Only super‑admins allowed
     if (req.admin.role !== "super-admin") {
       return res.status(403).json({ success: false, message: "Forbidden" });
     }
 
     const user = await Auth.findById(id);
+
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found" });
     }
 
+    // If the target user has role super‑admin, block deletion
     if (user.role === "super-admin") {
-      return res.status(403).json({ success: false, message: "You can't delete super admin" });
+      return res.status(403).json({
+        success: false,
+        message: "You can't delete super admin",
+      });
     }
 
     await Auth.findByIdAndDelete(id);
-    res.status(200).json({ success: true, message: "User deleted successfully" });
+
+    return res.status(200).json({
+      success: true,
+      message: "User deleted successfully",
+    });
 
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: error.message });
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
-}
+};
 

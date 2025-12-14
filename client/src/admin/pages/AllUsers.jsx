@@ -9,6 +9,8 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { adminDeleteUserOrAdmin, superAdminUpdateUserRole } from '../../store/admin-auth';
 import ConfirmDelete from './ConfirmDelete';
+import { MdNotInterested } from "react-icons/md";
+
 
 const AllUsers = () => {
 
@@ -111,9 +113,17 @@ const AllUsers = () => {
                   <button className='cursor-pointer' onClick={() => handleEditUser(user._id)}>
                     <FaEdit size={20} className='text-green-600' />
                   </button>
-                  <button className='cursor-pointer' onClick={() => handleDelete(user._id)}>
-                    <BsTrash3Fill size={20} className='text-red-500' />
-                  </button>
+                  {user?.role === "user" && user?.role !== "admin" ? (
+                      <button className='cursor-pointer' onClick={() => handleDelete(user._id)}>
+                        <BsTrash3Fill size={20} className='text-red-500' />
+                      </button>
+                    ) : (
+                      <div className='cursor-not-allowed'>
+                        <MdNotInterested className='text-slate-500' size={20} />
+                      </div>
+                    )
+
+                  }
                 </td>
               </tr>
             ))
@@ -129,13 +139,19 @@ const AllUsers = () => {
               async () => {
                 try {
                   await dispatch(adminDeleteUserOrAdmin(userToDelete)).unwrap().then(() => {
-                    toast.success("User deleted successfully");
-                    setConfirmDeleteUser(false);
-                    setGetAllusersForAdmin(getAllusersForAdmin.filter((user) => user._id !== userToDelete));
+                    
+                      toast.success("User deleted successfully");
+                      setConfirmDeleteUser(false);
+                      setGetAllusersForAdmin(getAllusersForAdmin.filter((user) => user._id !== userToDelete));
+                   
                   });
                 } catch (error) {
-                  console.log(error);
-                  toast.error(error.message);
+                  if (error.response?.status === 403) {
+                    setConfirmDeleteUser(false);
+                    toast.error(error.response.data.message || "Forbidden");
+                  } else {
+                    toast.error(error.message);
+                  }
                 }
               }
             }

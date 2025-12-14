@@ -6,9 +6,9 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import { fileURLToPath } from 'url';
 
-
-dotenv.config();
-
+if (process.env.NODE_ENV !== "test") {
+  dotenv.config();
+}
 
 
 
