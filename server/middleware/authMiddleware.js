@@ -12,7 +12,7 @@ export const authMiddleware = (req, res, next) => {
     });
   }
 
-  try {
+  /* try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     if (decoded.role !== "admin" && decoded.role !== "super-admin") {
@@ -29,5 +29,22 @@ export const authMiddleware = (req, res, next) => {
       success: false,
       message: "Unauthorized admin. Invalid token.",
     });
+  } */
+
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.admin = {
+      id: decoded.id,
+      role: decoded.role,
+    };
+
+    next();
+  } catch (error) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized. Invalid token.",
+    });
   }
+
 };

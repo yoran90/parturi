@@ -397,3 +397,258 @@ describe("GET /api/auth/allUsers", () => {
     expect(res.body.message).toBe("Database error");
   });
 });
+
+
+//! super admin get all user data
+describe("GET /api/auth/getUserDataById/:id", () => {
+  test("shuold retunr 403 if not super-admin", async () => {
+
+    const token = createTestToken({
+      id: "admin1",
+      role: "admin"
+    });
+    
+    const res = await request(app)
+    .get("/api/auth/getUserDataById/user1")
+    .set("Authorization", `Bearer ${token}`);
+
+    expect(res.statusCode).toBe(403);
+    expect(res.body.message).toBe("Forbidden");
+  });
+
+  test("shuold return user except given id for super-admin", async () => {
+    const token = createTestToken({
+      id: "admin1",
+      role: "super-admin"
+    });
+
+    const mockUsers = [
+      { _id: "user2", email: "user2@test.com" },
+      { _id: "user3", email: "user3@test.com" },
+    ];
+
+    jest.spyOn(Auth, "find").mockResolvedValue(mockUsers);
+
+    const res = await request(app)
+      .get("/api/auth/getUserDataById/user1")
+      .set("Authorization", `Bearer ${token}`);
+
+    expect(Auth.find).toHaveBeenCalledWith({ _id: { $ne: "user1" } });
+    expect(res.statusCode).toBe(200);
+    expect(res.body.data.length).toBe(2);
+  });
+
+  test("shuold return 500 on databases error", async () => {
+    const token = createTestToken({
+      id: "super1",
+      role: "super-admin"
+    });
+  
+    jest.spyOn(Auth, "find").mockRejectedValue(new Error("Database error"));
+
+    const res = await request(app)
+    .get("/api/auth/getUserDataById/user1")
+    .set("Authorization", `Bearer ${token}`);
+
+    expect(res.statusCode).toBe(500);
+    expect(res.body.message).toBe("Database error");
+  });
+});
+
+
+//! login FOR ADMIN
+describe("POST /api/auth/login", () => {
+  test("shuold retunr 400 if eamil or password missing", async () => {
+    const res = await request(app)
+    .post("/api/auth/login")
+    .send({email: "admin@test.com"});
+
+    expect(res.statusCode).toBe(400);
+    expect(res.body.message).toBe("Email and password are required");
+  });
+
+  test("shuold return 400 if user not found", async () => {
+    jest.spyOn(Auth, "findOne").mockResolvedValue(null);
+
+    const res = await request(app)
+    .post("/api/auth/login")
+    .send({email: "admin@test.com", password: "password"});
+
+    expect(res.statusCode).toBe(404);
+    expect(res.body.message).toBe("User not found");
+  });
+
+  test("shuold retunr 402 if password wrong", async () => {
+    jest.spyOn(Auth, "findOne").mockResolvedValue({
+      password: "hashed",
+      isEmailVerified: true,
+    });
+
+    jest.spyOn(bcrypt, "compare").mockResolvedValue(false);
+
+    const res = await request(app)
+    .post("/api/auth/login")
+    .send({email: "admin@test.com", password: "wrongpass"});
+
+    expect(res.statusCode).toBe(401);
+    expect(res.body.message).toBe("Invalid email or password");
+  });
+
+  test("shuold return 401 if email not verified", async () => {
+    jest.spyOn(Auth, "findOne").mockResolvedValue({
+      password: "hashed",
+      isEmailVerified: false,
+    });
+
+    jest.spyOn(bcrypt, "compare").mockResolvedValue(true);
+
+    const res = await request(app)
+    .post("/api/auth/login")
+    .send({email: "admin@test.com", password: "password"});
+
+    expect(res.statusCode).toBe(401);
+    expect(res.body.message).toBe("Please verify your email before logging in");
+  });
+
+  test("shuold login admin successfully", async () => {
+    jest.spyOn(Auth, "findOne").mockResolvedValue({
+      _id: "admin1",
+      email: "admin@test.com",
+      firstName: "Admin",
+      lastName: "User",
+      gender: "male",
+      profileImage: null,
+      role: "admin",
+      password: "hashed",
+      isEmailVerified: true,
+    });
+
+    jest.spyOn(bcrypt, "compare").mockResolvedValue(true);
+    jest.spyOn(jwt, "sign").mockReturnValue("mockToken");
+
+    const res = await request(app)
+    .post("/api/auth/login")
+    .send({email: "admin@test.com", password: "password"});
+
+    expect(res.statusCode).toBe(200);
+    expect(res.body.success).toBe(true);
+    expect(res.body.message).toBe("Logged in successfully ✅");
+    expect(res.body.token).toBe("mockToken");
+    expect(res.body.user.role).toBe("admin");
+
+  });
+
+});
+
+
+//! logout FOR ADMIN
+describe("POST /api/auth/logout", () => {
+  test("shuold clear cookie and logout successfully", async () => {
+    const res = await request(app)
+    .post("/api/auth/logout");
+
+
+    expect(res.statusCode).toBe(200);
+    expect(res.body.success).toBe(true);
+    expect(res.body.message).toBe("Logged out successfully");
+
+    expect(res.headers["set-cookie"][0]).toMatch(/adminToken=;/);
+
+  });
+});
+
+//! SUPER ADMIN UPDATE USER ROLE
+/* no tested yet */
+
+
+//! SUPER ADMIN DELETE USER
+
+let superAdminToken, adminToken, userToDelete;
+
+beforeAll(async () => {
+  await Auth.deleteMany({});
+
+  const superAdmin = await Auth.create({
+    email: "superadmin@test.com",
+    firstName: "Super",
+    lastName: "Admin",
+    gender: "male",
+    role: "super-admin",
+    password: "hashed",
+    isEmailVerified: true,
+  });
+
+  const admin = await Auth.create({
+    email: "admin@test.com",
+    firstName: "Admin",
+    lastName: "User",
+    gender: "male",
+    role: "admin",
+    password: "hashed",
+    isEmailVerified: true,
+  });
+
+  const user = await Auth.create({
+    email: "user@test.com",
+    firstName: "User",
+    lastName: "User",
+    gender: "male",
+    role: "user",
+    password: "hashed",
+    isEmailVerified: true,
+  });
+
+  superAdminToken = createTestToken({ id: superAdmin._id, role: "super-admin" });
+  adminToken = createTestToken({ id: admin._id, role: "admin" });
+
+  userToDelete = user;
+});
+
+afterAll(async () => {
+  await mongoose.disconnect();
+});
+
+describe("DELETE /api/auth/adminDeleteUserOrAdmin/:id", () => {
+
+  test("should return 403 if not super-admin", async () => {
+    const res = await request(app)
+      .delete(`/api/auth/adminDeleteUserOrAdmin/${userToDelete._id}`)
+      .set("Authorization", `Bearer ${adminToken}`);
+
+    expect(res.status).toBe(403);
+    expect(res.body.success).toBe(false);
+    expect(res.body.message).toBe("Forbidden");
+  });
+
+  test("shuold return 403 if deleting user by admin", async () => {
+    const superAdmin = await Auth.findOne({ role: "admin" });
+    const res = await request(app)
+      .delete(`/api/auth/adminDeleteUserOrAdmin/${superAdmin._id}`)
+      .set("Authorization", `Bearer ${adminToken}`);
+
+    expect(res.status).toBe(403);
+    expect(res.body.success).toBe(false);
+    expect(res.body.message).toBe("Forbidden");
+  });
+
+  test("deletes user successfully", async () => {
+    const newUser = await Auth.create({
+      email: "delete@now.com",
+      firstName: "Delete",
+      lastName: "Me",
+      gender: "male",
+      role: "user",
+      password: "hashed",
+      isEmailVerified: true,
+    });
+
+    const res = await request(app)
+      .delete(`/api/auth/adminDeleteUserOrAdmin/${newUser._id}`)
+      .set("Authorization", `Bearer ${superAdminToken}`);
+
+    expect(res.status).toBe(200);
+    expect(res.body.success).toBe(true);
+    expect(res.body.message).toBe("User deleted successfully");
+  });
+
+});
