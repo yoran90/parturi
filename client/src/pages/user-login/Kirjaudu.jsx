@@ -154,7 +154,7 @@ const Kirjaudu = () => {
           )
         }
       </div>
-      <div className='md:w-[50%] w-[95%] m-auto'>
+      <div className='md:w-[46%] w-[95%] m-auto'>
         <div className='md:flex md:justify-between'>
           <div className='flex flex-col gap-1 mb-8'>
             <h2 className='text-white'>🌍 {translate.welcomeuser}</h2>

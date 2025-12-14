@@ -30,7 +30,7 @@ const ForgotPassword = () => {
 
   return (
     <div className='w-full flex flex-col justify-center h-screen bg-slate-800'>
-      <div className='flex gap-2.5 flex-col md:w-[50%] w-[95%] m-auto text-white'>
+      <div className='flex gap-2.5 flex-col md:w-[46%] w-[95%] m-auto text-white'>
         <div className='text-white flex items-center justify-center flex-col -mt-32'>
           <div>
             <img src="https://cdn-icons-png.freepik.com/512/11135/11135314.png" className='w-42 h-42 rounded-full p-0' alt="" />
