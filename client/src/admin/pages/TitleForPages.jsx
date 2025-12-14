@@ -57,30 +57,7 @@ const TitleForPages = () => {
 
   }, [getTitleForPage, isInitialized]);
 
-   if (!getTitleForPage || !isInitialized) {
-    return (
-      <div className="w-full h-screen flex flex-col justify-center items-center text-slate-700">
-        <div className="loader"></div>
-        <p className="mt-4 text-sm">Ladataan odota...</p>
-        <style>{`
-          .loader {
-            border: 4px solid #ddd;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 0.8s linear infinite;
-          }
-          @keyframes spin {
-            100% { transform: rotate(360deg); }
-          }
-        `}</style>
-      </div>
-    );
-  }
-
-
-
+   
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -102,6 +79,7 @@ const TitleForPages = () => {
       setLoadingForButton(false);
     }
   } 
+
 
   if (loading) {
     return (

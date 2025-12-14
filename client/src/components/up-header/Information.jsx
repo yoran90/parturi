@@ -8,7 +8,9 @@ import useInformation from '../../hooks/useInformation';
 const Information = () => {
 
  
-  const { getInformation, informationLoading, error } = useInformation();
+  const { getInformation } = useInformation();
+
+  if (!getInformation) return null
   
 
   return (

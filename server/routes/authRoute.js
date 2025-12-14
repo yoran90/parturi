@@ -2,7 +2,6 @@ import express from "express";
 import {  
   adminDeleteUserOrAdmin,
   adminForgotPassword,
-  authMiddleware, 
   getAllUsers, 
   getUserByIdInAdmin, 
   login, 
@@ -18,6 +17,7 @@ import {
 import multer from "multer";
 import { getReviewById, getReviewByIdAndDelete } from "../controllers/reviewsController.js";
 import { userResetPassword } from "../controllers/userController.js";
+import { authMiddleware } from "../middleware/authMiddleware.js";
 
 
 const router = express.Router();

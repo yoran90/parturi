@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, jest, test } from "@jest/globals";
+import { afterEach, beforeAll, describe, expect, jest, test } from "@jest/globals";
 import Auth from "../../models/authModel.js";
 import bcrypt from "bcryptjs";
 import { createTestToken } from "../utils/createTestToken.js";
@@ -543,5 +543,32 @@ describe("POST /api/auth/logout", () => {
 });
 
 //! SUPER ADMIN UPDATE USER ROLE
+// no test yet
 
+//! admin delete user 
+
+
+
+
+
+
+
+describe("DELETE /api/auth/adminDeleteUserOrAdmin/:id", () => {
+ 
+
+  test("should return 404 if user not found", async () => {
+    jest.spyOn(Auth, "findById").mockResolvedValue(null);
+
+    const res = await request(app)
+    .delete("/api/auth/adminDeleteUserOrAdmin/user1")
+    .set("Authorization", `Bearer ${createTestToken({
+      id: "admin1",
+      role: "super-admin"
+    })}`);
+
+    expect(res.statusCode).toBe(404);
+    expect(res.body.message).toBe("User not found");
+  });
+  
+});
 

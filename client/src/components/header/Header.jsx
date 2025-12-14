@@ -88,9 +88,11 @@ const Header = () => {
 
   return (
     <>
-      <div ref={menuRef} className='md:flex sticky top-0  hidden items-center justify-between bg-black border-t-2 border-b-2  border-slate-800 z-50'>
-        <div className='bg-black p-2'> 
-          <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
+      <div ref={menuRef} className='md:flex sticky top-0 p-2 hidden items-center justify-between bg-black border-t-2 border-b-2  border-slate-800 z-50'>
+        <div className='bg-black'> 
+          {headerLogo && headerLogo.url && (
+            <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
+          )}
         </div>
         <div className='flex justify-end px-4.5'>
           <NavLink to={`/`} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>

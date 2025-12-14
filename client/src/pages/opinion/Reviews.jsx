@@ -221,7 +221,7 @@ const Reviews = () => {
   }
 
 
-
+console.log(user);
 
   
 
@@ -298,7 +298,7 @@ const Reviews = () => {
                   <div className='flex flex-col'>
                     <p className='text-slate-600 text-sm'>{item?.firstName} {item?.lastName}</p>
                     <small className="text-xs text-slate-500">
-                      {new Date(item?.updatedAt).toLocaleDateString("en-US", {
+                      {new Date(item?.updatedAt).toLocaleDateString("fi-FI", {
                         month: "short",
                         day: "numeric",
                         year: "numeric"
@@ -355,10 +355,12 @@ const Reviews = () => {
                 <div className='flex items-center gap-1 cursor-pointer'>
                   <button type='button' onClick={() => handleClickLike(item._id)} className='cursor-pointer'>
                   {
-                    item.likes.likedBy?.some(like => like.userId?.toString() === user?._id?.toString()) ? (
-                      <GoHeartFill className='text-red-600' />
+                    item?.likes?.likedBy?.some(
+                      like => String(like.userId) === String(user?.id)
+                    ) ? (
+                      <GoHeartFill className="text-red-600" />
                     ) : (
-                      <GoHeart className='text-slate-500' />
+                      <GoHeart className="text-slate-500" />
                     )
                   }
                   </button>
@@ -476,8 +478,8 @@ const Reviews = () => {
                                     )
                                   }
                                   {comment?.replies?.length}
-                                    <p>Reply</p>
-                                    <FaReply />
+                                    <p>Näytä vastaus</p>
+                                    <FaReply  className='text-[8px]'/>
                                   </button>
                                   {/* like comment */}
                                  {/*  <div className='flex gap-1 items-center text-blue-500'>
@@ -592,6 +594,7 @@ const Reviews = () => {
                 {
                   user ? (
                     <div className='flex items-center gap-1 cursor-pointer'>
+                      
                       {
                         user?.profileImage?.url ? (
                           <img className='w-7 h-7 border border-slate-500 rounded-full' src={user?.profileImage?.url} alt="" />

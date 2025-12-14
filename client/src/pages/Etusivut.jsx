@@ -60,49 +60,71 @@ const Etusivut = () => {
       <Main />
       <div>
         <div className='bg-white shadow border border-slate-100 md:mt-6 w-[98%] md:py-0 py-8 mx-auto md:rounded-xl -mt-20'>
-          <div className='md:flex items-center md:justify-between md:px-16'>
+          <div className='md:flex items-center md:justify-between md:px-16 pt-4'>
             <div className='min-h-[100px]'>
-              <a className='flex md:mb-0 mb-6 flex-col items-center justify-center' href={getInformation?.addressUrl} target="_blank" rel="noopener noreferrer">
-                <FaMapMarkerAlt size={25} />
+              <a className='flex md:mb-0 mb-6 gap-1 flex-col items-center justify-center' href={getInformation?.addressUrl} target="_blank" rel="noopener noreferrer">
+                <FaMapMarkerAlt size={20} className='text-slate-600' />
                 <h3 className='text-sm font-bold text-slate-600 mt-2 border-b mb-2'>OSOITE</h3>
-                <p className='text-xs font-semibold text-slate-500'>{getInformation?.address}</p>
+                {getInformation?.address ? (
+                    <div>
+                      <p className='text-xs font-semibold text-slate-500'>{getInformation?.address}</p>
+                    </div>
+                  ) : (
+                    <div>
+                      <p className='text-xs font-semibold text-slate-500'>Ei vielä osoitetta</p>
+                    </div>
+                  )
+
+                }
               </a>
             </div>
             <div className='min-h-[100px] md:mb-0 mb-3'> 
               <div className='flex flex-col items-center justify-center md:border-b  mb-3 gap-2'>
-                <FaShareAlt size={25} />
+                <FaShareAlt size={20} className='text-slate-600' />
                 <h3>Seuraa Meitä</h3>
               </div>
               <div className='flex items-center justify-center gap-3.5'>
-                {
-                  getInformation?.socialMedia?.map((sm, index) => (
-                    <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
-                      {sm.platform === "facebook" && <FaFacebook size={16} />}
-                      {sm.platform === "instagram" && <CgInstagram size={16} />}
-                      {sm.platform === "tiktok" && <FaTiktok size={16} />}
-                      {sm.platform === "snapchat" && <FaSnapchat size={16} />}
-                      {sm.platform === "twitter" && <FaTwitter size={16} />}
-                      {sm.platform === "youtube" && <FaYoutube size={16} />}
-                    </a>
-                  ))
+                {getInformation?.socialMedia ? (
+                    <div className='flex items-center gap-4'>
+                      {
+                        getInformation?.socialMedia?.map((sm, index) => (
+                          <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
+                            {sm.platform === "facebook" && <FaFacebook size={16} />}
+                            {sm.platform === "instagram" && <CgInstagram size={16} />}
+                            {sm.platform === "tiktok" && <FaTiktok size={16} />}
+                            {sm.platform === "snapchat" && <FaSnapchat size={16} />}
+                            {sm.platform === "twitter" && <FaTwitter size={16} />}
+                            {sm.platform === "youtube" && <FaYoutube size={16} />}
+                          </a>
+                        ))
+                      }
+                    </div>
+                  ) : (
+                    <div>
+                      <p className='text-xs font-semibold text-slate-500'>Ei vielä sosiaalialueita</p>
+                    </div>
+
+                  )
                 }
                 
               </div>
             </div>
             <div className="flex flex-col items-center justify-start min-h-[100px]">
-              <MdPhoneInTalk size={30} />
-              <h3 className="text-sm font-bold text-slate-600 mt-2 border-b mb-2">PUHELIN</h3>
-              <a
-                href={`tel:${getInformation?.phone}`}
-                className="text-xs font-semibold text-slate-500"
-              >
-                {getInformation?.phone}
-              </a>
-            </div>
-            <div className='flex flex-col items-center justify-center min-h-[140px]'>
-              <IoMdClock size={30} />
-              <h3 className='text-sm font-bold text-slate-600 mt-2 border-b mb-2'>AUKIOLOAJAT</h3>
-              <div className='text-xs flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
+              <MdPhoneInTalk size={24} className='text-slate-600' />
+              <h3 className="text-sm font-bold text-slate-600 mt-2 border-b mb-3">PUHELIN</h3>
+              {getInformation?.phone ? (
+                  <div>
+                    <a href={`tel:${getInformation?.phone}`} className="text-xs font-semibold text-slate-500">
+                      {getInformation?.phone}
+                    </a>
+                  </div>
+                ) : (
+                  <div>
+                    <p className='text-xs font-semibold text-slate-500'>Ei vielä puhelinnumeroa</p>
+                  </div>
+                )
+
+              }
             </div>
           </div>
         </div>
@@ -214,7 +236,7 @@ const Etusivut = () => {
         </div>
         <GallaryLimit />
         <div className='flex text-center items-center justify-center mt-4'>
-          <Link to={'/galaria'}>
+          <Link to={'/galleria'}>
             <button className='bg-red-500 hover:bg-red-600 text-white py-1.5 cursor-pointer px-4 rounded-full text-xs group'>
               Katso kaikki kuvat
               <FaArrowRightLong  size={12} className='inline-block ml-2 group-hover:translate-x-1 transition-all' />

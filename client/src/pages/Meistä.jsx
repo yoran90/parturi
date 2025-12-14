@@ -46,7 +46,7 @@ const Meistä = () => {
           <div className='flex flex-col gap-4'>
             <h3 className='text-xl font-semibold text-slate-500'>Työmme ⬇️</h3>
             <GallaryLimit />
-            <Link to={'/galaria'} className='text-blue-500 flex items-center justify-center gap-1 hover:text-blue-700'>
+            <Link to={'/galleria'} className='text-blue-500 flex items-center justify-center gap-1 hover:text-blue-700'>
               Kasto Galleria
               <MdArrowOutward />
             </Link>

@@ -37,6 +37,7 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
   const handleImageRemobe = () => {
     setReplyImage(null);
   }
+  
 
   return (
     <div className="mt-2">
@@ -44,24 +45,30 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
 
         {/* Reply User Info */}
         <Link to={`/profile/${reply?.userId}`} className="flex items-center gap-3 mb-2">
-          <img className="w-7 h-7 rounded-full border border-slate-500"src={reply?.profileImage?.url ||
-            (reply?.gender === "men"
-              ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s"
-              : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s")
-            }
-          />
+          {
+            reply?.profileImage?.url ? (
+              <img className='w-7 h-7 border border-slate-500 rounded-full' src={reply?.profileImage?.url} alt="" />
+            ) : (
+              reply?.gender === 'men' ? (
+                <img className='w-7 h-7 rounded-full border border-slate-500 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+              ) : reply?.gender === 'women' ? (
+                <img className='w-7 h-7  rounded-full border border-slate-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+              ) : (
+                <img className='w-7 h-7 border border-slate-500 rounded-full' src={reply?.profileImage} alt="" />
+              )
+            )
+          }
           <div className='flex flex-col'>
             <p className="text-[12px]">{reply?.firstName} {reply?.lastName}</p>
             <small className='text-[11px] text-slate-400'>
               {reply?.createdAt
-                ? new Date(reply.createdAt).toLocaleString("en-US", {
+                ? new Date(reply.createdAt).toLocaleString("fi-FI", {
                     month: "short",
                     day: "numeric",
                     year: "numeric",
                   })
                 : "Just now"}
             </small>
-
           </div>
         </Link>
 
@@ -86,8 +93,8 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
               <IoIosArrowUp />
             )
           }
-            <p>Reply</p>
-            <FaReply />
+            <p>Näytä vastaus</p>
+            <FaReply className='text-[8px]' />
           </button>
           {/* like comment */}
           {/* <div className='flex gap-1 items-center text-blue-500'>
@@ -99,12 +106,19 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
         {showReplyBox && (
           <div className="md:ml-8 mt-3 flex flex-col items-center gap-2">
             <div className='flex items-center gap-1.5 w-full'>
-              <img className="w-6 h-6 rounded-full border border-slate-500"src={reply?.profileImage?.url ||
-                (reply?.gender === "men"
-                  ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s"
-                  : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s")
-                }
-                />
+              {
+                reply?.profileImage?.url ? (
+                  <img className='w-7 h-7 border border-slate-500 rounded-full' src={reply?.profileImage?.url} alt="" />
+                ) : (
+                  reply?.gender === 'men' ? (
+                    <img className='w-7 h-7 rounded-full border border-slate-500 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                  ) : reply?.gender === 'women' ? (
+                    <img className='w-7 h-7  rounded-full border border-slate-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                  ) : (
+                    <img className='w-7 h-7 border border-slate-500 rounded-full' src={reply?.profileImage} alt="" />
+                  )
+                )
+              }
               <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className='flex items-center justify-between w-full border border-slate-300 px-2 py-1 rounded-full'>
                 <input type="text" value={replyText} onChange={(e) => setReplyText(e.target.value)} className="w-full outline-none text-xs" placeholder="Kirjoita vastaus..."/>
                 <label>

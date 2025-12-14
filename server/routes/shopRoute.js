@@ -1,9 +1,9 @@
 import express from 'express'
 import { createShopMedia, getShopMedia } from '../controllers/shopController.js';
-import { authMiddleware } from '../controllers/authController.js';
 import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import cloudinary from '../config/cloudinary.js';
+import { authMiddleware } from '../middleware/authMiddleware.js';
 
 
 const storage = new CloudinaryStorage({

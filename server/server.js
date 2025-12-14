@@ -67,9 +67,13 @@ app.use("/api/reviwes", reviewsRoutes);
 app.use("/api/shopMedia", shopMediaRoutes);
 
 
-mongoose.connect(process.env.MONGODB_URL)
-  .then(() => console.log("Connected to MongoDB successfully 🌍"))
-  .catch((err) => console.log(err));
+if (process.env.NODE_ENV !== "test") {
+  mongoose
+    .connect(process.env.MONGODB_URL)
+    .then(() => console.log("Connected to MongoDB successfully 🌍"))
+    .catch((err) => console.log(err));
+}
+
 
 let server;
 
