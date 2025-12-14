@@ -1,8 +1,11 @@
-import { afterEach, beforeAll, describe, expect, jest, test } from "@jest/globals";
+import { afterAll, afterEach, beforeAll, describe, expect, jest, test } from "@jest/globals";
 import Auth from "../../models/authModel.js";
 import bcrypt from "bcryptjs";
 import { createTestToken } from "../utils/createTestToken.js";
 import jwt from "jsonwebtoken";
+
+
+
 
 jest.unstable_mockModule("../../utlis/sendEmail.js", () => ({
   __esModule: true,
@@ -545,30 +548,56 @@ describe("POST /api/auth/logout", () => {
 //! SUPER ADMIN UPDATE USER ROLE
 // no test yet
 
-//! admin delete user 
 
+//! SUPER ADMIN DELETE USER
+let superAdminToken, adminToken, userToDelete;
 
-
-
-
-
-
-describe("DELETE /api/auth/adminDeleteUserOrAdmin/:id", () => {
- 
-
-  test("should return 404 if user not found", async () => {
-    jest.spyOn(Auth, "findById").mockResolvedValue(null);
-
-    const res = await request(app)
-    .delete("/api/auth/adminDeleteUserOrAdmin/user1")
-    .set("Authorization", `Bearer ${createTestToken({
-      id: "admin1",
-      role: "super-admin"
-    })}`);
-
-    expect(res.statusCode).toBe(404);
-    expect(res.body.message).toBe("User not found");
+beforeAll(async () => {
+  const superAdmin = await Auth.create({
+    email: "superadmin@test.com",
+    firstName: "Super",
+    lastName: "Admin",
+    gender: "male",
+    role: "super-admin",
+    password: "hashed",
+    isEmailVerified: true,
   });
-  
+
+  const admin = await Auth.create({
+    email: "admin@test.com",
+    firstName: "Admin",
+    lastName: "User",
+    gender: "male",
+    role: "admin",
+    password: "hashed",
+    isEmailVerified: true,
+  });
+
+  const user = await Auth.create({
+    email: "user@test.com",
+    firstName: "User",
+    lastName: "User",
+    gender: "male",
+    role: "user",
+    password: "hashed",
+    isEmailVerified: true,
+  });
+
+  superAdminToken = createTestToken({ id: superAdmin._id.toString(), role: "super-admin" });
+  adminToken = createTestToken({ id: admin._id.toString(), role: "admin" });
+  userToDelete = user;
 });
 
+describe("DELETE /api/auth/adminDeleteUserOrAdmin/:id", () => {
+
+  test("shuold return 403 if not super-admin", async () => {
+    const res = await request(app)
+    .delete(`/api/auth/adminDeleteUserOrAdmin/${userToDelete._id}`)
+    .set("Authorization", `Bearer ${adminToken}`);
+
+    expect(res.statusCode).toBe(403);
+    expect(res.body.success).toBe(false);
+    expect(res.body.message).toBe("Forbidden");
+  });
+
+});

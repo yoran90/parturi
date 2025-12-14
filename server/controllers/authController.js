@@ -395,7 +395,7 @@ export const superAdminGetUserByIdForChangeRole = async (req, res) => {
   }
 }
 
-//! admin delete user 
+//! super admin delete user 
 export const adminDeleteUserOrAdmin = async (req, res) => {
   try {
     const { id } = req.params;

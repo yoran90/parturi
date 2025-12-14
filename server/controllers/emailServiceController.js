@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import express from "express";
+
 
 
 export const sendHotmailEmail = async ({ name, phone, email, message }) => {
