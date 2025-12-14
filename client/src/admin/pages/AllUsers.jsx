@@ -113,7 +113,7 @@ const AllUsers = () => {
                   <button className='cursor-pointer' onClick={() => handleEditUser(user._id)}>
                     <FaEdit size={20} className='text-green-600' />
                   </button>
-                  {user?.role === "user" && user?.role !== "admin" ? (
+                  {user?.role !== "super-admin" ? (
                       <button className='cursor-pointer' onClick={() => handleDelete(user._id)}>
                         <BsTrash3Fill size={20} className='text-red-500' />
                       </button>

@@ -122,10 +122,8 @@ export const getUserByIdInAdmin = async (req, res) => {
   try {
     const { id } = req.params;
 
-    if (req.admin.role !== "admin" && req.admin.role !== "super-admin") {
-      if (req.admin.id !== id) {
-        return res.status(403).json({ success: false, message: "Forbidden" });
-      }
+    if (req.admin.role !== "super-admin" && req.admin.role !== "admin") {
+      return res.status(403).json({ success: false, message: "Forbidden" });
     }
 
     const user = await Auth.findById(id);
@@ -198,7 +196,12 @@ export const updateUserById = async (req, res) => {
 
 //! get all user for admin
 export const getAllUsers = async (req, res) => {
+
   try {
+    if (req.admin.role !== "super-admin") {
+      return res.status(403).json({ success: false, message: "Forbidden" });
+    }
+  
     const users = await Auth.find();
     res.status(200).json({ success: true, data: users });
   } catch (error) {
