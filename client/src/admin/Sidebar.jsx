@@ -25,92 +25,92 @@ import { MdReviews } from "react-icons/md";
 const adminSidebarMenuItems = [
   {
     id: 'myaccount',
-    label: (<div className='flex flex-col'>My Account <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Here you can handle your account</small></div>),
+    label: (<div className='flex flex-col'>My Account </div>),
     path: '/admin/myaccount',
-    icons: <FaUser size={20} />
+    icons: <FaUser size={16} />
   },
   {
     id: 'allusers',
-    label: (<div className='flex flex-col'>All Users <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Here you can handle all users</small></div>),
+    label: (<div className='flex flex-col'>All Users </div>),
     path: '/admin/allusers',
-    icons: <FaUsers  size={20} />,
+    icons: <FaUsers  size={18} />,
     role: ["super-admin"]
   },
   {
     id: 'allreviews',
-    label: (<div className='flex flex-col'>All Reviews <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Here you can handle all reviews</small></div>),
+    label: (<div className='flex flex-col'>All Reviews </div>),
     path: '/admin/allreviews',
-    icons: <MdReviews   size={20} />,
+    icons: <MdReviews   size={18} />,
   },
   {
     id: 'addreviews',
-    label: (<div className='flex flex-col'>Add Shop Reviews <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Here you can handle all reviews</small></div>),
+    label: (<div className='flex flex-col'>Add Shop Reviews </div>),
     path: '/admin/addreviews',
-    icons: <RiApps2AddFill    size={20} />,
+    icons: <RiApps2AddFill    size={18} />,
   },
   {
     id: 'information',
-    label: (<div className='flex flex-col'>Information <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Address,phone, opening hours</small></div>),
+    label: (<div className='flex flex-col'>Information </div>),
     path: '/admin/addinformation',
-    icons: <MdLibraryAdd size={20} />
+    icons: <MdLibraryAdd size={18} />
   },
   {
     id: 'imagevideo',
-    label: (<div className='flex flex-col'>Video & Images <small className='text-[10px] flex items-center gap-0.5 text-red-600'><MdLibraryAdd /> Add for home videos and images</small></div>),
+    label: (<div className='flex flex-col'>Video & Images </div>),
     path: '/admin/imagevideo',
-    icons: <FaPhotoVideo size={20} />
+    icons: <FaPhotoVideo size={18} />
   },
   {
     id: 'imagevideoDisplay',
-    label: (<div className='flex flex-col'>Video & Images Display <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here show all videos and images</small></div>),
+    label: (<div className='flex flex-col'>Video & Images Display </div>),
     path: '/admin/imagevideoDisplay',
-    icons: <ImDisplay size={20} />
+    icons: <ImDisplay size={18} />
   },
   {
     id: 'addprice',
-    label: (<div className='flex flex-col'>Add Price <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can add prices</small></div>),
+    label: (<div className='flex flex-col'>Add Price </div>),
     path: '/admin/addprice',
-    icons: <FaMoneyCheckDollar size={20}  />
+    icons: <FaMoneyCheckDollar size={18}  />
   },
   {
     id: 'addgalleri',
-    label: (<div className='flex flex-col'>Add Galleri Image <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can add galleri image</small></div>),
+    label: (<div className='flex flex-col'>Add Galleri Image </div>),
     path: '/admin/galleri',
-    icons: <FcGallery size={20}   />
+    icons: <FcGallery size={18}   />
   },
   {
     id: 'displaygalleri',
-    label: (<div className='flex flex-col'>Display Gallary Image <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can see all galleray image</small></div>),
+    label: (<div className='flex flex-col'>Display Gallary Image </div>),
     path: '/admin/displayGalleri',
-    icons: <MdOutlineImageSearch size={20} />
+    icons: <MdOutlineImageSearch size={18} />
   },
   {
     id: 'addproduct',
-    label: (<div className='flex flex-col'>Add Product <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can add product</small></div>),
+    label: (<div className='flex flex-col'>Add Product </div>),
     path: '/admin/addProduct',
-    icons: <AiFillProduct size={20} />
+    icons: <AiFillProduct size={18} />
   },
   {
     id: 'displayproduct',
-    label: (<div className='flex flex-col'>Display Product <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can see all product</small></div>),
+    label: (<div className='flex flex-col'>Display Product </div>),
     path: '/admin/displayProduct',
-    icons: <CgDisplayFullwidth size={20} />
+    icons: <CgDisplayFullwidth size={18} />
   },
   {
     id: 'addheaderlogo',
-    label: (<div className='flex flex-col'>Header Logo <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can handle header logo</small></div>),
+    label: (<div className='flex flex-col'>Header Logo </div>),
     path: '/admin/addheaderlogo',
-    icons: <MdAddToHomeScreen size={20} />
+    icons: <MdAddToHomeScreen size={18} />
   },
   {
     id: 'addaboutus',
-    label: (<div className='flex flex-col'>Add About Us <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can handle about us</small></div>),
+    label: (<div className='flex flex-col'>Add About Us </div>),
     path: '/admin/addaboutus',
-    icons: <FcAbout size={20} />
+    icons: <FcAbout size={18} />
   },
   {
     id: 'titleforPages',
-    label: (<div className='flex flex-col'>Add Title & Description For Pages <small className='text-[10px] flex items-center gap-0.5 text-red-600'>Here you can handle about us</small></div>),
+    label: (<div className='flex flex-col'>Add Title & Description For Pages </div>),
     path: '/admin/titleforPages',
     icons: <AiFillFileAdd className='text-gray-500'  size={20} />
   }
@@ -152,8 +152,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           adminSidebarMenuItems.filter(item => !item.role || item.role.includes(admin?.role)) .map((menuItem) => {
             const isActive = loacation.pathname === menuItem.path;
             return (
-              <div key={menuItem.id} onClick={() => {navigate(menuItem.path), setIsOpen(false)}} className={`${isActive ? 'bg-slate-100' : ''} flex items-center justify-between py-3 px-5 hover:bg-slate-100 cursor-pointer`}>
-                <div className='flex items-center text-[14px] gap-3 text-gray-900'>
+              <div key={menuItem.id} onClick={() => {navigate(menuItem.path), setIsOpen(false)}} className={`${isActive ? 'bg-slate-100' : ''} flex items-center justify-between py-3.5 px-5 hover:bg-slate-100 cursor-pointer`}>
+                <div className='flex items-center text-[14px] gap-4 text-gray-900'>
                   {menuItem.icons}
                   <span>{menuItem.label}</span> 
                 </div>
