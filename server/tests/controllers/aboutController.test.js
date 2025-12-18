@@ -1,6 +1,6 @@
 import { jest, test, beforeEach, describe, expect } from "@jest/globals";
 import request from "supertest";
-import app from "../../server.js";
+import app from "../../app.js";
 
 // Mock Cloudinary
 jest.unstable_mockModule("cloudinary", () => ({

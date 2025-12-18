@@ -221,7 +221,7 @@ const Reviews = () => {
   }
 
 
-console.log(user);
+
 
   
 

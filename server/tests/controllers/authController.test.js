@@ -18,7 +18,7 @@ let sendEmail;
 
 beforeAll(async () => {
   request = (await import("supertest")).default;
-  app = (await import("../../server.js")).default;
+  app = (await import("../../app.js")).default;
   sendEmail = (await import("../../utlis/sendEmail.js")).default;
 });
 

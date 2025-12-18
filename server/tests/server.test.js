@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../server.js"; // adjust the path if needed
+import app from "../app.js";
 import mongoose from "mongoose";
 
 describe("Server Test with In-Memory MongoDB", () => {

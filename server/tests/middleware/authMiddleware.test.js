@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../../server.js";
+import app from "../../app.js";
 
 describe("AUTH Middleware", () => {
   test("should return 401 if no token is provided", async () => {

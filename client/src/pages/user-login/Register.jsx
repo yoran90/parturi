@@ -44,23 +44,25 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!firstName || !lastName || !gender || !email || !password) {
+    if (!firstName || !lastName || !email || !password) {
       toast.error("All fields are required!");
+      return;
+    }
+
+    if (gender === "none") {
+      toast.error("Please select gender");
       return;
     }
 
     try {
       setLoadingForButton(true);
-      const result = dispatch(userRegister({ firstName, lastName, gender, email, password }));
-
-      if (result.error) {
-        toast.error(result.error.message);
-        return;
-      }
+      await dispatch(userRegister({ firstName, lastName, gender, email, password })).unwrap();
+      
       toast.success("Registration successful! Please check your email to verify your account! without verification you can't login.");
       navigate("/kirjaudu");
+  
     } catch (error) {
-      toast.error(error.message || "Registration failed!");
+      toast.error(error);
     } finally {
       setLoadingForButton(false);
     }
@@ -160,7 +162,7 @@ const Register = () => {
             <button type='submit' className='bg-red-700 text-white py-2 px-4 rounded w-full text-sm cursor-pointer'>
               {
                 loadingForButton ? (
-                  <div className='flex items-center gap-2'>
+                  <div className='flex items-center justify-center gap-2'>
                     <p>{translate.registeruser}</p>
                     <Loading width={20} height={20} border='4px' topBorder='4px' borderColor='white' borderTopColor='red' />
                   </div>
