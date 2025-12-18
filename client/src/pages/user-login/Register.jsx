@@ -41,7 +41,7 @@ const Register = () => {
   }, [isAuthenticated, navigate]);
 
 
-
+  /* register submit */
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!firstName || !lastName || !email || !password) {
