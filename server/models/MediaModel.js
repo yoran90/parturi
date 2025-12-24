@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 
-
 const mediaSchema = new mongoose.Schema({
   type: {
     type: String,
@@ -18,7 +17,6 @@ const mediaSchema = new mongoose.Schema({
   publicId: {
     type: String
   } 
-
 
 }, { timestamps: true});
 

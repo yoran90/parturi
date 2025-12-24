@@ -15,7 +15,6 @@ import userRoutes from './routes/userRoute.js';
 import headetLogoRoutes from './routes/headerLogoRoute.js';
 import aboutRouters from './routes/aboutUsRoute.js';
 import titleForpageRoutes from './routes/titleForPageRoute.js';
-import headerPagesRoutes from './routes/headrePagesRoute.js';
 import reviewsRoutes from './routes/reviewsRoute.js';
 import shopMediaRoutes from './routes/shopRoute.js';
 
@@ -57,7 +56,6 @@ app.use("/api/user", userRoutes);
 app.use("/api/header-logo", headetLogoRoutes);
 app.use("/api/about-us", aboutRouters);
 app.use("/api/titleForPages", titleForpageRoutes);
-app.use("/api/headerPages", headerPagesRoutes);
 app.use("/api/reviwes", reviewsRoutes);
 app.use("/api/shopMedia", shopMediaRoutes);
 

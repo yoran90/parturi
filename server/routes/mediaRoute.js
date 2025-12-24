@@ -1,11 +1,8 @@
 import express from "express";
-import path from "path";
 import { deleteGalleryImage, deleteMediaById, getGalleriImages, getMediaList, uploadGalleriImage, uploadMedia } from "../controllers/mediaController.js";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import cloudinary from "../config/cloudinary.js";
 import multer from "multer";
-
-
 
 
 const router = express.Router();
@@ -17,9 +14,7 @@ const storage = new CloudinaryStorage({
     folder: "paturi",
     resource_type: "auto",
   },
-})
-
-
+});
 
 const upload = multer({ storage: storage });
 

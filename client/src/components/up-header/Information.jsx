@@ -20,7 +20,7 @@ const Information = () => {
           {/* <IoMdClock className='text-white' /> */}
           <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
         </div>
-        <div className='flex items-center gap-5.5'>
+        <div className='flex items-center gap-4'>
           {
             getInformation?.socialMedia?.map((sm, index) => (
               <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>

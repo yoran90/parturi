@@ -75,6 +75,51 @@ describe("shuold get about us successfully", () => {
     expect(res.body).toHaveProperty("_id");
     expect(res.body).toHaveProperty("image");
   });
+});
+
+//! update about us
+
+describe("shuodl update about us Successfully", () => {
+  test("shuold return 404 if about us not found", async () => {
+    const res = await request(app)
+    .put("/api/about-us/aboutUs")
+    .field("imageTitles", JSON.stringify([]));
+
+    expect(res.statusCode).toBe(404);
+    expect(res.body.message).toBe("About us not found");
+  });
+
+  test("shuold update about us withput image", async () => {
+    await request(app)
+      .post("/api/about-us/aboutUs")
+      .field("imageTitles", JSON.stringify([]))
+      .field("sections", JSON.stringify([]))
+      .attach("image", Buffer.from("fake-image"), "test.jpg");
+
+    const res = await request(app)
+    .put("/api/about-us/aboutUs")
+    .field("imageTitles", JSON.stringify([]));
+
+    expect(res.statusCode).toBe(200);
+    expect(res.body.message).toBe("About us updated successfully");
+  });
+
+
+  test("shuold update about us with new image", async () => {
+    await request(app)
+      .post("/api/about-us/aboutUs")
+      .field("imageTitles", JSON.stringify([]))
+      .field("sections", JSON.stringify([]))
+      .attach("image", Buffer.from("fake-image"), "test.jpg");
+
+    const res = await request(app)
+    .put("/api/about-us/aboutUs")
+    .field("imageTitles", JSON.stringify([]))
+    .attach("image", Buffer.from("fake-image"), "test.jpg");
+
+    expect(res.statusCode).toBe(200);
+    expect(res.body.message).toBe("About us updated successfully");
+  });
 
 });
 
