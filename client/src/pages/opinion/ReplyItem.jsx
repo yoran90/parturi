@@ -129,7 +129,7 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
                       </>
                     ) : (
                       <>
-                        <IoMdImage size={14} className="text-slate-600 cursor-pointer" />
+                        <IoMdImage size={14} className="cursor-pointer" />
                       </>
                     )
                   }

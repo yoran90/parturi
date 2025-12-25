@@ -65,8 +65,8 @@ const Tuote = () => {
       <HolyDay /> 
       <Header />
       <div className='flex flex-col items-center gap-2 text-center mt-6'>
-        <h3 className='text-md font-semibold text-slate-600'>{getTitleForPage?.titleForPage?.productTitle}</h3>
-        <div className='text-slate-600 text-sm mt-2 w-[98%]' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.productDescription}} />
+        <h3 className='text-md font-semibold '>{getTitleForPage?.titleForPage?.productTitle}</h3>
+        <div className='text-sm mt-2 w-[98%]' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.productDescription}} />
       </div>
       <div>
         {

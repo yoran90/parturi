@@ -296,8 +296,8 @@ const Reviews = () => {
                     )
                   }
                   <div className='flex flex-col'>
-                    <p className='text-slate-600 text-sm'>{item?.firstName} {item?.lastName}</p>
-                    <small className="text-xs text-slate-500">
+                    <p className=' text-sm'>{item?.firstName} {item?.lastName}</p>
+                    <small className="text-xs">
                       {new Date(item?.updatedAt).toLocaleDateString("fi-FI", {
                         month: "short",
                         day: "numeric",
@@ -324,12 +324,12 @@ const Reviews = () => {
                       })
                     }
                   </div>
-                  <span className='text-slate-600'>{item?.rating} / 5</span>
+                  <span>{item?.rating} / 5</span>
                 </div>
                 
               </div>
               <div className='relative gap-2 text-justify'>
-                <div className={`text-[13px] text-slate-700 mt-4`}>
+                <div className={`text-[13px] mt-4`}>
                  <ReviewText text={item?.reviewText} />          
                 </div>
               </div>
@@ -360,23 +360,23 @@ const Reviews = () => {
                     ) ? (
                       <GoHeartFill className="text-red-600" />
                     ) : (
-                      <GoHeart className="text-slate-500" />
+                      <GoHeart />
                     )
                   }
                   </button>
-                  <button type='button' onClick={() => handleToggleLike(item._id)} className='text-xs text-slate-600 cursor-pointer' title='Katso kuka tykkäsi'>
-                    {item?.likes?.count} Likes
+                  <button type='button' onClick={() => handleToggleLike(item._id)} className='text-xs cursor-pointer' title='Katso kuka tykkäsi'>
+                    {item?.likes?.count} Tykätty
                   </button>
                   {/* show who liked */}
                     {
                       showLiked === item._id && (
                         <div className='fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center z-50 bg-black/70'>
-                          <div className='bg-white relative flex flex-col shadow md:w-full w-[93%]  max-w-xl md:px-6 px-3 md:py-8 py-6 rounded'>
+                          <div className='bg-white dark:bg-black dark:text-white text-black dark:border relative flex flex-col shadow md:w-full w-[93%]  max-w-xl md:px-6 px-3 md:py-8 py-6 rounded'>
                             
                               <>
                               {
                                 item?.likes?.likedBy?.length === 0 ? (
-                                  <div className='text-center text-slate-500 text-sm'>
+                                  <div className='text-center text-sm'>
                                     <button className='top-3 right-3 absolute text-xs cursor-pointer' onClick={() => setShowLiked(false)}>❌</button>
                                     <h1 className='text-red-600'>Kukaan ei ole vielä tykännyt tästä arvostelusta</h1>
                                   </div>
@@ -406,7 +406,7 @@ const Reviews = () => {
                                         }
                                         <div className='flex flex-col'>
                                           <h3 className='text-sm'>{like?.firstName} {like?.lastName}</h3>
-                                          <small className='text-xs text-slate-500'>{new Date(like?.likedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</small>
+                                          <small className='text-xs'>{new Date(like?.likedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</small>
                                         </div>
                                       </div>
                                       <div>
@@ -425,8 +425,8 @@ const Reviews = () => {
                 <div onClick={() => {
                   handleToggleComment(item._id);
                 }} className='flex gap-1 cursor-pointer'>
-                  <FaRegCommentDots className='text-slate-500' />
-                  <span className='text-xs text-slate-600'>{item?.comments?.length} Comments</span>
+                  <FaRegCommentDots />
+                  <span className='text-xs'>{item?.comments?.length} Kommentit</span>
                 </div>
               </div>
               <hr className='text-slate-300 mb-3 mt-3' />
@@ -437,7 +437,7 @@ const Reviews = () => {
                   <>
                   {
                       item?.comments?.length > 0 ? (
-                        <div className='flex flex-col gap-3 mt-2 bg-slate-50 p-2 rounded'>
+                        <div className='flex flex-col gap-3 mt-2 bg-slate-50 dark:bg-slate-800 dark:text-white text-black p-2 rounded'>
                           {
                             item?.comments?.map((comment) => (
                               <div key={comment._id} className='border-b last:border-b-0 border-slate-300 pt-2 pb-2'>
@@ -454,8 +454,8 @@ const Reviews = () => {
                                     )
                                   }
                                   <div className='flex flex-col gap-0'>
-                                    <p className='text-xs text-slate-700'>{comment?.firstName} {comment?.lastName}</p>
-                                    <small className='text-[11px] text-slate-400'>{new Date(comment?.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</small>
+                                    <p className='text-xs'>{comment?.firstName} {comment?.lastName}</p>
+                                    <small className='text-[11px]'>{new Date(comment?.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</small>
                                   </div>
                                 </Link>
                                 <p className='text-[13px] ml-10 mt-2'>{typeof comment?.comment === 'string' ? comment.comment : comment?.comment?.comment || ''}</p>
@@ -542,7 +542,7 @@ const Reviews = () => {
                                                         <Loading width={16} height={16} border='3px' topBorder='3px' borderColor='red' borderTopColor='white' />
                                                       </div>
                                                     ) : (
-                                                      <IoMdImage size={15} className='text-slate-500 cursor-pointer' />
+                                                      <IoMdImage size={15} className=' cursor-pointer' />
                                                     )
                                                   }
                                                   <input type="file" id={`imageReply-${item._id}-${comment._id}`} onChange={(e) => setImageReply({ ...imageReply, [`${item._id}-${comment._id}`]: e.target.files[0], })} className='hidden' />
@@ -615,7 +615,7 @@ const Reviews = () => {
                                 <Loading width={16} height={16} border='3px' topBorder='3px' borderColor='red' borderTopColor='white' />
                               </div>
                             ) : (
-                              <IoMdImage size={15} className='text-slate-500 cursor-pointer' />
+                              <IoMdImage size={15} className=' cursor-pointer' />
                             )
                           }
                           <input type="file" id={`imageComment-${item._id}`} onChange={(e) => setImageComment({ ...imageComment, [item._id]: e.target.files[0] })} className='hidden' />
@@ -627,7 +627,7 @@ const Reviews = () => {
                     </div>
                   ) : (
                     <div onClick={() => {navigate('/kirjaudu'); toast.error('Jos hattaa kommentoida, kirjaudu sisään täältä. tai rekisteröidy')}} className='w-full flex justify-between rounded-full text-[12px] px-3 py-1 border border-slate-300'>
-                      <p className='text-slate-500'>Kirjaudu sisään kommentoidaksesi ...</p>
+                      <p>Kirjaudu sisään kommentoidaksesi ...</p>
                       <label className='pl-4'>
                         {
                           loadinComment ? (
@@ -635,7 +635,7 @@ const Reviews = () => {
                               <Loading width={16} height={16} border='3px' topBorder='3px' borderColor='red' borderTopColor='white' />
                             </div>
                           ) : (
-                            <IoMdImage size={15} className='text-slate-500 cursor-pointer' />
+                            <IoMdImage size={15} className='cursor-pointer' />
                           )
                         }
                       </label>

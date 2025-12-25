@@ -38,13 +38,13 @@ const Meistä = () => {
           {
             getAboutUs && getAboutUs?.sections?.map((section, index) => (
               <div key={index}>
-                <h3 className='text-xl w-full text-gray-500 mb-4 font-semibold'>{section.title}</h3>
-                <div className='text-slate-600 md:w-full md:px-4 px-2 m-auto' dangerouslySetInnerHTML={{__html: section?.description}} />
+                <h3 className='text-xl w-full mb-4 font-semibold'>{section.title}</h3>
+                <div className=' md:w-full md:px-4 px-2 m-auto' dangerouslySetInnerHTML={{__html: section?.description}} />
               </div>
             ))
           }
           <div className='flex flex-col gap-4'>
-            <h3 className='text-xl font-semibold text-slate-500'>Työmme ⬇️</h3>
+            <h3 className='text-xl font-semibold'>Työmme ⬇️</h3>
             <GallaryLimit />
             <Link to={'/galleria'} className='text-blue-500 flex items-center justify-center gap-1 hover:text-blue-700'>
               Kasto Galleria

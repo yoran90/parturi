@@ -88,7 +88,7 @@ const TuoateSivu = () => {
           }
         </div>
         <div className='md:w-[50%] md:mt-0 mt-8'>
-          <h1 className='font-semibold text-sm text-slate-600'>{product?.title}</h1>
+          <h1 className='font-semibold text-sm'>{product?.title}</h1>
           <div className='flex items-center justify-between mb-8 mt-4'>
             {
               product?.discount > 0 ? (
@@ -113,7 +113,7 @@ const TuoateSivu = () => {
       </div>
       {/* Tutustu myös */}
       <div className='flex flex-col items-center mt-12 mb-12'>
-        <h3 className='text-xl text-slate-500 font-semibold mb-8'>Tutustu myös </h3>
+        <h3 className='text-xl font-semibold mb-8'>Tutustu myös </h3>
         <ProductLimit />
       </div>
       <Map />

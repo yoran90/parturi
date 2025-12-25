@@ -142,8 +142,8 @@ const Yhteystiedot = () => {
       <div className='flex flex-col items-center text-center gap-2.5 mt-6'>
         
         <div className='flex flex-col gap-1 mb-4'>
-          <h1 className='text-xl font-semibold text-slate-500 mb-2'>{getTitleForPage?.titleForPage?.connectionTitle}</h1>
-          <div className='text-sm text-slate-500 md:w-[92%] w-[98%]' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.connectionDescription}} />
+          <h1 className='text-xl font-semibold  mb-2'>{getTitleForPage?.titleForPage?.connectionTitle}</h1>
+          <div className='text-sm md:w-[92%] w-[98%]' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.connectionDescription}} />
         </div>
 
         <div className='flex items-center gap-5.5'>
@@ -162,19 +162,19 @@ const Yhteystiedot = () => {
           </div>
         <div className='md:flex items-center justify-between gap-16 mt-8'>
           <div className='flex flex-col items-center justify-center md:mb-0 mb-8'>
-            <FaMapMarkerAlt size={25} className='text-slate-600' />
-            <h3 className='text-sm font-semibold text-slate-500 mt-2 mb-4'>OSOITE</h3>
-            <p className='text-slate-500 text-sm'>{getInformation?.address}</p>
+            <FaMapMarkerAlt size={25}  />
+            <h3 className='text-sm font-semibold  mt-2 mb-4'>OSOITE</h3>
+            <p className=' text-sm'>{getInformation?.address}</p>
           </div>
           <div className='flex flex-col items-center justify-center md:mb-0 mb-8'>
-            <FaPhone size={25} className='text-slate-600' />
-            <h3 className='text-sm font-semibold text-slate-500 mt-2 mb-4'>PUHELIN</h3>
-            <a className='text-slate-500 text-sm' href={`tel:${getInformation?.phone}`}>{getInformation?.phone}</a>
+            <FaPhone size={25}  />
+            <h3 className='text-sm font-semibold  mt-2 mb-4'>PUHELIN</h3>
+            <a className=' text-sm' href={`tel:${getInformation?.phone}`}>{getInformation?.phone}</a>
           </div>
           <div className='flex flex-col items-center justify-center'>
-            <MdAttachEmail size={25} className='text-slate-600' />
-            <h3 className='text-sm font-semibold text-slate-500 mt-2 mb-4'>SAHKOPOSTI</h3>
-            <a className='text-slate-500 text-sm' href='mailto:Ow6Xl@example.com'>{getInformation?.email}</a>
+            <MdAttachEmail size={25}  />
+            <h3 className='text-sm font-semibold  mt-2 mb-4'>SAHKOPOSTI</h3>
+            <a className='text-sm' href='mailto:Ow6Xl@example.com'>{getInformation?.email}</a>
           </div>
           
         </div>
@@ -185,7 +185,7 @@ const Yhteystiedot = () => {
         <div className='md:w-[50%]'>
           <h3>Ota yhteyttä meihin</h3>
           <p>Saatavilla 24 tuntia vuorokaudessa!</p>
-          <form onSubmit={handleSubmit} className='mt-6 flex flex-col gap-4 bg-white shadow border border-slate-100 rounded py-10 px-6'>
+          <form onSubmit={handleSubmit} className='mt-6 flex flex-col gap-4 bg-white dark:bg-black dark:text-white text-black shadow border border-slate-100 rounded py-10 px-6'>
             
             <div className='text-sm flex flex-col gap-1'>
               <label htmlFor="">👤 Nimi <span className='text-red-600 font-semibold'>*</span></label>

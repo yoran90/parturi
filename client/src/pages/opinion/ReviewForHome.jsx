@@ -21,7 +21,7 @@ const ReviewForHome = () => {
       <div className='flex flex-col w-[98%] items-center justify-center m-auto mb-12'>
         <div className='grid md:grid-cols-3 lg:grid-cols-3 grid-cols-1 gap-1.5 m-auto'>
           {getReviews.map((review) => (
-            <div key={review._id} className='flex flex-col items-center h-60  bg-white shadow border border-slate-100 p-4 rounded-2xl'>
+            <div key={review._id} className='flex flex-col items-center h-60  bg-white dark:bg-black dark:text-white text-black shadow border border-slate-100 p-4 rounded-2xl'>
               <div className='flex items-center gap-2.5 mb-6'>
                 <div>
                   {
@@ -37,8 +37,8 @@ const ReviewForHome = () => {
                   }
                 </div>
                 <div className='flex flex-col'>
-                  <h3 className='text-sm font-semibold text-slate-500'>{review.firstName} {review.lastName}</h3>
-                  <small className='text-[11px] text-slate-400'>{new Date(review?.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</small>
+                  <h3 className='text-sm font-semibold '>{review.firstName} {review.lastName}</h3>
+                  <small className='text-[11px] '>{new Date(review?.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</small>
                 </div>
               </div>
               <div className='text-sm flex flex-col items-center mb-4'>
@@ -59,10 +59,10 @@ const ReviewForHome = () => {
                   }
                 
                 </div>
-                <span className='text-slate-600'>{review?.rating} / 5</span>
+                <span>{review?.rating} / 5</span>
               </div>
               <div>
-                <p className='text-sm text-slate-600 line-clamp-4 px-2'>{review.reviewText}</p>
+                <p className='text-sm line-clamp-4 w-full'>{review.reviewText}</p>
               </div>
             </div>
           ))}

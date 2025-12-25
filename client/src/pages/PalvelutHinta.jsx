@@ -76,13 +76,13 @@ const PalvelutHinta = () => {
       <Header />
       <div className='flex flex-col gap-5.5 mb-12'>
         <div className='flex flex-col items-center text-center gap-2.5 mt-6'>
-          <h1 className='text-lg text-slate-500 font-semibold'>{getTitleForPage?.titleForPage?.serviceTitle}</h1>
-          <div className='text-sm w-[98%] m-auto text-slate-600' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.serviceDescription}} />
+          <h1 className='text-lg  font-semibold'>{getTitleForPage?.titleForPage?.serviceTitle}</h1>
+          <div className='text-sm w-[98%] m-auto ' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.serviceDescription}} />
         </div>
 
         <div className='flex md:flex-row w-full m-auto flex-col md:px-0 px-2 mt-6 gap-2 justify-center items-center'>
           {/* Render Prices */}
-          <div className="flex flex-col items-start gap-5.5 justify-between md:w-[50%] md:px-4 text-slate-700">
+          <div className="flex flex-col items-start gap-5.5 justify-between md:w-[50%] md:px-4">
             {prices.map((price, index) => (
               <div key={index} className="flex flex-col gap-3 w-full">
                 <h3 className="text-lg font-semibold border-b border-slate-300 pb-1">

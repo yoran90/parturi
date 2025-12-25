@@ -15,8 +15,8 @@ const Information = () => {
 
   return (
     <>
-      <div className='bg-black hidden md:flex items-center justify-between text-white/90 py-2 px-4'>
-        <div className='text-xs flex items-center gap-1 text-white'>
+      <div className='bg-white dark:bg-black dark:text-white hidden md:flex items-center justify-between text-black py-2 px-4'>
+        <div className='text-xs flex items-center gap-1'>
           {/* <IoMdClock className='text-white' /> */}
           <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
         </div>
@@ -49,13 +49,13 @@ const Information = () => {
 
           <div className='flex items-center gap-2'>
             <MdPhoneInTalk className='text-red-600' />
-            <a href={`tel:${getInformation?.phone}`} className='text-white'>{getInformation?.phone}</a>
+            <a href={`tel:${getInformation?.phone}`}>{getInformation?.phone}</a>
           </div>
         </div>
       </div>
       {/* for mobile screen */}
-      <div className='bg-black flex flex-col gap-2 md:hidden items-center text-white/90 py-3'>
-        <div className='text-xs flex items-center gap-1 text-red-500'>
+      <div className='bg-white flex flex-col gap-2 md:hidden items-center text-black py-3'>
+        <div className='text-xs flex items-center gap-1 text-black'>
           {/* <IoMdClock className='text-white' /> */}
           <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
         </div>
@@ -90,7 +90,7 @@ const Information = () => {
           </div>
           <div className='flex items-center gap-2'>
             <MdPhoneInTalk className='text-red-600' />
-            <a href={`tel:${getInformation?.phone}`} className='text-white'>{getInformation?.phone}</a>
+            <a href={`tel:${getInformation?.phone}`}>{getInformation?.phone}</a>
           </div>
         </div>
       </div>

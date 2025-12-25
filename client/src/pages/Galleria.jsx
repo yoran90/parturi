@@ -47,8 +47,8 @@ const Galleria = () => {
       <HolyDay />
       <Header />
       <div className='flex flex-col gap-3.5 items-center justify-center mt-6'>
-        <h3 className='text-lg text-slate-600'> {getTitleForPage?.titleForPage?.galleriTitle}</h3>
-        <div className='text-slate-600 text-sm md:w-[98%] text-center' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.galleriDescription}} />
+        <h3 className='text-lg '> {getTitleForPage?.titleForPage?.galleriTitle}</h3>
+        <div className='text-sm md:w-[98%] text-center' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.galleriDescription}} />
       </div>
       {
         galleryImages.length === 0 && (

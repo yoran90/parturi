@@ -62,8 +62,8 @@ const OpinionUser = () => {
            getShope ? (
               <>
                 <div className='flex flex-col pl-2 mb-4'>
-                  <h3 className='text-md font-semibold text-gray-500 mb-4'>{getShope?.title}</h3>
-                  <p className='text-sm text-slate-800 text-justify'>{getShope?.description}</p>
+                  <h3 className='text-md font-semibold  mb-4'>{getShope?.title}</h3>
+                  <p className='text-sm text-justify'>{getShope?.description}</p>
                 </div>
                 <div className='flex flex-col w-full gap-1.5'>
                   <div className='flex gap-1 cursor-pointer mt-4 pb-3 overflow-x-scroll scrollbarStylex flex-nowrap w-full'>
@@ -122,15 +122,15 @@ const OpinionUser = () => {
           {/* information */}
           <div className='mt-4 flex flex-col gap-1'>
             <div className='flex items-center gap-2.5'>
-              <h3 className='text-sm font-semibold text-slate-700'>Katu osoite:</h3>
+              <h3 className='text-sm font-semibold'>Katu osoite:</h3>
               <h3 className='text-sm'>{getInformation?.address}</h3>
             </div>
             <div className='flex items-center gap-2.5'>
-              <h3 className='text-slate-700 font-semibold text-sm'>Puhelinnumero:</h3>
+              <h3 className=' font-semibold text-sm'>Puhelinnumero:</h3>
               <h3 className='text-sm'>{getInformation?.phone}</h3>
             </div>
             <div className='flex mt-4 gap-2.5'>
-              <h3 className='text-slate-700 font-semibold text-sm'>Avoina:</h3>
+              <h3 className=' font-semibold text-sm'>Avoina:</h3>
               {
                 hasVisibleText(getInformation?.holyday) ? (
                   <div>
@@ -149,7 +149,7 @@ const OpinionUser = () => {
         {/* left side form */}
         <div className='w-full'>
           <div>
-            <h3 className='text-lg font-semibold text-gray-500 mb-4'>Arvostelut</h3>
+            <h3 className='text-lg font-semibold mb-4'>Arvostelut</h3>
           </div>
           {/* <p className='text-sm text-slate-800'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, qui? Iusto sint saepe harum neque quos optio, voluptas quas voluptates unde commodi cum nam laboriosam expedita provident quasi nulla natus.
@@ -164,17 +164,17 @@ const OpinionUser = () => {
               setActiveTab("form")
               setOpenOpinionForm(true)
             }} 
-            className={`${activeTab === "form" ? "bg-black text-white"  : "" } text-sm py-2 font-semibold  cursor-pointer w-full text-slate-600`}>Kirjoita arvostelu</button>
+            className={`${activeTab === "form" ? "bg-black text-white"  : "" } text-sm py-2 font-semibold  cursor-pointer w-full`}>Kirjoita arvostelu</button>
             <button onClick={() => {
               setActiveTab("reviews")
               setOpenOpinionForm(false)
-            }} className={`${activeTab === "reviews" ? "bg-red-800 text-white"  : "" } text-sm py-2 w-full font-semibold cursor-pointer text-slate-600`}>Arvostelut</button>
+            }} className={`${activeTab === "reviews" ? "bg-red-800 text-white"  : "" } text-sm py-2 w-full font-semibold cursor-pointer`}>Arvostelut</button>
           </div>
           {
             activeTab === "reviews" ? (
               <div className='mt-4'>
                 <div className='mb-4'>
-                  <p className='text-slate-700 text-sm'>Arvostelut tästä paikasta</p>
+                  <p className='text-sm'>Arvostelut tästä paikasta</p>
                 </div>
                 <div className='w-full md:h-[1150px] md:overflow-y-scroll pr-3 scrollbarStyle'>
                   <Reviews />

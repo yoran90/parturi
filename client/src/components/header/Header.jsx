@@ -23,6 +23,15 @@ import { toast } from 'react-toastify';
 const Header = () => {
 
 
+  const toggleDarkMode = () => {
+  const isDark = document.documentElement.classList.toggle("dark");
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+  console.log(isDark);
+  
+};
+const isDark = document.documentElement.classList.contains("dark");
+
+
   const { isAuthenticated, user, loading } = useSelector((state) => state.userAuth);
   const [openUserMenu, setOpenUserMenu] = useState(false);
 
@@ -88,32 +97,32 @@ const Header = () => {
 
   return (
     <>
-      <div ref={menuRef} className='md:flex sticky top-0 p-2 hidden items-center justify-between bg-black border-t-2 border-b-2  border-slate-800 z-50'>
+      <div ref={menuRef} className='md:flex sticky top-0 p-2 hidden items-center justify-between bg-white dark:bg-black dark:text-white text-black border-t-2 border-b-2  border-slate-800 z-50'>
         <div className='bg-black'> 
           {headerLogo && headerLogo.url && (
             <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
           )}
         </div>
         <div className='flex justify-end px-4.5'>
-          <NavLink to={`/`} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={`/`} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Etusivu
           </NavLink>
-          <NavLink to={'/meistä'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={'/meistä'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Meistä
           </NavLink>
-          <NavLink to={'/palvelut'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={'/palvelut'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Palvelut
           </NavLink>
-          <NavLink to={'/galleria'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={'/galleria'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
            Galleria
           </NavLink>
-          <NavLink to={'/tuotet'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={'/tuotet'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Tuote
           </NavLink>
-          <NavLink to={'/opinion'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={'/opinion'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Mielipide
           </NavLink>
-          <NavLink to={'/yhteystiedot'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={'/yhteystiedot'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Yhteystiedot
           </NavLink>
           {
@@ -171,7 +180,7 @@ const Header = () => {
                 <Link to={'/kirjaudu'}>
                   <button  className='text-black bg-white/90 hover:bg-white flex items-center gap-1 border border-slate-300 justify-center cursor-pointer text-xs px-3 py-[5px] rounded-full'>
                     {/* <FaUser /> */}
-                    kirjautu
+                    Kirjaudu
                   </button>
                 </Link>
                 <Link to={'/register'}>
@@ -184,6 +193,11 @@ const Header = () => {
               </>
             )
           }
+          <div className='flex items-center justify-center ml-4 -mr-4' style={{zoom: '0.8'}}>
+            <button onClick={toggleDarkMode} className='border w-10 h-5.5 rounded-full border-slate-500 cursor-pointer dark:border-slate-200 mb-1'>
+              <div className={`bg-black dark:bg-slate-200 w-4 h-4 rounded-full ml-0.5 mr-0.5 transition-transform duration-300  ${isDark ? 'translate-x-4.5' : 'translate-x-0'}`}></div>
+            </button>
+          </div>
         </div>
       </div>
       {/* for mobile screen */}
@@ -249,7 +263,7 @@ const Header = () => {
                   <Link to={'/kirjaudu'}>
                     <button  className='text-blue-400 flex items-center gap-1 -mr-1 justify-center cursor-pointer text-sm p-2 hover:text-blue-300'>
                       {/* <FaUser /> */}
-                      kirjautu
+                      Kirjaudu
                     </button>
                   </Link>
                   <Link to={'/register'}>

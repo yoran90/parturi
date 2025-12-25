@@ -59,19 +59,19 @@ const Etusivut = () => {
       <Header />
       <Main />
       <div>
-        <div className='bg-white shadow border border-slate-100 md:mt-6 w-[98%] md:py-0 py-8 mx-auto md:rounded-xl -mt-20'>
+        <div className='bg-white dark:bg-black dark:text-white shadow border border-slate-100 md:mt-6 w-[98%] md:py-0 py-8 mx-auto md:rounded-xl -mt-20'>
           <div className='md:flex items-center md:justify-between md:px-16 pt-4'>
             <div className='min-h-[100px]'>
               <a className='flex md:mb-0 mb-6 gap-1 flex-col items-center justify-center' href={getInformation?.addressUrl} target="_blank" rel="noopener noreferrer">
-                <FaMapMarkerAlt size={20} className='text-slate-600' />
-                <h3 className='text-sm font-bold text-slate-600 mt-2 border-b mb-2'>OSOITE</h3>
+                <FaMapMarkerAlt size={20} />
+                <h3 className='text-sm font-bold mt-2 border-b mb-2'>OSOITE</h3>
                 {getInformation?.address ? (
                     <div>
-                      <p className='text-xs font-semibold text-slate-500'>{getInformation?.address}</p>
+                      <p className='text-xs font-semibold'>{getInformation?.address}</p>
                     </div>
                   ) : (
                     <div>
-                      <p className='text-xs font-semibold text-slate-500'>Ei vielä osoitetta</p>
+                      <p className='text-xs font-semibold'>Ei vielä osoitetta</p>
                     </div>
                   )
 
@@ -80,7 +80,7 @@ const Etusivut = () => {
             </div>
             <div className='min-h-[100px] md:mb-0 mb-3'> 
               <div className='flex flex-col items-center justify-center md:border-b  mb-3 gap-2'>
-                <FaShareAlt size={20} className='text-slate-600' />
+                <FaShareAlt size={20} />
                 <h3>Seuraa Meitä</h3>
               </div>
               <div className='flex items-center justify-center gap-3.5'>
@@ -101,7 +101,7 @@ const Etusivut = () => {
                     </div>
                   ) : (
                     <div>
-                      <p className='text-xs font-semibold text-slate-500'>Ei vielä sosiaalialueita</p>
+                      <p className='text-xs font-semibold'>Ei vielä sosiaalialueita</p>
                     </div>
 
                   )
@@ -110,11 +110,11 @@ const Etusivut = () => {
               </div>
             </div>
             <div className="flex flex-col items-center justify-start min-h-[100px]">
-              <MdPhoneInTalk size={24} className='text-slate-600' />
-              <h3 className="text-sm font-bold text-slate-600 mt-2 border-b mb-3">PUHELIN</h3>
+              <MdPhoneInTalk size={24} />
+              <h3 className="text-sm font-bold mt-2 border-b mb-3">PUHELIN</h3>
               {getInformation?.phone ? (
                   <div>
-                    <a href={`tel:${getInformation?.phone}`} className="text-xs font-semibold text-slate-500">
+                    <a href={`tel:${getInformation?.phone}`} className="text-xs font-semibold">
                       {getInformation?.phone}
                     </a>
                   </div>
@@ -128,15 +128,15 @@ const Etusivut = () => {
             </div>
           </div>
         </div>
-        <div className='md:flex gap-2.5 w-[98%] h-auto m-auto mt-12 bg-white shadow border border-slate-100 md:rounded-2xl mb-12'>
+        <div className='md:flex gap-2.5 w-[98%] h-auto m-auto mt-12 bg-white dark:bg-black dark:text-white shadow border overflow-hidden border-slate-100 md:rounded-2xl mb-12'>
         {/* text side */}
           <div className='flex flex-col items-center'>
-            <h3 className='text-sm font-semibold text-slate-600 mb-12 mt-6'>TERVETULOA</h3>
+            <h3 className='text-sm font-semibold  mb-12 mt-6'>TERVETULOA</h3>
             <div className='px-4 py-4 w-full'>
-              <p className='text-sm text-slate-500 mb-4 font-semibold'>
+              <p className='text-sm mb-4 font-semibold'>
                 Tervetuloa Parturiin – paikkaan, jossa hiukset saavat ansaitsemansa huomion ja asiakkaat palvellaan sydämellä. Meiltä saat yksilöllistä palvelua, ammattitaitoa ja rennon tunnelman – juuri sellaisen parturikokemuksen kuin sinulle sopii.
                 </p>
-              <p className='text-slate-600 text-sm'>
+              <p className='text-sm'>
                 Olitpa tulossa pieneen siistimiseen tai isompaan tyylimuutokseen, autamme löytämään juuri sinulle sopivan ilmeen. Käytämme laadukkaita tuotteita ja pidämme huolta, että jokainen käynti on mukava hetki arjen keskellä. Astut sisään, rentoudut – ja lähdet pois raikkaana, hyvällä mielellä ja tyylikkäänä.
               </p>
             </div>
@@ -150,8 +150,8 @@ const Etusivut = () => {
       {/* parturipalvelut */}
       <div className='mt-8 mb-12' >
         <div>
-          <h3 className='text-slate-500 font-semibold text-center mb-4'>Parturipalvelut</h3>
-          <p className='text-sm text-slate-600 text-center font-semibold mb-4'>Parturiin saavat ansaitsemansa huomion ja asiakkaat palvellaan sydaremellä.</p>
+          <h3 className=' font-semibold text-center mb-4'>Parturipalvelut</h3>
+          <p className='text-sm  text-center font-semibold mb-4'>Parturiin saavat ansaitsemansa huomion ja asiakkaat palvellaan sydaremellä.</p>
           <div className='md:flex gap-2.5 w-[98%] m-auto' style={{zoom: '0.8'}}>
             <div className='md:w-[50%]'>
               <img className='rounded-2xl' src="https://assets.nicepagecdn.com/d2cc3eaa/6401142/images/handsome-man-cutting-beard-barber-4.jpg" alt="" />
@@ -179,43 +179,43 @@ const Etusivut = () => {
       </div>
       {/* why choose us */}
       <div className='flex flex-col w-[98%] items-center justify-center m-auto mb-12'>
-        <h3 className='text-lg font-semibold mb-4 text-slate-600'>💈Miksi Valita Meidät</h3>
-        <p className='text-sm text-slate-600 text-center mb-6 md:w-[95%]'>Luon Parturissa yhdistyvät ammattitaito, intohimo ja aito välittäminen.
+        <h3 className='text-lg font-semibold mb-4'>💈Miksi Valita Meidät</h3>
+        <p className='text-sm  text-center mb-6 md:w-[95%]'>Luon Parturissa yhdistyvät ammattitaito, intohimo ja aito välittäminen.
           Olemme licensed ja kokeneita alan ammattilaisia, jotka seuraavat trendejä ja kehittävät osaamistaan jatkuvasti.
           Asiakkaamme luottavat meihin, koska jokainen leikkaus, parran muotoilu ja viimeistely tehdään huolella ja yksilöllisesti.
           Kun istut tuoliimme, voit rentoutua – olet hyvissä ja luotettavissa käsissä.
         </p>
         <div className='flex flex-col md:flex-row gap-1.5 m-auto'>
-          <div className='flex flex-col items-center justify-center bg-white shadow border border-slate-100 p-8 rounded-2xl'>
+          <div className='flex flex-col items-center justify-center bg-white dark:bg-black dark:text-white text-black shadow border border-slate-100 p-8 rounded-2xl'>
             <div className='flex flex-col gap-1.5 text-center items-center justify-center mb-6'>
               <MdLocalPolice size={30} className='text-orange-500 h-12' />
-              <h3 className='text-md font-semibold text-slate-600'>Ammattilainen</h3>
+              <h3 className='text-md font-semibold '>Ammattilainen</h3>
             </div>
-            <p className='text-sm text-slate-600 text-center items-center'>Olemme pätevöityneitä ammattilaisia, joilla on alan koulutus ja virallinen osaaminen. Meille hiustenhoito ei ole vain työtä – se on ammatti, jota teemme ylpeydellä ja tarkkuudella.</p>
+            <p className='text-sm  text-center items-center'>Olemme pätevöityneitä ammattilaisia, joilla on alan koulutus ja virallinen osaaminen. Meille hiustenhoito ei ole vain työtä – se on ammatti, jota teemme ylpeydellä ja tarkkuudella.</p>
           </div>
 
-          <div className='flex flex-col items-center justify-center bg-white shadow border border-slate-100 p-8 rounded-2xl'>
+          <div className='flex flex-col items-center justify-center bg-white dark:bg-black dark:text-white text-black shadow border border-slate-100 p-8 rounded-2xl'>
             <div className='flex flex-col gap-1.5 text-center items-center justify-center mb-6'>
               <GiBeard size={32} className='h-12' />
-              <h3 className='text-md font-semibold text-slate-600'>Mestari / huippuosaaja</h3>
+              <h3 className='text-md font-semibold '>Mestari / huippuosaaja</h3>
             </div>
-            <p className='text-sm text-slate-600 text-center items-center'>Työmme perustuu mestarin varmuuteen ja tarkkaan silmään. Vuodet kokemusta ja jatkuva kouluttautuminen takaavat, että jokainen leikkaus ja tyyli tehdään huippuosaamisella.</p>
+            <p className='text-sm  text-center items-center'>Työmme perustuu mestarin varmuuteen ja tarkkaan silmään. Vuodet kokemusta ja jatkuva kouluttautuminen takaavat, että jokainen leikkaus ja tyyli tehdään huippuosaamisella.</p>
           </div>
 
-          <div className='flex flex-col items-center justify-center bg-white shadow border border-slate-100 p-8 rounded-2xl'>
+          <div className='flex flex-col items-center justify-center bg-white dark:bg-black dark:text-white text-black shadow border border-slate-100 p-8 rounded-2xl'>
             <div className='flex flex-col gap-1.5 text-center items-center justify-center mb-6'>
               <VscWorkspaceTrusted size={26} className='text-green-700 h-12' />
-              <h3 className='text-md font-semibold text-slate-600'>Luotettu / asiakkaiden suosima</h3>
+              <h3 className='text-md font-semibold '>Luotettu / asiakkaiden suosima</h3>
             </div>
-            <p className='text-sm text-slate-600 text-center items-center'>Asiakkaamme palaavat luoksemme kerta toisensa jälkeen, sillä olemme luotettu valinta hiustenleikkauksessa ja tyylinmuutoksissa. Luottamus ansaitaan – me teemme sen joka käynnillä.</p>
+            <p className='text-sm text-center items-center'>Asiakkaamme palaavat luoksemme kerta toisensa jälkeen, sillä olemme luotettu valinta hiustenleikkauksessa ja tyylinmuutoksissa. Luottamus ansaitaan – me teemme sen joka käynnillä.</p>
           </div>
         </div>
       </div>
       {/* products */}
       <div className='flex flex-col gap-2 mt-12 mb-12'>
         <div className='flex flex-col gap-2 text-center mb-6'>
-          <h3 className="text-center text-slate-600 font-semibold">{getTitleForPage?.titleForPage?.productTitle}</h3>
-          <div className='text-sm text-slate-500 w-[95%] m-auto line-clamp-3' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.productDescription}} />
+          <h3 className="text-center font-semibold">{getTitleForPage?.titleForPage?.productTitle}</h3>
+          <div className='text-sm  w-[95%] m-auto line-clamp-3' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.productDescription}} />
         </div>
         <ProductLimit />
         <div className='flex items-center justify-center mt-4'>
@@ -231,8 +231,8 @@ const Etusivut = () => {
       {/* gallery image */}
       <div className='mb-12'>
         <div className='flex flex-col gap-2 text-center mb-6'>
-          <h3 className="text-center text-slate-600 font-semibold">{getTitleForPage?.titleForPage?.galleriTitle}</h3>
-          <div className='text-sm text-slate-500 w-[95%] m-auto line-clamp-3' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.galleriDescription}} />
+          <h3 className="text-center font-semibold">{getTitleForPage?.titleForPage?.galleriTitle}</h3>
+          <div className='text-sm w-[95%] m-auto line-clamp-3' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.galleriDescription}} />
         </div>
         <GallaryLimit />
         <div className='flex text-center items-center justify-center mt-4'>
@@ -247,7 +247,7 @@ const Etusivut = () => {
 
       {/* reviews */}
       <div className='md:mb-16 mb-8'>
-        <div className='text-center mb-8 text-slate-600  font-semibold flex flex-col gap-2'>
+        <div className='text-center mb-8 font-semibold flex flex-col gap-2'>
           <h3 >Arvostelut</h3>
           <div className='text-lg'>
             ⭐⭐⭐⭐⭐
