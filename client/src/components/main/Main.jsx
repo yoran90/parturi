@@ -91,7 +91,7 @@ const Main = () => {
       </div>
       
       {/* Left and Right Arrow Buttons */}
-      <div className="absolute md:top-90 lg:top-90 top-50 left-0 right-0 flex justify-between px-4 md:px-8" style={{ zoom: '0.9'}}>
+      <div className="absolute md:top-100 lg:top-110 top-50 left-0 right-0 flex justify-between px-4 md:px-8" style={{ zoom: '0.9'}}>
         <button onClick={prevMedia} className='bg-red-500 text-white cursor-pointer p-2 rounded-full shadow-lg hover:bg-red-600 transition duration-200'>
           <IoIosArrowBack size={20} />
         </button>

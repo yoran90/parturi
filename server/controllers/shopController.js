@@ -1,6 +1,8 @@
 import Shop from "../models/shopModel.js";
 import cloudinary from "../config/cloudinary.js";
 
+
+//! create shop media
 export const createShopMedia = async (req, res) => {
   try {
     const { title, description } = req.body;

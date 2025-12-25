@@ -13,6 +13,10 @@ const ForgotPassword = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!email) {
+      toast.error("Please enter your email");
+      return;
+    }
     try {
       setLoading(true)
       const response = await axios.post("http://localhost:8001/api/user/forgetPassword", { 

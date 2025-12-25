@@ -4,8 +4,6 @@ import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import cloudinary from "../config/cloudinary.js";
 
-
-
 const router = express.Router();
 
 
@@ -18,10 +16,7 @@ const storage = new CloudinaryStorage({
   },
 })
 
-
-
 const upload = multer({ storage: storage });
-
 
 router.post("/addproduct", upload.array("images"), addProducts);
 router.get("/getAllProducts", getAllProducts);

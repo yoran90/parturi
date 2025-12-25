@@ -16,7 +16,7 @@ const Information = () => {
   return (
     <>
       <div className='bg-black hidden md:flex items-center justify-between text-white/90 py-2 px-4'>
-        <div className='text-xs flex items-center gap-1 text-red-500'>
+        <div className='text-xs flex items-center gap-1 text-white'>
           {/* <IoMdClock className='text-white' /> */}
           <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
         </div>

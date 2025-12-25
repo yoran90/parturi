@@ -15,6 +15,8 @@ const TitleForPages = () => {
 
   const [loadingForButton, setLoadingForButton] = useState(false);
   
+  console.log(getTitleForPage);
+  
   
   const [formData, setFormData] = useState({
     serviceTitle: "",

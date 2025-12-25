@@ -47,7 +47,7 @@ export const getMediaList = async (req, res) => {
 //! delete media by id
 export const deleteMediaById = async (req, res) => {
   try {
-    const { id } = req.params; // DELETE /delete/:id
+    const { id } = req.params; 
     const media = await Media.findById(id);
 
     if (!media) {
@@ -117,7 +117,6 @@ export const deleteGalleryImage = async (req, res) => {
       return res.status(404).json({ success: false, message: "Image not found in gallery" });
     }
 
-    // Delete from Cloudinary
     await cloudinary.uploader.destroy(publicId);
 
     gallery.images = gallery.images.filter(image => image.publicId !== publicId);

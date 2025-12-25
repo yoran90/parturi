@@ -12,7 +12,7 @@ export const addProducts = async (req, res) => {
     }
 
     const images = req.files.map(file => ({
-      url: file.path,        // Cloudinary URL
+      url: file.path,        
       publicId: file.filename
     }));
     
@@ -56,7 +56,7 @@ export const getProductById = async (req, res) => {
 export const updateProductById = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, images, price, discount, existingImages } = req.body;
+    const { title, description, price, discount, existingImages } = req.body;
 
     const product = await Product.findById(id);
     if (!product) {

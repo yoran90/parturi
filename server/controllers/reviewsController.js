@@ -9,12 +9,13 @@ export const createReview = async (req, res) => {
   try {
     const { reviewText, rating } = req.body;
 
-    if (reviewText.length < 5) {
-      return res.status(400).json({ message: "Review text must be at least 5 characters long" });
-    }
-
     if (!reviewText && !rating && !req.file) {
       return res.status(400).json({ message: "All fields are required" });
+    }
+
+
+    if (reviewText && reviewText.length < 5) {
+      return res.status(400).json({ message: "Review text must be at least 5 characters long" });
     }
 
     const userId = req.user.id;
