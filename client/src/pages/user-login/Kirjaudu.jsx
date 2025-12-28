@@ -10,6 +10,11 @@ import Loading from '../../loading/Loading';
 import { googleLogin, userLogin, userLogout } from '../../store/user-auth';
 import axios from 'axios';
 import GoogleLoginButton from '../google-login/GoogleLoginButton';
+import "../../style/login.css"
+
+
+
+
 
 const Kirjaudu = () => {
 
@@ -114,8 +119,8 @@ const Kirjaudu = () => {
 
 
   return (
-     <div className='w-full flex flex-col justify-center h-screen bg-slate-800'>
-      <div className='text-white justify-end flex flex-col items-end mt-4 mr-6' onClick={() => setSelectLanguage(!selectLanguage)}>
+     <div className='w-full flex flex-col justify-center h-screen bg-slate-800 login'>
+      <div className='text-white justify-end flex flex-col items-end mt-4 mr-6 z-10' onClick={() => setSelectLanguage(!selectLanguage)}>
         <h3 className='flex items-center text-sm gap-2.5 cursor-pointer'>{translate.selectLanguageuser}
           {
             selectLanguage ? (
@@ -154,7 +159,7 @@ const Kirjaudu = () => {
           )
         }
       </div>
-      <div className='md:w-[46%] w-[95%] m-auto'>
+      <div className='md:w-[46%] w-[95%] m-auto z-10'>
         <div className='md:flex md:justify-between'>
           <div className='flex flex-col gap-1 mb-8'>
             <h2 className='text-white'>🌍 {translate.welcomeuser}</h2>

@@ -12,10 +12,12 @@ const GoogleLoginButton = ({ onSuccess }) => {
 
       google.accounts.id.renderButton(
         document.getElementById("googleLoginDiv"),
-        {  theme: "outline",
+        {  
+          theme: "outline",
           size: "large",
           text: "continue_with",
-          width: "100%" } 
+          width: "100%" 
+        } 
       );
     }
   }, []);
