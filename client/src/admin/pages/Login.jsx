@@ -97,101 +97,110 @@ const Login = () => {
 
 
   return (
-    <div className='w-full flex flex-col justify-center h-screen bg-slate-800'>
-      <div className='text-white flex flex-col items-end mt-4 mr-4' onClick={() => setSelectLanguage(!selectLanguage)}>
-            <h3 className='flex items-center text-sm gap-2.5 cursor-pointer'>{translate.selectLanguage}
-              {
-                selectLanguage ? (
-                  <IoIosArrowDown />
-                ) : (
-                  <IoIosArrowUp />
-                )
-              }
-            </h3>
+    <div className='w-full flex flex-col justify-center pb-20 h-screen bg-black relative'>
+      
+      <div className='text-white flex flex-col items-end mt-4 mr-4 absolute top-0 right-0' onClick={() => setSelectLanguage(!selectLanguage)}>
+        <h3 className='flex items-center text-sm gap-2.5 cursor-pointer'>{translate.selectLanguage}
+          {
+            selectLanguage ? (
+              <IoIosArrowDown />
+            ) : (
+              <IoIosArrowUp />
+            )
+          }
+        </h3>
 
-            {
-              selectLanguage && (
-                <div className='flex flex-col text-start w-[120px] text-sm justify-start gap-4 mt-2 text-black bg-white shadow rounded py-4 px-2'>
-                  <button className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
-                    onClick={() => {
-                      setLanguage("en");
-                      setSelectLanguage(false);
-                    }}
-                  >
-                    <Flag code="US" width={30} height={30} />
-                    English
-                  </button>
+        {
+          selectLanguage && (
+            <div className='flex flex-col text-start w-[120px] text-sm justify-start gap-4 mt-2 text-black bg-white shadow rounded py-4 px-2'>
+              <button className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("en");
+                  setSelectLanguage(false);
+                }}
+              >
+                <Flag code="US" width={30} height={30} />
+                English
+              </button>
 
-                  <button
-                    className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
-                    onClick={() => {
-                      setLanguage("fi");
-                      setSelectLanguage(false);
-                    }}
-                  >
-                    <Flag code="FI" width={30} height={30} />
-                    Suomi
-                  </button>
-                  
-                </div>
-              )
-            }
-          </div>
-      <div className='md:w-[48%] w-[95%] m-auto'>
-        <div className='md:flex md:justify-between'>
-          <div className='flex flex-col gap-1 mb-8'>
-            <h2 className='text-white'>🌍 {translate.welcome}</h2>
-            <p className='text-white text-sm'>⚙️ {translate.subtitle}</p>
-          </div>
+              <button
+                className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("fi");
+                  setSelectLanguage(false);
+                }}
+              >
+                <Flag code="FI" width={30} height={30} />
+                Suomi
+              </button>
+              
+            </div>
+          )
+        }
+      </div>
+      <div className='flex items-center justify-center text-center mb-12'>
+        <img src="https://img3.stockfresh.com/files/d/drizzd/m/89/7244629_stock-photo-the-word-admin-and-gear-wheel---3d-rendering.jpg" className='w-16 h-16 rounded-full' alt="" />
+      </div>
+      <div className='flex w-full'>
+        <div className='w-[50%] md:flex hidden'>
+          <img className='w-full h-full' src="https://t4.ftcdn.net/jpg/08/59/29/37/360_F_859293783_6JjNA4siccDdVxLwgcErQT206n6VA3zR.jpg" alt="" />
         </div>
-        {/* form */}
-        <form onSubmit={handleSubmit} className='text-white flex flex-col gap-4.5'>
-          <div className='flex flex-col gap-1.5'>
-            <label> 📧 {translate.email} <span className='text-red-600 font-semibold'>*</span></label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Sähköpostiosoitteesi' className='border border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
-            <div className='flex justify-end text-sm text-blue-400 hover:text-blue-500 '>
-              <button onClick={() => resentVerificationEmail(email)} type='button' className='cursor-pointer'>
+        <div className='md:w-[50%] w-full p-4'>
+          <div className='md:flex md:justify-between'>
+            <div className='flex flex-col gap-1 mb-8'>
+              <h2 className='text-white'>🌍 {translate.welcome}</h2>
+              <p className='text-white text-sm'>⚙️ {translate.subtitle}</p>
+            </div>
+          </div>
+          {/* form */}
+          <form onSubmit={handleSubmit} className='text-white flex flex-col gap-4.5'>
+            <div className='flex flex-col gap-1.5'>
+              <label> 📧 {translate.email} <span className='text-red-600 font-semibold'>*</span></label>
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Sähköpostiosoitteesi' className='border border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
+              <div className='flex justify-end text-sm text-blue-400 hover:text-blue-500 '>
+                <button onClick={() => resentVerificationEmail(email)} type='button' className='cursor-pointer'>
+                  {
+                    laodingForVerifyEmail ? (
+                      <div className='flex items-center gap-1.5'>
+                        <p>
+                          {translate.resendVerifyAgain}
+                        </p>
+                        <Loading width={20} height={20} border='3px' topBorder='3px' borderColor='white' borderTopColor='blue' />
+                      </div>
+                    )  :(
+                      <div>
+                        {translate.resendVerificationEmail}
+                      </div>
+                    )
+                  }
+                </button>             
+              </div>
+            </div>
+            <div className='flex flex-col gap-1.5'>
+              <label> 🔑 {translate.password} <span className='text-red-600 font-semibold'>*</span></label>
+              <div className='flex justify-between border border-slate-200 rounded py-2 px-4'>
+                <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder='*******************' className='border-none w-full focus:outline-none bg-transparent text-sm' />
                 {
-                  laodingForVerifyEmail ? (
-                    <div className='flex items-center gap-1.5'>
-                      <p>
-                        {translate.resendVerifyAgain}
-                      </p>
-                      <Loading width={20} height={20} border='3px' topBorder='3px' borderColor='white' borderTopColor='blue' />
-                    </div>
-                  )  :(
-                    <div>
-                      {translate.resendVerificationEmail}
-                    </div>
+                  showPassword ? (
+                    <FaEyeSlash onClick={() => setShowPassword(false)} className='cursor-pointer' />
+                    
+                  ) : (
+                    
+                    <FaEye onClick={() => setShowPassword(true)} className='cursor-pointer' />
                   )
                 }
-              </button>             
+              </div>
+              {/* forget password */}
+              <div className='flex justify-end'>
+                <Link to="/admin-forgot-password" className='text-blue-400 hover:text-blue-500 text-sm cursor-pointer'>{translate.forgotPasswordAdmin}</Link>
+              </div>
             </div>
-          </div>
-          <div className='flex flex-col gap-1.5'>
-            <label> 🔑 {translate.password} <span className='text-red-600 font-semibold'>*</span></label>
-            <div className='flex justify-between border border-slate-200 rounded py-2 px-4'>
-              <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder='*******************' className='border-none w-full focus:outline-none bg-transparent text-sm' />
-              {
-                showPassword ? (
-                  <FaEyeSlash onClick={() => setShowPassword(false)} className='cursor-pointer' />
-
-                ) : (
-
-                  <FaEye onClick={() => setShowPassword(true)} className='cursor-pointer' />
-                )
-              }
+            <div className='flex justify-end mt-6'>
+              <button type='submit' className='bg-blue-600 hover:bg-blue-700 text-white w-full py-2 px-4 rounded text-sm cursor-pointer'>{translate.login}</button>
             </div>
-            {/* forget password */}
-            <div className='flex justify-end'>
-              <Link to="/admin-forgot-password" className='text-blue-400 hover:text-blue-500 text-sm cursor-pointer'>{translate.forgotPasswordAdmin}</Link>
-            </div>
-          </div>
-          <div className='flex justify-end mt-6'>
-            <button type='submit' className='bg-blue-600 hover:bg-blue-700 text-white w-full py-2 px-4 rounded text-sm cursor-pointer'>{translate.login}</button>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      </div>      
     </div>
   )
 }
