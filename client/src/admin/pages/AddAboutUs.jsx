@@ -15,7 +15,7 @@ import useAboutUs from '../../hooks/useAboutUs';
 const AddAboutUs = () => {
 
 
-  const {getAboutUs, setGetAboutUs} = useAboutUs();
+  const { getAboutUs } = useAboutUs();
 
   const [titleExtra, setTitleExtra] = useState([""]);
   const [imageTitleExtra, setImageTitleExtra] = useState([""]);
@@ -211,7 +211,13 @@ const AddAboutUs = () => {
               )
             }
             </label>
-            <input type='file' id='imageId' onChange={(e) => setImage(e.target.files)} className='hidden'  accept='image/*' />
+            <input type='file' 
+              data-testid='image-upload'  //! <- use only for test 
+              id='imageId' 
+              onChange={(e) => setImage(e.target.files)} 
+              className='hidden'  
+              accept='image/*' 
+            />
           </div>
         </div>
         <div>
@@ -266,7 +272,7 @@ const AddAboutUs = () => {
           </div>
         ))}
         <div className='flex flex-col gap-0.5'>
-          <button type='button' onClick={addAnother} className="bg-black hover:bg-black/80 w-fit cursor-pointer text-white mt-4 px-10 py-2 text-sm rounded">
+          <button type='button' data-testid="add-service-button" onClick={addAnother} className="bg-black hover:bg-black/80 w-fit cursor-pointer text-white mt-4 px-10 py-2 text-sm rounded">
             Add Another
           </button>
           <small className='text-slate-500'>You can add as many prices as you want for your services</small>
