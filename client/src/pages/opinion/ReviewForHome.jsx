@@ -12,7 +12,7 @@ const ReviewForHome = () => {
     }
     fetchReviwes();
   }, []);
-
+  
 
   
 
@@ -30,8 +30,10 @@ const ReviewForHome = () => {
                     ) : (
                       review?.gender === 'men' ? (
                         <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
-                      ) : (
+                      ) : review?.gender === 'women' ? (
                         <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                      ) : (
+                        <img className='w-10 h-10 border border-slate-500 rounded-full' src={review?.profileImage} alt="" />
                       )
                     )
                   }

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { adminLogout } from '../store/admin-auth';
 import { TbLogout } from "react-icons/tb";
-import { FaUser } from 'react-icons/fa';
+
 
 const Header = ({ setIsSidebarOpen, isSidebarOpen }) => {
 
