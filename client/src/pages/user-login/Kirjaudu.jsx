@@ -11,7 +11,7 @@ import { googleLogin, userLogin, userLogout } from '../../store/user-auth';
 import axios from 'axios';
 import GoogleLoginButton from '../google-login/GoogleLoginButton';
 <<<<<<< HEAD
-import "../../style/login.css"
+
 
 
 
