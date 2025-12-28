@@ -127,6 +127,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     <>
       {isOpen && (
         <div
+          data-testid="sidebar-overlay"  //! <- use it for testing only
           className="fixed inset-0 bg-black/80 bg-opacity-40 z-40 md:hidden"
           onClick={() => setIsOpen(false)}
         ></div>
