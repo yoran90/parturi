@@ -10,17 +10,11 @@ import Loading from '../../loading/Loading';
 import { googleLogin, userLogin, userLogout } from '../../store/user-auth';
 import axios from 'axios';
 import GoogleLoginButton from '../google-login/GoogleLoginButton';
-<<<<<<< HEAD
-
-
-
-
-=======
 import useInformation from '../../hooks/useInformation';
 import { FaFacebookF } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io5";
 import { FaSnapchatGhost } from "react-icons/fa";
->>>>>>> 0773d50 (start test client)
+
 
 
 const Kirjaudu = () => {
