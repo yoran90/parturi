@@ -16,7 +16,6 @@ import { IoLogoInstagram } from "react-icons/io5";
 import { FaSnapchatGhost } from "react-icons/fa";
 
 
-
 const Kirjaudu = () => {
 
   const { isAuthenticated, user} = useSelector((state) => state.userAuth);
@@ -121,12 +120,8 @@ const Kirjaudu = () => {
 
 
   return (
-
-     <div className='w-full flex flex-col justify-center h-screen bg-slate-800 login'>
-      <div className='text-white justify-end flex flex-col items-end mt-4 mr-6 z-10' onClick={() => setSelectLanguage(!selectLanguage)}>
-     <div className='w-full flex flex-col justify-center h-screen bg-black/90 relative'>
+     <div className='w-full flex flex-col justify-center h-screen bg-black relative'>
       <div className='text-white justify-end flex flex-col items-end mt-4 mr-6 absolute top-0 right-0' onClick={() => setSelectLanguage(!selectLanguage)}>
-
         <h3 className='flex items-center text-sm gap-2.5 cursor-pointer'>{translate.selectLanguageuser}
           {
             selectLanguage ? (
@@ -165,15 +160,6 @@ const Kirjaudu = () => {
           )
         }
       </div>
-
-      <div className='md:w-[46%] w-[95%] m-auto z-10'>
-        <div className='md:flex md:justify-between'>
-          <div className='flex flex-col gap-1 mb-8'>
-            <h2 className='text-white'>🌍 {translate.welcomeuser}</h2>
-            <p className='text-white text-sm'>⚙️ {translate.subtitleuser}</p>
-          </div>
-          
-
       <div className='flex w-full m-auto md:p-6 items-center justify-center md:gap-6'>
         <div className='md:flex hidden w-[50%] h-[50vh] border border-slate-300 rounded'>
           <img src="https://images.squarespace-cdn.com/content/v1/63ad9e8468b17f7101bd1993/69de0902-c4ff-4304-96e7-4c71580bd841/JohnnysHeroShot_1.png?format=1000w" alt="" />

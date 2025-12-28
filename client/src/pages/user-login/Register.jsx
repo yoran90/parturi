@@ -77,7 +77,7 @@ const Register = () => {
 
 
   return (
-     <div className='w-full flex flex-col justify-center bg-black/90 relative'>
+     <div className='w-full flex flex-col justify-center bg-black relative'>
       <div className='text-white flex flex-col items-end justify-end mt-4 mr-6 absolute top-0 right-0' onClick={() => setSelectLanguage(!selectLanguage)}>
         <h3 className='flex items-center text-sm gap-2.5 cursor-pointer'>{translate.selectLanguageuser}
           {
