@@ -5,20 +5,28 @@ import { enUser, fiUser } from '../../languages/loginTranslations'
 import { toast } from 'react-toastify';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import Flag from 'react-world-flags';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaSnapchat, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa';
 import Loading from '../../loading/Loading';
 import { googleLogin, userLogin, userLogout } from '../../store/user-auth';
 import axios from 'axios';
 import GoogleLoginButton from '../google-login/GoogleLoginButton';
+<<<<<<< HEAD
 import "../../style/login.css"
 
 
 
+=======
+import useInformation from '../../hooks/useInformation';
+import { FaFacebookF } from "react-icons/fa";
+import { IoLogoInstagram } from "react-icons/io5";
+import { FaSnapchatGhost } from "react-icons/fa";
+>>>>>>> 0773d50 (start test client)
 
 
 const Kirjaudu = () => {
 
   const { isAuthenticated, user} = useSelector((state) => state.userAuth);
+  const { getInformation } = useInformation();
 
   const [showPassword, setShowPassword] = useState(false);
   const [selectLanguage, setSelectLanguage] = useState(false);
@@ -119,8 +127,13 @@ const Kirjaudu = () => {
 
 
   return (
+<<<<<<< HEAD
      <div className='w-full flex flex-col justify-center h-screen bg-slate-800 login'>
       <div className='text-white justify-end flex flex-col items-end mt-4 mr-6 z-10' onClick={() => setSelectLanguage(!selectLanguage)}>
+=======
+     <div className='w-full flex flex-col justify-center h-screen bg-black/90 relative'>
+      <div className='text-white justify-end flex flex-col items-end mt-4 mr-6 absolute top-0 right-0' onClick={() => setSelectLanguage(!selectLanguage)}>
+>>>>>>> 0773d50 (start test client)
         <h3 className='flex items-center text-sm gap-2.5 cursor-pointer'>{translate.selectLanguageuser}
           {
             selectLanguage ? (
@@ -159,6 +172,7 @@ const Kirjaudu = () => {
           )
         }
       </div>
+<<<<<<< HEAD
       <div className='md:w-[46%] w-[95%] m-auto z-10'>
         <div className='md:flex md:justify-between'>
           <div className='flex flex-col gap-1 mb-8'>
@@ -166,76 +180,110 @@ const Kirjaudu = () => {
             <p className='text-white text-sm'>⚙️ {translate.subtitleuser}</p>
           </div>
           
+=======
+      <div className='flex w-full m-auto md:p-6 items-center justify-center md:gap-6'>
+        <div className='md:flex hidden w-[50%] h-[50vh] border border-slate-300 rounded'>
+          <img src="https://images.squarespace-cdn.com/content/v1/63ad9e8468b17f7101bd1993/69de0902-c4ff-4304-96e7-4c71580bd841/JohnnysHeroShot_1.png?format=1000w" alt="" />
+>>>>>>> 0773d50 (start test client)
         </div>
-        {/* form */}
-        <form onSubmit={handleSubmit} className='text-white flex flex-col gap-1'>
-          <div className='flex flex-col gap-1.5'>
-            <label> 📧 {translate.emailuser} <span className='text-red-600 font-semibold'>*</span></label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Sähköpostiosoitteesi' className='border border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
-            <div className='flex justify-end mt-0.5'>
-              <button type='button' className='text-blue-400 text-sm cursor-pointer' onClick={() => resentVerificationEmail(email)}>
-                {
-                  loadingVerification ? (
+        <div className='md:w-[50%] w-full md:px-0 px-4'>
+          <div className='md:flex md:justify-between'>
+            <div className='flex flex-col gap-1 mb-8'>
+              <h2 className='text-white'>🌍 {translate.welcomeuser}</h2>
+              <p className='text-white text-sm'>⚙️ {translate.subtitleuser}</p>
+            </div>
+            
+          </div>
+          {/* form */}
+          <form onSubmit={handleSubmit} className='text-white flex flex-col gap-1'>
+            <div className='flex flex-col gap-1.5'>
+              <label> 📧 {translate.emailuser} <span className='text-red-600 font-semibold'>*</span></label>
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Sähköpostiosoitteesi' className='border border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
+              <div className='flex justify-end mt-0.5'>
+                <button type='button' className='text-blue-400 text-sm cursor-pointer' onClick={() => resentVerificationEmail(email)}>
+                  {
+                    loadingVerification ? (
                       <div className='flex items-center gap-1.5'>
-                        <p>{translate.resendVerifyAgain}</p>
-                        <Loading width={16} height={16} border='3px' topBorder='3px' borderColor='white' borderTopColor='black' />
+                          <p>{translate.resendVerifyAgain}</p>
+                          <Loading width={16} height={16} border='3px' topBorder='3px' borderColor='white' borderTopColor='black' />
+                        </div>
+                    ) : (
+                      <div>
+                        {translate.resendVerificationEmail}?
                       </div>
+                    )
+                  }
+                </button>
+              </div>
+            </div>
+            <div className='flex flex-col gap-1.5'>
+              <label> 🔑 {translate.passworduser} <span className='text-red-600 font-semibold'>*</span></label>
+              <div className='flex justify-between border border-slate-200 rounded py-2 px-4'>
+                <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder='*******************' className='border-none w-full focus:outline-none bg-transparent text-sm' />
+                {
+                  showPassword ? (
+                    <FaEyeSlash onClick={() => setShowPassword(false)} className='cursor-pointer' />
+                    
                   ) : (
-                    <div>
-                      {translate.resendVerificationEmail}?
+                    
+                    <FaEye onClick={() => setShowPassword(true)} className='cursor-pointer' />
+                  )
+                }
+              </div>
+            </div>
+            <div className='flex justify-end mt-1'>
+              <Link to="/forgot-password" className='text-blue-400 text-sm cursor-pointer'>{translate.forgotPassword}</Link>
+            </div>
+            <div className='flex flex-col mt-6'>
+              <button type='submit' className='bg-red-700 text-white py-2 w-full px-4 rounded border cursor-pointer'>
+                {
+                  loadingForButton ? (
+                    <div className='flex items-center gap-2'>
+                      {translate.loginuser}
+                      <Loading width={20} height={20} border='4px' topBorder='4px' borderColor='white' borderTopColor='red' />
                     </div>
+                  ) : (
+                    <>
+                      {translate.loginuser}
+                    </>
                   )
                 }
               </button>
             </div>
+          </form>
+          <div className='w-full'>
+            <GoogleLoginButton onSuccess={handleGoogleLogin} />
           </div>
-          <div className='flex flex-col gap-1.5'>
-            <label> 🔑 {translate.passworduser} <span className='text-red-600 font-semibold'>*</span></label>
-            <div className='flex justify-between border border-slate-200 rounded py-2 px-4'>
-              <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder='*******************' className='border-none w-full focus:outline-none bg-transparent text-sm' />
-              {
-                showPassword ? (
-                  <FaEyeSlash onClick={() => setShowPassword(false)} className='cursor-pointer' />
-
-                ) : (
-
-                  <FaEye onClick={() => setShowPassword(true)} className='cursor-pointer' />
-                )
-              }
-            </div>
+          <hr className='text-slate-400 mt-4' />
+          <div className='flex items-center justify-between'>
+            <p className='text-white text-sm mt-6'>{translate.donthaveaccountuser} <Link to="/register" className='text-blue-400 cursor-pointer ml-2'>{translate.registeruser}</Link></p>
+            <Link to={'/'} className='text-blue-400 flex items-center gap-1 mt-4 text-sm cursor-pointer'>
+              <p>🔙</p>
+              {translate.back}
+            </Link>
           </div>
-          <div className='flex justify-end mt-1'>
-            <Link to="/forgot-password" className='text-blue-400 text-sm cursor-pointer'>{translate.forgotPassword}</Link>
-          </div>
-          <div className='flex flex-col mt-6'>
-            <button type='submit' className='bg-red-700 text-white py-2 w-full px-4 rounded border cursor-pointer'>
-              {
-                loadingForButton ? (
-                  <div className='flex items-center gap-2'>
-                    {translate.loginuser}
-                    <Loading width={20} height={20} border='4px' topBorder='4px' borderColor='white' borderTopColor='red' />
-                  </div>
-                ) : (
-                  <>
-                    {translate.loginuser}
-                  </>
-                )
-              }
-            </button>
-          </div>
-        </form>
-        <div className='w-full'>
-          <GoogleLoginButton onSuccess={handleGoogleLogin} />
-        </div>
-        <hr className='text-slate-400 mt-4' />
-        <div className='flex items-center justify-between'>
-          <p className='text-white text-sm mt-6'>{translate.donthaveaccountuser} <Link to="/register" className='text-blue-400 cursor-pointer ml-2'>{translate.registeruser}</Link></p>
-          <Link to={'/'} className='text-blue-400 flex items-center gap-1 mt-4 text-sm cursor-pointer'>
-            <p>🔙</p>
-            {translate.back}
-          </Link>
         </div>
       </div>
+
+      {/* sosial medi */}
+      <div className='flex items-center justify-center text-white py-2 px-4 absolute bottom-32 left-50 right-50'>
+        <div className='flex items-center gap-4'>
+          {
+            getInformation?.socialMedia?.map((sm, index) => (
+              <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
+                {sm.platform === "facebook" && <FaFacebookF className='bg-blue-600 border rounded-full p-1'  size={25} />}
+                {sm.platform === "instagram" && <IoLogoInstagram className='bg-pink-900 border rounded-full p-1'  size={25} />}
+                {sm.platform === "tiktok" && <FaTiktok className='bg-black border rounded-full p-1'  size={25} />}
+                {sm.platform === "snapchat" && <FaSnapchatGhost  className='bg-yellow-400 border rounded-full p-1'  size={25} />}
+                {sm.platform === "twitter" && <FaTwitter className='bg-blue-400 border rounded-full p-1'  size={25} />}
+                {sm.platform === "youtube" && <FaYoutube className='bg-red-600 border rounded-full p-1'  size={25} />}
+              </a>
+            ))
+          }
+          
+        </div>
+      </div>
+
     </div>
   )
 }
