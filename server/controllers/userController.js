@@ -3,6 +3,8 @@ import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
 import cloudinary from "cloudinary";
+
+
 import Reviews from "../models/reviewsModel.js";
 import mongoose from "mongoose";
 import sendEmail from "../utlis/sendEmail.js";
@@ -187,6 +189,8 @@ export const userForgetPassword = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
 //! user reset password
 export const userResetPassword = async (req, res) => {
   try {
@@ -363,6 +367,13 @@ export const userDeleteOwnAccount = async (req, res) => {
 
     if (!userId) return res.status(404).json({ success: false, message: "User Unauthorized" });
 
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid user ID",
+      });
+    }
+
     const user = await Auth.findById(userId);
     if (!user) return res.status(404).json({ success: false, message: "User not found" });
 
@@ -381,7 +392,7 @@ export const userDeleteOwnAccount = async (req, res) => {
       }
 
       // Delete comment images and replies
-      for (const comment of review.comments) {
+      for (const comment of review.comments || []) {
         if (comment.imageComment?.public_id) {
           await cloudinary.v2.uploader.destroy(comment.imageComment.public_id);
         }

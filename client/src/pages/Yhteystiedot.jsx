@@ -135,7 +135,7 @@ const Yhteystiedot = () => {
   
 
   return (
-    <div className='flex flex-col relative'>
+    <div className='flex flex-col relative bg-white text-black'>
       <Information />
       <HolyDay />
       <Header />
@@ -185,7 +185,7 @@ const Yhteystiedot = () => {
         <div className='md:w-[50%]'>
           <h3>Ota yhteyttä meihin</h3>
           <p>Saatavilla 24 tuntia vuorokaudessa!</p>
-          <form onSubmit={handleSubmit} className='mt-6 flex flex-col gap-4 bg-white dark:bg-black dark:text-white text-black shadow border border-slate-100 rounded py-10 px-6'>
+          <form onSubmit={handleSubmit} className='mt-6 flex flex-col gap-4 bg-white text-black shadow border border-slate-100 rounded py-10 px-6'>
             
             <div className='text-sm flex flex-col gap-1'>
               <label htmlFor="">👤 Nimi <span className='text-red-600 font-semibold'>*</span></label>

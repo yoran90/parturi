@@ -437,7 +437,7 @@ const Reviews = () => {
                   <>
                   {
                       item?.comments?.length > 0 ? (
-                        <div className='flex flex-col gap-3 mt-2 bg-slate-50 dark:bg-slate-800 dark:text-white text-black p-2 rounded'>
+                        <div className='flex flex-col gap-3 mt-2 bg-slate-50  text-black p-2 rounded'>
                           {
                             item?.comments?.map((comment) => (
                               <div key={comment._id} className='border-b last:border-b-0 border-slate-300 pt-2 pb-2'>

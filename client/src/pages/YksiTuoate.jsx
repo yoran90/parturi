@@ -24,7 +24,7 @@ const YksiTuoate = ({ id, images, title, price, discount, description }) => {
   }, [description, title]);
 
   return (
-    <Link to={`/tuote/${id}`} className='bg-white dark:bg-black dark:text-white text-black shadow border border-slate-300 overflow-hidden rounded-md w-full cursor-pointer'>
+    <Link to={`/tuote/${id}`} className='bg-white text-black shadow border border-slate-300 overflow-hidden rounded-md w-full cursor-pointer'>
       {
         images && images.length > 0 && (
           <img src={images && images.length > 0 ? images[0].url : '/placeholder.png'}  alt={title} className='w-full h-[150px] border-slate-300' />

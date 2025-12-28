@@ -23,15 +23,6 @@ import { toast } from 'react-toastify';
 const Header = () => {
 
 
-  const toggleDarkMode = () => {
-  const isDark = document.documentElement.classList.toggle("dark");
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-  console.log(isDark);
-  
-};
-const isDark = document.documentElement.classList.contains("dark");
-
-
   const { isAuthenticated, user, loading } = useSelector((state) => state.userAuth);
   const [openUserMenu, setOpenUserMenu] = useState(false);
 
@@ -98,7 +89,7 @@ const isDark = document.documentElement.classList.contains("dark");
   return (
     <>
       <div ref={menuRef} className='md:flex sticky top-0 p-2 hidden items-center justify-between bg-white dark:bg-black dark:text-white text-black border-t-2 border-b-2  border-slate-800 z-50'>
-        <div className='bg-black'> 
+        <div className='bg-white dark:bg-black'>
           {headerLogo && headerLogo.url && (
             <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
           )}
@@ -193,11 +184,7 @@ const isDark = document.documentElement.classList.contains("dark");
               </>
             )
           }
-          <div className='flex items-center justify-center ml-4 -mr-4' style={{zoom: '0.8'}}>
-            <button onClick={toggleDarkMode} className='border w-10 h-5.5 rounded-full border-slate-500 cursor-pointer dark:border-slate-200 mb-1'>
-              <div className={`bg-black dark:bg-slate-200 w-4 h-4 rounded-full ml-0.5 mr-0.5 transition-transform duration-300  ${isDark ? 'translate-x-4.5' : 'translate-x-0'}`}></div>
-            </button>
-          </div>
+          
         </div>
       </div>
       {/* for mobile screen */}

@@ -54,8 +54,8 @@ const Information = () => {
         </div>
       </div>
       {/* for mobile screen */}
-      <div className='bg-white flex flex-col gap-2 md:hidden items-center text-black py-3'>
-        <div className='text-xs flex items-center gap-1 text-black'>
+      <div className='bg-white dark:bg-black dark:text-white flex flex-col gap-2 md:hidden items-center text-black py-3'>
+        <div className='text-xs flex items-center gap-1'>
           {/* <IoMdClock className='text-white' /> */}
           <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
         </div>
