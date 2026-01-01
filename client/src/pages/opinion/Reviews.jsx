@@ -238,6 +238,7 @@ const Reviews = () => {
           return (
             <div key={index} className='border-t border-b border-slate-300 pt-5 pb-5'>
                {item?.userId === user?.id && (
+                
                 <div className='flex items-end justify-end mb-2 -mt-4 relative'>
                    <div className='cursor-pointer' onClick={() => handleToggleOpenUserMenu(item?._id)}>
                     <BsThreeDots size={18} />
@@ -371,7 +372,7 @@ const Reviews = () => {
                     {
                       showLiked === item._id && (
                         <div className='fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center z-50 bg-black/70'>
-                          <div className='bg-white dark:bg-black dark:text-white text-black dark:border relative flex flex-col shadow md:w-full w-[93%]  max-w-xl md:px-6 px-3 md:py-8 py-6 rounded'>
+                          <div className='bg-white text-black dark:border relative flex flex-col shadow md:w-full w-[93%]  max-w-xl md:px-6 px-3 md:py-8 py-6 rounded'>
                             
                               <>
                               {

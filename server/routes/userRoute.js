@@ -1,5 +1,5 @@
 import express from "express"
-import { getUserById, googleLogin, sendVerificationEmail, userDeleteOwnAccount, userForgetPassword, userLogin, userLogout, userResetPassword, userUpdateOwnData } from "../controllers/userController.js"
+import { getProfileUserById, getUserById, googleLogin, sendVerificationEmail, userDeleteOwnAccount, userForgetPassword, userLogin, userLogout, userResetPassword, userUpdateOwnData } from "../controllers/userController.js"
 import multer from "multer";
 import { userMiddleware } from "../middleware/userMiddleware.js";
 import { verifyEmail } from "../controllers/authController.js";
@@ -14,6 +14,7 @@ export const upload = multer({ storage });
 
 router.post("/userLogin", userLogin);
 router.get("/getUser/:id", userMiddleware, getUserById);
+router.get("/getProfileUser/:id", getProfileUserById);
 router.post('/userLogout', userMiddleware, userLogout);
 router.put('/userUpdateData', userMiddleware, upload.single("image"), userUpdateOwnData);
 router.delete("/userDeleteOwnAccount", userMiddleware, userDeleteOwnAccount);

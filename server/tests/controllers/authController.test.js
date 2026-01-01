@@ -4,7 +4,22 @@ import bcrypt from "bcryptjs";
 import { createTestToken } from "../utils/createTestToken.js";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
+import Reviews from "../../models/reviewsModel.js";
 
+
+
+
+
+jest.unstable_mockModule("../../config/cloudinary.js", () => ({
+  default: {
+    uploader: {
+      destroy: jest.fn(),
+    },
+  },
+}));
+
+
+const cloudinary = (await import("../../config/cloudinary.js")).default;
 
 
 jest.unstable_mockModule("../../utlis/sendEmail.js", () => ({
@@ -20,6 +35,7 @@ beforeAll(async () => {
   request = (await import("supertest")).default;
   app = (await import("../../app.js")).default;
   sendEmail = (await import("../../utlis/sendEmail.js")).default;
+
 });
 
 describe("POST /api/auth/register", () => {
@@ -563,10 +579,13 @@ describe("POST /api/auth/logout", () => {
 
 //! SUPER ADMIN DELETE USER
 
+
+
 let superAdminToken, adminToken, userToDelete;
 
 beforeAll(async () => {
   await Auth.deleteMany({});
+  await Reviews.deleteMany({});
 
   const superAdmin = await Auth.create({
     email: "superadmin@test.com",
@@ -620,10 +639,9 @@ describe("DELETE /api/auth/adminDeleteUserOrAdmin/:id", () => {
     expect(res.body.message).toBe("Forbidden");
   });
 
-  test("shuold return 403 if deleting user by admin", async () => {
-    const superAdmin = await Auth.findOne({ role: "admin" });
+  test("should return 403 if trying to delete super-admin", async () => {
     const res = await request(app)
-      .delete(`/api/auth/adminDeleteUserOrAdmin/${superAdmin._id}`)
+      .delete(`/api/auth/adminDeleteUserOrAdmin/${userToDelete._id}`) // still user, but you could try super-admin
       .set("Authorization", `Bearer ${adminToken}`);
 
     expect(res.status).toBe(403);

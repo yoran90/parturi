@@ -64,7 +64,7 @@ const bcrypt = (await import("bcryptjs")).default;
 const jwt = (await import("jsonwebtoken")).default;
 
 
-const { userLogin, userForgetPassword, userResetPassword, sendVerificationEmail, getUserById, userUpdateOwnData, userLogout, userDeleteOwnAccount } = await import("../../controllers/userController.js");
+const { userLogin, userForgetPassword, userResetPassword, sendVerificationEmail, getUserById, getProfileUserById, userUpdateOwnData, userLogout, userDeleteOwnAccount } = await import("../../controllers/userController.js");
 
 
 //! user login
@@ -397,6 +397,64 @@ describe("getUserById", () => {
     expect(res.json).toHaveBeenCalledWith({ message: "DB error" });
   });
 });
+//! GET PROFILE USER BY ID
+describe("getProfileUserById controller", () => {
+  let req, res;
+
+  beforeEach(() => {
+    req = { params: { id: "user123" } };
+    res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+    jest.clearAllMocks();
+  });
+
+  it("returns 404 if user not found", async () => {
+    Auth.findById.mockReturnValue({
+      select: jest.fn().mockResolvedValue(null),
+    });
+
+    await getProfileUserById(req, res);
+
+    expect(Auth.findById).toHaveBeenCalledWith("user123");
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({
+      success: false,
+      message: "User not found",
+    });
+  });
+
+  it("returns 200 with user data if user exists", async () => {
+    const fakeUser = { _id: "user123", firstName: "John" };
+
+    Auth.findById.mockReturnValue({
+      select: jest.fn().mockResolvedValue(fakeUser),
+    });
+
+    await getProfileUserById(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      success: true,
+      data: fakeUser,
+    });
+  });
+
+  it("returns 500 if database error occurs", async () => {
+    Auth.findById.mockReturnValue({
+      select: jest.fn().mockRejectedValue(new Error("DB error")),
+    });
+
+    await getProfileUserById(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      message: "DB error",
+    });
+  });
+});
+
 
 
 //! update own user by id

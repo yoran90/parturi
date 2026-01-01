@@ -59,10 +59,11 @@ export const getUserById = createAsyncThunk("userAuth/getUserById", async (id, {
 //! get profile user by id
 export const getProfileUserById = createAsyncThunk("userAuth/getProfileUserById", async (id, { rejectWithValue }) => {
   try {
-    const response = await axios.get(`http://localhost:8001/api/user/getUser/${id}`, { withCredentials: true });
+    const response = await axios.get(`http://localhost:8001/api/user/getProfileUser/${id}`, { withCredentials: true });
     return response.data;  
   } catch (error) {
     console.log(error);
+    return rejectWithValue(error.response?.data || error.message);
     
   }
 });

@@ -276,6 +276,22 @@ export const getUserById = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 }
+//! GET PROFILE USER BY ID
+export const getProfileUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const user = await Auth.findById(id).select("-password -notes");
+  
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+    res.status(200).json({ success: true, data: user });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+}
 
 //! update own user by id
 export const userUpdateOwnData = async (req, res) => {

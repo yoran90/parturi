@@ -5,6 +5,8 @@ import jwt from "jsonwebtoken";
 //import { v2 as cloudinaryV2 } from "cloudinary";
 import cloudinary from "cloudinary";
 import sendEmail from "../utlis/sendEmail.js";
+import mongoose from "mongoose";
+import Reviews from "../models/reviewsModel.js";
 
 
 
@@ -400,11 +402,98 @@ export const superAdminGetUserByIdForChangeRole = async (req, res) => {
 }
 
 //! super admin delete user 
+
+const deleteUserReplies = async (replies, userId) => {
+  const updatedReplies = [];
+
+  for (const reply of replies) {
+    if (reply.userId.equals(userId)) {
+      // Delete Cloudinary image if exists
+      if (reply.imageReply?.publicId) {
+        await cloudinary.v2.uploader.destroy(reply.imageReply.publicId);
+      }
+    } else {
+      // Recursively process nested replies
+      if (reply.replies && reply.replies.length > 0) {
+        reply.replies = await deleteUserReplies(reply.replies, userId);
+      }
+      updatedReplies.push(reply);
+    }
+  }
+
+  return updatedReplies;
+};
+
+export const deleteUserWithCleanup = async (userId) => {
+  if (!mongoose.Types.ObjectId.isValid(userId)) {
+    throw new Error("Invalid user ID");
+  }
+
+  const user = await Auth.findById(userId);
+  if (!user) throw new Error("User not found");
+
+  if (user?.profileImage?.publicId) {
+    await cloudinary.v2.uploader.destroy(user.profileImage.publicId);
+  }
+
+  const userReviews = await Reviews.find({ userId });
+  for (const review of userReviews) {
+    if (review?.mediaReview?.publicId) {
+      const resourceType = review.mediaReview.type === "image" ? "image" : "video";
+      await cloudinary.v2.uploader.destroy(
+        review.mediaReview.publicId,
+        { resource_type: resourceType }
+      );
+    }
+
+    for (const comment of review.comments || []) {
+      if (comment.imageComment?.public_id) {
+        await cloudinary.v2.uploader.destroy(comment.imageComment.public_id);
+      }
+      comment.replies = await deleteUserReplies(comment.replies || [], userId);
+    }
+
+    await Reviews.findByIdAndDelete(review._id);
+  }
+
+  const reviewsWithUserComments = await Reviews.find({ "comments.userId": userId });
+  for (const review of reviewsWithUserComments) {
+    for (const comment of review.comments) {
+      if (comment.userId.equals(userId) && comment.imageComment?.public_id) {
+        await cloudinary.v2.uploader.destroy(comment.imageComment.public_id);
+      }
+      comment.replies = await deleteUserReplies(comment.replies || [], userId);
+    }
+    review.comments = review.comments.filter(
+      comment => !comment.userId.equals(userId)
+    );
+    await review.save();
+  }
+
+  // Delete user's replies on other reviews
+  const reviewsWithUserReplies = await Reviews.find({ "comments.replies.userId": userId });
+  for (const review of reviewsWithUserReplies) {
+    for (const comment of review.comments) {
+      comment.replies = await deleteUserReplies(comment.replies || [], userId);
+    }
+    await review.save();
+  }
+
+  // Delete user's likes
+  await Reviews.updateMany(
+    {},
+    { $pull: { "likes.likedBy": { userId: new mongoose.Types.ObjectId(String(userId)) } } }
+  );
+
+  // Finally delete user
+  await Auth.findByIdAndDelete(userId);
+};
+
+
 export const adminDeleteUserOrAdmin = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Only super‑admins allowed
     if (req.admin.role !== "super-admin") {
       return res.status(403).json({ success: false, message: "Forbidden" });
     }
@@ -415,7 +504,6 @@ export const adminDeleteUserOrAdmin = async (req, res) => {
       return res.status(404).json({ success: false, message: "User not found" });
     }
 
-    // If the target user has role super‑admin, block deletion
     if (user.role === "super-admin") {
       return res.status(403).json({
         success: false,
@@ -423,7 +511,7 @@ export const adminDeleteUserOrAdmin = async (req, res) => {
       });
     }
 
-    await Auth.findByIdAndDelete(id);
+    await deleteUserWithCleanup(id);
 
     return res.status(200).json({
       success: true,
