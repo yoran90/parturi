@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebook, FaMapMarkerAlt, FaSnapchat, FaTiktok } from "react-icons/fa";
+import { FaFacebook, FaMapMarkerAlt, FaSnapchat, FaTiktok, FaTwitter, FaYoutube } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
 import { MdAttachEmail } from "react-icons/md";
 import Footer from '../components/footer/Footer';

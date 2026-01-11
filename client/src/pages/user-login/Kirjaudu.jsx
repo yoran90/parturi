@@ -245,7 +245,7 @@ const Kirjaudu = () => {
       </div>
 
       {/* sosial medi */}
-      <div className='flex items-center justify-center text-white py-2 px-4 absolute bottom-14 left-50 right-50'>
+      <div className='flex items-center justify-center text-white py-2 px-4 absolute bottom-14 left-46 right-50'>
         <div className='flex items-center gap-4'>
           {
             getInformation?.socialMedia?.map((sm, index) => (

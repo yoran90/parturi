@@ -100,7 +100,7 @@ const AddReview = () => {
               <FaPhotoVideo size={40} />
               <p>Upload Image & Video</p>
             </label>
-            <input type="file" id='imageVideoReview'  hidden multiple accept='image/*, video/*' onChange={handleMediaChange} />
+            <input type="file" data-testid="media-input" id='imageVideoReview'  hidden multiple accept='image/*, video/*' onChange={handleMediaChange} />
           </div>
           <div className='grid md:grid-cols-5 grid-cols-2 gap-2.5'>
             {media.length > 0 &&
@@ -147,7 +147,7 @@ const AddReview = () => {
             </div>  
           </div>
           <div className='flex items-end justify-end mt-8 mb-8'>
-            <button type='submit' className='bg-red-600 hover:bg-red-500 text-white text-sm py-2 px-4 rounded cursor-pointer'>
+            <button type='submit' data-testid="submit-button" className='bg-red-600 hover:bg-red-500 text-white text-sm py-2 px-4 rounded cursor-pointer'>
               {
                 loading ? (
                   <div className='flex items-center gap-1.5'>

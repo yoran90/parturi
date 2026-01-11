@@ -89,7 +89,7 @@ const AddPrice = () => {
     
     if (loading) {
       return (
-        <div className="w-full h-screen flex flex-col justify-center items-center text-slate-700">
+        <div className="w-full h-screen flex flex-col justify-center items-center text-slate-700" data-testid="loading">
           <div className="loader"></div>
           <p className="mt-4 text-sm">Ladataan odota...</p>
           <style>{`
@@ -135,7 +135,7 @@ const AddPrice = () => {
 
   return (
     <div className='w-full md:px-1.5 px-1.5 h-[94vh] bg-white overflow-y-scroll scrollbarStyle pb-12'>
-      <div className='w-full m-auto bg-white shadow mt-4 py-8 border border-slate-200 rounded'>
+      <div className='w-full m-auto bg-white md:shadow mt-4 py-8 md:border border-slate-200 rounded'>
 
       <div className='flex flex-col items-center gap-1.5 mt-2 justify-center'>
         <h3 className='font-semibold text-slate-600'>Add Price for Services</h3>
@@ -181,7 +181,7 @@ const AddPrice = () => {
           <small className='text-slate-500'>You can add as many prices as you want for your services</small>
         </div>
         <div>
-          <button type='submit' className='bg-red-600 hover:bg-red-500 w-full cursor-pointer text-white mt-4 px-10 py-2 text-sm rounded'>
+          <button type='submit' data-testid="submit-button" className='bg-red-600 hover:bg-red-500 w-full cursor-pointer text-white mt-4 px-10 py-2 text-sm rounded'>
             {
               loadingForButton ? (
                 <div className='flex items-center justify-center   gap-2'>
@@ -197,7 +197,7 @@ const AddPrice = () => {
           </button>
         </div>
       </form>
-                </div>
+      </div>
     </div>
   );
 };

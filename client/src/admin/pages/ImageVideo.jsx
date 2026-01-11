@@ -61,7 +61,7 @@ const ImageVideo = () => {
         window.location.reload();
       }, 600);
     } catch (error) {
-      console.log(error);
+      toast.error("Upload failed");
       
     } finally {
       setLoadingUpload(false);
@@ -127,7 +127,7 @@ const ImageVideo = () => {
               }
             </div>
           </label>
-          <input type="file" id='imageVideo' 
+          <input type="file" id='imageVideo' data-testid="file-input"
             accept={type === "image" ? "image/*" : "video/*"}
             onChange={handleFileChange} 
             hidden 
@@ -137,7 +137,14 @@ const ImageVideo = () => {
         {/* Alt Text */}
         <div className="flex flex-col text-sm gap-1">
           <label>Description (alt text)</label>
-          <input type="text" placeholder="Enter a short description" className="border border-slate-300 p-2 rounded" />
+          <input
+            type="text"
+            value={alt}
+            onChange={(e) => setAlt(e.target.value)}
+            placeholder="Enter a short description"
+            className="border border-slate-300 p-2 rounded"
+          />
+
         </div>
 
         <button type="submit" className="bg-red-600 hover:bg-red-500 cursor-pointer text-white mt-6 mb-12 rounded py-2 px-6 text-sm font-semibold" >

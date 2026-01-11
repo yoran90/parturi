@@ -63,10 +63,11 @@ const DisplayGalleryImage = () => {
             <div key={index} className='border border-slate-300 rounded flex flex-col gap-2'>
               <img
                 src={image.url}
-                alt=''
+                alt='gallery-image'
                 className='w-full h-40 object-cover rounded'
               />
               <button
+                aria-label={`delete-gallery-image-${image.publicId}`}
                 className='bg-red-600 text-white hover:bg-red-700 px-2 m-0.5 py-1 text-sm rounded cursor-pointer'
                 onClick={() => handleDeleteGalleryImage(image.galleryId, image.publicId)}
               >

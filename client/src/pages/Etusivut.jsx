@@ -63,8 +63,10 @@ const Etusivut = () => {
           <div className='md:flex items-center md:justify-between md:px-16 pt-4'>
             <div className='min-h-[100px]'>
               <a className='flex md:mb-0 mb-6 gap-1 flex-col items-center justify-center' href={getInformation?.addressUrl} target="_blank" rel="noopener noreferrer">
-                <FaMapMarkerAlt size={20} />
-                <h3 className='text-sm font-bold mt-2 border-b mb-2'>OSOITE</h3>
+                <div className='flex md:flex-col items-center md:gap-0 gap-3'>
+                  <FaMapMarkerAlt size={20} />
+                  <h3 className='text-sm font-bold mt-2 md:border-b mb-2'>OSOITE</h3>
+                </div>
                 {getInformation?.address ? (
                     <div>
                       <p className='text-xs font-semibold'>{getInformation?.address}</p>
@@ -80,8 +82,10 @@ const Etusivut = () => {
             </div>
             <div className='min-h-[100px] md:mb-0 mb-3'> 
               <div className='flex flex-col items-center justify-center md:border-b  mb-3 gap-2'>
-                <FaShareAlt size={20} />
-                <h3>Seuraa Meitä</h3>
+                <div className='flex md:flex-col items-center md:gap-2 gap-3'>
+                  <FaShareAlt size={20} />
+                  <h3>Seuraa Meitä</h3>
+                </div>
               </div>
               <div className='flex items-center justify-center gap-3.5'>
                 {getInformation?.socialMedia ? (
@@ -110,8 +114,10 @@ const Etusivut = () => {
               </div>
             </div>
             <div className="flex flex-col items-center justify-start min-h-[100px]">
-              <MdPhoneInTalk size={24} />
-              <h3 className="text-sm font-bold mt-2 border-b mb-3">PUHELIN</h3>
+              <div className='flex md:flex-col items-center md:gap-0 gap-3'>
+                <MdPhoneInTalk size={24} />
+                <h3 className="text-sm font-bold mt-2 md:border-b mb-3">PUHELIN</h3>
+              </div>
               {getInformation?.phone ? (
                   <div>
                     <a href={`tel:${getInformation?.phone}`} className="text-xs font-semibold">

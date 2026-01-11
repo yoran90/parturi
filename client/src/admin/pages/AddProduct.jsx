@@ -89,7 +89,7 @@ const AddProduct = () => {
     <div>
       {
         loading && (
-          <div className="w-full h-screen flex flex-col justify-center items-center text-slate-700">
+          <div className="w-full h-screen flex flex-col justify-center items-center text-slate-700" data-testid="loading">
             <div className="loader"></div>
             <p className="mt-4 text-sm">Ladataan odota...</p>
             <style>{`
@@ -173,7 +173,7 @@ const AddProduct = () => {
           </div>
 
           <div className='flex justify-end mt-6'>
-            <button className='bg-red-500 text-white py-1.5 px-14 rounded-full text-sm cursor-pointer hover:bg-red-400 flex items-center gap-2'>
+            <button type='submit' data-testid="submit-button" className='bg-red-500 text-white py-1.5 px-14 rounded-full text-sm cursor-pointer hover:bg-red-400 flex items-center gap-2'>
               {
                 loadingForButton ? <div className='flex items-center justify-center gap-2'>
                   <p>Adding</p>

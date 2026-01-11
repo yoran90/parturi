@@ -74,9 +74,9 @@ const ImagevideoDisplay = () => {
               <div key={item._id} className='relative'>
                 <div onClick={() => setSelectedMedia(item)} className=' md:w-[145px] h-[140px] -z-50 border border-slate-400 flex items-center justify-center rounded shadow overflow-hidden'>
                   {item.type === 'image' ? (
-                    <img src={item.src} alt={item.alt} className='w-full h-full' />
+                    <img src={item.src} alt={item.alt} className='w-full h-full' data-testid={`media-image-${item._id}`}/>
                   ) : (
-                    <video src={item.src} alt={item.alt} className='w-full h-full' controls></video>
+                    <video src={item.src} alt={item.alt} className='w-full h-full' controls data-testid={`media-video-${item._id}`}></video>
                   ) }
                 </div>
                 <button onClick={(e) => handleDelete(item)} className='absolute -top-4 -right-3 bg-red-500 p-2 rounded-full text-xs cursor-pointer text-white hover:bg-red-600'>
@@ -105,9 +105,9 @@ const ImagevideoDisplay = () => {
             </button>
           <div className='relative'>
             {selectedMedia?.type === 'image' ? (
-              <img src={selectedMedia.src} alt={selectedMedia.alt} className='max-w-full max-h-screen' />
+              <img src={selectedMedia.src} alt={selectedMedia.alt} className='max-w-full max-h-screen' data-testid="modal-media-image" />
             ) : (
-              <video src={selectedMedia.src} alt={selectedMedia.alt} className='max-w-full max-h-screen' controls autoPlay />
+              <video src={selectedMedia.src} alt={selectedMedia.alt} className='max-w-full max-h-screen' controls autoPlay data-testid="modal-media-video" />
             )}
           </div>
         </div>

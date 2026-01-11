@@ -108,6 +108,7 @@ const AddGalleriImage = () => {
               </div>
             </label>
             <input type="file" id='imageVideo' 
+              data-testid="image-input"
               accept="image/*"
               multiple
               hidden 
@@ -115,7 +116,7 @@ const AddGalleriImage = () => {
             />
           </div>
 
-          <button type="submit" className="bg-red-600 hover:bg-red-500 cursor-pointer text-white mt-6 mb-12 rounded py-2 px-6 text-sm font-semibold" >
+          <button type="submit" data-testid="upload-button" className="bg-red-600 hover:bg-red-500 cursor-pointer text-white mt-6 mb-12 rounded py-2 px-6 text-sm font-semibold" >
             {
               loading ? (
                 <div className='flex items-center justify-center gap-1.5 '>
@@ -136,8 +137,8 @@ const AddGalleriImage = () => {
               {
                 selectFile.map((media, index) => (
                   <div key={index} className='relative'>
-                    <img src={media.preview} alt='' className='w-32 h-32 object-cover rounded' />
-                    <button type='button' onClick={() => removeImage(index)} className='absolute top-0 right-0 cursor-pointer'>❎</button>
+                    <img src={media.preview} alt="gallery-preview" className='w-32 h-32 object-cover rounded' />
+                    <button type='button' data-testid={`remove-image-${index}`} onClick={() => removeImage(index)} className='absolute top-0 right-0 cursor-pointer'>❎</button>
                   </div>
                 ))
               }

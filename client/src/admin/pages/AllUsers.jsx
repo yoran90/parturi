@@ -114,7 +114,7 @@ const AllUsers = () => {
                     <FaEdit size={20} className='text-green-600' />
                   </button>
                   {user?.role !== "super-admin" ? (
-                      <button className='cursor-pointer' onClick={() => handleDelete(user._id)}>
+                      <button className='cursor-pointer'  aria-label="delete-user" onClick={() => handleDelete(user._id)}>
                         <BsTrash3Fill size={20} className='text-red-500' />
                       </button>
                     ) : (

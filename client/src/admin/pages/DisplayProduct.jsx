@@ -138,12 +138,12 @@ const DisplayProduct = () => {
                 </div>
                 <div className='text-black text-sm line-clamp-1' dangerouslySetInnerHTML={{__html: product.description}} />
                 <div className='pl-6'>
-                  <button type='button' onClick={() => {
+                  <button aria-label="edit-product" type='button' onClick={() => {
                     setOpenUpadetProductModel(true); setSelectedProduct(product)
                   }} className='text-green-600 cursor-pointer'>
                     <FaEdit size={20} />
                   </button>
-                  <button type='button' onClick={() => deleteProduct(product._id)} className='text-red-600 ml-3 cursor-pointer'>
+                  <button aria-label="delete-product" type='button' onClick={() => deleteProduct(product._id)} className='text-red-600 ml-3 cursor-pointer'>
                     {
                       deletingId === product._id  ? (
                         <div>
@@ -195,12 +195,12 @@ const DisplayProduct = () => {
                   }
                 </div>
                 <div className='pl-6 w-[100px]'>
-                  <button onClick={() => {
+                  <button aria-label="edit-product" type='button' onClick={() => {
                     setOpenUpadetProductModel(true); setSelectedProduct(product)
                   }} className='text-green-600 cursor-pointer'>
                     <FaEdit size={20} />
                   </button>
-                  <button onClick={() => deleteProduct(product._id)} className='text-red-600 ml-3 cursor-pointer'>
+                  <button aria-label="delete-product" type='button' onClick={() => deleteProduct(product._id)} className='text-red-600 ml-3 cursor-pointer'>
                     <BsTrash3Fill size={20} />
                   </button>
                 </div>

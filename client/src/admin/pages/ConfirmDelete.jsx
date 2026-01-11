@@ -18,10 +18,10 @@ const ConfirmDelete = ({ closeModel, headerTitle, headerDescription, warningMess
           </div>
           <div className='flex gap-2 justify-end mt-6'>
             <button onClick={closeModel} className='bg-black/80 py-1 px-3 text-white rounded  hover:bg-black cursor-pointer'>{cacelButton}</button>
-            <button onClick={onConfirm} className='bg-red-500 py-1 px-3 rounded  hover:bg-red-600 text-white cursor-pointer'>
+            <button onClick={onConfirm}  aria-label="confirm-delete" className='bg-red-500 py-1 px-3 rounded  hover:bg-red-600 text-white cursor-pointer'>
               {
                 loading ? (
-                  <div className='flex items-center gap-1.5'>
+                  <div className='flex items-center gap-1.5' data-testid='loading-spinner'>
                     {confirmButton}
                     <Loading width={20} height={20} border='3px' topBorder='3px' borderColor='white' borderTopColor='red' />
                   </div>
