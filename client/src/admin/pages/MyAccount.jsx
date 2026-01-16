@@ -208,7 +208,7 @@ const MyAccount = () => {
           </div>
           <div className='flex flex-col w-full gap-1 text-sm'>
             <label htmlFor="">Last Name</label>
-            <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder='First name' className='border border-slate-400 rounded focus:outline-none py-1.5 px-3' />
+            <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder='Last name' className='border border-slate-400 rounded focus:outline-none py-1.5 px-3' />
           </div>
         </div>
 

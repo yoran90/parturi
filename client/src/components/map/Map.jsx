@@ -5,12 +5,31 @@ import useInformation from '../../hooks/useInformation';
 const Map = () => {
 
   const { getInformation } = useInformation();
-    
 
   return (
+  <div className="w-full h-[500px] md:h-[600px]">
+    {getInformation?.addressUrlForMap && (
+      <iframe
+        title="Google Map"
+        src={getInformation.addressUrlForMap}
+        width="100%"
+        height="100%"
+        style={{ border: '0' }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      ></iframe>
+    )}
+  </div>
+);
+
+    
+
+  /* return (
     <div className="w-full h-[500px] md:h-[600px]">
-      {/* Embed Google Maps using iframe */}
+
       <iframe 
+        title="Google Map"
         src={getInformation?.addressUrlForMap} 
         width="100%" 
         height="100%" 
@@ -20,7 +39,7 @@ const Map = () => {
         referrerPolicy="no-referrer-when-downgrade"
       ></iframe>
     </div>
-  );
+  ); */
 };
 
 export default Map;

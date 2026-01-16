@@ -14,7 +14,7 @@ const Loading = ({ width, height, border, topBorder, borderColor, borderTopColor
     animation: 'spin 1s linear infinite',
   };
 
-  return <div style={styleLoadingSpinner}></div>;
+  return <div data-testid="spinner" style={styleLoadingSpinner}></div>;
 };
 
 export default Loading;

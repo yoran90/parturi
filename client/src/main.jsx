@@ -40,5 +40,5 @@ function Root() {
   )
 }
 
-createRoot(document.getElementById('root')).render(<Root />)
+createRoot(document.getElementById('root')).render(<Root />);
 

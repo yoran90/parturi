@@ -137,7 +137,7 @@ const UpdateProduct = ({ closeModal, product, refreshProducts }) => {
           <label htmlFor="image" className='flex flex-col items-center hover:bg-slate-200 justify-center gap-3 border border-slate-300 rounded h-42 cursor-pointer'>
             {
               loadingUpload ? (
-                <div className='flex items-center justify-center'>
+                <div className='flex items-center justify-center' data-testid="loading-spinner">
                   <Loading width={50} height={50} border='6px' topBorder='6px' borderColor='red' borderTopColor='white' />
                 </div>
               ) : (
@@ -148,11 +148,18 @@ const UpdateProduct = ({ closeModal, product, refreshProducts }) => {
               )
             }
           </label>
-          <input type="file" hidden id='image' onChange={(e) => {
-            const files = Array.from(e.target.files); setImages(files)
-            }} 
-            multiple 
+          <input
+            type="file"
+            hidden
+            id="image"
+            data-testid="product-image-input"
+            onChange={(e) => {
+              const files = Array.from(e.target.files);
+              setImages(files);
+            }}
+            multiple
           />
+
           <p className='text-slate-400 text-sm'>choose image from your device.</p>
         </div>
         <div className='flex flex-wrap gap-2'>
@@ -160,9 +167,15 @@ const UpdateProduct = ({ closeModal, product, refreshProducts }) => {
             images.length > 0 && images.map((image, index) => (
               <div key={index} className='flex w-[70px] h-[70px] border border-slate-300 items-center gap-1 mt-3 relative'>
                 <img src={typeof image === 'string' ? image : URL.createObjectURL(image)}  alt="image" className='w-full h-full object-cover' />
-                <button type='button' onClick={() => handleRemoveImage(index)} className='bg-red-500 p-1 text-white text-sm absolute top-0 right-0 cursor-pointer'>
+                <button
+                  type='button'
+                  onClick={() => handleRemoveImage(index)}
+                  className='bg-red-500 p-1 text-white text-sm absolute top-0 right-0 cursor-pointer'
+                  aria-label={`delete-image-${index}`} // <-- add this
+                >
                   <FaTrash />
                 </button>
+
               </div>
             ))
           }
@@ -171,13 +184,15 @@ const UpdateProduct = ({ closeModal, product, refreshProducts }) => {
 
         <div className='flex justify-end mt-6'>
           <button className='bg-red-500 text-white py-1.5 px-14 rounded-full text-sm cursor-pointer hover:bg-red-400 flex items-center gap-2'>
-            {
-              loadingForButton ? <div className='flex items-center justify-center gap-2'>
+            {loadingForButton ? (
+              <div className="flex items-center justify-center gap-2" data-testid="loading-spinner">
                 <p>Adding</p>
-                <Loading width={20} height={20} border='4px' topBorder='4px' borderColor='white' borderTopColor='red' />
-              </div>  
-              : 'Update Product'
-            }
+                <Loading width={20} height={20} border="4px" topBorder="4px" borderColor="white" borderTopColor="red" />
+              </div>
+            ) : (
+              'Update Product'
+            )}
+
           </button>
         </div>
       </form>

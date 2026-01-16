@@ -14,19 +14,21 @@ const AdminForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true)
-      const response = await axios.post("http://localhost:8001/api/auth/admin-forget-password", { 
-        email: email
-       });
-      toast.success(response?.message || "Password reset link sent to email");
+      setLoading(true);
+      const response = await axios.post(
+        "http://localhost:8001/api/auth/admin-forget-password",
+        { email }
+      );
+      toast.success(response?.data?.message || "Password reset link sent to email");
       setEmail("");
     } catch (error) {
       console.log(error);
-      toast.error(error?.response?.data?.message);
+      toast.error(error?.response?.data?.message || "Something went wrong");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
+
 
   return (
     <div className='w-full flex flex-col justify-center h-screen bg-slate-800'>

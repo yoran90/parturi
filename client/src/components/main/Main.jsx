@@ -76,6 +76,7 @@ const Main = () => {
             />
           ) : (
             <video
+              data-testid="intro-video"
               src={currentMedia.src}
               alt={currentMedia.alt}
               className={`w-full h-full object-cover transition-opacity duration-500 ${fadeClass}`}

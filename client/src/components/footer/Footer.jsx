@@ -70,7 +70,7 @@ const Footer = () => {
             <div className='flex items-center gap-5.5'>
               {
                 getInformation?.socialMedia?.map((sm, index) => (
-                  <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
+                  <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" aria-label={sm.platform} className='cursor-pointer'>
                     {sm.platform === "facebook" && <FaFacebook size={16} />}
                     {sm.platform === "instagram" && <CgInstagram size={16} />}
                     {sm.platform === "tiktok" && <FaTiktok size={16} />}
@@ -90,7 +90,7 @@ const Footer = () => {
             Copyright © {getYears()} 
           </div>
           <div>
-            <img src={headerLogo?.url} alt="" className='w-5 h-5 mr-2 ml-2 rounded-full border border-slate-300' />
+            <img src={headerLogo?.url} alt="site logo" className='w-5 h-5 mr-2 ml-2 rounded-full border border-slate-300' />
           </div>
           <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
         </div>
