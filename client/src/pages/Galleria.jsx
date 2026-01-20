@@ -61,7 +61,7 @@ const Galleria = () => {
       <div className='grid md:grid-cols-4 lg:grid-cols-4 grid-cols-2 gap-1.5 m-2 mt-8 mb-8'>
         {
           galleryImages?.map((image, index) => (
-            <img key={index} src={image?.url} onClick={() => setSelectedImage(image)} className='md:w-[300px] w-full h-[300px] cursor-pointer border border-slate-300 shadow-lg rounded-md' alt="" />
+            <img key={index} src={image?.url} onClick={() => setSelectedImage(image)} className='md:w-[300px] w-full h-[300px] cursor-pointer border border-slate-300 shadow-lg rounded-md' alt={`Gallery image ${index + 1}`} />
           ))
         }
         {

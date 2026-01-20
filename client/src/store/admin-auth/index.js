@@ -39,6 +39,7 @@ export const getUserByIdInAdmin = createAsyncThunk("adminAuth/getUserByIdInAdmin
     return response.data;
   } catch (error) {
     console.log(error);
+    return rejectWithValue(error.response?.data || error.message);
   }
 });
 
@@ -180,7 +181,7 @@ const adminAuthSlice = createSlice({
         state.loading = false;        
         state.editUser = action.payload.data || null;
       })
-      .addCase(getUserForAdminForChangeRole.rejected, (state) => {
+      .addCase(getUserForAdminForChangeRole.rejected, (state, action) => {
         state.loading = false;
         state.editUser = null;
         state.error = action.payload?.message || "Failed to fetch user";

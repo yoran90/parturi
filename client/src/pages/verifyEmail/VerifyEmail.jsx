@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Loading from '../../loading/Loading';
 
 const VerifyEmail = () => {
   const { token } = useParams();
@@ -13,18 +14,22 @@ const VerifyEmail = () => {
     e.preventDefault();
 
     try {
-     setLoading(true);
-     
-     const response = await axios.post(`http://localhost:8001/api/user/verify-email/${token}`);
+      setLoading(true);
+
+      const response = await axios.post(`http://localhost:8001/api/user/verify-email/${token}`);
       toast.success(response.data.message);
       navigate("/kirjaudu");
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
+      // Safe error handling to prevent issues when error.response is undefined
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error('An unknown error occurred.');
+      }
     } finally {
       setLoading(false);
     }
-
   };
 
 
@@ -42,7 +47,16 @@ const VerifyEmail = () => {
           <small className='text-green-600'>If you did not create an account, you can ignore this email</small>
         </div>
         <div className='mt-6 w-full'>
-          <button onClick={handleVerifyEmail} className='bg-green-600 text-white hover:bg-green-700 w-full rounded cursor-pointer text-sm py-2'>Verify Email</button>
+          <button onClick={handleVerifyEmail}
+            className='bg-green-600 text-white hover:bg-green-700 w-full rounded cursor-pointer text-sm py-2'
+            disabled={loading}
+          >
+            {loading ? <div className='flex items-center justify-center gap-2' >
+                <p>Verifying</p>
+                <Loading width={20} height={20} border='4px' topBorder='4px' borderColor='white' borderTopColor='red' />
+              </div>   : 'Verify Email'}
+          </button>
+
         </div>
         <div className='mt-2'>
           <p className='text-red-600 text-sm'>Verify email expires in 30 minutes </p>

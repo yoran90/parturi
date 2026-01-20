@@ -52,7 +52,7 @@ export const getUserById = createAsyncThunk("userAuth/getUserById", async (id, {
     return response.data;  
   } catch (error) {
     console.log(error);
-    
+    return rejectWithValue(error.response?.data || error.message);
   }
 });
 

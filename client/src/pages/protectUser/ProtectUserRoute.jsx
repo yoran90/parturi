@@ -10,7 +10,7 @@ const ProtectUserRoute = ({ isAuthenticated, user, loading, children}) => {
   if (loading || (isAuthenticated && !user)) {
     return (
       <div className="flex items-center justify-center h-screen w-full">
-        <div className="loader"></div>
+        <div className="loader" role="status"></div>
         <style>{`
           .loader {
             border: 4px solid #ddd;

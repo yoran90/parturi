@@ -26,7 +26,7 @@ const GallaryLimit = () => {
         <div className='grid md:grid-cols-4 grid-cols-2 gap-1.5'>
           {
             limitedImages.length > 0 && limitedImages?.map((image, index) => (
-              <img key={index} src={image.url} className='md:w-[300px] w-full h-[260px] cursor-pointer border border-slate-500 rounded-md' alt="" />   
+              <img key={index} src={image.url} className='md:w-[300px] w-full h-[260px] cursor-pointer border border-slate-500 rounded-md' alt={`gallery-${index}`} />   
             ))
           }
         </div> 
