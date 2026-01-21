@@ -627,7 +627,7 @@ const Reviews = () => {
                       </form>
                     </div>
                   ) : (
-                    <div onClick={() => {navigate('/kirjaudu'); toast.error('Jos hattaa kommentoida, kirjaudu sisään täältä. tai rekisteröidy')}} className='w-full flex justify-between rounded-full text-[12px] px-3 py-1 border border-slate-300'>
+                    <div onClick={() => {navigate('/kirjaudu'); toast.error('Jos haluat kommentoida, kirjaudu sisään täältä. tai rekisteröidy')}} className='w-full flex justify-between rounded-full text-[12px] px-3 py-1 border border-slate-300'>
                       <p>Kirjaudu sisään kommentoidaksesi ...</p>
                       <label className='pl-4'>
                         {

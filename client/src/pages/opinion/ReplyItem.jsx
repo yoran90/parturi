@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import { FaReply } from 'react-icons/fa6';
 import { IoIosArrowDown, IoIosArrowUp, IoMdImage } from "react-icons/io";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BsTrash3Fill } from "react-icons/bs";
 import Loading from '../../loading/Loading';
 import { RiSendPlaneFill } from 'react-icons/ri';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
   const [showReplyBox, setShowReplyBox] = useState(false);
   const [replyText, setReplyText] = useState("");
   const [replyImage, setReplyImage] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const { user } = useSelector((state) => state.userAuth);
+
+  const navigate = useNavigate();
 
   const handleSend = () => {
     if (!replyText.trim() && !replyImage) return;
@@ -103,7 +109,9 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
           </div> */}
         </div>
         {/* Reply Input Box */}
-        {showReplyBox && (
+        {user ? (
+          <>
+            {showReplyBox && (
           <div className="md:ml-8 mt-3 flex flex-col items-center gap-2">
             <div className='flex items-center gap-1.5 w-full'>
               {
@@ -156,6 +164,14 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
                 />
               )}
             </div>
+          </div>
+        )}
+          </>
+        ) : (
+          <div className='mt-3 ml-8'> 
+          <div onClick={() => {navigate('/kirjaudu'); toast.error('Jos haluat kommentoida, kirjaudu sisään täältä. tai rekisteröidy')}} className='w-full flex justify-between rounded-full text-[12px] px-3 py-1 border border-slate-300'>
+            <p>Kirjaudu sisään kommentoidaksesi ...</p>
+          </div>
           </div>
         )}
       </div>

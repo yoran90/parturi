@@ -98,6 +98,7 @@ const PalvelutHinta = () => {
           <div className='md:w-[50%] md:block hidden w-full h-full'>
             {media && (
               <video
+                data-testid="service-video"
                 src={media.src}
                 autoPlay
                 loop
