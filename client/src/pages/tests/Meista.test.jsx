@@ -1,39 +1,39 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import Meistä from './Meistä'
+import Meistä from '../Meistä'
 
 // --------------------
 // MOCK COMPONENTS
 // --------------------
-vi.mock('../components/header/Header', () => ({
+vi.mock('../../components/header/Header', () => ({
   default: () => <div data-testid="header">Header</div>,
 }))
 
-vi.mock('../components/up-header/Information', () => ({
+vi.mock('../../components/up-header/Information', () => ({
   default: () => <div data-testid="information">Information</div>,
 }))
 
-vi.mock('../components/map/Map', () => ({
+vi.mock('../../components/map/Map', () => ({
   default: () => <div data-testid="map">Map</div>,
 }))
 
-vi.mock('../components/footer/Footer', () => ({
+vi.mock('../../components/footer/Footer', () => ({
   default: () => <div data-testid="footer">Footer</div>,
 }))
 
-vi.mock('../components/holy-day/HolyDay', () => ({
+vi.mock('../../components/holy-day/HolyDay', () => ({
   default: () => <div data-testid="holyday">HolyDay</div>,
 }))
 
-vi.mock('./GallaryLimit', () => ({
+vi.mock('../GallaryLimit', () => ({
   default: () => <div data-testid="gallery">GalleryLimit</div>,
 }))
 
 // --------------------
 // MOCK HOOK
 // --------------------
-vi.mock('../hooks/useAboutUs', () => ({
+vi.mock('../../hooks/useAboutUs', () => ({
   default: () => ({
     getAboutUs: {
       image: 'test-image.jpg',

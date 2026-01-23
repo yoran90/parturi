@@ -2,7 +2,7 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import YksiTuoate from './YksiTuoate'
+import YksiTuoate from '../YksiTuoate'
 
 describe('YksiTuoate component', () => {
   const mockProduct = {

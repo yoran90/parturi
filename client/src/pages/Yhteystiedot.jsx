@@ -13,6 +13,10 @@ import Loading from '../loading/Loading';
 import SuccessMessage from './SuccessMessage';
 import useTitleForPage from '../hooks/useTitleForPage';
 import HolyDay from '../components/holy-day/HolyDay';
+import { LuSquareArrowOutUpRight } from "react-icons/lu";
+import JobApplication from './Job-Application/JobApplication';
+
+
 
 
 const Yhteystiedot = () => {
@@ -20,6 +24,7 @@ const Yhteystiedot = () => {
   const { getInformation, loading } = useInformation();
   const [loadingButton, setLoadingButton] = React.useState(false);
   const [successMessage, setSuccessMessage] = React.useState("");
+  const [openJobapplication, setOpenJobapplication] = React.useState(false);
 
   const { getTitleForPage } = useTitleForPage();
 
@@ -183,9 +188,18 @@ const Yhteystiedot = () => {
       <div className='md:flex w-full gap-2 mt-16 px-2 mb-12'>
         {/* form */}
         <div className='md:w-[50%]'>
-          <h3>Ota yhteyttä meihin</h3>
-          <p>Saatavilla 24 tuntia vuorokaudessa!</p>
-          <form onSubmit={handleSubmit} className='mt-6 flex flex-col gap-4 bg-white text-black shadow border border-slate-100 rounded py-10 px-6'>
+          <div className='flex justify-between'>
+            <div>
+              <h3>Ota yhteyttä meihin</h3>
+              <p>Saatavilla 24 tuntia vuorokaudessa!</p>
+            </div>
+            <button type='button' onClick={() => setOpenJobapplication(true)} className='flex text-blue-500 items-center gap-1 mr-2 cursor-pointer  hover:text-blue-600'>
+              <p>Meille töihin</p>
+              <LuSquareArrowOutUpRight />
+            </button>
+
+          </div>
+          <form onSubmit={handleSubmit} className='mt-6 flex flex-col gap-4 bg-white text-black shadow border border-slate-100 rounded py-10 px-3 md:px-4'>
             
             <div className='text-sm flex flex-col gap-1'>
               <label htmlFor="">👤 Nimi <span className='text-red-600 font-semibold'>*</span></label>
@@ -238,6 +252,13 @@ const Yhteystiedot = () => {
             ></iframe>
         </div>
       </div>
+      {/* Job Application model */}
+      {
+        openJobapplication && (
+          <JobApplication close={() => setOpenJobapplication(false)} />
+        )
+      }
+
       {/* succes message */}
       {
         successMessage && (

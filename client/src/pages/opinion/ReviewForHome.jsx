@@ -26,12 +26,12 @@ const ReviewForHome = () => {
                 <div>
                   {
                     review?.profileImage ? (
-                      <img className='w-10 h-10 border border-slate-500 rounded-full' src={review?.profileImage} alt="" />
+                      <img className='w-10 h-10 border border-slate-500 rounded-full' src={review?.profileImage} alt={`profile-${review.firstName}-${review.lastName}`} />
                     ) : (
                       review?.gender === 'men' ? (
-                        <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                        <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt={`profile-${review.firstName}-${review.lastName}`} />
                       ) : (
-                        <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                        <img className='w-10 h-10 border border-slate-500 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt={`profile-${review.firstName}-${review.lastName}`} />
                       )
                     )
                   }
@@ -48,11 +48,11 @@ const ReviewForHome = () => {
                       return (
                         index < review.rating ? 
                           <div key={index}>
-                            <GoStarFill className='text-yellow-500' size={20} /> 
+                            <GoStarFill data-testid="star-fill" className='text-yellow-500' size={20} /> 
                           </div>
                         : 
                           <div key={index}>
-                            <GoStar size={20}  className='text-slate-500' />
+                            <GoStar data-testid="star-empty" size={20}  className='text-slate-500' />
                           </div>
                       )
                     })

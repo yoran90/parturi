@@ -127,6 +127,7 @@ const OpinionForm = ({ closeModel, isOpen }) => {
 
               <input
                 ref={fileInputRef}
+                data-testid="image-input"
                 type="file"
                 id="image"
                 accept="image/*,video/*"

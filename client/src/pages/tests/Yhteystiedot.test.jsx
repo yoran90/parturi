@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import Yhteystiedot from './Yhteystiedot'
+import Yhteystiedot from '../Yhteystiedot'
 import { vi, beforeEach } from 'vitest'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -26,43 +26,43 @@ const { mockUseInformation } = vi.hoisted(() => ({
 // ----------------- MOCKS ------------------
 
 // Mock child components
-vi.mock('../components/footer/Footer', () => ({
+vi.mock('../../components/footer/Footer', () => ({
   __esModule: true,
   default: () => <div data-testid="footer">Footer</div>,
 }))
 
-vi.mock('../components/header/Header', () => ({
+vi.mock('../../components/header/Header', () => ({
   __esModule: true,
   default: () => <div data-testid="header">Header</div>,
 }))
 
-vi.mock('../components/up-header/Information', () => ({
+vi.mock('../../components/up-header/Information', () => ({
   __esModule: true,
   default: () => <div data-testid="information">Information</div>,
 }))
 
-vi.mock('../components/holy-day/HolyDay', () => ({
+vi.mock('../../components/holy-day/HolyDay', () => ({
   __esModule: true,
   default: () => <div data-testid="holyday">HolyDay</div>,
 }))
 
-vi.mock('../loading/Loading', () => ({
+vi.mock('../../loading/Loading', () => ({
   __esModule: true,
   default: ({ width, height }) => <div data-testid="loading">Loading...</div>,
 }))
 
-vi.mock('./SuccessMessage', () => ({
+vi.mock('../SuccessMessage', () => ({
   __esModule: true,
   default: ({ close }) => <div data-testid="success-message" onClick={close}>SuccessMessage</div>,
 }))
 
 // Mock hooks
-vi.mock('../hooks/useInformation', () => ({
+vi.mock('../../hooks/useInformation', () => ({
   __esModule: true,
   default: mockUseInformation,
 }))
 
-vi.mock('../hooks/useTitleForPage', () => ({
+vi.mock('../../hooks/useTitleForPage', () => ({
   __esModule: true,
   default: () => ({
     getTitleForPage: {

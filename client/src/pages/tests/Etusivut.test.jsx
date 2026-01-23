@@ -2,57 +2,57 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import Etusivut from './Etusivut';
+import Etusivut from '../Etusivut';
 
 // Mock hooks
-vi.mock('../hooks/useInformation', () => ({
+vi.mock('../../hooks/useInformation', () => ({
   default: vi.fn(),
 }));
 
-vi.mock('../hooks/useTitleForPage', () => ({
+vi.mock('../../hooks/useTitleForPage', () => ({
   default: vi.fn(),
 }));
 
 // Mock components
-vi.mock('../components/main/Main', () => ({
+vi.mock('../../components/main/Main', () => ({
   default: () => <div data-testid="main-component">Main Component</div>,
 }));
 
-vi.mock('../components/map/Map', () => ({
+vi.mock('../../components/map/Map', () => ({
   default: () => <div data-testid="map-component">Map Component</div>,
 }));
 
-vi.mock('../components/footer/Footer', () => ({
+vi.mock('../../components/footer/Footer', () => ({
   default: () => <div data-testid="footer-component">Footer Component</div>,
 }));
 
-vi.mock('../components/up-header/Information', () => ({
+vi.mock('../../components/up-header/Information', () => ({
   default: () => <div data-testid="information-component">Information Component</div>,
 }));
 
-vi.mock('../components/header/Header', () => ({
+vi.mock('../../components/header/Header', () => ({
   default: () => <div data-testid="header-component">Header Component</div>,
 }));
 
-vi.mock('../components/holy-day/HolyDay', () => ({
+vi.mock('../../components/holy-day/HolyDay', () => ({
   default: () => <div data-testid="holyday-component">HolyDay Component</div>,
 }));
 
-vi.mock('./GallaryLimit', () => ({
+vi.mock('../GallaryLimit', () => ({
   default: () => <div data-testid="gallary-limit-component">GallaryLimit Component</div>,
 }));
 
-vi.mock('./ProductLimit', () => ({
+vi.mock('../ProductLimit', () => ({
   default: () => <div data-testid="product-limit-component">ProductLimit Component</div>,
 }));
 
-vi.mock('./opinion/ReviewForHome', () => ({
+vi.mock('../opinion/ReviewForHome', () => ({
   default: () => <div data-testid="review-component">ReviewForHome Component</div>,
 }));
 
 // Import hooks after mocking
-import useInformation from '../hooks/useInformation';
-import useTitleForPage from '../hooks/useTitleForPage';
+import useInformation from '../../hooks/useInformation';
+import useTitleForPage from '../../hooks/useTitleForPage';
 
 const mockInformationData = {
   address: '123 Main Street, Helsinki',

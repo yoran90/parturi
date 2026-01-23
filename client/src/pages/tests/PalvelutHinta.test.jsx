@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
-import PalvelutHinta from './PalvelutHinta'
+import PalvelutHinta from '../PalvelutHinta'
 import axios from 'axios'
 
 // --------------------
@@ -11,30 +11,30 @@ vi.mock('axios')
 // --------------------
 // MOCK COMPONENTS
 // --------------------
-vi.mock('../components/up-header/Information', () => ({
+vi.mock('../../components/up-header/Information', () => ({
   default: () => <div data-testid="information">Information</div>,
 }))
 
-vi.mock('../components/header/Header', () => ({
+vi.mock('../../components/header/Header', () => ({
   default: () => <div data-testid="header">Header</div>,
 }))
 
-vi.mock('../components/map/Map', () => ({
+vi.mock('../../components/map/Map', () => ({
   default: () => <div data-testid="map">Map</div>,
 }))
 
-vi.mock('../components/footer/Footer', () => ({
+vi.mock('../../components/footer/Footer', () => ({
   default: () => <div data-testid="footer">Footer</div>,
 }))
 
-vi.mock('../components/holy-day/HolyDay', () => ({
+vi.mock('../../components/holy-day/HolyDay', () => ({
   default: () => <div data-testid="holyday">HolyDay</div>,
 }))
 
 // --------------------
 // MOCK HOOK
 // --------------------
-vi.mock('../hooks/useTitleForPage', () => ({
+vi.mock('../../hooks/useTitleForPage', () => ({
   default: () => ({
     getTitleForPage: {
       titleForPage: {

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import axios from 'axios'
-import Tuote from './Tuote'
+import Tuote from '../Tuote'
 
 // --------------------
 // MOCK AXIOS
@@ -11,31 +11,31 @@ vi.mock('axios')
 // --------------------
 // MOCK CHILD COMPONENTS
 // --------------------
-vi.mock('../components/up-header/Information', () => ({
+vi.mock('../../components/up-header/Information', () => ({
   default: () => <div data-testid="information" />,
 }))
 
-vi.mock('../components/header/Header', () => ({
+vi.mock('../../components/header/Header', () => ({
   default: () => <div data-testid="header" />,
 }))
 
-vi.mock('../components/map/Map', () => ({
+vi.mock('../../components/map/Map', () => ({
   default: () => <div data-testid="map" />,
 }))
 
-vi.mock('../components/footer/Footer', () => ({
+vi.mock('../../components/footer/Footer', () => ({
   default: () => <div data-testid="footer" />,
 }))
 
-vi.mock('../components/holy-day/HolyDay', () => ({
+vi.mock('../../components/holy-day/HolyDay', () => ({
   default: () => <div data-testid="holyday" />,
 }))
 
-vi.mock('./YksiTuoate', () => ({
+vi.mock('../YksiTuoate', () => ({
   default: ({ title }) => <div data-testid="product-item">{title}</div>,
 }))
 
-vi.mock('../hooks/useTitleForPage', () => ({
+vi.mock('../../hooks/useTitleForPage', () => ({
   default: () => ({
     getTitleForPage: {
       titleForPage: {

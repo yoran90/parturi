@@ -53,14 +53,14 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
         <Link to={`/profile/${reply?.userId}`} className="flex items-center gap-3 mb-2">
           {
             reply?.profileImage?.url ? (
-              <img className='w-7 h-7 border border-slate-500 rounded-full' src={reply?.profileImage?.url} alt="" />
+              <img className='w-7 h-7 border border-slate-500 rounded-full' src={reply?.profileImage?.url} alt="reply" />
             ) : (
               reply?.gender === 'men' ? (
-                <img className='w-7 h-7 rounded-full border border-slate-500 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                <img className='w-7 h-7 rounded-full border border-slate-500 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="reply" />
               ) : reply?.gender === 'women' ? (
-                <img className='w-7 h-7  rounded-full border border-slate-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                <img className='w-7 h-7  rounded-full border border-slate-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="reply" />
               ) : (
-                <img className='w-7 h-7 border border-slate-500 rounded-full' src={reply?.profileImage} alt="" />
+                <img className='w-7 h-7 border border-slate-500 rounded-full' src={reply?.profileImage} alt="reply" />
               )
             )
           }
@@ -86,13 +86,14 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
           <img
             src={reply?.imageReply?.url}
             className="w-42 h-32 ml-8 mt-2 rounded-md object-cover"
+            alt="reply-img"
           />
         )}
 
         {/* Reply Button */}
         <div className='flex gap-4 text-[12px] ml-8 mt-2.5'>
           {/* replya */}
-          <button onClick={() => setShowReplyBox(!showReplyBox)} type='button' className='flex gap-1 text-blue-500 cursor-pointer'>
+          <button type='button' aria-label="Toggle reply" onClick={() => setShowReplyBox(!showReplyBox)} className='flex gap-1 text-blue-500 cursor-pointer'>
             {showReplyBox ? (
               <IoIosArrowDown />
             ) : (
@@ -116,19 +117,19 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
             <div className='flex items-center gap-1.5 w-full'>
               {
                 reply?.profileImage?.url ? (
-                  <img className='w-7 h-7 border border-slate-500 rounded-full' src={reply?.profileImage?.url} alt="" />
+                  <img className='w-7 h-7 border border-slate-500 rounded-full' src={reply?.profileImage?.url}  alt="reply-image" />
                 ) : (
                   reply?.gender === 'men' ? (
-                    <img className='w-7 h-7 rounded-full border border-slate-500 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                    <img className='w-7 h-7 rounded-full border border-slate-500 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s"  alt="reply-image" />
                   ) : reply?.gender === 'women' ? (
                     <img className='w-7 h-7  rounded-full border border-slate-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
                   ) : (
-                    <img className='w-7 h-7 border border-slate-500 rounded-full' src={reply?.profileImage} alt="" />
+                    <img className='w-7 h-7 border border-slate-500 rounded-full' src={reply?.profileImage}  alt="reply-image" />
                   )
                 )
               }
               <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className='flex items-center justify-between w-full border border-slate-300 px-2 py-1 rounded-full'>
-                <input type="text" value={replyText} onChange={(e) => setReplyText(e.target.value)} className="w-full outline-none text-xs" placeholder="Kirjoita vastaus..."/>
+                <input type="text" data-testid="reply-input" value={replyText} onChange={(e) => setReplyText(e.target.value)} className="w-full outline-none text-xs" placeholder="Kirjoita vastaus..."/>
                 <label>
                   {
                     loading ? (
@@ -141,7 +142,7 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
                       </>
                     )
                   }
-                  <input type="file" className="hidden" onChange={(e) => setReplyImage(e.target.files[0])} />
+                  <input type="file" data-testid="reply-file-input" className="hidden" onChange={(e) => setReplyImage(e.target.files[0])} />
                 </label>
                 <button type='submit'>
                   <RiSendPlaneFill className='ml-1 mr-1' size={15} />
@@ -151,7 +152,7 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
             <div className='w-full relative'>
               {
                 replyImage && (
-                  <button type='button' onClick={handleImageRemobe} className='text-md cursor-pointer absolute top-0 right-0 bg-red-400 text-white py-1 px-1 '>
+                  <button type='button' data-testid="remove-image-btn" onClick={handleImageRemobe} className='text-md cursor-pointer absolute top-0 right-0 bg-red-400 text-white py-1 px-1 '>
                     <BsTrash3Fill  />
                   </button>
                 )

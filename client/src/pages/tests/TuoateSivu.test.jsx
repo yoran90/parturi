@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import axios from 'axios'
-import TuoateSivu from './TuoateSivu'
+import TuoateSivu from '../TuoateSivu'
 
 // --------------------
 // MOCK AXIOS
@@ -13,27 +13,27 @@ vi.mock('axios')
 // --------------------
 // MOCK LAYOUT COMPONENTS
 // --------------------
-vi.mock('../components/up-header/Information', () => ({
+vi.mock('../../components/up-header/Information', () => ({
   default: () => <div data-testid="information" />,
 }))
 
-vi.mock('../components/header/Header', () => ({
+vi.mock('../../components/header/Header', () => ({
   default: () => <div data-testid="header" />,
 }))
 
-vi.mock('../components/map/Map', () => ({
+vi.mock('../../components/map/Map', () => ({
   default: () => <div data-testid="map" />,
 }))
 
-vi.mock('../components/footer/Footer', () => ({
+vi.mock('../../components/footer/Footer', () => ({
   default: () => <div data-testid="footer" />,
 }))
 
-vi.mock('../components/holy-day/HolyDay', () => ({
+vi.mock('../../components/holy-day/HolyDay', () => ({
   default: () => <div data-testid="holyday" />,
 }))
 
-vi.mock('./ProductLimit', () => ({
+vi.mock('../ProductLimit', () => ({
   default: () => <div data-testid="product-limit" />,
 }))
 

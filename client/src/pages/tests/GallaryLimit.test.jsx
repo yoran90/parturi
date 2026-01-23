@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import { describe, it, afterEach, vi, beforeEach } from "vitest";
-import GallaryLimit from "./GallaryLimit";
+import GallaryLimit from "../GallaryLimit";
 import axios from "axios";
 
 // Mock axios

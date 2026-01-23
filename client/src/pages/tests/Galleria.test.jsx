@@ -1,23 +1,23 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import Galleria from "./Galleria";
+import Galleria from "../Galleria";
 
 // --- Mock hook first ---
 const mockUseGallery = vi.fn();
 
 // --- Mock Components ---
-vi.mock("../components/map/Map", () => ({ default: () => <div data-testid="map-component">Map</div> }));
-vi.mock("../components/footer/Footer", () => ({ default: () => <div data-testid="footer-component">Footer</div> }));
-vi.mock("../components/up-header/Information", () => ({ default: () => <div data-testid="information-component">Info</div> }));
-vi.mock("../components/header/Header", () => ({ default: () => <div data-testid="header-component">Header</div> }));
-vi.mock("../components/holy-day/HolyDay", () => ({ default: () => <div data-testid="holyday-component">HolyDay</div> }));
+vi.mock("../../components/map/Map", () => ({ default: () => <div data-testid="map-component">Map</div> }));
+vi.mock("../../components/footer/Footer", () => ({ default: () => <div data-testid="footer-component">Footer</div> }));
+vi.mock("../../components/up-header/Information", () => ({ default: () => <div data-testid="information-component">Info</div> }));
+vi.mock("../../components/header/Header", () => ({ default: () => <div data-testid="header-component">Header</div> }));
+vi.mock("../../components/holy-day/HolyDay", () => ({ default: () => <div data-testid="holyday-component">HolyDay</div> }));
 
 // --- Mock Hooks ---
-vi.mock("../hooks/useGallery", () => ({
+vi.mock("../../hooks/useGallery", () => ({
   default: () => mockUseGallery(),
 }));
 
-vi.mock("../hooks/useTitleForPage", () => ({
+  vi.mock("../../hooks/useTitleForPage", () => ({
   default: () => ({
     getTitleForPage: {
       titleForPage: {

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
-import ProductLimit from './ProductLimit'
+import ProductLimit from '../ProductLimit'
 import axios from 'axios'
 
 // --------------------
@@ -11,7 +11,7 @@ vi.mock('axios')
 // --------------------
 // MOCK CHILD COMPONENT
 // --------------------
-vi.mock('./YksiTuoate', () => ({
+vi.mock('../YksiTuoate', () => ({
   default: ({ title, price }) => (
     <div data-testid="product-item">
       <p>{title}</p>

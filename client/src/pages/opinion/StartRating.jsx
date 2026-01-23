@@ -15,6 +15,7 @@ const StarRating = ({ rating, setRating }) => {
           onMouseEnter={() => setHover(star)}
           onMouseLeave={() => setHover(0)}
           onClick={() => setRating(star)} 
+          data-testid={`star-${star}`}
         />
       ))}
     </div>

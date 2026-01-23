@@ -118,7 +118,7 @@ const EditReview = ({ closeModel, item, fetchReviwes }) => {
                 loading ? (
                   <div className='flex items-center gap-1.5'>
                     <p>Saving</p>
-                    <Loading width={20} height={20} border='3px' topBorder='3px' borderColor='white' borderTopColor='red' />
+                    <Loading width={20} height={20} border='3px' topBorder='3px' borderColor='white' borderTopColor='red'  />
                   </div>
                 ) : (
                   'Save Change'

@@ -10,6 +10,7 @@ const Map = () => {
   <div className="w-full h-[500px] md:h-[600px]">
     {getInformation?.addressUrlForMap && (
       <iframe
+        data-testid="google-map"
         title="Google Map"
         src={getInformation.addressUrlForMap}
         width="100%"
