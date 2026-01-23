@@ -110,7 +110,7 @@ const JobApplication = ({ close }) => {
             </div>
           </div>
 
-          <div className='md:flex-row flex flex-col md:items-center'>
+          <div className='md:flex-row flex flex-col'>
             <div className='flex gap-1 md:w-1/3'>
               <p>Lähetä ansioluettelo</p>
             </div>
@@ -123,7 +123,7 @@ const JobApplication = ({ close }) => {
             </div>
           </div>
 
-          <div className='md:flex-row flex flex-col md:items-center'>
+          <div className='md:flex-row flex flex-col '>
             <div className='flex gap-1 w-1/3'>
               <p>Motivaatiokirje</p>
             </div>
