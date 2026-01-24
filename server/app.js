@@ -17,6 +17,7 @@ import aboutRouters from './routes/aboutUsRoute.js';
 import titleForpageRoutes from './routes/titleForPageRoute.js';
 import reviewsRoutes from './routes/reviewsRoute.js';
 import shopMediaRoutes from './routes/shopRoute.js';
+import jobApplicationRoutes from './routes/jobApplicationRoute.js';
 
 
 const app = express();
@@ -58,6 +59,7 @@ app.use("/api/about-us", aboutRouters);
 app.use("/api/titleForPages", titleForpageRoutes);
 app.use("/api/reviwes", reviewsRoutes);
 app.use("/api/shopMedia", shopMediaRoutes);
+app.use("/api/job", jobApplicationRoutes);
 
 
 export default app

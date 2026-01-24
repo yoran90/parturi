@@ -2,11 +2,10 @@ import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Yhteystiedot from '../Yhteystiedot'
-import { vi, beforeEach } from 'vitest'
+import { vi, beforeEach, describe, it, expect } from 'vitest'
 import axios from 'axios'
-import { toast } from 'react-toastify'
 
-// Hoist mocks to avoid initialization issues
+// ---------------- HOISTED MOCK ----------------
 const { mockUseInformation } = vi.hoisted(() => ({
   mockUseInformation: vi.fn(() => ({
     getInformation: {
@@ -23,9 +22,8 @@ const { mockUseInformation } = vi.hoisted(() => ({
   })),
 }))
 
-// ----------------- MOCKS ------------------
+// ---------------- COMPONENT MOCKS ----------------
 
-// Mock child components
 vi.mock('../../components/footer/Footer', () => ({
   __esModule: true,
   default: () => <div data-testid="footer">Footer</div>,
@@ -48,15 +46,31 @@ vi.mock('../../components/holy-day/HolyDay', () => ({
 
 vi.mock('../../loading/Loading', () => ({
   __esModule: true,
-  default: ({ width, height }) => <div data-testid="loading">Loading...</div>,
+  default: () => <div data-testid="loading">Loading...</div>,
 }))
 
 vi.mock('../SuccessMessage', () => ({
   __esModule: true,
-  default: ({ close }) => <div data-testid="success-message" onClick={close}>SuccessMessage</div>,
+  default: ({ close }) => (
+    <div data-testid="success-message" onClick={close}>
+      SuccessMessage
+    </div>
+  ),
 }))
 
-// Mock hooks
+// ✅ JobApplication mock
+vi.mock('../Job-Application/JobApplication', () => ({
+  __esModule: true,
+  default: ({ close }) => (
+    <div data-testid="job-application">
+      <p>Job Application Modal</p>
+      <button onClick={close}>Close</button>
+    </div>
+  ),
+}))
+
+// ---------------- HOOK MOCKS ----------------
+
 vi.mock('../../hooks/useInformation', () => ({
   __esModule: true,
   default: mockUseInformation,
@@ -74,18 +88,18 @@ vi.mock('../../hooks/useTitleForPage', () => ({
   }),
 }))
 
-// Mock axios
+// ---------------- LIBRARY MOCKS ----------------
+
 vi.mock('axios')
 axios.post = vi.fn(() => Promise.resolve({ data: { success: true } }))
 
-// Mock toast
 vi.mock('react-toastify', () => ({
   toast: {
     error: vi.fn(),
   },
 }))
 
-// ----------------- TESTS ------------------
+// ---------------- TESTS ----------------
 
 describe('Yhteystiedot page', () => {
   beforeEach(() => {
@@ -106,49 +120,87 @@ describe('Yhteystiedot page', () => {
   })
 
   it('renders loading state correctly', () => {
-    // override hook to return loading=true
     mockUseInformation.mockReturnValueOnce({
       getInformation: null,
       loading: true,
     })
 
     render(<Yhteystiedot />)
-    expect(screen.getByText(/Ladataan yhteystietoja/i)).toBeInTheDocument()
+    expect(
+      screen.getByText(/Ladataan yhteystietoja/i)
+    ).toBeInTheDocument()
   })
 
   it('renders main page content correctly', () => {
     render(<Yhteystiedot />)
 
-    // Test header, footer, information, holyday
     expect(screen.getByTestId('header')).toBeInTheDocument()
     expect(screen.getByTestId('footer')).toBeInTheDocument()
     expect(screen.getByTestId('information')).toBeInTheDocument()
     expect(screen.getByTestId('holyday')).toBeInTheDocument()
 
-    // Test title and description
-    expect(screen.getByText('Test Connection Title')).toBeInTheDocument()
-    expect(screen.getByText('Test Connection Description')).toBeInTheDocument()
+    expect(
+      screen.getByText('Test Connection Title')
+    ).toBeInTheDocument()
 
-    // Test contact info (address appears multiple times)
+    expect(
+      screen.getByText('Test Connection Description')
+    ).toBeInTheDocument()
+
     const addressElements = screen.getAllByText('Test Address')
     expect(addressElements.length).toBeGreaterThan(0)
+
     expect(screen.getByText('+35812345678')).toBeInTheDocument()
     expect(screen.getByText('test@example.com')).toBeInTheDocument()
   })
 
-  it('submits form successfully', async () => {
+  it('does not show job application modal initially', () => {
     render(<Yhteystiedot />)
 
-    // Fill form fields
-    fireEvent.change(screen.getByPlaceholderText('nimesi'), { target: { value: 'John Doe' } })
-    fireEvent.change(screen.getByPlaceholderText('+35812345678'), { target: { value: '+35812345678' } })
-    fireEvent.change(screen.getByPlaceholderText('example@example.com'), { target: { value: 'test@test.com' } })
-    fireEvent.change(screen.getByPlaceholderText('Kirjoita viesti...'), { target: { value: 'Hello!' } })
+    expect(
+      screen.queryByTestId('job-application')
+    ).not.toBeInTheDocument()
+  })
 
-    const button = screen.getByText('lähetä viesti')
-    fireEvent.click(button)
+  it('opens job application modal when clicking "Meille töihin"', () => {
+    render(<Yhteystiedot />)
 
-    // Wait for axios.post to be called
+    fireEvent.click(screen.getByText('Meille töihin'))
+
+    expect(
+      screen.getByTestId('job-application')
+    ).toBeInTheDocument()
+  })
+
+  it('closes job application modal when close button is clicked', () => {
+    render(<Yhteystiedot />)
+
+    fireEvent.click(screen.getByText('Meille töihin'))
+    fireEvent.click(screen.getByText('Close'))
+
+    expect(
+      screen.queryByTestId('job-application')
+    ).not.toBeInTheDocument()
+  })
+
+  it('submits form successfully', () => {
+    render(<Yhteystiedot />)
+
+    fireEvent.change(screen.getByPlaceholderText('nimesi'), {
+      target: { value: 'John Doe' },
+    })
+    fireEvent.change(screen.getByPlaceholderText('+35812345678'), {
+      target: { value: '+35812345678' },
+    })
+    fireEvent.change(screen.getByPlaceholderText('example@example.com'), {
+      target: { value: 'test@test.com' },
+    })
+    fireEvent.change(screen.getByPlaceholderText('Kirjoita viesti...'), {
+      target: { value: 'Hello!' },
+    })
+
+    fireEvent.click(screen.getByText('lähetä viesti'))
+
     expect(axios.post).toHaveBeenCalledWith(
       'http://localhost:8001/api/email/send-email',
       {
