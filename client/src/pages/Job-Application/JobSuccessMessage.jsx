@@ -6,7 +6,7 @@ const JobSuccessMessage = ({ closeSuccessMessage }) => {
       <div className='bg-white shadow md:w-full w-[95%] max-w-2xl md:px-6 px-3 md:py-14 py-10 rounded'>
         <div className='flex flex-col items-center justify-center text-center'>
           <img 
-            src="https://img.icons8.com/ios11/512/40C057/ok.png" 
+            src="https://media.istockphoto.com/id/893852520/vector/green-approved-star-sticker-vector-illustration-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=bWXm78KGXS6oJL7R65DQkv5Qq0j7cZY-PNG9hrvijGo=" 
             alt="Success" 
             className='w-[120px] h-[120px] mb-4' 
           />

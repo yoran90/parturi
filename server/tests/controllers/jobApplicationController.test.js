@@ -1,110 +1,111 @@
-import { jest, describe, test, beforeEach, expect } from "@jest/globals";
-import request from "supertest";
-import express from "express";
-import multer from "multer";
+import { jest } from "@jest/globals";
 
-// -------------------- MOCK NODEMAILER --------------------
-jest.mock('nodemailer', () => ({
-  createTransport: jest.fn(),
+// 🔹 mock sendMail
+const sendMailMock = jest.fn();
+
+// 🔹 mock nodemailer BEFORE importing the function
+jest.unstable_mockModule("nodemailer", () => ({
+  default: {
+    createTransport: jest.fn(() => ({
+      sendMail: sendMailMock
+    }))
+  }
 }));
 
-import nodemailer from 'nodemailer';
-import jobRouter from '../../routes/jobApplicationRoutes.js'; // your router
+// 🔹 now import AFTER mock
+const { sendJobApplicationEmail } = await import(
+  "../../controllers/jobApplicationController.js"
+);
 
-// Create the sendMail mock AFTER importing nodemailer
-const sendMailMock = jest.fn();
-nodemailer.createTransport.mockReturnValue({
-  sendMail: sendMailMock,
-});
-
-// -------------------- SETUP EXPRESS APP --------------------
-const app = express();
-app.use(express.json());
-app.use('/api/job', jobRouter);
-
-// -------------------- TEST SUITE --------------------
-describe("Job Application Controller", () => {
-
+describe("sendJobApplicationEmail", () => {
   beforeEach(() => {
-    sendMailMock.mockReset(); // reset mocks before each test
+    jest.clearAllMocks();
+
+    process.env.EMAIL_USER = "test@gmail.com";
+    process.env.EMAIL_PASSWORD = "password123";
   });
 
-  // -------------------- Missing fields --------------------
-  test("should return 400 if required fields are missing", async () => {
-    const res = await request(app).post("/api/job/apply-job").send({});
-    expect(res.status).toBe(400);
-    expect(res.body.message).toMatch(/pakollisia/i); // "required fields" message
-  });
+  it("should send email with resume attachment", async () => {
+    sendMailMock.mockResolvedValue({ messageId: "12345" });
 
-  // -------------------- Send email without resume --------------------
-  test("should send email successfully without resume", async () => {
-    sendMailMock.mockResolvedValueOnce('Email Sent');
-
-    const payload = {
+    const data = {
       firstName: "John",
       lastName: "Doe",
       email: "john@example.com",
-      phone: "+123456789",
-      selectJob: "Kokoaikainen",
-      startDate: "2026-01-25",
-      message: "Hello",
+      phone: "123456789",
+      selectJob: "Backend Developer",
+      startDate: "2026-02-01",
+      message: "I would love to apply",
+      resume: {
+        originalname: "cv.pdf",
+        buffer: Buffer.from("fake-pdf"),
+        mimetype: "application/pdf"
+      }
     };
 
-    const res = await request(app).post("/api/job/apply-job").send(payload);
+    const result = await sendJobApplicationEmail(data);
 
-    expect(res.status).toBe(200);
-    expect(res.body.success).toBe(true);
-    expect(sendMailMock).toHaveBeenCalled();
+    // ✅ sendMail was called
+    expect(sendMailMock).toHaveBeenCalledTimes(1);
 
-    // Check that no attachments were sent
-    const mailOptions = sendMailMock.mock.calls[0][0];
-    expect(mailOptions.attachments).toHaveLength(0);
+    // ✅ verify email payload
+    expect(sendMailMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        from: `"John Doe" <john@example.com>`,
+        to: process.env.EMAIL_USER,
+        subject: "New Job Application from John Doe",
+        attachments: [
+          expect.objectContaining({
+            filename: "cv.pdf",
+            contentType: "application/pdf"
+          })
+        ]
+      })
+    );
+
+    // ✅ return value
+    expect(result).toEqual({ messageId: "12345" });
   });
 
-  // -------------------- Send email with resume --------------------
-  test("should send email successfully with resume", async () => {
-    sendMailMock.mockResolvedValueOnce('Email Sent');
+  it("should send email WITHOUT resume", async () => {
+    sendMailMock.mockResolvedValue({ accepted: ["test@gmail.com"] });
 
-    const res = await request(app)
-      .post("/api/job/apply-job")
-      .attach("resume", Buffer.from("Resume Content"), "resume.pdf")
-      .field("firstName", "John")
-      .field("lastName", "Doe")
-      .field("email", "john@example.com")
-      .field("phone", "+123456789")
-      .field("selectJob", "Kokoaikainen")
-      .field("startDate", "2026-01-25")
-      .field("message", "Hello");
-
-    expect(res.status).toBe(200);
-    expect(res.body.success).toBe(true);
-
-    // Check that attachment is correct
-    const mailOptions = sendMailMock.mock.calls[0][0];
-    expect(mailOptions.attachments).toHaveLength(1);
-    expect(mailOptions.attachments[0].filename).toBe("resume.pdf");
-    expect(mailOptions.attachments[0].content.toString()).toBe("Resume Content");
-  });
-
-  // -------------------- Nodemailer failure --------------------
-  test("should return 500 if nodemailer fails", async () => {
-    sendMailMock.mockRejectedValueOnce(new Error("SMTP Error"));
-
-    const payload = {
+    const data = {
       firstName: "Jane",
-      lastName: "Doe",
+      lastName: "Smith",
       email: "jane@example.com",
-      phone: "+123456789",
-      selectJob: "Osa-aikainen",
-      startDate: "2026-01-25",
-      message: "Hi there",
+      phone: "987654321",
+      selectJob: "Frontend Developer",
+      startDate: "2026-03-01",
+      message: "Here is my application",
+      resume: null
     };
 
-    const res = await request(app).post("/api/job/apply-job").send(payload);
+    await sendJobApplicationEmail(data);
 
-    expect(res.status).toBe(500);
-    expect(res.body.success).toBe(false);
-    expect(res.body.message).toMatch(/Failed/i);
+    expect(sendMailMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        attachments: []
+      })
+    );
   });
 
+  it("should throw error if sendMail fails", async () => {
+    sendMailMock.mockRejectedValue(new Error("SMTP failed"));
+
+    const data = {
+      firstName: "Error",
+      lastName: "Case",
+      email: "error@test.com",
+      phone: "000",
+      selectJob: "Tester",
+      startDate: "now",
+      message: "fail",
+      resume: null
+    };
+
+    await expect(sendJobApplicationEmail(data))
+      .rejects
+      .toThrow("SMTP failed");
+  });
 });

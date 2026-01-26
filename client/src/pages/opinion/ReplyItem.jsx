@@ -79,7 +79,8 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
         </Link>
 
         {/* Reply Text */}
-        <p className="text-[13px] ml-8">{reply?.reply || ""}</p>
+        <p className="text-[13px] ml-8" data-testid="reply-text">{reply?.reply || ""}</p>
+
 
         {/* Reply Image */}
         {reply?.imageReply?.url && (

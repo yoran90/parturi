@@ -14,7 +14,7 @@ describe('JobSuccessMessage Component', () => {
     // Check if the success image is rendered
     const image = screen.getByAltText('Success');
     expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('src', 'https://img.icons8.com/ios11/512/40C057/ok.png');
+    expect(image).toHaveAttribute('src', 'https://media.istockphoto.com/id/893852520/vector/green-approved-star-sticker-vector-illustration-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=bWXm78KGXS6oJL7R65DQkv5Qq0j7cZY-PNG9hrvijGo=');
 
     // Check if the headings and paragraphs are rendered
     expect(screen.getByText('Hakemuksesi on lähetetty onnistuneesti!')).toBeInTheDocument();

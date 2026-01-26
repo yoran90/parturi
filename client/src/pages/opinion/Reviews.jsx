@@ -240,9 +240,9 @@ const Reviews = () => {
                {item?.userId === user?.id && (
                 
                 <div className='flex items-end justify-end mb-2 -mt-4 relative'>
-                   <div className='cursor-pointer' onClick={() => handleToggleOpenUserMenu(item?._id)}>
+                   <button type='button' aria-label="Review menu" className='cursor-pointer' onClick={() => handleToggleOpenUserMenu(item?._id)}>
                     <BsThreeDots size={18} />
-                  </div>
+                  </button>
                   {
                     openUserMenu === item?._id && (
                       <div className='bg-white shadow w-[30%] border border-slate-200 rounded p-4 absolute top-5 z-50'>
@@ -384,7 +384,10 @@ const Reviews = () => {
                                 ) : (
                                   <div>
                                     <button className='top-3 right-3 absolute text-xs cursor-pointer' onClick={() => setShowLiked(false)}>❌</button>
-                                    <h1 className='text-sm mb-4'>Tykätty</h1>
+                                    <h1 data-testid="liked-modal-title" className="text-sm mb-4">
+                                      Tykätty
+                                    </h1>
+
                                   </div>
                                 )
                               }
@@ -459,7 +462,7 @@ const Reviews = () => {
                                     <small className='text-[11px]'>{new Date(comment?.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</small>
                                   </div>
                                 </Link>
-                                <p className='text-[13px] ml-10 mt-2'>{typeof comment?.comment === 'string' ? comment.comment : comment?.comment?.comment || ''}</p>
+                                <p className='text-[13px] ml-10 mt-2' data-testid="comment-text">{typeof comment?.comment === 'string' ? comment.comment : comment?.comment?.comment || ''}</p>
                                 <div className='ml-10 overflow-hidden'>
 
                                 {
@@ -471,7 +474,7 @@ const Reviews = () => {
                                 {/* reply */}
                                 <div className='flex gap-4 text-[12px] ml-10 mt-2.5'>
                                   {/* replya */}
-                                  <button onClick={() => handleOpenReply(item._id, comment._id)} type='button' className='flex gap-1 text-blue-500 cursor-pointer'>
+                                  <button aria-label="Näytä vastaus" onClick={() => handleOpenReply(item._id, comment._id)} type='button' className='flex gap-1 text-blue-500 cursor-pointer'>
                                     {openReplyInput.reviewId === item._id && openReplyInput.commentId === comment._id ? (
                                       <IoIosArrowDown />
                                     ) : (
