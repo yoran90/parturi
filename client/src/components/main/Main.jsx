@@ -64,7 +64,7 @@ const Main = () => {
 
 
   return (
-    <div className='relative w-full md:h-[85vh] h-[55vh] overflow-hidden'>
+    <div className='relative w-full md:h-[85vh] h-[60vh] overflow-hidden'>
       {/* Render image or video with smooth fade transition */}
       <div className={`transition-opacity flex justify-center items-center duration-1000 ease-in-out w-full md:h-full h-[45vh]`} key={currentIndex}>
         {
