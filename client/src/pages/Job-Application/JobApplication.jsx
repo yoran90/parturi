@@ -275,7 +275,7 @@ const JobApplication = ({ close }) => {
           {/* sussecc message */}
         </div>
       )}
-      {successMessage && <JobSuccessMessage closeSuccessMessage={() => setSuccessMessage(false) } />}
+      {successMessage && <JobSuccessMessage closeSuccessMessage={() => { setSuccessMessage(false), close(); }} />}
     </>
   )
 }

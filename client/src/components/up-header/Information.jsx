@@ -4,6 +4,7 @@ import { FaFacebook, FaMapMarkerAlt, FaSnapchat, FaTiktok, FaTwitter, FaYoutube 
 import { IoMdClock } from "react-icons/io";
 import { CgInstagram } from 'react-icons/cg';
 import useInformation from '../../hooks/useInformation';
+import { TbCurrentLocation } from "react-icons/tb";
 
 const Information = () => {
 
@@ -36,7 +37,7 @@ const Information = () => {
           
         </div>
         <div className='text-xs flex items-center gap-5.5'>
-          <a
+          <a className='flex flex-col gap-0.5'
             href={getInformation?.addressUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -44,6 +45,10 @@ const Information = () => {
             <div className='flex items-center gap-2'>
               <FaMapMarkerAlt className='text-red-600' />
               {getInformation?.address}
+            </div>
+            <div className='flex items-center gap-2'>
+              <TbCurrentLocation />
+              {getInformation?.located}
             </div>
           </a>
 
@@ -73,19 +78,21 @@ const Information = () => {
             ))
           }
         </div>
-        <div className='text-xs flex items-center justify-between gap-14'>
+        <div className='text-xs flex items-center justify-between gap-8'>
           <div>
-            <a
-            href={getInformation?.addressUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className='flex items-center gap-2'>
-              <FaMapMarkerAlt className='text-red-600' />
-              <p>
+           <a className='flex flex-col gap-0.5'
+              href={getInformation?.addressUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className='flex items-center gap-2'>
+                <FaMapMarkerAlt className='text-red-600' />
                 {getInformation?.address}
-              </p>
-            </div>
+              </div>
+              <div className='flex items-center gap-2'>
+                <TbCurrentLocation />
+                {getInformation?.located}
+              </div>
           </a>
           </div>
           <div className='flex items-center gap-2'>

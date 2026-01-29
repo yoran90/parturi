@@ -25,7 +25,7 @@ const Footer = () => {
   return (
     <div className='bg-black text-white md:p-12 py-12 px-4'>
       <footer>
-        <div className="md:grid md:grid-cols-5 flex flex-col gap-8" style={{ gridTemplateColumns: "2fr 1fr 1.5fr 1fr" }}>
+        <div className="md:grid md:grid-cols-3 flex flex-col gap-8" style={{ gridTemplateColumns: "2.5fr 1.5fr 1fr" }}>
           <div className='flex flex-col gap-5.5'>
             <h3 className='text-md flex items-center gap-2'>
               <img src={headerLogo?.url} alt="" className='w-6 h-6 rounded-full border border-slate-300' />
@@ -35,7 +35,7 @@ const Footer = () => {
           </div>
           
           
-          <div className='flex flex-col gap-5.5'>
+          {/* <div className='flex flex-col gap-5.5'>
             <h3 className='text-md flex items-center gap-2'>
               <FaHandsHelping />
               Help
@@ -45,7 +45,7 @@ const Footer = () => {
               <p className='text-sm text-slate-300'>Terms & Conditions</p>
               <p className='text-sm text-slate-300'>Partners</p>
             </div>
-          </div>
+          </div> */}
           <div className='flex flex-col gap-5.5'>
             <h3 className='text-md flex items-center gap-2'>
               <MdOutlineContactSupport />
@@ -95,7 +95,7 @@ const Footer = () => {
           <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
         </div>
         {/* for mobile */}
-         <div className='md:hidden flex flex-col items-center justify-center mt-8 text-xs gap-1'>
+         <div className='md:hidden flex flex-col items-center text-center justify-center mt-8 text-xs gap-1'>
           <div>
             Copyright © {getYears()} 
           </div>

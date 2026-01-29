@@ -61,6 +61,7 @@ describe("AddInformation", () => {
     fireEvent.change(await screen.findByTestId("phone-input"), { target: { value: "1234567890" } });
     fireEvent.change(screen.getByPlaceholderText(/example@example.com/i), { target: { value: "test@test.com" } });
     fireEvent.change(screen.getByPlaceholderText(/enter your address/i), { target: { value: "My Street 1" } });
+    fireEvent.change(screen.getByPlaceholderText(/enter your location/i), { target: { value: "My Street 2" } });
 
     fireEvent.click(screen.getByTestId("submit-button"));
 

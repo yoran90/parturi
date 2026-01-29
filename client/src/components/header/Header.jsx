@@ -4,7 +4,7 @@ import { LuMenu } from "react-icons/lu";
 import { CgClose } from "react-icons/cg";
 import useHeaderLogo from '../../hooks/useHeaderLogo';
 import { TbLogout } from "react-icons/tb";
-import { FaUserLock } from "react-icons/fa";
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useRef } from 'react';
 import { useEffect } from 'react';
@@ -16,7 +16,7 @@ import { toast } from 'react-toastify';
 const Header = () => {
 
 
-  const { isAuthenticated, user, loading } = useSelector((state) => state.userAuth);
+  const { user, loading } = useSelector((state) => state.userAuth);
   const [openUserMenu, setOpenUserMenu] = useState(false);
 
   const dispatch = useDispatch();
@@ -84,7 +84,7 @@ const Header = () => {
       <div ref={menuRef} className='md:flex sticky top-0 p-2 hidden items-center justify-between bg-white dark:bg-black dark:text-white text-black border-t-2 border-b-2  border-slate-800 z-50'>
         <div className='bg-white dark:bg-black'>
           {headerLogo && headerLogo.url && (
-            <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
+            <img src={headerLogo?.url} alt="Header Logo" className='w-12 h-12 rounded-full border border-slate-500 ml-4' />
           )}
         </div>
         <div className='flex justify-end px-4.5'>

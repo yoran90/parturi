@@ -4,9 +4,9 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import TitleForPages from '../../pages/TitleForPages';
 import axios from 'axios';
 
-// --------------------------------
+// -----------------------------
 // MOCKS
-// --------------------------------
+// -----------------------------
 vi.mock('axios');
 
 vi.mock('react-toastify', () => ({
@@ -20,7 +20,6 @@ vi.mock('../../../loading/Loading', () => ({
   default: () => <span>loading...</span>,
 }));
 
-// ✅ Mock ReactQuill (CRITICAL)
 vi.mock('react-quill-new', () => ({
   default: ({ value, onChange }) => (
     <textarea
@@ -31,10 +30,11 @@ vi.mock('react-quill-new', () => ({
   ),
 }));
 
-// --------------------------------
-// CONTROL MOCK FOR HOOK
-// --------------------------------
+// -----------------------------
+// HOOK MOCK
+// -----------------------------
 let mockTitleForPage = null;
+
 
 vi.mock('../../../hooks/useTitleForPage', () => ({
   default: () => ({
@@ -42,19 +42,25 @@ vi.mock('../../../hooks/useTitleForPage', () => ({
   }),
 }));
 
-// --------------------------------
+
+// -----------------------------
 // TESTS
-// --------------------------------
+// -----------------------------
 describe('TitleForPages Component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockTitleForPage = null;
   });
 
-  it('renders empty form when no data exists', () => {
+  it('renders empty form when no data exists', async () => {
+    mockTitleForPage = null;
+
     render(<TitleForPages />);
 
-    expect(screen.getByPlaceholderText('Enter your service title')).toBeInTheDocument();
+    expect(
+      await screen.findByPlaceholderText('Enter your service title')
+    ).toBeInTheDocument();
+
     expect(screen.getAllByTestId('quill').length).toBeGreaterThan(0);
     expect(screen.getByText('Add Save')).toBeInTheDocument();
   });
@@ -63,16 +69,8 @@ describe('TitleForPages Component', () => {
     mockTitleForPage = {
       titleForPage: {
         serviceTitle: 'Service',
-        serviceDescription: '<p>Service desc</p>',
         galleriTitle: 'Gallery',
-        galleriDescription: '<p>Gallery desc</p>',
         productTitle: 'Product',
-        productDescription: '<p>Product desc</p>',
-        footerTitle: 'Footer',
-        footerDescription: '<p>Footer desc</p>',
-        footerFooter: '<p>Footer footer</p>',
-        connectionTitle: 'Connection',
-        connectionDescription: '<p>Connection desc</p>',
       },
     };
 
@@ -85,28 +83,35 @@ describe('TitleForPages Component', () => {
     });
   });
 
-  it('updates input values when typing', () => {
+  it('updates input values when typing', async () => {
+    mockTitleForPage = null;
+
     render(<TitleForPages />);
 
-    const serviceTitleInput = screen.getByPlaceholderText('Enter your service title');
+    const input = await screen.findByPlaceholderText(
+      'Enter your service title'
+    );
 
-    fireEvent.change(serviceTitleInput, {
+    fireEvent.change(input, {
       target: { value: 'New Service Title' },
     });
 
-    expect(serviceTitleInput.value).toBe('New Service Title');
+    expect(input.value).toBe('New Service Title');
   });
 
   it('submits POST request when no existing data', async () => {
+    mockTitleForPage = null;
+
     axios.post.mockResolvedValueOnce({
       data: { message: 'Created successfully' },
     });
 
     render(<TitleForPages />);
 
-    fireEvent.change(screen.getByPlaceholderText('Enter your service title'), {
-      target: { value: 'Service Title' },
-    });
+    fireEvent.change(
+      await screen.findByPlaceholderText('Enter your service title'),
+      { target: { value: 'Service Title' } }
+    );
 
     fireEvent.click(screen.getByText('Add Save'));
 
@@ -118,10 +123,10 @@ describe('TitleForPages Component', () => {
     });
   });
 
-  it('submits PUT request when data exists', async () => {
+  it('submits PUT request when existing data exists', async () => {
     mockTitleForPage = {
       titleForPage: {
-        serviceTitle: 'Service',
+        serviceTitle: 'Existing',
       },
     };
 
@@ -131,7 +136,7 @@ describe('TitleForPages Component', () => {
 
     render(<TitleForPages />);
 
-    fireEvent.click(screen.getByText('Add Save'));
+    fireEvent.click(await screen.findByText('Add Save'));
 
     await waitFor(() => {
       expect(axios.put).toHaveBeenCalledWith(
@@ -142,22 +147,25 @@ describe('TitleForPages Component', () => {
   });
 
   it('shows loading state while saving', async () => {
-    let resolvePromise;
-
-    axios.post.mockReturnValue(
-      new Promise((resolve) => {
-        resolvePromise = resolve;
-      })
-    );
+    mockTitleForPage = null;
 
     render(<TitleForPages />);
 
-    fireEvent.click(screen.getByText('Add Save'));
+    axios.post.mockImplementation(
+      () =>
+        new Promise((resolve) =>
+          setTimeout(() => resolve({ data: { message: 'Saved' } }), 100)
+        )
+    );
 
-    expect(await screen.findByText('Saving')).toBeInTheDocument();
+    fireEvent.click(await screen.findByText('Add Save'));
 
-    resolvePromise({
-      data: { message: 'Saved' },
+    await waitFor(() => {
+      expect(screen.getByText(/Saving/i)).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
+      expect(axios.post).toHaveBeenCalled();
     });
   });
 });

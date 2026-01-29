@@ -225,7 +225,7 @@ describe('Etusivut Component', () => {
     renderWithRouter(<Etusivut />);
 
     expect(screen.getByText('TERVETULOA')).toBeInTheDocument();
-    expect(screen.getByText(/Tervetuloa Parturiin/)).toBeInTheDocument();
+    expect(screen.getByText(/Tervetuloa Razor parturiin/)).toBeInTheDocument();
   });
 
   it('should render services section with title', () => {
@@ -240,7 +240,7 @@ describe('Etusivut Component', () => {
 
     renderWithRouter(<Etusivut />);
 
-    expect(screen.getByText('Parturipalvelut')).toBeInTheDocument();
+    expect(screen.getByText('Razor parturipalvelut')).toBeInTheDocument();
   });
 
   it('should render why choose us section', () => {
@@ -255,7 +255,7 @@ describe('Etusivut Component', () => {
 
     renderWithRouter(<Etusivut />);
 
-    expect(screen.getByText('💈Miksi Valita Meidät')).toBeInTheDocument();
+    expect(screen.getByText('💈 Miksi Valita Meidät 💈')).toBeInTheDocument();
     expect(screen.getByText('Ammattilainen')).toBeInTheDocument();
     expect(screen.getByText('Mestari / huippuosaaja')).toBeInTheDocument();
     expect(screen.getByText('Luotettu / asiakkaiden suosima')).toBeInTheDocument();
@@ -449,8 +449,8 @@ describe('Etusivut Component', () => {
     renderWithRouter(<Etusivut />);
 
     expect(screen.getByText('TERVETULOA')).toBeInTheDocument();
-    expect(screen.getByText('Parturipalvelut')).toBeInTheDocument();
-    expect(screen.getByText('💈Miksi Valita Meidät')).toBeInTheDocument();
+    expect(screen.getByText('Razor parturipalvelut')).toBeInTheDocument();
+    expect(screen.getByText('💈 Miksi Valita Meidät 💈')).toBeInTheDocument();
     expect(screen.getByText('Arvostelut')).toBeInTheDocument();
   });
 });

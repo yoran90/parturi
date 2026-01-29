@@ -1,70 +1,33 @@
 import React, { useEffect } from 'react'
 import { FaShareAlt } from 'react-icons/fa'
 import { BsTrash3Fill } from "react-icons/bs";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Loading from '../../loading/Loading';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 import axios from 'axios';
+import { TbCurrentLocation } from "react-icons/tb";
 
 const AddInformation = () => {
 
+  const { isLoading } = useSelector((state) => state.adminAuth);
+
   const [loadingForButton, setLoadingForButton] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+
+  const [getInformation, setGetInformation] = React.useState(null);
 
   const [phone, setPhone] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [address, setAddress] = React.useState('');
+  const [located, setLocated] = React.useState('');
   const [addressUrl, setAddressUrl] = React.useState('');
   const [addressUrlForMap, setAddressUrlForMap] = React.useState('');
   const [openingHours, setOpeningHours] = React.useState('');
   const [holyday, setHolyday] = React.useState('');
   const [socialMedia, setSocialMedia] = React.useState([{ platform: "", url: "" }]);
 
-  const [loading, setLoading] = React.useState(false);
-  
-  const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.adminAuth);
-
-
-
-  const handleChange = (index, value) => {
-    const newSocialMedia = [...socialMedia];
-    newSocialMedia[index] = { ...newSocialMedia[index], url: value };
-    setSocialMedia(newSocialMedia);
-  }
-  const addSocialMediaFiled = () => {
-    setSocialMedia([...socialMedia, { platform: "", url: "" }]);
-  }
-  const removeAnotherSocialMedia = (index) => {
-    const newSocialMedia = socialMedia.filter((_, i) => i !== index);
-    setSocialMedia(newSocialMedia);
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    setLoadingForButton(true);
-    try {
-      const response = await axios.post("http://localhost:8001/api/information/addInformation", { phone, email, address, addressUrl, addressUrlForMap, openingHours, holyday, socialMedia });
-      toast.success('Information added successfully');
-    } catch (error) {
-      console.log(error);
-      
-    } finally {
-      setLoadingForButton(false);
-    }
-  } 
-
-  if (isLoading) {
-    return (
-      <div className='flex items-center justify-center h-screen' data-testid="loading">
-        <Loading width={50} height={50} border='6px' topBorder='6px' borderColor='red' borderTopColor='white' />
-      </div>
-    )
-  }
-
-  const [getInformation, setGetInformation] = React.useState(null);
 
   useEffect(() => {
     const fetchInfo = async () => {
@@ -81,12 +44,14 @@ const AddInformation = () => {
     }
     fetchInfo()
   }, []);
+  
 
   useEffect(() => {
     if (getInformation) {
       setPhone(getInformation.phone || "");
       setEmail(getInformation.email || "");
       setAddress(getInformation.address || "");
+      setLocated(getInformation.located || "");
       setAddressUrl(getInformation.addressUrl || "");
       setAddressUrlForMap(getInformation.addressUrlForMap || "");
       setOpeningHours(getInformation.openingHours || "");
@@ -94,6 +59,65 @@ const AddInformation = () => {
       setSocialMedia(getInformation.socialMedia?.length ? getInformation.socialMedia : [{ platform: "", url: "" }]);
     }
   }, [getInformation]);
+
+
+
+
+  const handleChange = (index, value) => {
+    const newSocialMedia = [...socialMedia];
+    newSocialMedia[index] = { ...newSocialMedia[index], url: value };
+    setSocialMedia(newSocialMedia);
+  }
+
+  const addSocialMediaFiled = () => {
+    setSocialMedia([...socialMedia, { platform: "", url: "" }]);
+  }
+
+  const removeAnotherSocialMedia = (index) => {
+    const newSocialMedia = socialMedia.filter((_, i) => i !== index);
+    setSocialMedia(newSocialMedia);
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setLoadingForButton(true);
+    try {
+      await axios.post("http://localhost:8001/api/information/addInformation", 
+        { 
+          phone,
+          email, 
+          address, 
+          located, 
+          addressUrl, 
+          addressUrlForMap, 
+          openingHours, 
+          holyday, 
+          socialMedia 
+        }
+      );
+      toast.success('Information added successfully');
+    } catch (error) {
+      console.log(error);
+      toast.error('Something went wrong')
+    } finally {
+      setLoadingForButton(false);
+    }
+  } 
+
+  if (isLoading) {
+    return (
+      <div className='flex items-center justify-center h-screen' data-testid="loading">
+        <Loading width={50} height={50} border='6px' topBorder='6px' borderColor='red' borderTopColor='white' />
+      </div>
+    )
+  }
+
+  
+
+  
+
+ 
 
 
   if (loading) {
@@ -138,6 +162,10 @@ const AddInformation = () => {
         <div className='flex flex-col text-sm gap-1'>
           <label htmlFor="">📍 Add Address</label>
           <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className='border border-slate-300 p-1.5 px-3 rounded' placeholder='Enter your address'/>
+        </div>
+        <div className='flex flex-col text-sm gap-1'>
+          <label htmlFor="" className='flex items-center gap-1.5 ml-1'><TbCurrentLocation /> Add Located</label>
+          <input type="text" value={located} onChange={(e) => setLocated(e.target.value)} className='border border-slate-300 p-1.5 px-3 rounded' placeholder='Enter your location'/>
         </div>
         <div className='flex flex-col text-sm gap-1'>
           <label htmlFor="">🌐 Add Address URL</label>

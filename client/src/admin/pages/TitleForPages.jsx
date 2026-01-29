@@ -15,7 +15,9 @@ const TitleForPages = () => {
 
   const [loadingForButton, setLoadingForButton] = useState(false);
   
-  console.log(getTitleForPage);
+  const [isInitialized, setIsInitialized] = useState(false);
+ 
+  /* const [loading, setLoading] = useState(true);  */
   
   
   const [formData, setFormData] = useState({
@@ -32,32 +34,34 @@ const TitleForPages = () => {
     connectionDescription: ""
   });
   
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [loading, setLoading] = useState(false);
+  
 
-   useEffect(() => {
+  useEffect(() => {
 
-    if (!getTitleForPage) return;
-    if (!getTitleForPage.titleForPage) return;
     if (isInitialized) return;
 
-    setFormData({
-      serviceTitle: getTitleForPage.titleForPage.serviceTitle || "",
-      serviceDescription: getTitleForPage.titleForPage.serviceDescription || "",
-      galleriTitle: getTitleForPage.titleForPage.galleriTitle || "",
-      galleriDescription: getTitleForPage.titleForPage.galleriDescription || "",
-      productTitle: getTitleForPage.titleForPage.productTitle || "",
-      productDescription: getTitleForPage.titleForPage.productDescription || "",
-      footerTitle: getTitleForPage.titleForPage.footerTitle || "",
-      footerDescription: getTitleForPage.titleForPage.footerDescription || "",
-      footerFooter: getTitleForPage.titleForPage.footerFooter || "",
-      connectionTitle: getTitleForPage.titleForPage.connectionTitle || "",
-      connectionDescription: getTitleForPage.titleForPage.connectionDescription || "",
-    });
-
-    setIsInitialized(true);
-
+    if (getTitleForPage?.titleForPage) {
+      setFormData({
+        serviceTitle: getTitleForPage.titleForPage.serviceTitle || "",
+        serviceDescription: getTitleForPage.titleForPage.serviceDescription || "",
+        galleriTitle: getTitleForPage.titleForPage.galleriTitle || "",
+        galleriDescription: getTitleForPage.titleForPage.galleriDescription || "",
+        productTitle: getTitleForPage.titleForPage.productTitle || "",
+        productDescription: getTitleForPage.titleForPage.productDescription || "",
+        footerTitle: getTitleForPage.titleForPage.footerTitle || "",
+        footerDescription: getTitleForPage.titleForPage.footerDescription || "",
+        footerFooter: getTitleForPage.titleForPage.footerFooter || "",
+        connectionTitle: getTitleForPage.titleForPage.connectionTitle || "",
+        connectionDescription: getTitleForPage.titleForPage.connectionDescription || "",
+      });
+      setIsInitialized(true); 
+      /* setLoading(false); */
+    }
   }, [getTitleForPage, isInitialized]);
+
+
+
+
 
    
   const handleSubmit = async (e) => {
@@ -83,11 +87,14 @@ const TitleForPages = () => {
   } 
 
 
+
+
+ /* 
   if (loading) {
     return (
       <div className="w-full h-screen flex flex-col justify-center items-center text-slate-700">
         <div className="loader"></div>
-        <p className="mt-4 text-sm">Ladataan odota...</p>
+        <p className="mt-4 text-sm">Loading data, please wait...</p>
         <style>{`
           .loader {
             border: 4px solid #ddd;
@@ -104,6 +111,7 @@ const TitleForPages = () => {
       </div>
     );
   }
+ */
 
 
 

@@ -70,6 +70,7 @@ const Etusivut = () => {
                 {getInformation?.address ? (
                     <div>
                       <p className='text-xs font-semibold'>{getInformation?.address}</p>
+                      <p className='text-xs font-semibold'>{getInformation?.located}</p>
                     </div>
                   ) : (
                     <div>
@@ -140,7 +141,7 @@ const Etusivut = () => {
             <h3 className='text-sm font-semibold  mb-12 mt-6'>TERVETULOA</h3>
             <div className='px-4 py-4 w-full'>
               <p className='text-sm mb-4 font-semibold'>
-                Tervetuloa Parturiin – paikkaan, jossa hiukset saavat ansaitsemansa huomion ja asiakkaat palvellaan sydämellä. Meiltä saat yksilöllistä palvelua, ammattitaitoa ja rennon tunnelman – juuri sellaisen parturikokemuksen kuin sinulle sopii.
+                Tervetuloa Razor parturiin, jossa hiukset saavat ansaitsemansa huomion ja asiakkaat palvellaan sydämellä. Meiltä saat yksilöllistä palvelua, ammattitaitoa ja rennon tunnelman – juuri sellaisen parturikokemuksen kuin sinulle sopii.
                 </p>
               <p className='text-sm'>
                 Olitpa tulossa pieneen siistimiseen tai isompaan tyylimuutokseen, autamme löytämään juuri sinulle sopivan ilmeen. Käytämme laadukkaita tuotteita ja pidämme huolta, että jokainen käynti on mukava hetki arjen keskellä. Astut sisään, rentoudut – ja lähdet pois raikkaana, hyvällä mielellä ja tyylikkäänä.
@@ -156,8 +157,8 @@ const Etusivut = () => {
       {/* parturipalvelut */}
       <div className='mt-8 mb-12' >
         <div>
-          <h3 className=' font-semibold text-center mb-4'>Parturipalvelut</h3>
-          <p className='text-sm  text-center font-semibold mb-4'>Parturiin saavat ansaitsemansa huomion ja asiakkaat palvellaan sydaremellä.</p>
+          <h3 className=' font-semibold text-center mb-4'>Razor parturipalvelut</h3>
+          <p className='text-sm  text-center font-semibold mb-4'>Razor parturiin saavat ansaitsemansa huomion ja asiakkaat palvellaan sydaremellä.</p>
           <div className='md:flex gap-2.5 w-[98%] m-auto' style={{zoom: '0.8'}}>
             <div className='md:w-[50%]'>
               <img className='rounded-2xl' src="https://assets.nicepagecdn.com/d2cc3eaa/6401142/images/handsome-man-cutting-beard-barber-4.jpg" alt="" />
@@ -185,8 +186,8 @@ const Etusivut = () => {
       </div>
       {/* why choose us */}
       <div className='flex flex-col w-[98%] items-center justify-center m-auto mb-12'>
-        <h3 className='text-lg font-semibold mb-4'>💈Miksi Valita Meidät</h3>
-        <p className='text-sm  text-center mb-6 md:w-[95%]'>Luon Parturissa yhdistyvät ammattitaito, intohimo ja aito välittäminen.
+        <h3 className='text-lg font-semibold mb-4'>💈 Miksi Valita Meidät 💈</h3>
+        <p className='text-sm  text-center mb-6 md:w-[95%]'>Razor Parturissa yhdistyvät ammattitaito, intohimo ja aito välittäminen.
           Olemme licensed ja kokeneita alan ammattilaisia, jotka seuraavat trendejä ja kehittävät osaamistaan jatkuvasti.
           Asiakkaamme luottavat meihin, koska jokainen leikkaus, parran muotoilu ja viimeistely tehdään huolella ja yksilöllisesti.
           Kun istut tuoliimme, voit rentoutua – olet hyvissä ja luotettavissa käsissä.

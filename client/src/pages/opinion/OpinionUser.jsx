@@ -17,7 +17,7 @@ import useShop from '../../hooks/useShop'
 const OpinionUser = () => {
 
   
-  const {getShope, setShope, fetchShopMedia} = useShop();
+  const {getShope} = useShop();
  
 
 
@@ -124,6 +124,10 @@ const OpinionUser = () => {
             <div className='flex items-center gap-2.5'>
               <h3 className='text-sm font-semibold'>Katu osoite:</h3>
               <h3 className='text-sm'>{getInformation?.address}</h3>
+            </div>
+            <div className='flex items-center gap-2.5'>
+              <h3 className='text-sm font-semibold'>Sijaitsee:</h3>
+              <h3 className='text-sm'>{getInformation?.located}</h3>
             </div>
             <div className='flex items-center gap-2.5'>
               <h3 className=' font-semibold text-sm'>Puhelinnumero:</h3>

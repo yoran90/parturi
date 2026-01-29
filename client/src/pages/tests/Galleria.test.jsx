@@ -85,6 +85,6 @@ describe("Galleria Component", () => {
   it("shows message if gallery is empty", () => {
     mockUseGallery.mockReturnValue({ galleryImages: [], loading: false });
     render(<Galleria />);
-    expect(screen.getByText("No Gallery Images Found")).toBeDefined();
+    expect(screen.getByText("Galleriakuvia ei löytynyt")).toBeDefined();
   });
 });

@@ -45,9 +45,9 @@ export const getTitleForPage = async (req, res) => {
   try {
     const titleForPage = await TitleForPage.findOne();
 
-    if (!titleForPage) {
+    /* if (!titleForPage) {
       return res.status(404).json({ message: "Title for page not found" });
-    }
+    } */
     res.status(200).json({ titleForPage });
   } catch (error) {
     console.log(error);

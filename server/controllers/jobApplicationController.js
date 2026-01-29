@@ -14,15 +14,15 @@ export const sendJobApplicationEmail = async ({ firstName, lastName, email, phon
     const mailOptions = {
       from: `"${firstName} ${lastName}" <${email}>`,
       to: process.env.EMAIL_USER,
-      subject: `New Job Application from ${firstName} ${lastName}`,
+      subject: `Uusi työhakemus käyttäjältä ➖ (${firstName} ${lastName})`,
       html: `
-        <h2>New Job Application</h2>
-        <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Position Applied:</strong> ${selectJob}</p>
-        <p><strong>Start Date:</strong> ${startDate}</p>
-        <p><strong>Message:</strong><br>${message}</p>
+        <h2>Uusi työhakemus käyttäjältä (${firstName} ${lastName})</h2>
+        <p><strong> 👤 Nimi:</strong>  ${firstName} ${lastName}</p>
+        <p><strong> 📞 Puhelin:</strong>  ${phone}</p>
+        <p><strong> 📧 Sähköposti:</strong>  ${email}</p>
+        <p><strong> 💼 Haettu tehtävä:</strong>  ${selectJob}</p>
+        <p><strong> 📆 Aloituspäivämäärä:</strong>  ${startDate}</p><br>
+        <p><strong> 📜 Viesti:</strong><br><br>${message}</p>
       `,
       attachments: resume ? [
         {
@@ -32,7 +32,6 @@ export const sendJobApplicationEmail = async ({ firstName, lastName, email, phon
         }
       ] : []
     };
-
 
     const info = await transporter.sendMail(mailOptions);
     return info;

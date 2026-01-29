@@ -53,7 +53,7 @@ const Galleria = () => {
       {
         galleryImages.length === 0 && (
           <div className='flex flex-col items-center justify-center mt-6'>
-            <h4 className='text-red-600'>No Gallery Images Found</h4>
+            <h4 className='text-red-600'>Galleriakuvia ei löytynyt</h4>
           </div>
         )
       }

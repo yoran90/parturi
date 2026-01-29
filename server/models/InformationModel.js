@@ -19,6 +19,9 @@ const informationSchema = new mongoose.Schema({
   address: { 
     type: String 
   },
+  located: {
+    type: String
+  },
   addressUrl: {
     type: String
   },

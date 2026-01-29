@@ -53,7 +53,7 @@ describe("sendJobApplicationEmail", () => {
       expect.objectContaining({
         from: `"John Doe" <john@example.com>`,
         to: process.env.EMAIL_USER,
-        subject: "New Job Application from John Doe",
+        subject: "Uusi työhakemus käyttäjältä ➖ (John Doe)",
         attachments: [
           expect.objectContaining({
             filename: "cv.pdf",
