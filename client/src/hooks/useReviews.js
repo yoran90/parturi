@@ -6,7 +6,7 @@ export default function useReviews() {
   const [getReviews, setGetReviews] = useState(null);
 
   const fetchReviwes = async () => {
-    const response = await axios.get("http://localhost:8001/api/reviwes/getReviews");
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/reviwes/getReviews`);
     setGetReviews(response.data);
   }
 
@@ -26,7 +26,7 @@ export function useReviewById(id) {
   useEffect(() => {
     if (!id) return;
     const fetchReviweById  = async () => {
-      const response = await axios.get(`http://localhost:8001/api/auth/getReview/${id}`, { withCredentials: true });
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/getReview/${id}`, { withCredentials: true });
       setGetReview(response.data);
     }
     fetchReviweById();
@@ -43,7 +43,7 @@ export function useDeleteReviewById(id) {
     const deleteReviewHnadler  = async () => {
       try {
         setLoadingForButton(true);
-        const response = await axios.delete(`http://localhost:8001/api/auth/deleteReview/${id}`, { withCredentials: true });
+        const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/auth/deleteReview/${id}`, { withCredentials: true });
         setDeleteReview(response.data);
       } catch (error) {
         console.log(error);
@@ -67,7 +67,7 @@ export function useDeleteReviewByUser() {
   const userDeleteOwnreviewPost = async (id) => {
     try {
       setLoadingForDeleteUserReview(true);
-      const response = await axios.delete(`http://localhost:8001/api/reviwes/deleteReview/${id}`, { withCredentials: true });
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/reviwes/deleteReview/${id}`, { withCredentials: true });
       setUserDeleteOwnReview(response.data);
     } catch (error) {
       console.log(error);

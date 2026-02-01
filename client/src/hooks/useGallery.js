@@ -11,7 +11,7 @@ export default function useGallery() {
     const fetchGalleryImages = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:8001/api/media/galleryImages');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/media/galleryImages`);
         const allImages = response.data.data.flatMap(gallery =>
           gallery.images.map(img => ({
             galleryId: gallery._id,

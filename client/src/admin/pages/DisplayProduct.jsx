@@ -33,7 +33,7 @@ const DisplayProduct = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response  = await axios.get("http://localhost:8001/api/products/getAllProducts");      
+      const response  = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/getAllProducts`);      
       setProdects(response.data);
     } catch (error) {
       console.log(error);
@@ -46,7 +46,7 @@ const DisplayProduct = () => {
   const deleteProduct = async (id) => {
     try {
       setDeletingId(id);
-      const response = await axios.delete(`http://localhost:8001/api/products/deleteProduct/${id}`);
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/products/deleteProduct/${id}`);
       if (response.status === 200) {
         toast.success("Product deleted successfully.");
         setProdects(products.filter(item => item._id !== id));

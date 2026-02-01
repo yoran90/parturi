@@ -37,7 +37,7 @@ const AddHeaderLogo = () => {
       const formData = new FormData();
       formData.append('image', selectFile.file);
 
-      const { data } = await axios.post('http://localhost:8001/api/header-logo/logo', formData, {
+      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/header-logo/logo`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 

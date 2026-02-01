@@ -10,7 +10,8 @@ export default function useTitleForPage() {
 
   useEffect(() => {
     const fetchTitleForPage = async () => {
-      const response = await axios.get("http://localhost:8001/api/titleForPages/getT-Dforpage");      
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/titleForPages/getT-Dforpage`); 
+     
       setGetTitleForPage(response.data);
     }
     fetchTitleForPage();

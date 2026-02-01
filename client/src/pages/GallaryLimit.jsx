@@ -8,7 +8,7 @@ const GallaryLimit = () => {
    useEffect(() => {
     const fetchGalleryImages = async () => {
       try {
-        const response = await axios.get('http://localhost:8001/api/media/galleryImages?limit=4');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/media/galleryImages?limit=4`);
         setGalleryImages(response.data.data);
       } catch (error) {
         console.log(error);

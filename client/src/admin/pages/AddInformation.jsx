@@ -33,7 +33,7 @@ const AddInformation = () => {
     const fetchInfo = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:8001/api/information/getInformation")
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/information/getInformation`);
         setGetInformation(response.data)
       } catch (error) {
         console.log(error);
@@ -83,7 +83,7 @@ const AddInformation = () => {
 
     setLoadingForButton(true);
     try {
-      await axios.post("http://localhost:8001/api/information/addInformation", 
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/information/addInformation`, 
         { 
           phone,
           email, 

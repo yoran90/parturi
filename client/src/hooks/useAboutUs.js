@@ -7,7 +7,7 @@ export default function useAboutUs() {
   useEffect(() => {
     const fetchAboutUs = async () => {
       try {
-        const res = await axios.get("http://localhost:8001/api/about-us/aboutUs");
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/about-us/aboutUs`);
         setGetAboutUs(res.data);
       } catch (err) {
         setGetAboutUs(null); 

@@ -48,7 +48,7 @@ const ImageVideo = () => {
         formData.append("type", media.type);
         formData.append("alt", media.alt || alt);
 
-        const response = await axios.post("http://localhost:8001/api/media/upload", formData, {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/media/upload`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
         if (response.data.success) {

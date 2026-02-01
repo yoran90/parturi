@@ -160,7 +160,7 @@ const ProfileUser = () => {
       if (profileImage) formData.append('image', profileImage);
 
       const response = await axios.put(
-        "http://localhost:8001/api/user/userUpdateData",
+        `${import.meta.env.VITE_API_URL}/api/user/userUpdateData`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" }, withCredentials: true }
       );
@@ -179,7 +179,7 @@ const ProfileUser = () => {
   useEffect(() => {
     const fetchReview = async () => {
       try {
-        const response = await axios.get("http://localhost:8001/api/reviwes/ownReview", { withCredentials: true });
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/reviwes/ownReview`, { withCredentials: true });
         setGetOwnReviwes(response.data);
       } catch (error) {
         console.log(error);
@@ -203,7 +203,7 @@ const ProfileUser = () => {
   const handleDeleteOwnAccount = async () => {
     try {
       setLoadingConfirmDeleteUserOwnAccount(true);
-      const response = await axios.delete("http://localhost:8001/api/user/userDeleteOwnAccount", { withCredentials: true });
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/user/userDeleteOwnAccount`, { withCredentials: true });
       dispatch(userLogout());
       toast.success(response.data.message);
     } catch (error) {

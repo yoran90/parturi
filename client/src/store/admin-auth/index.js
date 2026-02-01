@@ -12,7 +12,7 @@ const initialState = {
 //! ADMIN LOGIN
 export const adminLogin = createAsyncThunk("adminAuth/login", async ({ email, password }, { rejectWithValue }) => {
   try {
-    const response = await axios.post("http://localhost:8001/api/auth/login", { email, password }, { withCredentials: true });
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, { email, password }, { withCredentials: true });
     return response.data;
   } catch (error) {
     console.log(error);
@@ -25,7 +25,7 @@ export const adminLogin = createAsyncThunk("adminAuth/login", async ({ email, pa
 //! ADMIN LOGOUT
 export const adminLogout = createAsyncThunk("adminAuth/logout", async () => {
     try {
-      const response = await axios.post("http://localhost:8001/api/auth/logout",{}, { withCredentials: true });
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/logout`,{}, { withCredentials: true });
       return response.data;
     } catch (error) {
       console.log(error);
@@ -35,7 +35,7 @@ export const adminLogout = createAsyncThunk("adminAuth/logout", async () => {
 //! get user by id for admin
 export const getUserByIdInAdmin = createAsyncThunk("adminAuth/getUserByIdInAdmin", async (id, { rejectWithValue}) => {
   try {
-    const response = await axios.get(`http://localhost:8001/api/auth/userForAdmin/${id}`, { withCredentials: true });
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/userForAdmin/${id}`, { withCredentials: true });
     return response.data;
   } catch (error) {
     console.log(error);
@@ -45,14 +45,14 @@ export const getUserByIdInAdmin = createAsyncThunk("adminAuth/getUserByIdInAdmin
 
 //! super admin get user data by id
 export const getUserDataById = createAsyncThunk("adminAuth/getUserDataById", async (id, { rejectWithValue}) => {
-    const response = await axios.get(`http://localhost:8001/api/auth/getUserDataById/${id}`, { withCredentials: true });
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/getUserDataById/${id}`, { withCredentials: true });
     return response.data;
 }) 
 
 //! SUPER ADMIN UPDATE USER ROLE (CHANGE USER ROLE)
 export const superAdminUpdateUserRole = createAsyncThunk("adminAuth/superAdminUpdateUserRole", async ({ id, role }, { rejectWithValue }) => {
   try {
-    const response = await axios.put(`http://localhost:8001/api/auth/updateUserRole/${id}`, { role }, { withCredentials: true });
+    const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/auth/updateUserRole/${id}`, { role }, { withCredentials: true });
     return response.data
   } catch (error) {
     console.log(error);
@@ -62,7 +62,7 @@ export const superAdminUpdateUserRole = createAsyncThunk("adminAuth/superAdminUp
 //! SUPER ADMIN GET USER DATA BY ID FOR CHANGE ROLE (CHANGE USER ROLE)
 export const getUserForAdminForChangeRole = createAsyncThunk("adminAuth/getUserForAdminForChangeRole", async (id, { rejectWithValue }) => {
   try {
-    const response = await axios.get(`http://localhost:8001/api/auth/getUserForAdminForChangeRole/${id}`, { withCredentials: true });
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/getUserForAdminForChangeRole/${id}`, { withCredentials: true });
     return response.data
   } catch (error) {
     return rejectWithValue(error.response?.data || error.message);
@@ -72,7 +72,7 @@ export const getUserForAdminForChangeRole = createAsyncThunk("adminAuth/getUserF
 //! super admin delete user or admin
 export const adminDeleteUserOrAdmin = createAsyncThunk("adminAuth/adminDeleteUserOrAdmin", async (id, { rejectWithValue }) => {
   try {
-    const response = await axios.delete(`http://localhost:8001/api/auth/adminDeleteUserOrAdmin/${id}`, { withCredentials: true });
+    const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/auth/adminDeleteUserOrAdmin/${id}`, { withCredentials: true });
     return response.data
   } catch (error) {
     if (error.response && error.response.data) {
@@ -86,7 +86,7 @@ export const adminDeleteUserOrAdmin = createAsyncThunk("adminAuth/adminDeleteUse
 //! CHECK ADMIN AUTH
 export const checkAdminAuth = createAsyncThunk("adminAuth/check-auth", async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:8001/api/auth/check-auth", { withCredentials: true });
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/check-auth`, { withCredentials: true });
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);

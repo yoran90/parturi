@@ -55,7 +55,7 @@ const AddReview = () => {
           formDataToSend.append('shopMedia', media[i]);
         }
       }
-      const response = await axios.post("http://localhost:8001/api/shopMedia/createShopeMedia", formDataToSend, { withCredentials: true });
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/shopMedia/createShopeMedia`, formDataToSend, { withCredentials: true });
       toast.success(response.data.message);
     } catch (error) {
       console.log(error);

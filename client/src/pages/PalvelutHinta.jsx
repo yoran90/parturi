@@ -19,7 +19,7 @@ const PalvelutHinta = () => {
    useEffect(() => {
     const fetchMedia = async () => {
       try {
-        const response = await axios.get("http://localhost:8001/api/media/list");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/media/list`);
         const video = response.data.data.filter(item => item.type === 'video');
         const firstVideo = video[0];
         setMedia(firstVideo);
@@ -34,7 +34,7 @@ const PalvelutHinta = () => {
     const fetchPrices = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:8001/api/price/getprices");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/price/getprices`);
         setPrices(response.data);
       } catch (error) {
         console.log(error);

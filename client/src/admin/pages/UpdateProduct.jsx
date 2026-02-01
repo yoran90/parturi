@@ -55,7 +55,7 @@ const UpdateProduct = ({ closeModal, product, refreshProducts }) => {
 
     try {
       setLoadingForButton(true);
-      const response = await axios.put(`http://localhost:8001/api/products/updateProduct/${product._id}`, formData, {
+      const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/products/updateProduct/${product._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

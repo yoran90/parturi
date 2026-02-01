@@ -12,7 +12,7 @@ const initialState = {
 //! user register 
 export const userRegister = createAsyncThunk("userAuth/register", async ({ firstName, lastName, gender, email, password }, { rejectWithValue }) => {
   try {
-    const response = await axios.post("http://localhost:8001/api/auth/register", { firstName, lastName, gender, email, password }, { withCredentials: true });
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, { firstName, lastName, gender, email, password }, { withCredentials: true });
     return response.data;
   } catch (error) {
     console.log(error);
@@ -24,7 +24,7 @@ export const userRegister = createAsyncThunk("userAuth/register", async ({ first
 //! user login
 export const userLogin = createAsyncThunk("userAuth/login", async ({ email, password }, { rejectWithValue }) => {
   try {
-    const response = await axios.post("http://localhost:8001/api/user/userLogin", { email, password }, { withCredentials: true });
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/userLogin`, { email, password }, { withCredentials: true });
     return response.data;
   } catch (error) {
     console.log(error);
@@ -36,7 +36,7 @@ export const userLogin = createAsyncThunk("userAuth/login", async ({ email, pass
 //! GOOGLE LOGIN (user login with google account)
 export const googleLogin = createAsyncThunk("userAuth/googleLogin", async ({ credential }, { rejectWithValue }) => {
   try {
-    const response = await axios.post("http://localhost:8001/api/user/google-login", { credential  }, { withCredentials: true });
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/google-login`, { credential  }, { withCredentials: true });
     return response.data;
   } catch (error) {
     console.log(error);
@@ -48,7 +48,7 @@ export const googleLogin = createAsyncThunk("userAuth/googleLogin", async ({ cre
 //! get user by id
 export const getUserById = createAsyncThunk("userAuth/getUserById", async (id, { rejectWithValue }) => {
   try {
-    const response = await axios.get(`http://localhost:8001/api/user/${id}`, { withCredentials: true });
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/${id}`, { withCredentials: true });
     return response.data;  
   } catch (error) {
     console.log(error);
@@ -59,7 +59,7 @@ export const getUserById = createAsyncThunk("userAuth/getUserById", async (id, {
 //! get profile user by id
 export const getProfileUserById = createAsyncThunk("userAuth/getProfileUserById", async (id, { rejectWithValue }) => {
   try {
-    const response = await axios.get(`http://localhost:8001/api/user/getProfileUser/${id}`, { withCredentials: true });
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/getProfileUser/${id}`, { withCredentials: true });
     return response.data;  
   } catch (error) {
     console.log(error);
@@ -71,7 +71,7 @@ export const getProfileUserById = createAsyncThunk("userAuth/getProfileUserById"
 //! user logout
 export const userLogout = createAsyncThunk("userAuth/logout", async () => {
   try {
-    const response = await axios.post("http://localhost:8001/api/user/userLogout",{}, { withCredentials: true });
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/userLogout`,{}, { withCredentials: true });
     return response.data;
   } catch (error) {
     console.log(error);
@@ -84,7 +84,7 @@ export const userMiddleware = createAsyncThunk(
   "userAuth/check-user",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:8001/api/user/check-user", { withCredentials: true });
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/check-user`, { withCredentials: true });
       return response.data
     } catch (error) {
       return rejectWithValue(error.response?.data || error.message);

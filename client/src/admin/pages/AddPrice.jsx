@@ -55,7 +55,7 @@ const AddPrice = () => {
 
     try {
       setLoadingForButton(true);
-        await axios.post("http://localhost:8001/api/price/addprice", { prices: priceObjects });
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/price/addprice`, { prices: priceObjects });
         toast.success("Prices added successfully");
       } catch (error) {
         console.log(error);
@@ -71,7 +71,7 @@ const AddPrice = () => {
       const fetchPrice = async () => {
         try {
           setLoading(true);
-          const response = await axios.get("http://localhost:8001/api/price/getprices");
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/price/getprices`);
           const pricesData = response.data;
           if (pricesData && pricesData.length > 0) {
             setTitle(pricesData.map(price => price.title));
@@ -114,7 +114,7 @@ const AddPrice = () => {
 
       if (priceId[index]) {
         try {
-          await axios.delete(`http://localhost:8001/api/price/deleteprice/${priceId[index]}`);
+          await axios.delete(`${import.meta.env.VITE_API_URL}/api/price/deleteprice/${priceId[index]}`);
           toast.success("Price deleted successfully");
         } catch (error) {
           console.log(error);

@@ -71,10 +71,10 @@ const TitleForPages = () => {
     try {
 
       if (getTitleForPage?.titleForPage) {
-        const response = await axios.put("http://localhost:8001/api/titleForPages/updateT-Dforpage", formData);
+        const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/titleForPages/updateT-Dforpage`, formData);
         toast.success(response.data.message);
       } else {
-        const response = await axios.post("http://localhost:8001/api/titleForPages/addT-Dforpage", formData);
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/titleForPages/addT-Dforpage`, formData);
         toast.success(response.data.message);
       }
 

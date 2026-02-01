@@ -49,7 +49,7 @@ const OpinionForm = ({ closeModel, isOpen }) => {
       formData.append('rating', rating);
       if (mediaReview) formData.append('mediaReview', mediaReview);
 
-      await axios.post("http://localhost:8001/api/reviwes/addReview", formData, { withCredentials: true });
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/addReview`, formData, { withCredentials: true });
       toast.success('Review added successfully.');
       closeModel();
     } catch (error) {

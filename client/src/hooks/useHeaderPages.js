@@ -10,7 +10,7 @@ export default function useHeaderPages() {
     const fetchheaderPages = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:8001/api/headerPages/getHeaderPages");
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/headerPages/getHeaderPages`);
         setGetHeaderPages(response.data);
         setError(null);
       } catch (err) {

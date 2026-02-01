@@ -101,7 +101,7 @@ const Kirjaudu = () => {
     }
     try {
       setLoadingVerification(true);
-      const response = await axios.post(`http://localhost:8001/api/user/send-verification-email`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/send-verification-email`, {
         email
       });
       toast.success(response.data.message);

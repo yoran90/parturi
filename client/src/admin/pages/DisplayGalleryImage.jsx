@@ -9,7 +9,7 @@ const DisplayGalleryImage = () => {
 
   const handleDeleteGalleryImage = async (galleryId, publicId ) => {
     try {
-      const response = await axios.delete(`http://localhost:8001/api/media/deleteGalleryImage`, {
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/media/deleteGalleryImage`, {
         data: { galleryId, publicId  }
       });
 

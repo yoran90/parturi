@@ -7,7 +7,7 @@ const ReviewForHome = () => {
 
   useEffect(() => {
     const fetchReviwes = async () => {
-      const response = await axios.get("http://localhost:8001/api/reviwes/getReviews?limit=3");
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/reviwes/getReviews?limit=3`);
       setGetReviews(response.data || []);
     }
     fetchReviwes();

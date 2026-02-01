@@ -13,7 +13,7 @@ const ImagevideoDisplay = () => {
       const fetchMedia = async () => {
         try {
           setLoading(true);
-          const response = await axios.get("http://localhost:8001/api/media/list");
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/media/list`);
           setMedia(response.data.data);
         } catch (error) {
           console.log(error);
@@ -26,7 +26,7 @@ const ImagevideoDisplay = () => {
 
     const handleDelete = async (item) => {
       try {
-        const response = await axios.delete(`http://localhost:8001/api/media/delete/${item._id}`);
+        const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/media/delete/${item._id}`);
         if (response.data.success) {
           toast.success("Media deleted successfully.");
            setMedia(media.filter(m => m._id !== item._id));

@@ -38,7 +38,7 @@ const AddGalleriImage = () => {
         formData.append('images', item.file);
       });
 
-      const response = await axios.post('http://localhost:8001/api/media/gallery', formData, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/media/gallery`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

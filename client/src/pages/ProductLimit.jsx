@@ -15,7 +15,7 @@ const ProductLimit = () => {
     const fetchProducts = async () => {
       try {
         setLoadingProduct(true);
-        const response  = await axios.get("http://localhost:8001/api/products/getAllProducts?limit=4");
+        const response  = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/getAllProducts?limit=4`);
         setProdects(response.data);
       } catch (error) {
         console.log(error);

@@ -13,7 +13,7 @@ const GoogleReviews = () => {
   React.useEffect(() => {
     const fetchGoogleReviews = async () => {
       try {
-        const response = await axios.get('http://localhost:8001/api/google-reviews/get-google-reviews');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/google-reviews/get-google-reviews`);
         setGoogleReview(response.data.reviews);
         setGoogleRating(response.data.rating);
       } catch (error) {

@@ -94,7 +94,7 @@ const Yhteystiedot = () => {
 
     try {
       setLoadingButton(true);
-      await axios.post("http://localhost:8001/api/email/send-email", formData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/email/send-email`, formData);
       
         setSuccessMessage(true);
         setFormData({

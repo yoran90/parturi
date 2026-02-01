@@ -69,7 +69,7 @@ const JobApplication = ({ close }) => {
       formDataToSend.append('message', message);
       if (resume) formDataToSend.append('resume', resume);
 
-      const response = await axios.post("http://localhost:8001/api/job/apply-job", formDataToSend, {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/job/apply-job`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

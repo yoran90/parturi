@@ -34,7 +34,7 @@ const EditReview = ({ closeModel, item, fetchReviwes }) => {
       if (rating) {
         formData.append('rating', rating);
       }
-      const response = await axios.put(`http://localhost:8001/api/reviwes/updateReview/${item._id}`, formData, { withCredentials: true });
+      const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/reviwes/updateReview/${item._id}`, formData, { withCredentials: true });
       toast.success('Review updated successfully.');
       await fetchReviwes();
       closeModel();

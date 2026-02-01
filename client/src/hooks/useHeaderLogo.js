@@ -10,7 +10,7 @@ export default function useHeaderLogo() {
   useEffect(() => {
     const fetchHeaderLogo = async () => {
       try {
-        const response = await axios.get('http://localhost:8001/api/header-logo/getLogo');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/header-logo/getLogo`);
         setHeaderLogo(response.data);
       } catch (error) {
         console.log(error);

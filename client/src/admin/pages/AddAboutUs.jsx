@@ -81,14 +81,14 @@ const AddAboutUs = () => {
 
     let response;
     if (getAboutUs) {
-      response = await axios.put(`http://localhost:8001/api/about-us/aboutUs`, formData, {
+      response = await axios.put(`${import.meta.env.VITE_API_URL}/api/about-us/aboutUs`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
       toast.success('About us updated successfully!');
     } else {
-      response = await axios.post(`http://localhost:8001/api/about-us/aboutUs`, formData, {
+      response = await axios.post(`${import.meta.env.VITE_API_URL}/api/about-us/aboutUs`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

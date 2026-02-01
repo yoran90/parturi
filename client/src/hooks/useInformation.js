@@ -14,7 +14,7 @@ export default function useInformation() {
     const fetchInfo = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:8001/api/information/getInformation")
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/information/getInformation`);
         setGetInformation(response.data)
       } catch (error) {
         console.log(error);
