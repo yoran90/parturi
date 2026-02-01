@@ -1,14 +1,18 @@
 import React from 'react';
 import { CgInstagram } from 'react-icons/cg';
 import { FaFacebook, FaSnapchat, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa';
-import { GiBeard } from "react-icons/gi";
-import { FaHandsHelping } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 import { MdOutlineContactSupport } from "react-icons/md";
 import { MdOutlineOnlinePrediction } from "react-icons/md";
-import { IoMdClock } from 'react-icons/io';
 import useInformation from '../../hooks/useInformation';
 import useTitleForPage from '../../hooks/useTitleForPage';
 import useHeaderLogo from '../../hooks/useHeaderLogo';
+import { FaLink } from "react-icons/fa";
+import { FcAbout } from "react-icons/fc";
+import { IoIosPricetags } from "react-icons/io";
+import { AiFillProduct } from "react-icons/ai";
+
+import { SiGitconnected } from "react-icons/si";
 
 const Footer = () => {
 
@@ -25,27 +29,28 @@ const Footer = () => {
   return (
     <div className='bg-black text-white md:p-12 py-12 px-4'>
       <footer>
-        <div className="md:grid md:grid-cols-3 flex flex-col gap-8" style={{ gridTemplateColumns: "2.5fr 1.5fr 1fr" }}>
+        <div className="md:grid md:grid-cols-4 flex flex-col gap-8" style={{ gridTemplateColumns: "2.5fr 1fr 1fr 1fr" }}>
           <div className='flex flex-col gap-5.5'>
             <h3 className='text-md flex items-center gap-2'>
-              <img src={headerLogo?.url} alt="" className='w-6 h-6 rounded-full border border-slate-300' />
+              <img src={headerLogo?.url} alt="Site Logo" className='w-6 h-6 rounded-full border border-slate-300' />
               <p>{getTitleForPage?.titleForPage?.footerTitle}</p>
             </h3>
             <div className='text-sm text-slate-200' dangerouslySetInnerHTML={{ __html: getTitleForPage?.titleForPage?.footerDescription}} />
           </div>
           
           
-          {/* <div className='flex flex-col gap-5.5'>
+          <div className='flex flex-col gap-5.5'>
             <h3 className='text-md flex items-center gap-2'>
-              <FaHandsHelping />
-              Help
+              <FaLink  />
+              Linkki
             </h3>
-            <div>
-              <p className='text-sm text-slate-300'>Privacy Policy</p>
-              <p className='text-sm text-slate-300'>Terms & Conditions</p>
-              <p className='text-sm text-slate-300'>Partners</p>
+            <div className='flex flex-col'>
+              <Link to='/meistä' className='text-sm text-slate-200 flex items-center gap-3'><FcAbout /> Meistä</Link>
+              <Link to='/palvelut' className='text-sm text-slate-200 flex items-center gap-3'><IoIosPricetags /> Palvelut</Link>
+              <Link to='/tuotet' className='text-sm text-slate-200 flex items-center gap-3'><AiFillProduct /> Tuotteet</Link>
+              <Link to='/yhteystiedot' className='text-sm text-slate-200 flex items-center gap-3'><SiGitconnected />Yhteystiedot</Link>
             </div>
-          </div> */}
+          </div>
           <div className='flex flex-col gap-5.5'>
             <h3 className='text-md flex items-center gap-2'>
               <MdOutlineContactSupport />
@@ -90,7 +95,7 @@ const Footer = () => {
             Copyright © {getYears()} 
           </div>
           <div>
-            <img src={headerLogo?.url} alt="site logo" className='w-5 h-5 mr-2 ml-2 rounded-full border border-slate-300' />
+            <img src={headerLogo?.url} alt="Site Logo" className='w-5 h-5 mr-2 ml-2 rounded-full border border-slate-300' />
           </div>
           <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
         </div>
@@ -100,7 +105,7 @@ const Footer = () => {
             Copyright © {getYears()} 
           </div>
           <div className='mt-1 mb-1'>
-            <img src={headerLogo?.url} alt="" className='w-5 h-5 rounded-full border border-slate-300' /> 
+            <img src={headerLogo?.url} alt="Site Logo" className='w-5 h-5 rounded-full border border-slate-300' />
           </div>
           <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
         </div>

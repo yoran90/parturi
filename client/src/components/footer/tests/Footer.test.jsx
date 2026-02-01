@@ -1,7 +1,15 @@
-// src/components/footer/tests/Footer.test.jsx
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import Footer from '../Footer';
+
+const renderFooter = () =>
+  render(
+    <MemoryRouter>
+      <Footer />
+    </MemoryRouter>
+  );
+
 
 // Mock hooks
 vi.mock('../../../hooks/useInformation', () => ({
@@ -40,9 +48,11 @@ vi.mock('../../../hooks/useHeaderLogo', () => ({
   })
 }));
 
+
+
 describe('Footer Component', () => {
   beforeEach(() => {
-    render(<Footer />);
+    renderFooter();
   });
 
   it('renders footer title and description', () => {
@@ -64,16 +74,23 @@ describe('Footer Component', () => {
   });
 
   it('renders images for logo', () => {
-    const logos = screen.getAllByRole('img');
+    const logos = screen.getAllByRole('img', { hidden: true }).filter(el => el.tagName === 'IMG');
     logos.forEach((img) => {
-      expect(img).toHaveAttribute('src'); // just check the src exists
+      expect(img).toHaveAttribute('src', 'logo.png');
+      expect(img).toHaveAttribute('alt', 'Site Logo');
     });
   });
 
 
 
-  it('renders footer bottom text', () => {
-    const { container } = render(<Footer />);
-    expect(container).toHaveTextContent('Footer bottom text');
+
+
+  it('renders footer bottom text in all variants', () => {
+    const bottomTexts = screen.getAllByText(/Footer bottom text/i);
+    expect(bottomTexts).toHaveLength(2); // desktop + mobile
+    bottomTexts.forEach(el => {
+      expect(el).toBeInTheDocument();
+    });
   });
+
 });
