@@ -101,7 +101,7 @@ const JobApplication = ({ close }) => {
     <>
       {!successMessage && (
         <div className='fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center z-50 bg-black/60'>
-          <div className='w-full md:max-w-3xl md:mx-0 mx-1 bg-white rounded shadow-lg md:px-12 md:py-12 py-8 px-3 h-[90vh] md:h-auto md:mb-0 mb-12  relative'>
+          <div className='w-full md:max-w-[70%] md:mx-0 mx-1 bg-white rounded shadow-lg md:px-12 md:py-12 py-8 md:mt-0 mt-8 px-3 md:h-auto md:mb-0 mb-12  relative'>
             <button className='absolute top-4 right-4 text-slate-500 text-xs cursor-pointer hover:text-slate-700' onClick={close}>❌</button>
             <div className='flex items-center md:justify-center md:ml-14 gap-4 mb-12 md:mt-0 mt-6'>
               <div>
