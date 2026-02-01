@@ -189,7 +189,7 @@ const Yhteystiedot = () => {
       <div className='md:flex w-full gap-2 mt-16 px-2 mb-12'>
         {/* form */}
         <div className='md:w-[50%]'>
-          <div className='flex md:justify-between justify-evenly'>
+          <div className='flex justify-between'>
             <div>
               <h3>Ota yhteyttä meihin</h3>
               <p>Saatavilla 24 tuntia vuorokaudessa!</p>
