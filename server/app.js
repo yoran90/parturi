@@ -18,6 +18,7 @@ import titleForpageRoutes from './routes/titleForPageRoute.js';
 import reviewsRoutes from './routes/reviewsRoute.js';
 import shopMediaRoutes from './routes/shopRoute.js';
 import jobApplicationRoutes from './routes/jobApplicationRoute.js';
+import googleReviewsRoute from './routes/googleReviewsRoute.js';
 
 
 const app = express();
@@ -60,6 +61,7 @@ app.use("/api/titleForPages", titleForpageRoutes);
 app.use("/api/reviwes", reviewsRoutes);
 app.use("/api/shopMedia", shopMediaRoutes);
 app.use("/api/job", jobApplicationRoutes);
+app.use("/api/google-reviews", googleReviewsRoute);
 
 
 export default app

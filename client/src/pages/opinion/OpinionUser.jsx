@@ -10,6 +10,7 @@ import Reviews from './Reviews'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import useShop from '../../hooks/useShop'
+import GoogleReviews from './GoogleReviews'
 
 
 
@@ -165,14 +166,24 @@ const OpinionUser = () => {
                 navigate("/kirjaudu")
                 return
               }
-              setActiveTab("form")
-              setOpenOpinionForm(true)
-            }} 
-            className={`${activeTab === "form" ? "bg-black text-white"  : "" } text-sm py-2 font-semibold  cursor-pointer w-full`}>Kirjoita arvostelu</button>
+                setActiveTab("form")
+                setOpenOpinionForm(true)
+              }} 
+              className={`${activeTab === "form" ? "bg-black text-white"  : "" } text-sm py-2 font-semibold  cursor-pointer w-full`}>
+              Kirjoita arvostelu
+            </button>
             <button onClick={() => {
-              setActiveTab("reviews")
-              setOpenOpinionForm(false)
-            }} className={`${activeTab === "reviews" ? "bg-red-800 text-white"  : "" } text-sm py-2 w-full font-semibold cursor-pointer`}>Arvostelut</button>
+                setActiveTab("reviews")
+                setOpenOpinionForm(false)
+              }} className={`${activeTab === "reviews" ? "bg-red-600 border border-red-800 text-white"  : "" } text-sm py-2 w-full font-semibold cursor-pointer`}>
+              Arvostelut
+            </button>
+            <button onClick={() => {
+                setActiveTab("googleReviews")
+                setOpenOpinionForm(false)
+              }} className={`${activeTab === "googleReviews" ? "bg-red-600 text-white"  : "" } text-sm py-2 w-full font-semibold cursor-pointer`}>
+              Google Arvostelut
+            </button>
           </div>
           {
             activeTab === "reviews" ? (
@@ -182,6 +193,19 @@ const OpinionUser = () => {
                 </div>
                 <div className='w-full md:h-[1150px] md:overflow-y-scroll pr-3 scrollbarStyle'>
                   <Reviews />
+                </div>
+              </div>
+            ) : (
+              null
+            )
+          }
+          {
+            activeTab === "googleReviews" ? (
+              <div className='mt-4'>
+                <div className='mb-4'>
+                </div>
+                <div className='w-full md:h-[1150px] md:overflow-y-scroll pr-3 scrollbarStyle'>
+                  <GoogleReviews />
                 </div>
               </div>
             ) : (

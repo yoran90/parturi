@@ -197,7 +197,7 @@ const Reviews = () => {
   const handleDeleteConfirmReviewByUser = async (reviewId) => {
     try {
       setLoadingUserDeleteReview(true);
-      const response = await axios.delete(`http://localhost:8001/api/reviwes/deleteReview/${reviewId}`, { withCredentials: true });
+      await axios.delete(`http://localhost:8001/api/reviwes/deleteReview/${reviewId}`, { withCredentials: true });
       const updatedReviews = getReviews.filter(review => review._id !== reviewId);
       setGetReviews(updatedReviews);
       setOpenUserMenu(null);

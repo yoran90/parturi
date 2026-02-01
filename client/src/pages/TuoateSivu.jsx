@@ -6,7 +6,6 @@ import Information from '../components/up-header/Information'
 import Header from '../components/header/Header'
 import axios from 'axios'
 import ProductLimit from './ProductLimit'
-import useTitleForPage from '../hooks/useTitleForPage'
 import HolyDay from '../components/holy-day/HolyDay'
 
 
@@ -88,11 +87,13 @@ const TuoateSivu = () => {
           }
         </div>
         <div className='md:w-[50%] md:mt-0 mt-8'>
+          <div className='flex items-center justify-between'>
+
           <h1 className='font-semibold text-sm'>{product?.title}</h1>
           <div className='flex items-center justify-between mb-8 mt-4'>
             {
               product?.discount > 0 ? (
-                <div className='flex flex-col  gap-2.5'>
+                <div className='flex flex-col text-sm  gap-2.5'>
                   <div className='flex gap-2.5'>
                     <p className='text-lg text-slate-400 line-through'>{product?.price}€</p>
                     <p className='font-semibold text-lg text-red-600'>{(product.price - (product.price * product.discount) / 100).toFixed(2)}€</p>
@@ -106,7 +107,8 @@ const TuoateSivu = () => {
               )
             }
           </div>
-          <div className='text-sm h-[68vh] overflow-y-scroll scrollbarStyle pr-2'>
+            </div>
+          <div className='text-sm leading-5'>
             <div dangerouslySetInnerHTML={{__html: product?.description}} />
           </div>
         </div>

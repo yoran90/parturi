@@ -21,7 +21,7 @@ import { GoArrowUpRight } from "react-icons/go";
 import useTitleForPage from '../hooks/useTitleForPage';
 import ReviewForHome from './opinion/ReviewForHome';
 
-
+import GoolgleReviews from './GoogleReviews';
 
 
 const Etusivut = () => {
@@ -68,7 +68,7 @@ const Etusivut = () => {
                   <h3 className='text-sm font-bold mt-2 md:border-b mb-2'>OSOITE</h3>
                 </div>
                 {getInformation?.address ? (
-                    <div>
+                    <div className='flex flex-col items-center justify-center text-center'>
                       <p className='text-xs font-semibold'>{getInformation?.address}</p>
                       <p className='text-xs font-semibold'>{getInformation?.located}</p>
                     </div>
@@ -218,6 +218,13 @@ const Etusivut = () => {
           </div>
         </div>
       </div>
+
+      {/* google reviews */}
+      <div className='flex flex-col w-[98%] items-center justify-center m-auto mb-12'>
+        <h3 className='text-lg font-semibold mb-4'>🌟 Google Arvostelut 🌟</h3>
+        <GoolgleReviews />
+      </div>
+
       {/* products */}
       <div className='flex flex-col gap-2 mt-12 mb-12'>
         <div className='flex flex-col gap-2 text-center mb-6'>
@@ -234,6 +241,8 @@ const Etusivut = () => {
           </Link>
         </div>
       </div>
+
+     
 
       {/* gallery image */}
       <div className='mb-12'>

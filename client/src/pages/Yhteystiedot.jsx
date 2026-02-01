@@ -94,7 +94,7 @@ const Yhteystiedot = () => {
 
     try {
       setLoadingButton(true);
-      const response = await axios.post("http://localhost:8001/api/email/send-email", formData);
+      await axios.post("http://localhost:8001/api/email/send-email", formData);
       
         setSuccessMessage(true);
         setFormData({
@@ -170,6 +170,7 @@ const Yhteystiedot = () => {
             <FaMapMarkerAlt size={25}  />
             <h3 className='text-sm font-semibold  mt-2 mb-4'>OSOITE</h3>
             <p className=' text-sm'>{getInformation?.address}</p>
+            <p className=' text-sm'>{getInformation?.located}</p>
           </div>
           <div className='flex flex-col items-center justify-center md:mb-0 mb-8'>
             <FaPhone size={25}  />
