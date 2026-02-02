@@ -55,8 +55,7 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"] // headers your frontend sends
 }));
 
-// Preflight requests handler (important for POST requests)
-app.options("*", cors());
+
 
 
 app.get("/test", (req, res) => {

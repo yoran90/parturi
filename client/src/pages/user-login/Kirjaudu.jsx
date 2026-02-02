@@ -135,7 +135,7 @@ const Kirjaudu = () => {
 
         {
           selectLanguage && (
-            <div className='flex flex-col text-start w-[120px] text-sm justify-start gap-4 mt-2 text-black bg-white shadow rounded py-4 px-2'>
+            <div className='flex flex-col text-start w-30 text-sm justify-start gap-4 mt-2 text-black bg-white shadow rounded py-4 px-2'>
               <button className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
                 onClick={() => {
                   setLanguage("en");
