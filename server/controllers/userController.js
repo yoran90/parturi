@@ -145,8 +145,8 @@ export const googleLogin = async (req, res) => {
 
     const cookie = {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: true,
+      sameSite: "none",
       maxAge: 24 * 60 * 60 * 1000,
     };
 
@@ -179,7 +179,7 @@ export const userForgetPassword = async (req, res) => {
     await user.save();
 
     // Create URL for reset password (frontend URL)
-    const resetURL = `http://localhost:5173/reset-password/${resetToken}`;
+    const resetURL = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
 
     await sendEmail(user.email, "Password Reset Request", `Ignore if you don't want reset password if you want reset password\n\n Click the below link to reset your password ⬇️\n\n ${resetURL}`);
     res.json({ message: "Password reset link sent to email" });
@@ -248,7 +248,7 @@ export const sendVerificationEmail = async (req, res) => {
     await user.save();
 
     // Create URL for email verification (frontend URL)
-    const verifyURL = `http://localhost:5173/verify-email/${token}`;
+    const verifyURL = `${process.env.FRONTEND_URL}/verify-email/${token}`;
 
     await sendEmail(user.email, "Email Verification", `Click the below link to verify your email ⬇️\n\n ${verifyURL}`);
 
