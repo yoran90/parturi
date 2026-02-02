@@ -26,24 +26,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://parturi.vercel.app",
-  "https://www.parturi.vercel.app"
-];
-
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-}));
 
 
 
@@ -52,7 +34,29 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://parturi.vercel.app",
+  "https://www.parturi.vercel.app"
+];
 
+// Apply CORS before routes
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true); // allow Postman, curl, etc.
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,       // allows cookies if needed
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"], // allow OPTIONS
+  allowedHeaders: ["Content-Type", "Authorization"] // headers your frontend sends
+}));
+
+// Preflight requests handler (important for POST requests)
+app.options("*", cors());
 
 
 app.get("/test", (req, res) => {
