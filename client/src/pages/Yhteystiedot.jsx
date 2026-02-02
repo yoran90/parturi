@@ -94,7 +94,9 @@ const Yhteystiedot = () => {
 
     try {
       setLoadingButton(true);
-      await axios.post(`https://parturi-backend.onrender.com/api/email/send-email`, formData);
+      await axios.post(`https://parturi-backend.onrender.com/api/email/send-email`, formData, {
+        withCredentials: true,
+      });
       
         setSuccessMessage(true);
         setFormData({
