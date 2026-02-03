@@ -217,7 +217,7 @@ const Kirjaudu = () => {
               <button type='submit' className='bg-red-700 text-white py-2 w-full px-4 rounded border cursor-pointer'>
                 {
                   loadingForButton ? (
-                    <div className='flex items-center gap-2'>
+                    <div className='flex items-center justify-center gap-2'>
                       {translate.loginuser}
                       <Loading width={20} height={20} border='4px' topBorder='4px' borderColor='white' borderTopColor='red' />
                     </div>
