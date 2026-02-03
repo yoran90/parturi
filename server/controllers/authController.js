@@ -16,7 +16,7 @@ export const register = async (req, res) => {
   try {
     const { firstName, lastName, gender, email, password } = req.body;
 
-    if ( !firstName || !lastName || !gender || !email || !password) {
+    if (!firstName || !lastName || !gender || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -41,16 +41,35 @@ export const register = async (req, res) => {
     const verifyToken = user.generateEmailVerificationToken();
     await user.save();
 
-    // Create URL for email verification (frontend URL)
+    // Create URL for email verification
     const verifyURL = `${process.env.FRONTEND_URL}/verify-email/${verifyToken}`;
-    res.status(201).json({ success: true, message: "Registration successful. Please check your email to verify your account.", user });
+    
+    // Send email
+    try {
+      await sendEmail(
+        user.email, 
+        "Email Verification", 
+        `Click the below link to verify your email ⬇️\n\n${verifyURL}\n\nIf you didn't create an account, please ignore this email.`
+      );
+      console.log("Verification email sent to:", user.email);
+    } catch (emailError) {
+      console.error("Failed to send verification email:", emailError.message);
+      // Don't throw here, just log the error
+    }
 
-    await sendEmail(user.email, "Email Verification", `Click the below link to verify your email ⬇️\n\n ${verifyURL}`
-    ).catch((err) => console.log("Verification email failed", err.message));
-
+    res.status(201).json({ 
+      success: true, 
+      message: "Registration successful. Please check your email to verify your account.", 
+      user: {
+        id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email
+      }
+    });
 
   } catch (error) {
-    console.log(error);
+    console.error("Registration error:", error);
     res.status(500).json({ success: false, message: error.message });
   }
 };
