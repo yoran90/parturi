@@ -354,19 +354,24 @@ const Reviews = () => {
               <hr className='text-slate-300 mb-3 mt-3' />
               <div className='flex items-center gap-[30%] relative'>
                 <div className='flex items-center gap-1 cursor-pointer'>
-                  <button type='button' onClick={() => handleClickLike(item._id)} className='cursor-pointer'>
-                  {
-                    item?.likes?.likedBy?.some(
-                      like => String(like.userId) === String(user?.id)
-                    ) ? (
-                      <GoHeartFill className="text-red-600" />
-                    ) : (
-                      <GoHeart />
-                    )
-                  }
+                  <button
+                    type="button"
+                    onClick={() => handleClickLike(item._id)}
+                    className="cursor-pointer"
+                  >
+                    {
+                      item?.likes?.likedBy?.some(
+                        like => String(like.userId) === String(user?.id)
+                      ) ? (
+                        <GoHeartFill className="text-red-600 pointer-events-none" />
+                      ) : (
+                        <GoHeart className="pointer-events-none" />
+                      )
+                    }
                   </button>
-                  <button type='button' onClick={() => handleToggleLike(item._id)} className='text-xs cursor-pointer' title='Katso kuka tykkäsi'>
-                    {item?.likes?.count} Tykätty
+
+                  <button type='button' onClick={() => handleToggleLike(item._id)} className='text-xs cursor-pointer flex items-center ml-1' title='Katso kuka tykkäsi'>
+                    <span className='flex font-bold text-slate-600'>{item?.likes?.count} </span>Tykätty
                   </button>
                   {/* show who liked */}
                     {
