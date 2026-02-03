@@ -1,10 +1,10 @@
-/* import nodemailer from "nodemailer"; */
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
+/* import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY); */
 
 const sendEmail = async (to, subject, text) => {
-  try {
+  /* try {
     await resend.emails.send({
       from: process.env.EMAIL_FROM,
       to: to,
@@ -14,8 +14,8 @@ const sendEmail = async (to, subject, text) => {
   } catch (error) {
     console.error("Error sending email:", error);
     throw new Error("Failed to send email");
-  }
-  /* const trsansporter = nodemailer.createTransport({
+  } */
+  const trsansporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
       user: process.env.EMAIL_USER,
@@ -28,7 +28,7 @@ const sendEmail = async (to, subject, text) => {
     to,
     subject,
     text,
-  }); */
+  });
 
 };
 
