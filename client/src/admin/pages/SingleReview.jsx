@@ -5,7 +5,6 @@ import { GoStar, GoStarFill } from 'react-icons/go';
 import { BsGenderMale } from "react-icons/bs";
 import { BsTrash3Fill } from "react-icons/bs";
 import { toast } from 'react-toastify';
-import { useState } from 'react';
 import Loading from '../../loading/Loading';
 
 
@@ -21,7 +20,7 @@ const SingleReview = () => {
 
 
   const { getReview } = useReviewById(id);
-  const { deleteReview, deleteReviewHnadler, loadingForButton } = useDeleteReviewById(id);
+  const { deleteReviewHnadler, loadingForButton } = useDeleteReviewById(id);
 
   const handleDelete = async () => {
     await deleteReviewHnadler();
@@ -125,13 +124,22 @@ const SingleReview = () => {
           <p className='text-lg text-slate-600'>Review Text:</p>
         </div>
         <div className='mb-4'>
-          {
-            getReview?.mediaReview?.type === 'image' ? (
-              <img className='w-full h-62 object-fill border border-slate-500 rounded' src={getReview?.mediaReview?.url} alt="" />
-            ) : (
-              <video src={getReview?.mediaReview?.url} className='w-full h-62 border border-slate-500 rounded' controls></video>
-            )
-          }
+          {getReview?.mediaReview && (
+  getReview.mediaReview.type === 'image' ? (
+    <img
+      className="w-full h-62 object-fill border border-slate-500 rounded"
+      src={getReview.mediaReview.url}
+      alt="Review media"
+    />
+  ) : getReview.mediaReview.type === 'video' ? (
+    <video
+      src={getReview.mediaReview.url}
+      className="w-full h-62 border border-slate-500 rounded"
+      controls
+    />
+  ) : null
+)}
+
         </div>
         <div className='flex flex-col gap-1.5 md:h-[30vh] md:overflow-y-scroll scrollbarStyle'>
           <p>{getReview?.reviewText}</p>

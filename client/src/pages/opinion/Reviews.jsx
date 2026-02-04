@@ -336,13 +336,13 @@ const Reviews = () => {
               </div>
               {item?.mediaReview && (item.mediaReview.type === 'image' ? (
                   <img
-                    className='w-full h-72 object-cover border border-slate-300 rounded mt-2'
+                    className='w-full h-74 border border-slate-300 rounded mt-2'
                     src={item.mediaReview.url}
                     alt="review"
                   />
                 ) : (
                   <video
-                    className='w-full h-72 object-cover border border-slate-300 rounded mt-2'
+                    className='w-full h-74 border border-slate-300 rounded mt-2'
                     controls
                     autoPlay={false}
                   >

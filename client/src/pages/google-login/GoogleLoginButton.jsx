@@ -13,10 +13,11 @@ const GoogleLoginButton = ({ onSuccess }) => {
       google.accounts.id.renderButton(
         document.getElementById("googleLoginDiv"),
         {  
-          theme: "outline",
+          theme: "filled_white",
           size: "large",
           text: "continue_with",
-          width: "100%" 
+          width: "100%",
+          logo_alignment: "center",
         } 
       );
     }
@@ -27,7 +28,7 @@ const GoogleLoginButton = ({ onSuccess }) => {
     <div  className='mt-6 rounded w-full bg-white cursor-pointer'>
       <div
       id="googleLoginDiv"
-      className="w-full flex justify-center [&>div]:border-none"
+      className="w-full flex justify-center items-center"
     ></div>
     </div>
   )
