@@ -40,17 +40,17 @@ const allowedOrigins = [
   "https://www.parturi.vercel.app"
 ];
 
-// Apply CORS before routes
+
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin) return callback(null, true); // allow Postman, curl, etc.
+    if (!origin) return callback(null, true); 
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true,       // allows cookies if needed
+  credentials: true,       
   methods: ["GET","POST","PUT","DELETE","OPTIONS"], // allow OPTIONS
   allowedHeaders: ["Content-Type", "Authorization"] // headers your frontend sends
 }));

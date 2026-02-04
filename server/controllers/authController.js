@@ -16,49 +16,46 @@ export const register = async (req, res) => {
   try {
     const { firstName, lastName, gender, email, password } = req.body;
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    if ( !firstName || !lastName || !gender || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
 
-    const user = await Auth.create({
-      firstName,
-      lastName,
-      gender,
-      email,
-      password: hashedPassword,
+    const checkUser = await Auth.findOne({ email });
+    if (checkUser) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const user = await Auth.create({ 
+      firstName, 
+      lastName, 
+      gender, 
+      email, 
+      password: hashedPassword, 
       isVerified: false
     });
 
+    
     const verifyToken = user.generateEmailVerificationToken();
     await user.save();
 
+  
+    
     const verifyURL = `${process.env.FRONTEND_URL}/verify-email/${verifyToken}`;
 
-    // 🔥 EMAIL SHOULD NEVER BLOCK REGISTRATION
-    try {
-      await sendEmail(
-        user.email,
-        "Verify your email",
-        `Click the link to verify:\n\n${verifyURL}`
-      );
-    } catch (emailError) {
-      console.error("Email failed:", emailError.message);
-      // DO NOT throw
-    }
+    await sendEmail(user.email, "Email Verification", `Click the below link to verify your email ⬇️\n\n ${verifyURL}`);
 
-    // ✅ ALWAYS RESPOND
-    return res.status(201).json({
-      success: true,
-      message: "Registration successful. Check your email to verify."
-    });
+    res.status(201).json({ success: true, message: "Registration successful. Please check your email to verify your account.", user });
+
+
 
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      success: false,
-      message: error.message
-    });
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
   }
 };
-
 
 //! send Email for verify email
 export const sendVerificationEmail = async (req, res) => {
