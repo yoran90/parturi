@@ -34,6 +34,9 @@ const informationSchema = new mongoose.Schema({
   holyday: {
     type: String
   },
+  headerText: {
+    type: String
+  },
   socialMedia: [socialSchema] 
 }, { timestamps: true });
 

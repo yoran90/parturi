@@ -2,7 +2,7 @@ import React from 'react'
 
 const AdminPageText = () => {
   return (
-    <div className='flex flex-col gap-3.5 items-center justify-center w-full h-screen -mt-32 px-8 text-center'>
+    <div className='flex flex-col gap-3.5 items-center justify-center w-full h-[calc(100vh+60px)] -mt-32 px-8 text-center'>
       <h3 className='text-lg font-semibold text-red-600'>Welcome to Admin Pannel</h3>
       <p className='text-red-600'>Please select an option from the sidebar to get started with your admin panel.</p>
       <p className='text-sm text-red-600'>

@@ -22,6 +22,7 @@ import useTitleForPage from '../hooks/useTitleForPage';
 import ReviewForHome from './opinion/ReviewForHome';
 
 import GoolgleReviews from './GoogleReviews';
+import HeaderText from '../components/header-text/HeaderText';
 
 
 const Etusivut = () => {
@@ -55,6 +56,7 @@ const Etusivut = () => {
   return (
     <div>
       <Information />
+      <HeaderText />
       <HolyDay />
       <Header />
       <Main />

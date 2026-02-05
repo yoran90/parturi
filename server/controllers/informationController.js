@@ -6,6 +6,8 @@ import Information from "../models/InformationModel.js";
 export const saveInformation = async (req, res) => {
   try {
     const data = req.body;
+     console.log("REQ BODY FULL 👉", req.body);
+    console.log("HEADER TEXT 👉", req.body.headerText);
 
     const existingInformation = await Information.findOne();
     let info;

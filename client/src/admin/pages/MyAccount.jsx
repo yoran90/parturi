@@ -189,7 +189,7 @@ const MyAccount = () => {
         </button>
       </div>
       {/* form */}
-      <form onSubmit={handleSubmit} className='flex flex-col gap-3.5 h-[65vh] pb-6 md:pl-0 pl-1 overflow-y-scroll scrollbarStyle pr-2'>
+      <form onSubmit={handleSubmit} className='flex w-full flex-col gap-3.5 h-[65vh] pb-6 md:pl-0 pl-1 overflow-y-scroll scrollbarStyle pr-2'>
 
         <div className='flex flex-col gap-1 text-sm'>
           <label htmlFor="">My Bio</label>

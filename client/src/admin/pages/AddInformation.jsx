@@ -27,6 +27,7 @@ const AddInformation = () => {
   const [openingHours, setOpeningHours] = React.useState('');
   const [holyday, setHolyday] = React.useState('');
   const [socialMedia, setSocialMedia] = React.useState([{ platform: "", url: "" }]);
+  const [headerText, setHeaderText] = React.useState('');
 
 
   useEffect(() => {
@@ -57,6 +58,7 @@ const AddInformation = () => {
       setOpeningHours(getInformation.openingHours || "");
       setHolyday(getInformation.holyday || "");
       setSocialMedia(getInformation.socialMedia?.length ? getInformation.socialMedia : [{ platform: "", url: "" }]);
+      setHeaderText(getInformation.headerText || "");
     }
   }, [getInformation]);
 
@@ -93,7 +95,8 @@ const AddInformation = () => {
           addressUrlForMap, 
           openingHours, 
           holyday, 
-          socialMedia 
+          socialMedia,
+          headerText
         }
       );
       toast.success('Information added successfully');
@@ -152,6 +155,10 @@ const AddInformation = () => {
           <p className='text-sm text-red-700'>Here you can add information like phone and address so on plaess chek the form.</p>
         </div>
         <div className='flex flex-col text-sm gap-1'>
+          <label htmlFor="">📰 Add Header Text</label>
+          <ReactQuill theme="snow" data-testid="quill-header-text" className="h-40 rounded-lg text-sm"  value={headerText} onChange={(value) => {setHeaderText(value);}} placeholder="Example: Welcome to our barbershop! We are dedicated to providing you with the best grooming experience in town. Our skilled barbers are here to give you a fresh haircut, a clean shave, and a relaxing atmosphere. Book your appointment today and let us take care of your style!" />
+        </div>
+        <div className='flex flex-col text-sm gap-1 md:mt-10 mt-16'>
           <label htmlFor="">📞 Add Phone Number</label>
           <input type="text" data-testid="phone-input" value={phone} onChange={(e) => setPhone(e.target.value)} className='border border-slate-300 p-1.5 px-3 rounded' placeholder='Your phone number (+3581234567890)'/>
         </div>
@@ -180,13 +187,13 @@ const AddInformation = () => {
         </div>
         <div className='flex flex-col text-sm gap-1'>
           <label htmlFor="">➕ Add opening hours</label>
-          <ReactQuill theme="snow" data-testid="quill-opening-hours" className="h-40 rounded-lg text-sm"  value={openingHours} onChange={setOpeningHours} placeholder="Example: <b>Ma–Pe</b> (10:00 - 19:00) <br/> La–Su (10:00 - 18:00)" />
+          <ReactQuill theme="snow" data-testid="quill-opening-hours" className="h-40 rounded-lg text-sm"  value={openingHours} onChange={(value) => setOpeningHours(value)} placeholder="Example: <b>Ma–Pe</b> (10:00 - 19:00) <br/> La–Su (10:00 - 18:00)" />
         </div>
         <hr className='text-slate-300 mt-12' />
         {/* add holy days */}
         <div className='flex flex-col text-sm gap-1'>
           <label htmlFor="">➕ Add Holy Days</label>
-          <ReactQuill theme="snow" data-testid="quill-holyday" className="h-40 rounded-lg text-sm"  value={holyday} onChange={setHolyday} placeholder="Example: 22/12/2022 - 23/12/2022 we are closed" />
+          <ReactQuill theme="snow" data-testid="quill-holyday" className="h-40 rounded-lg text-sm"  value={holyday} onChange={(value) => setHolyday(value)} placeholder="Example: 22/12/2022 - 23/12/2022 we are closed" />
         </div>
         <small className='text-red-600 md:mt-8 mt-14'>Add holy days so if you have any holy days you can add them here.</small>
         <hr className='text-slate-200 mt-4' />

@@ -22,8 +22,9 @@ import googleReviewsRoute from './routes/googleReviewsRoute.js';
 
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: "10mb" })); // <-- increase from default
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+
 app.use(cookieParser());
 
 
