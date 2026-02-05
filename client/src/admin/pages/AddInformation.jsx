@@ -188,7 +188,7 @@ const AddInformation = () => {
           <label htmlFor="">➕ Add Holy Days</label>
           <ReactQuill theme="snow" data-testid="quill-holyday" className="h-40 rounded-lg text-sm"  value={holyday} onChange={setHolyday} placeholder="Example: 22/12/2022 - 23/12/2022 we are closed" />
         </div>
-        <small className='text-red-600 mt-8'>Add holy days so if you have any holy days you can add them here.</small>
+        <small className='text-red-600 md:mt-8 mt-14'>Add holy days so if you have any holy days you can add them here.</small>
         <hr className='text-slate-200 mt-4' />
         <div className='mt-4'>
           <p className='text-xs text-red-500 font-semibold'>You can add multiple social media links down ⬇️ if you want just click add another socialmedia.</p>

@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { adminDeleteUserOrAdmin, superAdminUpdateUserRole } from '../../store/admin-auth';
+import { adminDeleteUserOrAdmin } from '../../store/admin-auth';
 import ConfirmDelete from './ConfirmDelete';
 import { MdNotInterested } from "react-icons/md";
 
@@ -101,11 +101,11 @@ const AllUsers = () => {
                 <td className='py-1'>
                   {
                     user?.role === "user" ? (
-                      <span className='bg-green-600 text-white w-fit text-sm rounded md:px-4 px-2 py-1'>User</span>
+                      <span className='bg-green-600 text-white w-fit md:text-sm text-xs rounded md:px-4 px-2 py-1'>User</span>
                     ) : user?.role === "admin" ? (
-                      <span className='bg-red-600 text-white text-sm rounded w-fit md:px-2.5 px-1 py-1'>Admin</span>
+                      <span className='bg-red-600 text-white md:text-sm text-xs rounded w-fit md:px-2.5 px-1 py-1'>Admin</span>
                     ) : (
-                      <span className='bg-[#e69500] text-white text-sm rounded w-fit md:px-2.5 px-1 py-1'>Owner</span>
+                      <span className='bg-[#e69500] text-white md:text-sm text-xs rounded w-fit md:px-2.5 px-1 py-1'>Owner</span>
                     )
                   }
                 </td>

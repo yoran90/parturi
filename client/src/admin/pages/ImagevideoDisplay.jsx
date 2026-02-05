@@ -68,7 +68,7 @@ const ImagevideoDisplay = () => {
           <h3>All Media Main Images And Videos</h3>
           <p className='text-sm text-slate-700'>Here you can esaly see all images and videos and ofcourse delete it.</p>
         </div>
-        <div className='md:grid md:grid-cols-4 flex flex-col grid-cols-1 md:gap-4 gap-6 mt-6 pr-2'>
+        <div className='grid md:grid-cols-4  grid-cols-2 md:gap-4 gap-5 mt-6 pr-2'>
           {
             media?.map((item ) => (
               <div key={item._id} className='relative'>

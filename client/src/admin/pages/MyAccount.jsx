@@ -168,7 +168,7 @@ const MyAccount = () => {
 
 
   return (
-    <div className='px-3'>
+    <div className='md:px-3 px-1'>
       <div className='flex flex-col mt-4 items-center justify-center gap-1.5'>
         <div>
           <img className="w-28 h-28 rounded-full border" src={profileSrc} alt="Profile" />

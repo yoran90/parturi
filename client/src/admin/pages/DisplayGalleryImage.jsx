@@ -60,7 +60,7 @@ const DisplayGalleryImage = () => {
       ) : (
         <div className='grid md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-1 md:p-1.5 p-2 mt-4'>
           {galleryImages.map((image, index) => (
-            <div key={index} className='border border-slate-300 rounded flex flex-col gap-2'>
+            <div key={index} className='border border-slate-500 rounded flex flex-col gap-2'>
               <img
                 src={image.url}
                 alt='gallery-image'

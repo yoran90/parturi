@@ -119,7 +119,7 @@ const AddHeaderLogo = () => {
       </form>
 
       {/* Preview Section */}
-      <div className="flex mt-6 w-full items-center justify-center">
+      <div className="flex mt-2 mb-6 w-full items-center justify-center">
         {selectFile ? (
           <div className="relative w-full">
             <img
