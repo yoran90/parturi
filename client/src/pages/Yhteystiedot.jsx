@@ -15,6 +15,7 @@ import useTitleForPage from '../hooks/useTitleForPage';
 import HolyDay from '../components/holy-day/HolyDay';
 import { LuSquareArrowOutUpRight } from "react-icons/lu";
 import JobApplication from './Job-Application/JobApplication';
+import HeaderText from '../components/header-text/HeaderText';
 
 
 
@@ -142,6 +143,7 @@ const Yhteystiedot = () => {
   return (
     <div className='flex flex-col relative bg-white text-black'>
       <Information />
+      <HeaderText />
       <HolyDay />
       <Header />
       <div className='flex flex-col items-center text-center gap-2.5 mt-6'>

@@ -7,6 +7,7 @@ import useGallery from '../hooks/useGallery'
 import { useState } from 'react'
 import useTitleForPage from '../hooks/useTitleForPage'
 import HolyDay from '../components/holy-day/HolyDay'
+import HeaderText from '../components/header-text/HeaderText'
 
 const Galleria = () => {
 
@@ -44,6 +45,7 @@ const Galleria = () => {
   return (
     <div>
       <Information />
+      <HeaderText />
       <HolyDay />
       <Header />
       <div className='flex flex-col gap-3.5 items-center justify-center mt-6'>
@@ -61,7 +63,7 @@ const Galleria = () => {
       <div className='grid md:grid-cols-4 lg:grid-cols-4 grid-cols-2 gap-1.5 m-2 mt-8 mb-8'>
         {
           galleryImages?.map((image, index) => (
-            <img key={index} src={image?.url} onClick={() => setSelectedImage(image)} className='md:w-[300px] w-full h-[300px] cursor-pointer border border-slate-300 shadow-lg rounded-md' alt={`Gallery image ${index + 1}`} />
+            <img key={index} src={image?.url} onClick={() => setSelectedImage(image)} className='md:w-75 w-full h-75 cursor-pointer border border-slate-300 shadow-lg rounded-md' alt={`Gallery image ${index + 1}`} />
           ))
         }
         {

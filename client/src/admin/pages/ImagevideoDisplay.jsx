@@ -72,7 +72,7 @@ const ImagevideoDisplay = () => {
           {
             media?.map((item ) => (
               <div key={item._id} className='relative'>
-                <div onClick={() => setSelectedMedia(item)} className=' md:w-[145px] h-[140px] -z-50 border border-slate-400 flex items-center justify-center rounded shadow overflow-hidden'>
+                <div onClick={() => setSelectedMedia(item)} className=' md:w-36.25 h-35 -z-50 border border-slate-400 flex items-center justify-center rounded shadow overflow-hidden'>
                   {item.type === 'image' ? (
                     <img src={item.src} alt={item.alt} className='w-full h-full' data-testid={`media-image-${item._id}`}/>
                   ) : (

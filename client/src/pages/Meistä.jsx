@@ -8,6 +8,7 @@ import GallaryLimit from './GallaryLimit'
 import { Link } from 'react-router-dom'
 import useAboutUs from '../hooks/useAboutUs'
 import HolyDay from '../components/holy-day/HolyDay'
+import HeaderText from '../components/header-text/HeaderText'
 
 
 const Meistä = () => {
@@ -18,6 +19,7 @@ const Meistä = () => {
   return (
     <div>
       <Information />
+      <HeaderText />
       <HolyDay /> 
       <Header />
       <div>

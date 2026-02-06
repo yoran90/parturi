@@ -6,6 +6,7 @@ import Footer from '../components/footer/Footer';
 import axios from 'axios';
 import useTitleForPage from '../hooks/useTitleForPage';
 import HolyDay from '../components/holy-day/HolyDay';
+import HeaderText from '../components/header-text/HeaderText';
 
 const PalvelutHinta = () => {
 
@@ -72,6 +73,7 @@ const PalvelutHinta = () => {
   return (
     <div>
       <Information />
+      <HeaderText />
       <HolyDay />
       <Header />
       <div className='flex flex-col gap-5.5 mb-12'>

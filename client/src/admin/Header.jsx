@@ -67,7 +67,7 @@ const Header = ({ setIsSidebarOpen, isSidebarOpen }) => {
             )
           }
         </button> 
-        <div className={`${openModel ? "block" : "hidden"} absolute top-13.5 w-[300px] right-0 bg-white border border-slate-100 py-5 px-8 flex flex-col gap-4 rounded shadow-lg z-50`}>
+        <div className={`${openModel ? "block" : "hidden"} absolute top-13.5 w-75 right-0 bg-white border border-slate-100 py-5 px-8 flex flex-col gap-4 rounded shadow-lg z-50`}>
           <div className='flex flex-col gap-1'>
             <div className='flex items-center justify-between mb-4'>
               <Link to={'/admin/myaccount'} onClick={handleOpenModel} className='flex gap-1 items-center'>

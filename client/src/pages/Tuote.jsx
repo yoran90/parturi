@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import useTitleForPage from '../hooks/useTitleForPage'
 import HolyDay from '../components/holy-day/HolyDay'
+import HeaderText from '../components/header-text/HeaderText'
 
 const Tuote = () => {
 
@@ -62,6 +63,7 @@ const Tuote = () => {
   return (
     <div>
       <Information />
+      <HeaderText />
       <HolyDay /> 
       <Header />
       <div className='flex flex-col items-center gap-2 text-center mt-6'>

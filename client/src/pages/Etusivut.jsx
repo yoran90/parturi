@@ -61,9 +61,9 @@ const Etusivut = () => {
       <Header />
       <Main />
       <div>
-        <div className='bg-white text-black shadow border border-slate-100 md:mt-6 w-[98%] md:py-0 py-8 mx-auto md:rounded-xl -mt-20'>
+        <div className='bg-white text-black shadow border border-slate-200 md:mt-6 w-[98%] md:py-0 py-8 mx-auto md:rounded-xl -mt-20'>
           <div className='md:flex items-center md:justify-between md:px-16 pt-4'>
-            <div className='min-h-[100px]'>
+            <div className='min-h-25'>
               <a className='flex md:mb-0 mb-6 gap-1 flex-col items-center justify-center' href={getInformation?.addressUrl} target="_blank" rel="noopener noreferrer">
                 <div className='flex md:flex-col items-center md:gap-0 gap-3'>
                   <FaMapMarkerAlt size={20} />
@@ -83,7 +83,7 @@ const Etusivut = () => {
                 }
               </a>
             </div>
-            <div className='min-h-[100px] md:mb-0 mb-3'> 
+            <div className='min-h-25 md:mb-0 mb-3 md:mt-0 mt-10'> 
               <div className='flex flex-col items-center justify-center md:border-b  mb-3 gap-2'>
                 <div className='flex md:flex-col items-center md:gap-2 gap-3'>
                   <FaShareAlt size={20} />
@@ -116,7 +116,7 @@ const Etusivut = () => {
                 
               </div>
             </div>
-            <div className="flex flex-col items-center justify-start min-h-[100px]">
+            <div className="flex flex-col items-center justify-start min-h-25">
               <div className='flex md:flex-col items-center md:gap-0 gap-3'>
                 <MdPhoneInTalk size={24} />
                 <h3 className="text-sm font-bold mt-2 md:border-b mb-3">PUHELIN</h3>
@@ -137,7 +137,7 @@ const Etusivut = () => {
             </div>
           </div>
         </div>
-        <div className='md:flex gap-2.5 w-[98%] h-auto m-auto mt-12 bg-white shadow border overflow-hidden border-slate-100 md:rounded-2xl mb-12'>
+        <div className='md:flex gap-2.5 w-[98%] h-auto m-auto mt-12 bg-white shadow border overflow-hidden border-slate-200 md:rounded-2xl mb-12'>
         {/* text side */}
           <div className='flex flex-col items-center'>
             <h3 className='text-sm font-semibold  mb-12 mt-6'>TERVETULOA</h3>
@@ -195,7 +195,7 @@ const Etusivut = () => {
           Kun istut tuoliimme, voit rentoutua – olet hyvissä ja luotettavissa käsissä.
         </p>
         <div className='flex flex-col md:flex-row gap-1.5 m-auto'>
-          <div className='flex flex-col items-center justify-center bg-white text-black shadow border border-slate-100 p-8 rounded-2xl'>
+          <div className='flex flex-col items-center justify-center bg-white text-black shadow border border-slate-200 p-8 rounded-2xl'>
             <div className='flex flex-col gap-1.5 text-center items-center justify-center mb-6'>
               <MdLocalPolice size={30} className='text-orange-500 h-12' />
               <h3 className='text-md font-semibold '>Ammattilainen</h3>
@@ -203,7 +203,7 @@ const Etusivut = () => {
             <p className='text-sm  text-center items-center'>Olemme pätevöityneitä ammattilaisia, joilla on alan koulutus ja virallinen osaaminen. Meille hiustenhoito ei ole vain työtä – se on ammatti, jota teemme ylpeydellä ja tarkkuudella.</p>
           </div>
 
-          <div className='flex flex-col items-center justify-center bg-white text-black shadow border border-slate-100 p-8 rounded-2xl'>
+          <div className='flex flex-col items-center justify-center bg-white text-black shadow border border-slate-200 p-8 rounded-2xl'>
             <div className='flex flex-col gap-1.5 text-center items-center justify-center mb-6'>
               <GiBeard size={32} className='h-12' />
               <h3 className='text-md font-semibold '>Mestari / huippuosaaja</h3>
@@ -211,7 +211,7 @@ const Etusivut = () => {
             <p className='text-sm  text-center items-center'>Työmme perustuu mestarin varmuuteen ja tarkkaan silmään. Vuodet kokemusta ja jatkuva kouluttautuminen takaavat, että jokainen leikkaus ja tyyli tehdään huippuosaamisella.</p>
           </div>
 
-          <div className='flex flex-col items-center justify-center bg-white text-black shadow border border-slate-100 p-8 rounded-2xl'>
+          <div className='flex flex-col items-center justify-center bg-white text-black shadow border border-slate-200 p-8 rounded-2xl'>
             <div className='flex flex-col gap-1.5 text-center items-center justify-center mb-6'>
               <VscWorkspaceTrusted size={26} className='text-green-700 h-12' />
               <h3 className='text-md font-semibold '>Luotettu / asiakkaiden suosima</h3>

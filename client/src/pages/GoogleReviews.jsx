@@ -31,7 +31,7 @@ const GoogleReviews = () => {
         <div className='md:grid md:grid-cols-3 flex flex-col gap-1.5'>
           {googlereview.length === 0 && <p>No reviews available yet.</p>}
           {googlereview.slice(0, 3).map((review, index) => (
-            <div key={index} className='bg-white shadow px-4 py-7 border border-slate-100 rounded-xl'>
+            <div key={index} className='bg-white shadow px-4 py-7 border border-slate-200 rounded-xl'>
               <div className='flex justify-between mb-6'>
                 <div className='flex items-center gap-2'>
                   <img src={review.profile_photo_url} alt="" className='w-8 h-8 rounded-full' />
@@ -50,11 +50,11 @@ const GoogleReviews = () => {
         </div>
         <div className='mt-4 flex justify-center'>
           <a className='text-sm text-blue-600 hover:underline flex gap-0.5'
-            href={`https://www.google.com/maps/place/?q=place_id:${import.meta.env.VITE_GOOGLE_MAPS_PLACE_ID}`}
+            href={`https://www.google.com/maps/place/Razor+Parturi+Barber+Shop/@60.2099199,25.1423213,20z/data=!4m6!3m5!1s0x46920f7a6f6b2c71:0x19d593a1f4cdb95b!8m2!3d60.2077421!4d25.1445851!16s%2Fg%2F11vy_c9z9d?entry=ttu&g_ep=EgoyMDI2MDIwMy4wIKXMDSoKLDEwMDc5MjA3M0gBUAM%3D`}
             target="_blank"
             rel="noopener noreferrer"
             >
-            View all reviews on Google
+            Näytä kaikki arvostelut Googlessa
             <LuArrowUpRight />
             
           </a>

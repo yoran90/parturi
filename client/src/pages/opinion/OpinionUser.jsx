@@ -11,6 +11,7 @@ import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import useShop from '../../hooks/useShop'
 import GoogleReviews from './GoogleReviews'
+import HeaderText from '../../components/header-text/HeaderText'
 
 
 
@@ -54,6 +55,7 @@ const OpinionUser = () => {
   return (
     <div>
       <Information />
+      <HeaderText />
       <HolyDay />
       <Header />
       <div className='md:flex w-full px-2 mt-4 gap-3'>
@@ -107,7 +109,7 @@ const OpinionUser = () => {
             )
           }
           <hr className='text-slate-200 mt-2' />
-          <div className="w-full h-[200px] mt-2 border border-slate-300 rounded">
+          <div className="w-full h-50 mt-2 border border-slate-300 rounded">
             {/* Embed Google Maps using iframe */}
             <iframe 
               src={getInformation?.addressUrlForMap} 
