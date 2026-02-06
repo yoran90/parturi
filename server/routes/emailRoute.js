@@ -1,7 +1,6 @@
 import express from "express";
 import { sendHotmailEmail } from "../controllers/emailServiceController.js";
 
-
 const router = express.Router();
 
 router.post("/send-email", async (req, res) => {
@@ -29,7 +28,5 @@ router.post("/send-email", async (req, res) => {
     });
   }
 });
-
-
 
 export default router;
