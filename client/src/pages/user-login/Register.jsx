@@ -186,7 +186,7 @@ const Register = () => {
           <hr className='text-slate-400 mt-4' />
           <div className='flex items-center justify-between'>
             <p className='text-white text-sm mt-6'>{translate.haveaccountuser} <Link to="/kirjaudu" className='text-blue-400 cursor-pointer ml-2'>{translate.loginuser}</Link></p>
-            <Link to={'/'} className='text-blue-400 flex items-center gap-1 mt-4 text-sm cursor-pointer'>
+            <Link to={'/'} className='text-blue-400 flex items-center gap-1 mt-6 text-sm cursor-pointer'>
               <p>🔙</p>
               {translate.back}
             </Link>
