@@ -1,64 +1,45 @@
 import SibApiV3Sdk from "sib-api-v3-sdk";
 
-// Configure Brevo client once
-const client = SibApiV3Sdk.ApiClient.instance;
-client.authentications["api-key"].apiKey =
-  process.env.SENDINGBLUE_BREVO_API_KEY;
+const defaultClient = SibApiV3Sdk.ApiClient.instance;
+const apiKey = defaultClient.authentications["api-key"];
+apiKey.apiKey = process.env.SENDINGBLUE_BREVO_API_KEY;
 
 const emailClient = new SibApiV3Sdk.TransactionalEmailsApi();
 
-export const sendJobApplicationEmail = async ({
-  firstName,
-  lastName,
-  email,
-  phone,
-  selectJob,
-  startDate,
-  resume,
-  message,
-}) => {
+export const sendJobApplicationEmail = async ({ firstName, lastName, email, phone, selectJob, startDate, resume, message }) => {
   try {
-    if (!process.env.SENDINGBLUE_BREVO_API_KEY || !process.env.SENDINGBLUE_BERVO_EMAIL_USER) {
-      throw new Error("Missing email credentials");
+    // Check environment variables
+    if (!process.env.SENDINGBLUE_BERVO_EMAIL_USER || !process.env.SENDINGBLUE_BREVO_API_KEY) {
+      throw new Error("Missing Brevo credentials (sender email or API key)");
     }
 
-    const attachments = [];
-
-    // ✅ Handle resume attachment (PDF / DOC / etc)
-    if (resume) {
-      attachments.push({
-        name: resume.originalname,
-        content: resume.buffer.toString("base64"),
-      });
-    }
+    // Make sure sender email is verified in Brevo
+    const senderEmail = process.env.SENDINGBLUE_BERVO_EMAIL_USER;
 
     const emailData = new SibApiV3Sdk.SendSmtpEmail({
-      to: [
-        {
-          email: process.env.SENDINGBLUE_BERVO_EMAIL_USER,
-        },
-      ],
-      sender: {
-        email: process.env.SENDINGBLUE_BERVO_EMAIL_USER,
-        name: "Job Application",
+      sender: { 
+        email: senderEmail,        // Must be verified in Brevo
+        name: "Website Contact" 
       },
-      replyTo: {
-        email: email,
-        name: `${firstName} ${lastName}`,
-      },
-      subject: `Uusi työhakemus ➖ ${firstName} ${lastName}`,
+      to: [{ email: senderEmail }], // send to yourself
+      replyTo: { email },           // applicant can reply
+      subject: `Uusi työhakemus käyttäjältä ${firstName} ${lastName}`,
       htmlContent: `
-        <h2>Uusi työhakemus</h2>
+        <h2>Uusi työhakemus käyttäjältä (${firstName} ${lastName})</h2>
         <p><strong>👤 Nimi:</strong> ${firstName} ${lastName}</p>
         <p><strong>📞 Puhelin:</strong> ${phone}</p>
         <p><strong>📧 Sähköposti:</strong> ${email}</p>
         <p><strong>💼 Haettu tehtävä:</strong> ${selectJob}</p>
-        <p><strong>📆 Aloituspäivämäärä:</strong> ${startDate}</p>
-        <br />
-        <p><strong>📜 Viesti:</strong></p>
-        <p>${message}</p>
+        <p><strong>📆 Aloituspäivämäärä:</strong> ${startDate}</p><br>
+        <p><strong>📜 Viesti:</strong><br>${message}</p>
       `,
-      attachment: attachments,
+      attachment: resume ? [
+        {
+          content: resume.buffer.toString("base64"),
+          name: resume.originalname,
+          type: resume.mimetype
+        }
+      ] : []
     });
 
     await emailClient.sendTransacEmail(emailData);
@@ -67,12 +48,7 @@ export const sendJobApplicationEmail = async ({
     return { success: true };
 
   } catch (error) {
-    console.error(
-      "❌ Brevo job application error:",
-      error.response?.body || error.message
-    );
+    console.error("❌ Brevo job application email error:", error.response?.body || error.message);
     throw error;
   }
 };
-
-export default sendJobApplicationEmail;
