@@ -2,21 +2,24 @@ import SibApiV3Sdk from "sib-api-v3-sdk";
 
 export const sendHotmailEmail = async ({ name, phone, email, message }) => {
   try {
-    // Check env
-    if (!process.env.SENDINGBLUE_BERVO_EMAIL_USER || !process.env.SENDINGBLUE_BREVO_API_KEY) {
+    if (!process.env.SENDINGBLUE_BREVO_API_KEY || !process.env.SENDINGBLUE_BERVO_EMAIL_USER) {
       throw new Error("Missing email credentials");
     }
 
-    // Set API key
-    sgMail.setApiKey(process.env.SENDINGBLUE_BREVO_API_KEY);
+    // Configure client
+    const defaultClient = SibApiV3Sdk.ApiClient.instance;
+    const apiKey = defaultClient.authentications["api-key"];
+    apiKey.apiKey = process.env.SENDINGBLUE_BREVO_API_KEY;
 
-    // Email message
-    const msg = {
-      to: process.env.SENDINGBLUE_BERVO_EMAIL_USER, // your inbox
-      from: process.env.SENDINGBLUE_BERVO_EMAIL_USER, // same verified sender
-      replyTo: email, // user's email
+    const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+
+    // Prepare email
+    const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail({
+      to: [{ email: process.env.SENDINGBLUE_BERVO_EMAIL_USER }],
+      sender: { email: process.env.SENDINGBLUE_BERVO_EMAIL_USER, name: "Website Contact" },
+      replyTo: { email: email },
       subject: `New message from ${name}`,
-      text: `
+      textContent: `
 Name: ${name}
 Phone: ${phone}
 Email: ${email}
@@ -24,14 +27,18 @@ Email: ${email}
 Message:
 ${message}
       `,
-    };
+    });
 
-    await sgMail.send(msg);
-    console.log("✅ Email sent successfully via SendGrid");
+    // Send email
+    await apiInstance.sendTransacEmail(sendSmtpEmail);
 
+    console.log("✅ Email sent successfully via Sendinblue");
     return { success: true };
+
   } catch (error) {
-    console.error("❌ SendGrid email error:", error.response?.body || error.message);
+    console.error("❌ Sendinblue email error:", error.response?.body || error.message);
     throw error;
   }
 };
+
+export default sendHotmailEmail;
