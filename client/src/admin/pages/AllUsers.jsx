@@ -22,7 +22,7 @@ const AllUsers = () => {
   const [getAllusersForAdmin, setGetAllusersForAdmin] = React.useState([]);
   const [confirmDeleteUser, setConfirmDeleteUser] = React.useState(false);
   const [userToDelete, setUserToDelete] = React.useState(null);
-
+  const [deleteLoading, setDeleteLoading] = React.useState(false);
   
 
   useEffect(() => {
@@ -138,11 +138,12 @@ const AllUsers = () => {
             onConfirm={
               async () => {
                 try {
+                  setDeleteLoading(true);
                   await dispatch(adminDeleteUserOrAdmin(userToDelete)).unwrap().then(() => {
                     
                       toast.success("User deleted successfully");
-                      setConfirmDeleteUser(false);
                       setGetAllusersForAdmin(getAllusersForAdmin.filter((user) => user._id !== userToDelete));
+                      setConfirmDeleteUser(false);
                    
                   });
                 } catch (error) {
@@ -152,9 +153,12 @@ const AllUsers = () => {
                   } else {
                     toast.error(error.message);
                   }
+                } finally {
+                  setDeleteLoading(false);
                 }
               }
             }
+            loading={deleteLoading}
             headerTitle="ConfirmDelete User Or Admin" 
             headerDescription="Are you sure you want to delete this user or admin?" 
             cacelButton="Cancel"
