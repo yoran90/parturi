@@ -1,39 +1,39 @@
-import nodemailer from "nodemailer";
+import sgMail from "@sendgrid/mail";
 
 export const sendHotmailEmail = async ({ name, phone, email, message }) => {
   try {
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    // Check environment variables
+    if (!process.env.SENDGRID_EMAIL_USER || !process.env.SENDGRID_API_KEY) {
       throw new Error("Missing email credentials");
     }
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
+    // Set SendGrid API key
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-    const mailOptions = {
-      from: `"Website Contact" <${process.env.EMAIL_USER}>`,
-      replyTo: email,
-      to: process.env.EMAIL_USER,
+    // Email options
+    const msg = {
+      to: process.env.SENDGRID_EMAIL_USER,      
+      from: process.env.SENDGRID_EMAIL_USER,    
+      replyTo: email,                            
       subject: `New message from ${name}`,
       text: `
-        Name: ${name}
-        Phone: ${phone}
-        Email: ${email}
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
 
-        Message:
-        ${message}
+Message:
+${message}
       `,
     };
 
-    const info = await transporter.sendMail(mailOptions);
-    return info;
+    // Send email
+    await sgMail.send(msg);
+    console.log("✅ Email sent successfully");
+
+    return { success: true };
 
   } catch (error) {
-    console.error("❌ Email send error:", error.message);
+    console.error("❌ Email send error:", error);
     throw error;
   }
 };
