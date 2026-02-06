@@ -158,6 +158,7 @@ const AllUsers = () => {
                 }
               }
             }
+            loadingText={'Deleting'}
             loading={deleteLoading}
             headerTitle="ConfirmDelete User Or Admin" 
             headerDescription="Are you sure you want to delete this user or admin?" 

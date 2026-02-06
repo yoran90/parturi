@@ -1,7 +1,7 @@
 import React from 'react'
 import Loading from '../../loading/Loading'
 
-const ConfirmDelete = ({ closeModel, headerTitle, headerDescription, warningMessage, cacelButton, confirmButton, onConfirm, loading }) => {
+const ConfirmDelete = ({ closeModel, headerTitle, headerDescription, warningMessage, cacelButton, confirmButton, loadingText, onConfirm, loading }) => {
   return (
     <div className='fixed top-0 left-0 right-0 bottom-0 bg-black/70 flex flex-col items-center justify-center z-50'>
       <div className='bg-white shadow md:w-full w-[98%] max-w-xl relative py-6 px-4 rounded'>
@@ -22,7 +22,7 @@ const ConfirmDelete = ({ closeModel, headerTitle, headerDescription, warningMess
               {
                 loading ? (
                   <div className='flex items-center gap-1.5' data-testid='loading-spinner'>
-                    {confirmButton}
+                    <p>{loadingText}</p>
                     <Loading width={20} height={20} border='3px' topBorder='3px' borderColor='white' borderTopColor='red' />
                   </div>
                 ) : 
