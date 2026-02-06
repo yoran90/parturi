@@ -1,20 +1,20 @@
-import sgMail from "@sendgrid/mail";
+import SibApiV3Sdk from "sib-api-v3-sdk";
 
 export const sendHotmailEmail = async ({ name, phone, email, message }) => {
   try {
-    // Check environment variables
-    if (!process.env.SENDGRID_EMAIL_USER || !process.env.SENDGRID_API_KEY) {
+    // Check env
+    if (!process.env.SENDINGBLUE_BERVO_EMAIL_USER || !process.env.SENDINGBLUE_BREVO_API_KEY) {
       throw new Error("Missing email credentials");
     }
 
-    // Set SendGrid API key
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    // Set API key
+    sgMail.setApiKey(process.env.SENDINGBLUE_BREVO_API_KEY);
 
-    // Email options
+    // Email message
     const msg = {
-      to: process.env.SENDGRID_EMAIL_USER,      
-      from: process.env.SENDGRID_EMAIL_USER,    
-      replyTo: email,                            
+      to: process.env.SENDINGBLUE_BERVO_EMAIL_USER, // your inbox
+      from: process.env.SENDINGBLUE_BERVO_EMAIL_USER, // same verified sender
+      replyTo: email, // user's email
       subject: `New message from ${name}`,
       text: `
 Name: ${name}
@@ -26,14 +26,12 @@ ${message}
       `,
     };
 
-    // Send email
     await sgMail.send(msg);
-    console.log("✅ Email sent successfully");
+    console.log("✅ Email sent successfully via SendGrid");
 
     return { success: true };
-
   } catch (error) {
-    console.error("❌ Email send error:", error);
+    console.error("❌ SendGrid email error:", error.response?.body || error.message);
     throw error;
   }
 };
