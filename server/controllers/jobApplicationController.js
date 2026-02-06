@@ -6,20 +6,28 @@ apiKey.apiKey = process.env.SENDINGBLUE_BREVO_API_KEY;
 
 const emailClient = new SibApiV3Sdk.TransactionalEmailsApi();
 
-export const sendJobApplicationEmail = async ({ firstName, lastName, email, phone, selectJob, startDate, resume, message }) => {
+export const sendJobApplicationEmail = async ({
+  firstName,
+  lastName,
+  email,
+  phone,
+  selectJob,
+  startDate,
+  resume,
+  message
+}) => {
   try {
-    // Check environment variables
-    if (!process.env.SENDINGBLUE_BERVO_EMAIL_USER || !process.env.SENDINGBLUE_BREVO_API_KEY) {
+    // ✅ Check env variables
+    const senderEmail = process.env.SENDINGBLUE_BREVO_EMAIL_USER;
+    if (!senderEmail || !process.env.SENDINGBLUE_BREVO_API_KEY) {
       throw new Error("Missing Brevo credentials (sender email or API key)");
     }
 
-    // Make sure sender email is verified in Brevo
-    const senderEmail = process.env.SENDINGBLUE_BERVO_EMAIL_USER;
-
+    // Build email payload
     const emailData = new SibApiV3Sdk.SendSmtpEmail({
-      sender: { 
-        email: senderEmail,        // Must be verified in Brevo
-        name: "Website Contact" 
+      sender: {
+        email: senderEmail,
+        name: "Website Contact"
       },
       to: [{ email: senderEmail }], // send to yourself
       replyTo: { email },           // applicant can reply
@@ -31,7 +39,7 @@ export const sendJobApplicationEmail = async ({ firstName, lastName, email, phon
         <p><strong>📧 Sähköposti:</strong> ${email}</p>
         <p><strong>💼 Haettu tehtävä:</strong> ${selectJob}</p>
         <p><strong>📆 Aloituspäivämäärä:</strong> ${startDate}</p><br>
-        <p><strong>📜 Viesti:</strong><br>${message}</p>
+        <p><strong>📜 Viesti:</strong><br>${message || "(ei viestiä)"}</p>
       `,
       attachment: resume ? [
         {
@@ -42,13 +50,16 @@ export const sendJobApplicationEmail = async ({ firstName, lastName, email, phon
       ] : []
     });
 
+    // ✅ Send email
     await emailClient.sendTransacEmail(emailData);
-
     console.log("✅ Job application email sent via Brevo");
-    return { success: true };
 
+    return { success: true };
   } catch (error) {
-    console.error("❌ Brevo job application email error:", error.response?.body || error.message);
+    console.error(
+      "❌ Brevo job application email error:",
+      error.response?.body || error.message
+    );
     throw error;
   }
 };
