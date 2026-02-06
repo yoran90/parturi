@@ -5,7 +5,6 @@ import useInformation from '../../hooks/useInformation'
 const HeaderText = () => {
 
   const { getInformation } = useInformation();
-  console.log(getInformation, 'getInformation');
 
 
   return (

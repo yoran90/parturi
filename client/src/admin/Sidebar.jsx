@@ -133,7 +133,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         ></div>
       )}
       <div
-          className={`bg-white shadow h-screen border-r border-slate-200 transform overflow-y-scroll scrollbarStyle scrollbarStyle transition-transform duration-300 fixed top-0 left-0 z-50 w-[90%] 
+          className={`bg-white shadow h-screen border-r border-slate-200 transform overflow-y-scroll scrollbarStyle scrollbarStyle transition-transform duration-300 fixed top-0 left-0 z-50 w-[80%] 
             ${isOpen ? "translate-x-0" : "-translate-x-full"} 
             md:translate-x-0 md:static md:block md:w-[30%]`}
       >

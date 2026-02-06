@@ -92,7 +92,6 @@ const App = () => {
             100% { transform: rotate(360deg); }
           }
         `}</style>
-        <p>Pleass wait...</p>
       </div>
     )
   }
