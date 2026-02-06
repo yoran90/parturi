@@ -22,11 +22,11 @@ export const sendHotmailEmail = async ({ name, phone, email, message }) => {
     },
     subject: `New message from ${name}`,
     textContent: `Name: ${name}
-Phone: ${phone}
-Email: ${email}
+      Phone: ${phone}
+      Email: ${email}
 
-Message:
-${message}`,
+      Message:
+      ${message}`,
   };
 
   await apiInstance.sendTransacEmail(emailData);

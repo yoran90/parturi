@@ -45,7 +45,12 @@ export const register = async (req, res) => {
     
     const verifyURL = `${process.env.FRONTEND_URL}/verify-email/${verifyToken}`;
 
-    await sendEmail(user.email, "Email Verification", `Click the below link to verify your email ⬇️\n\n ${verifyURL}`);
+    await sendEmail({
+  to: user.email,
+  subject: "Email Verification",
+  text: `Click the below link to verify your email ⬇️\n\n${verifyURL}`,
+});
+
 
     res.status(201).json({ success: true, message: "Registration successful. Please check your email to verify your account.", user });
 
@@ -78,7 +83,12 @@ export const sendVerificationEmail = async (req, res) => {
     // Create URL for email verification (frontend URL)
     const verifyURL = `${process.env.FRONTEND_URL}/admin-verify-email/${token}`;
 
-    await sendEmail(user.email, "Email Verification", `Click the below link to verify your email ⬇️\n\n ${verifyURL}`);
+    await sendEmail({
+  to: user.email,
+  subject: "Email Verification",
+  text: `Click the below link to verify your email ⬇️\n\n${verifyURL}`,
+});
+
 
     res.status(200).json({ success: true, message: "Verification email sent. Please check your email." });
 
