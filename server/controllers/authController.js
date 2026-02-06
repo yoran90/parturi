@@ -89,7 +89,6 @@ export const sendVerificationEmail = async (req, res) => {
   text: `Click the below link to verify your email ⬇️\n\n${verifyURL}`,
 });
 
-
     res.status(200).json({ success: true, message: "Verification email sent. Please check your email." });
 
   } catch (error) {
@@ -345,7 +344,12 @@ export const adminForgotPassword = async (req, res) => {
 
     // Create URL for reset password (frontend URL)
     const resetURL = `${process.env.FRONTEND_URL}/admin-reset-password/${token}`;
-    await sendEmail(user.email, "Password Reset Request", `Ignore if you don't want reset password if you want reset password\n\n Click the below link to reset your password ⬇️\n\n ${resetURL}`);
+
+    await sendEmail({
+      to: user.email,
+      subject: "Password Reset Request",
+      text: `Ignore if you don't want reset password if you want reset password\n\n Click the below link to reset your password ⬇️\n\n ${resetURL}`,
+    });
 
     res.status(200).json({ success: true, message: "Password reset link sent to email" });
 
