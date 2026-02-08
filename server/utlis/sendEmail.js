@@ -15,7 +15,7 @@ export const sendEmail = async ({ to, subject, html }) => {
   try {
     const info = await transporter.sendMail({
       from: `"Parturi Website" <${process.env.NODEMAILER_EMAIL_USER}>`,
-      to: process.env.NODEMAILER_EMAIL_USER, ,
+      to: process.env.NODEMAILER_EMAIL_USER,
   subject: `Hi ${firstName}, verify your email!`,
   html: `
     <h1>Welcome ${firstName}!</h1>
