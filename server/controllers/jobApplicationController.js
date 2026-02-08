@@ -17,49 +17,50 @@ export const sendJobApplicationEmail = async ({
   message
 }) => {
   try {
-    // ✅ Check env variables
-    const senderEmail = process.env.SENDINGBLUE_BREVO_EMAIL_USER;
-    if (!senderEmail || !process.env.SENDINGBLUE_BREVO_API_KEY) {
-      throw new Error("Missing Brevo credentials (sender email or API key)");
-    }
+    // Set API key at runtime
+    const defaultClient = SibApiV3Sdk.ApiClient.instance;
+    defaultClient.authentications["api-key"].apiKey =
+      process.env.SENDINGBLUE_BREVO_API_KEY;
 
-    // Build email payload
-    const emailData = new SibApiV3Sdk.SendSmtpEmail({
-      sender: {
-        email: senderEmail,
-        name: "Website Contact"
-      },
-      to: [{ email: senderEmail }], // send to yourself
-      replyTo: { email },           // applicant can reply
-      subject: `Uusi työhakemus käyttäjältä ${firstName} ${lastName}`,
-      htmlContent: `
-        <h2>Uusi työhakemus käyttäjältä (${firstName} ${lastName})</h2>
-        <p><strong>👤 Nimi:</strong> ${firstName} ${lastName}</p>
-        <p><strong>📞 Puhelin:</strong> ${phone}</p>
-        <p><strong>📧 Sähköposti:</strong> ${email}</p>
-        <p><strong>💼 Haettu tehtävä:</strong> ${selectJob}</p>
-        <p><strong>📆 Aloituspäivämäärä:</strong> ${startDate}</p><br>
-        <p><strong>📜 Viesti:</strong><br>${message || "(ei viestiä)"}</p>
-      `,
-      attachment: resume ? [
+    const senderEmail = process.env.SENDINGBLUE_BREVO_EMAIL_USER || "harun-amin@hotmail.com";
+
+if (!senderEmail) {
+  throw new Error("Sender email is missing");
+}
+
+const emailData = new SibApiV3Sdk.SendSmtpEmail({
+  sender: {
+    email: senderEmail,
+    name: "Website Contact",
+  },
+  to: [{ email: senderEmail }],
+  replyTo: { email },
+  subject: `Uusi työhakemus käyttäjältä ${firstName} ${lastName}`,
+  htmlContent: `
+    <h2>Uusi työhakemus käyttäjältä (${firstName} ${lastName})</h2>
+    <p><strong>👤 Nimi:</strong> ${firstName} ${lastName}</p>
+    <p><strong>📞 Puhelin:</strong> ${phone}</p>
+    <p><strong>📧 Sähköposti:</strong> ${email}</p>
+    <p><strong>💼 Haettu tehtävä:</strong> ${selectJob}</p>
+    <p><strong>📆 Aloituspäivämäärä:</strong> ${startDate}</p>
+    <p><strong>📜 Viesti:</strong><br>${message || "(ei viestiä)"}</p>
+  `,
+  attachment: resume
+    ? [
         {
           content: resume.buffer.toString("base64"),
           name: resume.originalname,
-          type: resume.mimetype
-        }
-      ] : []
-    });
+          type: resume.mimetype,
+        },
+      ]
+    : [],
+});
 
-    // ✅ Send email
+
     await emailClient.sendTransacEmail(emailData);
-    console.log("✅ Job application email sent via Brevo");
-
     return { success: true };
   } catch (error) {
-    console.error(
-      "❌ Brevo job application email error:",
-      error.response?.body || error.message
-    );
+    console.error("BREVO FULL ERROR:", error.response?.body || error.message || error);
     throw error;
   }
 };

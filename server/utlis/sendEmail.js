@@ -14,7 +14,7 @@ const sendEmail = async ({ to, subject, text }) => {
   const emailData = new SibApiV3Sdk.SendSmtpEmail({
     to: [{ email: to }],
     sender: {
-      email: process.env.SENDINGBLUE_BERVO_EMAIL_USER,
+      email: process.env.SENDINGBLUE_BREVO_EMAIL_USER,
       name: "Parturi Website",
     },
     subject,
