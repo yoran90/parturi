@@ -1,34 +1,34 @@
-import SibApiV3Sdk from "sib-api-v3-sdk";
+import nodemailer from "nodemailer";
+
+// Create transporter
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  secure: true, // true for port 465
+  auth: {
+    user: process.env.NODEMAILER_EMAIL_USER,
+    pass: process.env.NODEMAILER_EMAIL_PASSWORD,
+  },
+});
 
 export const sendHotmailEmail = async ({ name, phone, email, message }) => {
-  const client = SibApiV3Sdk.ApiClient.instance;
-  client.authentications["api-key"].apiKey = process.env.SENDINGBLUE_BREVO_API_KEY;
+  try {
+    await transporter.sendMail({
+      from: `"Website Contact" <${process.env.NODEMAILER_EMAIL_USER}>`, // sender
+      to: process.env.NODEMAILER_EMAIL_USER, // your email to receive messages
+      replyTo: `${name} <${email}>`, // allows reply to the user's email
+      subject: `New message from ${name}`,
+      html: `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong><br>${message}</p>
+      `,
+    });
 
-  const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
-
-  const emailData = {
-    sender: {
-      email: process.env.SENDINGBLUE_BERVO_EMAIL_USER,
-      name: "Website Contact",
-    },
-    to: [
-      {
-        email: process.env.SENDINGBLUE_BERVO_EMAIL_USER,
-      },
-    ],
-    replyTo: {
-      email: email,
-      name: name,
-    },
-    subject: `New message from ${name}`,
-    textContent: `Name: ${name}
-      Phone: ${phone}
-      Email: ${email}
-
-      Message:
-      ${message}`,
-  };
-
-  await apiInstance.sendTransacEmail(emailData);
+    console.log("Email sent successfully!");
+  } catch (error) {
+    console.error("Error sending email:", error);
+    throw new Error("Email could not be sent");
+  }
 };
-
