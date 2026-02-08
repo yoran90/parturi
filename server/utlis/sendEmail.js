@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 export const sendEmail = async ({ to, subject, text }) => {
   try {
     const info = await transporter.sendMail({
-      from: `"Parturi Website" <${process.env.NODEMAILER_EMAIL_USER}>`,
+      from: `"Razor parturi" <${process.env.NODEMAILER_EMAIL_USER}>`,
       to,
       subject,
       text,
