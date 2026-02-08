@@ -1,27 +1,33 @@
-import SibApiV3Sdk from "sib-api-v3-sdk";
+import nodemailer from "nodemailer";
 
-const client = SibApiV3Sdk.ApiClient.instance;
-client.authentications["api-key"].apiKey =
-  process.env.SENDINGBLUE_BREVO_API_KEY;
 
-const emailClient = new SibApiV3Sdk.TransactionalEmailsApi();
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  secure: true, 
+  auth: {
+    user: process.env.NODEMAILER_EMAIL_USER,
+    pass: process.env.NODEMAILER_EMAIL_PASSWORD,
+  },
+});
 
-const sendEmail = async ({ to, subject, text }) => {
-  if (!to || !subject || !text) {
-    throw new Error("Email payload missing fields");
+export const sendEmail = async ({ to, subject, html }) => {
+  try {
+    const info = await transporter.sendMail({
+      from: `"Parturi Website" <${process.env.NODEMAILER_EMAIL_USER}>`,
+      to,
+  subject: `Hi ${firstName}, verify your email!`,
+  html: `
+    <h1>Welcome ${firstName}!</h1>
+    <p>Click the link below to verify your email:</p>
+    <a href="${verifyURL}">Verify Email</a>
+    <p>Thank you for joining Parturi Website!</p>
+  `,
+    });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    throw new Error("Email could not be sent");
   }
-
-  const emailData = new SibApiV3Sdk.SendSmtpEmail({
-    to: [{ email: to }],
-    sender: {
-      email: process.env.SENDINGBLUE_BREVO_EMAIL_USER,
-      name: "Parturi Website",
-    },
-    subject,
-    textContent: text,
-  });
-
-  await emailClient.sendTransacEmail(emailData);
-};
+}
 
 export default sendEmail;
