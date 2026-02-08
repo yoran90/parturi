@@ -1,21 +1,21 @@
 import nodemailer from "nodemailer";
 
-
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT,
-  secure: true, 
+  host: process.env.SMTP_HOST,       // smtp.gmail.com
+  port: parseInt(process.env.SMTP_PORT),  // 465
+  secure: true,                       // true for 465
   auth: {
     user: process.env.NODEMAILER_EMAIL_USER,
     pass: process.env.NODEMAILER_EMAIL_PASSWORD,
   },
 });
 
+
 export const sendEmail = async ({ to, subject, html }) => {
   try {
     const info = await transporter.sendMail({
       from: `"Parturi Website" <${process.env.NODEMAILER_EMAIL_USER}>`,
-      to,
+      to: process.env.NODEMAILER_EMAIL_USER, ,
   subject: `Hi ${firstName}, verify your email!`,
   html: `
     <h1>Welcome ${firstName}!</h1>
