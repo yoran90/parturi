@@ -13,10 +13,10 @@ const transporter = nodemailer.createTransport({
 
 export const sendHotmailEmail = async ({ name, phone, email, message }) => {
   try {
-    await transporter.sendMail({
-      from: `"Website Contact" <${process.env.NODEMAILER_EMAIL_USER}>`, // sender
-      to: process.env.NODEMAILER_EMAIL_USER, // your email to receive messages
-      replyTo: `${name} <${email}>`, // allows reply to the user's email
+    const info = await transporter.sendMail({
+      from: `"Website Contact" <${process.env.NODEMAILER_EMAIL_USER}>`,
+      to: process.env.NODEMAILER_EMAIL_USER,
+      replyTo: `${name} <${email}>`,
       subject: `New message from ${name}`,
       html: `
         <p><strong>Name:</strong> ${name}</p>
@@ -26,9 +26,10 @@ export const sendHotmailEmail = async ({ name, phone, email, message }) => {
       `,
     });
 
-    console.log("Email sent successfully!");
+    console.log("Email sent:", info.messageId);
+    return info;
   } catch (error) {
-    console.error("Error sending email:", error);
-    throw new Error("Email could not be sent");
+    console.error("Nodemailer error:", error);
+    throw error;
   }
 };
