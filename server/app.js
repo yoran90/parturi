@@ -38,8 +38,11 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 const allowedOrigins = [
   "http://localhost:5173",
   "https://parturi.vercel.app",
-  "https://www.parturi.vercel.app"
+  "https://www.parturi.vercel.app",
+  "https://razorr.fi",
+  "https://www.razorr.fi"
 ];
+
 
 app.use(cors({
   origin: (origin, callback) => {
