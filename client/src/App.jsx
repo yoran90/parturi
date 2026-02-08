@@ -77,7 +77,7 @@ const App = () => {
   }, [dispatch]);
   
 
-  if (loading) {
+  if (!loading) {
     return (
       <div className="flex items-center justify-center h-screen w-full">
         <div className="loader">
@@ -104,9 +104,9 @@ const App = () => {
             content: "";
             position: absolute;
             inset: 0;
-            border: 4px solid  #ddd;
-            border-top: 4px solid #ff0000;
-            border-left: 4px solid #ff0000;
+            border: 4px solid #bfbfbf;
+            border-top: 4px solid #0080ff;
+            border-left: 4px solid #0080ff;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
             overflow: hidden;
