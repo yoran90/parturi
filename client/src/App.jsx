@@ -50,6 +50,7 @@ import AdminVerifyEmail from './admin/pages/verifyEmail/AdminVerifyEmail'
 import UserLayout from './User-Layouts/UserLayout'
 import AdminLayout from './Admin-Layouts/AdminLayout'
 import AuthLayout from './User-Layouts/Register-Login/AuthLayout'
+import useHeaderLogo from './hooks/useHeaderLogo'
 
 
 
@@ -61,6 +62,7 @@ const App = () => {
 
   const { isAuthenticated, loading, admin } = useSelector((state) => state.adminAuth);
   const { isAuthenticated: userIsAuthenticated, user } = useSelector((state) => state.userAuth);
+  const { headerLogo } = useHeaderLogo();
 
   const dispatch = useDispatch();
 
@@ -75,25 +77,48 @@ const App = () => {
   }, [dispatch]);
   
 
-  if (loading) {
+  if (!loading) {
     return (
-      <div className='flex flex-col gap-2 items-center justify-center h-screen w-full'>
-        <div className='loader'></div>
+      <div className="flex items-center justify-center h-screen w-full">
+        <div className="loader">
+          <img
+            src={headerLogo?.url}
+            alt="header logo"
+            className="w-full h-full p-1 rounded-full"
+          />
+        </div>
+
         <style>{`
           .loader {
-            border: 4px solid #ddd;
-            border-top: 4px solid #3498db;
+            position: relative;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            overflow: hidden;
+          }
+
+          .loader::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 5px solid #ddd;
+            border-top: 5px solid #3498db;
+            border-left: 5px solid #3498db;
+            border-radius: 50%;
             animation: spin 0.8s linear infinite;
+            overflow: hidden;
           }
           @keyframes spin {
-            100% { transform: rotate(360deg); }
+            to {
+              transform: rotate(360deg);
+            }
           }
         `}</style>
       </div>
-    )
+    );
   }
 
 

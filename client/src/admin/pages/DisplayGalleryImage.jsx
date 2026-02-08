@@ -2,13 +2,16 @@ import React from 'react'
 import useGallery from '../../hooks/useGallery';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Loading from '../../loading/Loading';
 
 const DisplayGalleryImage = () => {
 
   const { galleryImages, setGalleryImages, loading } = useGallery();
+  const [deleteLoading, setDeleteLoading] = React.useState(false);
 
   const handleDeleteGalleryImage = async (galleryId, publicId ) => {
     try {
+      setDeleteLoading(prev => ({ ...prev, [publicId]: true }));
       const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/media/deleteGalleryImage`, {
         data: { galleryId, publicId  }
       });
@@ -21,6 +24,8 @@ const DisplayGalleryImage = () => {
     } catch (error) {
       console.log(error);
       toast.error('Failed to delete image');
+    } finally {
+      setDeleteLoading(prev => ({ ...prev, [publicId]: false }));
     }
   };
 
@@ -71,7 +76,15 @@ const DisplayGalleryImage = () => {
                 className='bg-red-600 text-white hover:bg-red-700 px-2 m-0.5 py-1 text-sm rounded cursor-pointer'
                 onClick={() => handleDeleteGalleryImage(image.galleryId, image.publicId)}
               >
-                Delete
+                {deleteLoading[image.publicId] ? (
+                    <div className='flex items-center gap-1.5 justify-center'>
+                      <p>Deleting</p>
+                      <Loading width={18} height={18} border='3px' topBorder='3px' borderColor='white' borderTopColor='red' />
+
+                    </div>
+                  ) : "Delete"
+                }
+                
               </button>
             </div>
           ))}
