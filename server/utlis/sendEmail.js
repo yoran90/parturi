@@ -11,23 +11,20 @@ const transporter = nodemailer.createTransport({
 });
 
 
-export const sendEmail = async ({ to, subject, html }) => {
+export const sendEmail = async ({ to, subject, text }) => {
   try {
     const info = await transporter.sendMail({
       from: `"Parturi Website" <${process.env.NODEMAILER_EMAIL_USER}>`,
-      to: process.env.NODEMAILER_EMAIL_USER,
-  subject: `Hi ${firstName}, verify your email!`,
-  html: `
-    <h1>Welcome ${firstName}!</h1>
-    <p>Click the link below to verify your email:</p>
-    <a href="${verifyURL}">Verify Email</a>
-    <p>Thank you for joining Parturi Website!</p>
-  `,
+      to,
+      subject,
+      text,
     });
+    console.log("Email sent:", info.messageId);
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("Error sending email:", error.response || error);
     throw new Error("Email could not be sent");
   }
-}
+};
+
 
 export default sendEmail;

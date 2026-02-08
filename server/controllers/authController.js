@@ -45,7 +45,7 @@ export const register = async (req, res) => {
     
     const verifyURL = `${process.env.FRONTEND_URL}/verify-email/${verifyToken}`;
 
-    await sendEmail({
+ await sendEmail({
       to: user.email,
       subject: "Email Verification",
       text: `Click the below link to verify your email ⬇️\n\n${verifyURL}`,
