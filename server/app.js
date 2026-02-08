@@ -52,9 +52,10 @@ app.use(cors({
     }
   },
   credentials: true,       
-  methods: ["GET","POST","PUT","DELETE","OPTIONS"], // allow OPTIONS
-  allowedHeaders: ["Content-Type", "Authorization"] // headers your frontend sends
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"], 
+  allowedHeaders: ["Content-Type", "Authorization"] 
 }));
+
 
 
 
