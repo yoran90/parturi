@@ -50,9 +50,9 @@ import AdminVerifyEmail from './admin/pages/verifyEmail/AdminVerifyEmail'
 import UserLayout from './User-Layouts/UserLayout'
 import AdminLayout from './Admin-Layouts/AdminLayout'
 import AuthLayout from './User-Layouts/Register-Login/AuthLayout'
-import useHeaderLogo from './hooks/useHeaderLogo'
 
 
+import razorLogo from './assets/Razor.png'
 
 
 
@@ -62,7 +62,7 @@ const App = () => {
 
   const { isAuthenticated, loading, admin } = useSelector((state) => state.adminAuth);
   const { isAuthenticated: userIsAuthenticated, user } = useSelector((state) => state.userAuth);
-  const { headerLogo } = useHeaderLogo();
+
 
   const dispatch = useDispatch();
 
@@ -82,7 +82,7 @@ const App = () => {
       <div className="flex items-center justify-center h-screen w-full">
         <div className="loader">
           <img
-            src={headerLogo?.url}
+            src={razorLogo}
             alt="header logo"
             className="w-full h-full p-1 rounded-full"
           />
@@ -91,8 +91,8 @@ const App = () => {
         <style>{`
           .loader {
             position: relative;
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -104,9 +104,9 @@ const App = () => {
             content: "";
             position: absolute;
             inset: 0;
-            border: 5px solid #ddd;
-            border-top: 5px solid #3498db;
-            border-left: 5px solid #3498db;
+            border: 4px solid  #ddd;
+            border-top: 4px solid #ff0000;
+            border-left: 4px solid #ff0000;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
             overflow: hidden;
