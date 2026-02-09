@@ -1,0 +1,41 @@
+const routes = [
+  "/", 
+  "/meistä",
+  "/palvelut",
+  "/galleria",
+  "/tuotet",
+  "/tuote/1", // example for dynamic route
+  "/yhteystiedot",
+  "/forgot-password",
+  "/reset-password/example-token",
+  "/verify-email/example-token",
+  "/profile",
+  "/opinion",
+  "/profile/1", // example dynamic user profile
+  "/register",
+  "/kirjaudu",
+  "/admin",
+  "/admin/sidebar",
+  "/admin/myaccount",
+  "/admin/allusers",
+  "/admin/allreviews",
+  "/admin/addreviews",
+  "/admin/addinformation",
+  "/admin/imagevideo",
+  "/admin/imagevideoDisplay",
+  "/admin/addprice",
+  "/admin/galleri",
+  "/admin/displayGalleri",
+  "/admin/addProduct",
+  "/admin/displayProduct",
+  "/admin/addheaderlogo",
+  "/admin/addaboutus",
+  "/admin/titleforPages",
+  "/admin/edit-user/1", // example
+  "/login",
+  "/admin-forgot-password",
+  "/admin-reset-password/example-token",
+  "/admin-verify-email/example-token",
+];
+
+export default routes;

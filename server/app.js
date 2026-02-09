@@ -34,6 +34,8 @@ app.use(cookieParser());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+app.use('/sitemap.xml', express.static(path.join(__dirname, 'public', 'sitemap.xml')));
+
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -63,6 +65,9 @@ app.use(cors({
 
 
 
+
+// Serve React app (only after API and static routes)
+app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
 
 
