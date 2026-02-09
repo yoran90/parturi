@@ -120,7 +120,7 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 
 // Replace your CORS configuration with this:
 
-/* const allowedOrigins = [
+const allowedOrigins = [
   "http://localhost:5173",
   "https://parturi.vercel.app",
   "https://www.parturi.vercel.app",
@@ -150,9 +150,9 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   exposedHeaders: ["Content-Length", "Authorization"]
-})); */
+}));
 
-app.use(cors({
+/* app.use(cors({
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
 
@@ -181,7 +181,7 @@ app.use(cors({
   },
   credentials: true,
 }));
-
+ */
 
 
 
