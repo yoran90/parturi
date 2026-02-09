@@ -1,18 +1,21 @@
 import nodemailer from "nodemailer";
+import dns from "dns";
+
+dns.setDefaultResultOrder("ipv4first");
 
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,       
-  port: 587,  
-  secure: false,                       
+  host: process.env.SMTP_HOST,
+  port: 587,
+  secure: false,
   auth: {
     user: process.env.NODEMAILER_EMAIL_USER,
     pass: process.env.NODEMAILER_EMAIL_PASSWORD,
   },
-  pool: true,
-  maxConnections: 1,
-  maxMessages: 3,
-  connectionTimeout: 10000,
-  socketTimeout: 10000,
+  tls: {
+    rejectUnauthorized: false,
+  },
+  connectionTimeout: 20000,
+  socketTimeout: 20000,
 });
 
 
