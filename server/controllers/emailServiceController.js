@@ -53,7 +53,7 @@ export const sendHotmailEmail = async ({ name, phone, email, message }) => {
   try {
     const response = await resend.emails.send({
       from: `Website Contact <contact@razorr.fi>`,
-      to: ["yoran0818@gmail.com"],
+      to: ["harun-amin@hotmail.com"],
       reply_to: `${name} <${email}>`,
       subject: `New message from ${name}`,
       html: `
