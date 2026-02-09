@@ -1,20 +1,24 @@
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,       // smtp.gmail.com
-  port: parseInt(process.env.SMTP_PORT),  // 465
-  secure: true,                       // true for 465
-  auth: {
+  host: "smtp-relay.brevo.com",       
+  port: 587,  
+  secure: false,                       
+  /* auth: {
     user: process.env.NODEMAILER_EMAIL_USER,
     pass: process.env.NODEMAILER_EMAIL_PASSWORD,
-  },
+  }, */
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS
+  }
 });
 
 
 export const sendEmail = async ({ to, subject, text }) => {
   try {
     const info = await transporter.sendMail({
-      from: `"Razor parturi" <${process.env.NODEMAILER_EMAIL_USER}>`,
+      from: `"Razor parturi" <${process.env.SMTP_USER}>`,
       to,
       subject,
       text,
