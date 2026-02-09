@@ -118,32 +118,37 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 // end for searching the site in google
 
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://parturi.vercel.app",
-  "https://www.parturi.vercel.app",
-  "https://razorr.fi",
-  "https://www.razorr.fi"
-];
-
 
 app.use(cors({
-  origin: (origin, callback) => {
-    // allow Postman / server-to-server
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.includes(origin)) {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl, postman)
+    if (!origin) {
+      console.log("CORS: No origin (server-to-server request)");
       return callback(null, true);
     }
 
-    // ❗ IMPORTANT: do NOT throw an error
-    return callback(new Error("Not allowed by CORS"));
+    const allowedOrigins = [
+      "http://localhost:5173",
+      "http://localhost:3000",
+      "https://parturi.vercel.app",
+      "https://www.parturi.vercel.app",
+      "https://razorr.fi",
+      "https://www.razorr.fi"
+    ];
+
+    if (allowedOrigins.includes(origin)) {
+      console.log(`CORS: Allowed origin: ${origin}`);
+      return callback(null, true);
+    } else {
+      console.log(`CORS: Blocked origin: ${origin}`);
+      return callback(new Error(`Origin ${origin} not allowed by CORS`), false);
+    }
   },
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+  exposedHeaders: ["Content-Length", "Authorization"]
 }));
-
 
 
 
