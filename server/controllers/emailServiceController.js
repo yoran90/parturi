@@ -51,10 +51,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
  */
 export const sendHotmailEmail = async ({ name, phone, email, message }) => {
   try {
-    const { data } = await resend.emails.send({
+    const response = await resend.emails.send({
       from: `Website Contact <${process.env.NODEMAILER_EMAIL_USER}>`,
-      to: [process.env.NODEMAILER_EMAIL_USER], // Your email
-      reply_to: `${name} <${email}>`,          // Sender info
+      to: [process.env.NODEMAILER_EMAIL_USER],
+      reply_to: `${name} <${email}>`,
       subject: `New message from ${name}`,
       html: `
         <p><strong>Name:</strong> ${name}</p>
@@ -64,12 +64,13 @@ export const sendHotmailEmail = async ({ name, phone, email, message }) => {
       `,
     });
 
-    console.log("📬 Contact form email sent, ID:", data.id);
-    return data;
+    console.log("📬 Contact form email sent, response:", response);
+    return response;
   } catch (error) {
     console.error("❌ Resend sendHotmailEmail error:", error);
     throw new Error("Contact form email could not be sent");
   }
 };
+
 
 export default sendHotmailEmail;
