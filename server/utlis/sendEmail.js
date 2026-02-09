@@ -1,37 +1,31 @@
-import nodemailer from "nodemailer";
-import dns from "dns";
+// services/sendEmail.js
+import { Resend } from "resend";
 
-dns.setDefaultResultOrder("ipv4first");
+// Initialize Resend with your API key from environment
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.NODEMAILER_EMAIL_USER,
-    pass: process.env.NODEMAILER_EMAIL_PASSWORD,
-  },
-  tls: {
-    rejectUnauthorized: false,
-  },
-  connectionTimeout: 20000,
-  socketTimeout: 20000,
-});
-
-
+/**
+ * Send a simple text email
+ * @param {Object} param0 
+ * @param {string} param0.to - Recipient email
+ * @param {string} param0.subject - Email subject
+ * @param {string} param0.text - Email body (text)
+ */
 export const sendEmail = async ({ to, subject, text }) => {
   try {
-    const info = await transporter.sendMail({
-      from: `"Razor parturi" <${process.env.NODEMAILER_EMAIL_USER}>`,
-      to,
+    const { data } = await resend.emails.send({
+      from: `Razor Parturi <${process.env.NODEMAILER_EMAIL_USER}>`,
+      to: [to],
       subject,
-      text,
+      html: `<p>${text}</p>`, // Resend expects html, text converted to simple HTML
     });
+
+    console.log("📬 Email sent via Resend, ID:", data.id);
+    return data;
   } catch (error) {
-    console.error("Error sending email:", error.response || error);
+    console.error("❌ Resend sendEmail error:", error);
     throw new Error("Email could not be sent");
   }
 };
-
 
 export default sendEmail;
