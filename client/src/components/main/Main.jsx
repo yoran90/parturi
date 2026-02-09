@@ -3,6 +3,9 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import axios from 'axios';
 import Loading from '../../loading/Loading';
 
+import razorLogo from '../../assets/Razor.png'
+
+
 const Main = () => {
 
 
@@ -54,8 +57,44 @@ const Main = () => {
 
   if (!currentMedia) {
     return (
-      <div className='relative w-full md:h-[500px] lg:h-[600px] h-[500px] overflow-hidden flex items-center justify-center'>
-        <Loading width={60} height={60} border='6px' topBorder='6px' borderColor='red' borderTopColor='white' />
+      <div className="flex items-center justify-center h-screen w-full">
+        <div className="loader">
+          <img
+            src={razorLogo}
+            alt="header logo"
+            className="w-full h-full p-1 rounded-full"
+          />
+        </div>
+
+        <style>{`
+          .loader {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            overflow: hidden;
+          }
+
+          .loader::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 4px solid #bfbfbf;
+            border-top: 4px solid #0080ff;
+            border-left: 4px solid #0080ff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            overflow: hidden;
+          }
+          @keyframes spin {
+            to {
+              transform: rotate(360deg);
+            }
+          }
+        `}</style>
       </div>
     );
   }
