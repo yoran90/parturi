@@ -6,10 +6,9 @@ const router = express.Router();
 router.post("/send-email", async (req, res) => {
   const { name, phone, email, message } = req.body;
 
-   // Add logging
 
   if (!name || !phone || !email || !message) {
-    console.log("❌ Missing fields");
+   
     return res.status(400).json({ message: "All fields are required" });
   }
 
