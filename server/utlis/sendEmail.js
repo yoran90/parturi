@@ -15,7 +15,7 @@ export const sendEmail = async ({ to, subject, text }) => {
   try {
     const { data } = await resend.emails.send({
       from: `Razor Parturi <${process.env.NODEMAILER_EMAIL_USER}>`,
-      to: [to],
+      to,
       subject,
       html: `<p>${text}</p>`, // Resend expects html, text converted to simple HTML
     });
