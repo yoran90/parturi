@@ -39,7 +39,9 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 //app.use('/sitemap.xml', express.static(path.join(__dirname, 'public', 'sitemap.xml')));
 // Serve robots.txt and sitemap.xml first
 app.get("/robots.txt", (req, res) => {
-  res.sendFile(path.resolve("../client/public/robots.txt"), err => {
+  const robotsPath = path.join(__dirname, "../client/public/robots.txt");
+  res.type("text/plain");
+  res.sendFile(robotsPath, err => {
     if (err) {
       console.error("robots.txt error:", err);
       res.status(404).send("Not found");
@@ -47,12 +49,13 @@ app.get("/robots.txt", (req, res) => {
   });
 });
 
-// Serve sitemap.xml before React
+// Serve sitemap.xml
 app.get("/sitemap.xml", (req, res) => {
-  res.type("application/xml"); // important
-  res.sendFile(path.resolve("../client/public/sitemap.xml"), err => {
+  const sitemapPath = path.join(__dirname, "../client/public/sitemap.xml");
+  res.type("application/xml");
+  res.sendFile(sitemapPath, err => {
     if (err) {
-      console.error("Error sending sitemap.xml:", err);
+      console.error("sitemap.xml error:", err);
       res.status(404).send("Not found");
     }
   });
