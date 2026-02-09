@@ -1,31 +1,30 @@
-import SibApiV3Sdk from "sib-api-v3-sdk";
+import SibApiV3Sdk from '@sendinblue/client';
 
+const client = new SibApiV3Sdk.TransactionalEmailsApi({
+  apiKey: process.env.SENDINBLUE_API_KEY
+});
 
-const client = SibApiV3Sdk.ApiClient.instance;
-client.authentications["api-key"].apiKey = process.env.SENDINBLUE_API_KEY;
+export const sendEmail = async ({ to, subject, htmlContent }) => {
+  const sendSmtpEmail = {
+    sender: {
+      email: process.env.SENDINBLUE_SENDER_EMAIL,
+      name: process.env.SENDINBLUE_SENDER_NAME,
+    },
+    to: [{ email: to }],
+    subject: subject,
+    htmlContent,
+  };
 
-const emailApi = new SibApiV3Sdk.TransactionalEmailsApi();
-
-
-export const sendEmail = async ({ to, subject, text }) => {
   try {
-    const response = await emailApi.sendTransacEmail({
-      sender: {
-        name: process.env.SENDINBLUE_SENDER_NAME,
-        email: process.env.SENDINBLUE_SENDER_EMAIL,
-      },
-      to: [{ email: to }], // recipient email
-      subject,
-      htmlContent: `<p>${text}</p>`,
-    });
-
-    console.log("Email sent via Sendinblue:", response);
-    return response;
+    const data = await client.sendTransacEmail(sendSmtpEmail);
+    console.log('Email sent:', data);
+    return data;
   } catch (error) {
-    console.error("Sendinblue error:", error);
-    throw new Error("Email could not be sent");
+    console.error('Sendinblue error:', error.response || error);
+    throw new Error('Failed to send email');
   }
 };
+
 
 export default sendEmail;
 
