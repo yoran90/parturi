@@ -29,12 +29,13 @@ export const sendHotmailEmail = async ({ name, phone, email, message }) => {
         <p><strong>Message:</strong><br>${message}</p>
       `,
     });
+    
 
     console.log("Email sent via Sendinblue:", response);
     return response;
   } catch (error) {
     console.error("Sendinblue error:", error);
-    throw new Error("Failed to send email");
+    throw new Error(error.response ? error.response.text : error.message);
   }
 };
 
