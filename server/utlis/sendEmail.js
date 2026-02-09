@@ -1,7 +1,7 @@
 // services/sendEmail.js
 import { Resend } from "resend";
 
-// Initialize Resend with your API key from environment
+// Initialize Resend with your API key
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 /**
@@ -14,10 +14,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export const sendEmail = async ({ to, subject, text }) => {
   try {
     const { data } = await resend.emails.send({
-      from: `Razor Parturi <${process.env.NODEMAILER_EMAIL_USER}>`,
-      to,
+      from: `Razor Parturi <contact@razorr.fi>`, // Must be on your verified domain
+      to: [to],
       subject,
-      html: `<p>${text}</p>`, // Resend expects html, text converted to simple HTML
+      html: `<p>${text}</p>`,
     });
 
     console.log("📬 Email sent via Resend, ID:", data.id);
