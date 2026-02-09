@@ -52,7 +52,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export const sendHotmailEmail = async ({ name, phone, email, message }) => {
   try {
     const response = await resend.emails.send({
-      from: `Website Contact <${process.env.NODEMAILER_EMAIL_USER}>`,
+      from: `Website Contact <contact@razorr.fi>`,
       to: ["yoran0818@gmail.com"],
       reply_to: `${name} <${email}>`,
       subject: `New message from ${name}`,
