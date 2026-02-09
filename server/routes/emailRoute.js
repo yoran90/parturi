@@ -11,6 +11,7 @@ router.post("/send-email", async (req, res) => {
   }
 
   try {
+    console.log("Request body:", req.body);
     await sendHotmailEmail({ name, phone, email, message });
 
     return res.status(200).json({
