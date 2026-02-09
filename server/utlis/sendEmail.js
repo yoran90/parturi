@@ -8,6 +8,11 @@ const transporter = nodemailer.createTransport({
     user: process.env.NODEMAILER_EMAIL_USER,
     pass: process.env.NODEMAILER_EMAIL_PASSWORD,
   },
+  pool: true,
+  maxConnections: 1,
+  maxMessages: 3,
+  connectionTimeout: 10000,
+  socketTimeout: 10000,
 });
 
 
