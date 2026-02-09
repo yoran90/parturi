@@ -1,4 +1,45 @@
-import nodemailer from "nodemailer";
+import SibApiV3Sdk from "sib-api-v3-sdk";
+
+
+const client = SibApiV3Sdk.ApiClient.instance;
+client.authentications["api-key"].apiKey = process.env.SENDINBLUE_API_KEY;
+
+const emailApi = new SibApiV3Sdk.TransactionalEmailsApi();
+
+
+export const sendEmail = async ({ to, subject, text }) => {
+  try {
+    const response = await emailApi.sendTransacEmail({
+      sender: {
+        name: process.env.SENDINBLUE_SENDER_NAME,
+        email: process.env.SENDINBLUE_SENDER_EMAIL,
+      },
+      to: [{ email: to }], // recipient email
+      subject,
+      htmlContent: `<p>${text}</p>`,
+    });
+
+    console.log("Email sent via Sendinblue:", response);
+    return response;
+  } catch (error) {
+    console.error("Sendinblue error:", error);
+    throw new Error("Email could not be sent");
+  }
+};
+
+export default sendEmail;
+
+
+
+
+
+
+
+
+
+
+
+/* import nodemailer from "nodemailer";
 
 
 const transporter = nodemailer.createTransport({
@@ -27,4 +68,4 @@ export const sendEmail = async ({ to, subject, text }) => {
 };
 
 
-export default sendEmail;
+export default sendEmail; */
