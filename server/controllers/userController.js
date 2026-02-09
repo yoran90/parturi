@@ -57,7 +57,7 @@ export const userLogin = async (req, res) => {
       phoneNumber: checkUser.phoneNumber,
       notes: checkUser.notes,
       timezone: checkUser.timezone
-    }, process.env.JWT_SECRET, { expiresIn: "1d" });
+    }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
     const cookie = {
       httpOnly: true,
