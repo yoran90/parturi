@@ -118,31 +118,33 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 // end for searching the site in google
 
 
+// Replace your CORS configuration with this:
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://parturi.vercel.app",
+  "https://www.parturi.vercel.app",
+  "https://razorr.fi",
+  "https://www.razorr.fi"
+];
+
+// CORS middleware
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps, curl, postman)
-    if (!origin) {
-      console.log("CORS: No origin (server-to-server request)");
+    // Allow requests with no origin (server-to-server requests)
+    if (!origin) return callback(null, true);
+    
+    // Allow localhost during development
+    if (origin.includes("localhost")) {
       return callback(null, true);
     }
-
-    const allowedOrigins = [
-      "http://localhost:5173",
-      "http://localhost:3000",
-      "https://parturi.vercel.app",
-      "https://www.parturi.vercel.app",
-      "https://razorr.fi",
-      "https://www.razorr.fi"
-    ];
-
+    
     if (allowedOrigins.includes(origin)) {
-      console.log(`CORS: Allowed origin: ${origin}`);
       return callback(null, true);
-    } else {
-      console.log(`CORS: Blocked origin: ${origin}`);
-      return callback(new Error(`Origin ${origin} not allowed by CORS`), false);
     }
+    
+    console.log(`CORS blocked origin: ${origin}`);
+    return callback(new Error(`Origin ${origin} not allowed by CORS`), false);
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
