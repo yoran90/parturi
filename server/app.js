@@ -34,7 +34,39 @@ app.use(cookieParser());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
-app.use('/sitemap.xml', express.static(path.join(__dirname, 'public', 'sitemap.xml')));
+
+// for searching the site in google
+//app.use('/sitemap.xml', express.static(path.join(__dirname, 'public', 'sitemap.xml')));
+// Serve robots.txt and sitemap.xml first
+app.get("/robots.txt", (req, res) => {
+  res.sendFile(path.resolve("./client/public/robots.txt"), err => {
+    if (err) {
+      console.error("robots.txt error:", err);
+      res.status(404).send("Not found");
+    }
+  });
+});
+
+// Serve sitemap.xml before React
+app.get("/sitemap.xml", (req, res) => {
+  res.sendFile(path.resolve("./client/public/sitemap.xml"), err => {
+    if (err) {
+      console.error("sitemap.xml error:", err);
+      res.status(404).send("Not found");
+    }
+  });
+});
+
+// Serve other static files from public folder
+app.use(express.static(path.join(__dirname, "../client/public")));
+
+// THEN serve React frontend (catch-all)
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+
+
+//app.use('/robots.txt', express.static(path.join(__dirname, 'public', 'robots.txt')));
+// end for searching the site in google
 
 
 const allowedOrigins = [
@@ -63,11 +95,6 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
-
-
-
-// Serve React app (only after API and static routes)
-app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
 
 

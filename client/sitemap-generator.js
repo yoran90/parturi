@@ -1,20 +1,38 @@
 import fs from "fs";
-import * as sitemapPkg from "sitemap"; // ← correct import for ESM
-import routes from "./src/sitemapRoutes.js";
+import { SitemapStream, streamToPromise } from "sitemap";
 
-const { SitemapStream, streamToPromise } = sitemapPkg;
+// ONLY public pages (no admin, no auth pages)
+const routes = [
+  "/",
+  "/meistä",
+  "/palvelut",
+  "/galleria",
+  "/tuotet",
+  "/yhteystiedot",
+  "/opinion"
+];
 
-const sitemap = new SitemapStream({ hostname: "https://razorr.fi" });
+const sitemap = new SitemapStream({
+  hostname: "https://razorr.fi"
+});
 
-routes.forEach(route => {
-  sitemap.write({ url: route, changefreq: "weekly", priority: 0.8 });
+routes.forEach((route) => {
+  sitemap.write({
+    url: route,
+    changefreq: "weekly",
+    priority: 0.8
+  });
 });
 
 sitemap.end();
 
 (async () => {
-  const data = await streamToPromise(sitemap);
-  fs.mkdirSync("./public", { recursive: true });
-  fs.writeFileSync("./public/sitemap.xml", data.toString());
-  console.log("sitemap.xml generated successfully!");
+  const xmlBuffer = await streamToPromise(sitemap);
+
+  const finalXml =
+    `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    xmlBuffer.toString();
+
+  fs.writeFileSync("./public/sitemap.xml", finalXml);
+  console.log("✅ sitemap.xml generated successfully!");
 })();

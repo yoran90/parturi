@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /admin
+Disallow: /profile
+Disallow: /forgot-password
+Disallow: /reset-password
+Disallow: /verify-email
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://razorr.fi/sitemap.xml
