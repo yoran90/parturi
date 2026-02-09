@@ -120,7 +120,7 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 
 // Replace your CORS configuration with this:
 
-const allowedOrigins = [
+/* const allowedOrigins = [
   "http://localhost:5173",
   "https://parturi.vercel.app",
   "https://www.parturi.vercel.app",
@@ -150,8 +150,37 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   exposedHeaders: ["Content-Length", "Authorization"]
-}));
+})); */
 
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+
+    // Allow localhost
+    if (origin.includes("localhost")) {
+      return callback(null, true);
+    }
+
+    // ✅ Allow ALL Vercel preview deployments
+    if (origin.endsWith(".vercel.app")) {
+      return callback(null, true);
+    }
+
+    // Allow production domains
+    const allowedOrigins = [
+      "https://razorr.fi",
+      "https://www.razorr.fi",
+    ];
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    console.log("❌ CORS blocked origin:", origin);
+    return callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+}));
 
 
 
