@@ -49,13 +49,15 @@ app.get("/robots.txt", (req, res) => {
 
 // Serve sitemap.xml before React
 app.get("/sitemap.xml", (req, res) => {
+  res.type("application/xml"); // important
   res.sendFile(path.resolve("../client/public/sitemap.xml"), err => {
     if (err) {
-      console.error("sitemap.xml error:", err);
+      console.error("Error sending sitemap.xml:", err);
       res.status(404).send("Not found");
     }
   });
 });
+
 
 // Serve other static files from public folder
 app.use(express.static(path.join(__dirname, "../client/public")));
