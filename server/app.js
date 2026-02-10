@@ -118,9 +118,38 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 // end for searching the site in google
 
 
-// Replace your CORS configuration with this:
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
 
-const allowedOrigins = [
+    // Allow localhost
+    if (origin.includes('localhost')) {
+      return callback(null, true);
+    }
+
+    // Allow all Vercel previews
+    if (origin.endsWith('.vercel.app')) {
+      return callback(null, true);
+    }
+
+    // Allow known production domains
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    console.log(`CORS blocked origin: ${origin}`);
+    return callback(
+      new Error(`Origin ${origin} not allowed by CORS`),
+      false
+    );
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+}));
+
+
+/* const allowedOrigins = [
   "http://localhost:5173",
   "https://parturi.vercel.app",
   "https://www.parturi.vercel.app",
@@ -151,7 +180,7 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   exposedHeaders: ["Content-Length", "Authorization"]
 }));
-
+ */
 /* app.use(cors({
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
