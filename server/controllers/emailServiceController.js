@@ -1,14 +1,29 @@
 import SibApiV3Sdk from "sib-api-v3-sdk";
 
+// Step 1: Get the single global ApiClient instance
 const client = SibApiV3Sdk.ApiClient.instance;
 
-// THIS is the important part
-client.authentications["api-key"].apiKey =
-  process.env.SENDINBLUE_API_KEY;
+// Step 2: Attach API key (this MUST happen before sending any emails)
+client.authentications["api-key"].apiKey = process.env.SENDINBLUE_API_KEY;
 
+// Step 3: Verify the key loaded (REMOVE after testing)
+console.log(
+  "BREVO API KEY LOADED:",
+  typeof client.authentications["api-key"].apiKey === "string" &&
+  client.authentications["api-key"].apiKey.startsWith("xkeysib-")
+);
+
+// Step 4: Create transactional email API instance
 const emailApi = new SibApiV3Sdk.TransactionalEmailsApi();
 
+/**
+ * Send contact form email
+ */
 export const sendHotmailEmail = async ({ name, phone, email, message }) => {
+  if (!name || !phone || !email || !message) {
+    throw new Error("All fields are required to send email");
+  }
+
   try {
     const response = await emailApi.sendTransacEmail({
       sender: {
@@ -27,13 +42,18 @@ export const sendHotmailEmail = async ({ name, phone, email, message }) => {
       `,
     });
 
+    console.log("Email sent successfully:", response);
     return response;
   } catch (error) {
-    console.error("Sendinblue error:", error.response?.text || error);
-    throw error;
+    console.error(
+      "Sendinblue error:",
+      error.response?.text || error.response?.body || error.message || error
+    );
+    throw new Error("Failed to send email: Unauthorized or invalid API key");
   }
 };
 
+export default sendHotmailEmail;
 
 
 
