@@ -1,17 +1,15 @@
-import SibApiV3Sdk from '@sendinblue/client';
+import SibApiV3Sdk from 'sib-api-v3-sdk';
 
-// Get API client instance
-const apiClient = SibApiV3Sdk.ApiClient.instance;
+const client = SibApiV3Sdk.ApiClient.instance;
 
-// Attach API key correctly
-apiClient.authentications['api-key'].apiKey =
+// Attach API key (this one ACTUALLY sticks)
+client.authentications['api-key'].apiKey =
   process.env.SENDINBLUE_API_KEY;
 
-// Create transactional email API
 const emailApi = new SibApiV3Sdk.TransactionalEmailsApi();
 
 export const sendEmail = async ({ to, subject, htmlContent }) => {
-  const sendSmtpEmail = {
+  return await emailApi.sendTransacEmail({
     sender: {
       email: process.env.SENDINBLUE_SENDER_EMAIL,
       name: process.env.SENDINBLUE_SENDER_NAME,
@@ -19,19 +17,7 @@ export const sendEmail = async ({ to, subject, htmlContent }) => {
     to: [{ email: to }],
     subject,
     htmlContent,
-  };
-
-  try {
-    const data = await emailApi.sendTransacEmail(sendSmtpEmail);
-    console.log('Email sent:', data);
-    return data;
-  } catch (error) {
-    console.error(
-      'Sendinblue error:',
-      error.response?.text || error.message
-    );
-    throw error;
-  }
+  });
 };
 
 export default sendEmail;
