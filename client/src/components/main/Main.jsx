@@ -4,6 +4,7 @@ import axios from 'axios';
 import Loading from '../../loading/Loading';
 
 import razorLogo from '../../assets/Razor.png'
+import { useRef } from 'react';
 
 
 const Main = () => {
@@ -12,6 +13,8 @@ const Main = () => {
   const [media, setMedia] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fadeClass, setFadeClass] = useState("opacity-100");
+
+  const videoRef = useRef(null);
   
 
   useEffect(() => {
@@ -45,12 +48,37 @@ const Main = () => {
     }, 500);  
   };
 
-  
   useEffect(() => {
+    if (!currentMedia) return;
+
+    if (currentMedia.type === 'video') {
+      const videoElement = videoRef.current;
+      videoElement.play();
+
+      const handleEnded = () => {
+        nextMedia();
+      };
+
+      videoElement.addEventListener('ended', handleEnded);
+
+      return () => {
+        videoElement.removeEventListener('ended', handleEnded);
+      };
+
+    } else {
+      const interval = setTimeout(nextMedia, 5000);
+      return () => clearTimeout(interval);
+    }
+
+
+  }, [currentMedia])
+  
+
+  /* useEffect(() => {
     if (media.length === 0) return;
     const interval = setInterval(nextMedia, 5000); 
     return () => clearInterval(interval);  
-  }, [media.length]);
+  }, [media.length]); */
 
 
   const  currentMedia = media[currentIndex];
