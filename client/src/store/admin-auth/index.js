@@ -4,6 +4,7 @@ import axios from "axios";
 const initialState = {
   isAuthenticated: false,
   loading: false,
+  editUserLoading: false,
   admin: null,
   editUser: null,
   shopMedia: null
@@ -175,14 +176,14 @@ const adminAuthSlice = createSlice({
 
       //! SUPER ADMIN GET USER DATA FOR CHANGE ROLE
       .addCase(getUserForAdminForChangeRole.pending, (state) => {
-        state.loading = true;
+        state.editUserLoading = true;
       })
       .addCase(getUserForAdminForChangeRole.fulfilled, (state, action) => {
-        state.loading = false;        
+        state.editUserLoading = false;
         state.editUser = action.payload.data || null;
       })
       .addCase(getUserForAdminForChangeRole.rejected, (state, action) => {
-        state.loading = false;
+        state.editUserLoading = false;
         state.editUser = null;
         state.error = action.payload?.message || "Failed to fetch user";
       })

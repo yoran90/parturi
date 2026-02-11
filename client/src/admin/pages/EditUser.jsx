@@ -9,7 +9,7 @@ const EditUser = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { admin, editUser, loading } = useSelector(state => state.adminAuth);
+  const { admin, editUser, editUserLoading, loading } = useSelector(state => state.adminAuth);
   const [role, setRole] = useState("");
   const [hasFetched, setHasFetched] = useState(false);
 
@@ -51,27 +51,39 @@ const EditUser = () => {
     }
   };
 
-  if (loading) return <p>Loading user data...</p>;
+  if (editUserLoading) return <p className='text-center'>Loading user data...</p>;
   if (!editUser) return <p>No user data found</p>;
 
   return (
-    <div className='p-4'>
-      <h1>Edit User Role</h1>
-      <p>Here you can change the role of the user</p>
+    <div className='mt-4 px-3'>
+      <div className='flex flex-col items-center justify-center'>
+        <h1>Edit User Role</h1>
+        <p className='text-sm'>Here you can change the role of the user</p>
+      </div>
 
-      <div className='mt-4'>
-        <p>Full Name: {editUser.firstName} {editUser.lastName}</p>
-        <p>Email: {editUser.email}</p>
-        <p>Current Role: {editUser.role}</p>
+      <div className='mt-4 flex flex-col gap-1.5 bg-white px-4 py-7 rounded shadow border border-slate-200'>
+        <div className='flex items-center gap-2.5'>
+          <strong className='flex-1 text-slate-700'>Full Name: </strong>
+          <p className='flex-5 text-red-700'>{editUser.firstName}  {editUser.lastName}</p>
+        </div>
+        <div className='flex items-center gap-2.5'>
+        <strong className='flex-1 text-slate-700'>Email:</strong>
+        <p className='flex-5 text-red-700'>{editUser.email}</p> 
+        </div>
 
-        <select value={role} onChange={(e) => setRole(e.target.value)} className='mt-2 p-1 border'>
+        <div className='flex items-center gap-2.5'>
+          <strong className='flex-1 text-slate-700'>Current Role:</strong>
+          <p className='flex-5 text-red-700'>{editUser.role}</p>
+        </div>
+
+        <select value={role} onChange={(e) => setRole(e.target.value)} className='mt-4 p-1 rounded mb-4 border'>
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
 
         <button 
           onClick={handleUpdateRole} 
-          className='ml-2 p-1 bg-blue-600 text-white rounded'
+          className=' py-1.5 bg-red-600 text-white rounded'
           disabled={loading}
         >
           {loading ? 'Updating...' : 'Update Role'}
