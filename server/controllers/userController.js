@@ -184,8 +184,9 @@ export const userForgetPassword = async (req, res) => {
     await sendEmail({
       to: user.email,
       subject: "Password Reset Request",
-      text: `Ignore if you don't want reset password if you want reset password\n\n Click the below link to reset your password ⬇️\n\n ${resetURL}`,
+      htmlContent: `<p>Ignore if you don't want to reset password.</p><p>If you want to reset your password, click the below link ⬇️</p><a href="${resetURL}">Reset Password</a>`,
     });
+
     res.json({ message: "Password reset link sent to email" });
 
   } catch (error) {
@@ -257,7 +258,7 @@ export const sendVerificationEmail = async (req, res) => {
     await sendEmail({
       to: user.email,
       subject: "Email Verification",
-      text: `Click the below link to verify your email ⬇️\n\n${verifyURL}`,
+      htmlContent: `Click the below link to verify your email ⬇️<br><br><a href="${verifyURL}">Verify Email</a>`,
     });
 
     res.status(200).json({ success: true, message: "Verification email sent. Please check your email." });
