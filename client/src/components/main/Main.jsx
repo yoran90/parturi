@@ -68,10 +68,9 @@ const Main = () => {
       videoEl.currentTime = 0;
       videoEl.play();
 
-      // When video ends, replay same video
+      // When video ends, move to next media
       const handleEnded = () => {
-        videoEl.currentTime = 0;
-        videoEl.play();
+        nextMedia();
       };
 
       videoEl.addEventListener('ended', handleEnded);
@@ -158,7 +157,6 @@ const Main = () => {
               className={`w-full h-full object-cover transition-opacity duration-500 ${fadeClass}`}
               controls
               autoPlay
-              loop
               muted
               playsInline
               ref={videoRef}

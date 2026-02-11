@@ -6,19 +6,19 @@ import SibApiV3Sdk from 'sib-api-v3-sdk';
 const client = SibApiV3Sdk.ApiClient.instance;
 
 /**
- * STEP 2: Attach API key (CRITICAL)
+ * STEP 2: Attach API key in default headers (CRITICAL - most reliable method)
  * This must run BEFORE any email is sent
  */
-client.authentications['api-key'].apiKey =
-  process.env.SENDINBLUE_API_KEY;
+client.defaultHeaders = client.defaultHeaders || {};
+client.defaultHeaders['api-key'] = process.env.SENDINBLUE_API_KEY;
 
 /**
  * STEP 3: Log once to confirm key is loaded (remove after test)
  */
 console.log(
   'BREVO API KEY LOADED:',
-  typeof client.authentications['api-key'].apiKey === 'string' &&
-  client.authentications['api-key'].apiKey.startsWith('xkeysib-')
+  !!process.env.SENDINBLUE_API_KEY && 
+  process.env.SENDINBLUE_API_KEY.startsWith('xkeysib-')
 );
 
 /**
@@ -34,15 +34,23 @@ export const sendEmail = async ({ to, subject, htmlContent }) => {
     throw new Error('Missing email parameters');
   }
 
-  return await emailApi.sendTransacEmail({
-    sender: {
-      email: process.env.SENDINBLUE_SENDER_EMAIL,
-      name: process.env.SENDINBLUE_SENDER_NAME,
-    },
-    to: [{ email: to }],
-    subject,
-    htmlContent,
-  });
+  try {
+    return await emailApi.sendTransacEmail({
+      sender: {
+        email: process.env.SENDINBLUE_SENDER_EMAIL,
+        name: process.env.SENDINBLUE_SENDER_NAME,
+      },
+      to: [{ email: to }],
+      subject,
+      htmlContent,
+    });
+  } catch (error) {
+    console.error(
+      'Sendinblue error:',
+      error.response?.text || error.response?.body || error.message || error
+    );
+    throw new Error('Failed to send email: ' + (error.message || 'Unknown error'));
+  }
 };
 
 export default sendEmail;
