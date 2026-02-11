@@ -14,6 +14,7 @@ const Main = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fadeClass, setFadeClass] = useState("opacity-100");
 
+  const  currentMedia = media[currentIndex];
   const videoRef = useRef(null);
   
 
@@ -49,29 +50,37 @@ const Main = () => {
   };
 
   useEffect(() => {
-    if (!currentMedia) return;
+    if (!media.length) return;
 
-    if (currentMedia.type === 'video') {
-      const videoElement = videoRef.current;
-      videoRef.current.play();
+    const currentMedia = media[currentIndex];
 
-      const handleEnded = () => {
-        nextMedia();
-      };
-
-      videoElement.addEventListener('ended', handleEnded);
-
-      return () => {
-        videoElement.removeEventListener('ended', handleEnded);
-      };
-
-    } else {
-      const interval = setTimeout(nextMedia, 5000);
-      return () => clearTimeout(interval);
+    if (currentMedia.type === 'image') {
+      // Auto-advance images after 5 seconds
+      const timer = setTimeout(nextMedia, 5000);
+      return () => clearTimeout(timer);
     }
 
+    if (currentMedia.type === 'video') {
+      const videoEl = videoRef.current;
+      if (!videoEl) return;
 
-  }, [currentMedia])
+      // Start video from beginning
+      videoEl.currentTime = 0;
+      videoEl.play();
+
+      // When video ends, replay same video
+      const handleEnded = () => {
+        videoEl.currentTime = 0;
+        videoEl.play();
+      };
+
+      videoEl.addEventListener('ended', handleEnded);
+
+      // Cleanup listener
+      return () => videoEl.removeEventListener('ended', handleEnded);
+    }
+  }, [currentIndex, media]);
+
   
 
   /* useEffect(() => {
@@ -81,7 +90,7 @@ const Main = () => {
   }, [media.length]); */
 
 
-  const  currentMedia = media[currentIndex];
+ 
 
   if (!currentMedia) {
     return (
