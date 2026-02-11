@@ -4,7 +4,7 @@ import crypto from "crypto";
 import jwt from "jsonwebtoken";
 //import { v2 as cloudinaryV2 } from "cloudinary";
 import cloudinary from "cloudinary";
-import sendEmail from "../utlis/sendEmail.js";
+import { sendEmail } from "../utlis/sendEmail.js";
 import mongoose from "mongoose";
 import Reviews from "../models/reviewsModel.js";
 
@@ -48,7 +48,7 @@ export const register = async (req, res) => {
     await sendEmail({
       to: user.email,
       subject: "Email Verification",
-      htmlContent: `Click the below link to verify your email ⬇️\n\n${verifyURL}`,
+      htmlContent: `<p>Click the below link to verify your email ⬇️</p><a href="${verifyURL}">Verify Email</a>`,
     });
 
 
@@ -84,10 +84,10 @@ export const sendVerificationEmail = async (req, res) => {
     const verifyURL = `${process.env.FRONTEND_URL}/admin-verify-email/${token}`;
 
     await sendEmail({
-  to: user.email,
-  subject: "Email Verification",
-  text: `Click the below link to verify your email ⬇️\n\n${verifyURL}`,
-});
+      to: user.email,
+      subject: "Email Verification",
+      htmlContent: `Click the below link to verify your email ⬇️<br><br><a href="${verifyURL}">Verify Email</a>`,
+    });
 
     res.status(200).json({ success: true, message: "Verification email sent. Please check your email." });
 
@@ -348,7 +348,7 @@ export const adminForgotPassword = async (req, res) => {
     await sendEmail({
       to: user.email,
       subject: "Password Reset Request",
-      text: `Ignore if you don't want reset password if you want reset password\n\n Click the below link to reset your password ⬇️\n\n ${resetURL}`,
+      htmlContent: `<p>Ignore if you don't want to reset password.</p><p>If you want to reset your password, click the below link ⬇️</p><a href="${resetURL}">Reset Password</a>`,
     });
 
     res.status(200).json({ success: true, message: "Password reset link sent to email" });
