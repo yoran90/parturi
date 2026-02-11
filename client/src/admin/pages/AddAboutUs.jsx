@@ -116,20 +116,39 @@ const AddAboutUs = () => {
   }
 
   useEffect(() => {
-    if (!getAboutUs) return;
+  if (!getAboutUs) return;
 
-    // Set image titles
-    setImageTitles(getAboutUs.imageTitles.map(it => it));
-    setImageTitleExtra(Array(getAboutUs.imageTitles.length).fill(""));
+  // Prevent re-initializing if already set
+  if (title.length > 0 || description.length > 0) return;
 
-    // Set sections
-    setTitle(getAboutUs.sections.map(s => s.title));
-    setDescription(getAboutUs.sections.map(s => s.description[0] || ""));
+  const imageTitlesData = getAboutUs.imageTitles || [];
+  const sectionsData = getAboutUs.sections || [];
 
-    setTitleExtra(Array(getAboutUs.sections.length).fill(""));
-    setService(Array(getAboutUs.sections.length).fill(""));
+  setImageTitles(imageTitlesData);
+  setImageTitleExtra(
+    imageTitlesData.length > 0
+      ? Array(imageTitlesData.length).fill("")
+      : [""]
+  );
 
-  }, [getAboutUs]);
+  setTitle(sectionsData.map(s => s.title || ""));
+  setDescription(sectionsData.map(s => s.description?.[0] || ""));
+
+  setTitleExtra(
+    sectionsData.length > 0
+      ? Array(sectionsData.length).fill("")
+      : [""]
+  );
+
+  setService(
+    sectionsData.length > 0
+      ? Array(sectionsData.length).fill("")
+      : [""]
+  );
+
+}, [getAboutUs]);
+
+
 
   
 

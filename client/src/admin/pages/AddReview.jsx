@@ -36,33 +36,39 @@ const AddReview = () => {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    try {
-      setLoading(true);
-      const formDataToSend = new FormData();
-      if (title) {
-        formDataToSend.append('title', title);
-      }
-      if (description) {
-        formDataToSend.append('description', description);
-      }
+  e.preventDefault();
 
-      formDataToSend.append("existingMedia", JSON.stringify(existingMedia));
+  try {
+    setLoading(true);
+    const formDataToSend = new FormData();
 
-      if (media.length > 0) {
-        for (let i = 0; i < media.length; i++) {
-          formDataToSend.append('shopMedia', media[i]);
-        }
-      }
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/shopMedia/createShopeMedia`, formDataToSend, { withCredentials: true });
-      toast.success(response.data.message);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
+    if (title) formDataToSend.append('title', title);
+    if (description) formDataToSend.append('description', description);
+
+    // Only send publicIds
+    const remainingPublicIds = existingMedia.map(item => item.publicId);
+    formDataToSend.append("existingMedia", JSON.stringify(remainingPublicIds));
+
+    if (media.length > 0) {
+      media.forEach((file) => {
+        formDataToSend.append('shopMedia', file);
+      });
     }
+
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/shopMedia/createShopeMedia`,
+      formDataToSend,
+      { withCredentials: true }
+    );
+
+    toast.success(response.data.message);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    setLoading(false);
   }
+};
+
 
   useEffect(() => {
     if (!getShope) return;
@@ -126,7 +132,7 @@ const AddReview = () => {
             <h4 className='text-sm font-semibold'>Existing Media:</h4>
             <div className='grid md:grid-cols-4 grid-cols-3 gap-2.5 mt-2'>
               {existingMedia?.map((item, index) => (
-                <div key={item._id} className="relative md:w-36 w-31 h-32 border rounded overflow-hidden">
+                <div key={item._id} className="relative md:w-36 w-27 h-32 border rounded overflow-hidden">
                   
                   {item.type === "image" ? (
                     <img src={item.src} className="w-full h-full object-cover" />
