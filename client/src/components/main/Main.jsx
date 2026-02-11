@@ -53,7 +53,7 @@ const Main = () => {
 
     if (currentMedia.type === 'video') {
       const videoElement = videoRef.current;
-      videoElement.play();
+      videoRef.current.play();
 
       const handleEnded = () => {
         nextMedia();
@@ -152,6 +152,7 @@ const Main = () => {
               loop
               muted
               playsInline
+              ref={videoRef}
             />
 
           )
