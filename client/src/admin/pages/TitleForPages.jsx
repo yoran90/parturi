@@ -5,7 +5,7 @@ import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 import axios from 'axios';
 import useTitleForPage from '../../hooks/useTitleForPage';
- import { useRef, useEffect, useState } from "react";
+ import { useEffect, useState } from "react";
 
 
 const TitleForPages = () => {
@@ -39,14 +39,10 @@ const TitleForPages = () => {
 
 
 
-const hasPrefilled = useRef(false);
-
 useEffect(() => {
   if (!getTitleForPage?.titleForPage) return;
-  if (hasPrefilled.current) return;
 
-  setFormData(prev => ({
-    ...prev,
+  setFormData({
     serviceTitle: getTitleForPage.titleForPage.serviceTitle ?? "",
     serviceDescription: getTitleForPage.titleForPage.serviceDescription ?? "",
     galleriTitle: getTitleForPage.titleForPage.galleriTitle ?? "",
@@ -58,10 +54,8 @@ useEffect(() => {
     footerFooter: getTitleForPage.titleForPage.footerFooter ?? "",
     connectionTitle: getTitleForPage.titleForPage.connectionTitle ?? "",
     connectionDescription: getTitleForPage.titleForPage.connectionDescription ?? "",
-  }));
-
-  hasPrefilled.current = true;
-}, [getTitleForPage]);
+  });
+}, [getTitleForPage?.titleForPage]);
 
 
 
