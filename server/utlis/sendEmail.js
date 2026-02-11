@@ -50,24 +50,39 @@ const emailApi = new SibApiV3Sdk.TransactionalEmailsApi();
 /**
  * STEP 5: Export sendEmail function
  */
-export const sendEmail = async ({ to, subject, htmlContent }) => {
+export const sendEmail = async ({ to, subject, htmlContent, attachment = null }) => {
   if (!to || !subject || !htmlContent) {
-    throw new Error('Missing email parameters');
+    throw new Error('Missing email parameters: to, subject, htmlContent');
+  }
+
+  // Validate sender configuration
+  const senderEmail = process.env.SENDINBLUE_SENDER_EMAIL;
+  const senderName = process.env.SENDINBLUE_SENDER_NAME || 'Website Contact';
+  
+  if (!senderEmail) {
+    throw new Error('SENDINBLUE_SENDER_EMAIL is not configured in environment variables');
   }
 
   try {
     // Ensure API key is set before each request
     getConfiguredClient();
     
-    return await emailApi.sendTransacEmail({
+    const emailConfig = {
       sender: {
-        email: process.env.SENDINBLUE_SENDER_EMAIL,
-        name: process.env.SENDINBLUE_SENDER_NAME,
+        email: senderEmail,
+        name: senderName,
       },
       to: [{ email: to }],
       subject,
       htmlContent,
-    });
+    };
+    
+    // Add attachment if provided
+    if (attachment) {
+      emailConfig.attachment = [attachment];
+    }
+    
+    return await emailApi.sendTransacEmail(emailConfig);
   } catch (error) {
     console.error(
       'Sendinblue error:',
