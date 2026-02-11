@@ -2,7 +2,7 @@ import SibApiV3Sdk from "sib-api-v3-sdk";
 
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = defaultClient.authentications["api-key"];
-apiKey.apiKey = process.env.SENDINGBLUE_BREVO_API_KEY;
+apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
 
 const emailClient = new SibApiV3Sdk.TransactionalEmailsApi();
 
@@ -22,10 +22,10 @@ export const sendJobApplicationEmail = async ({
     // ✅ Set API key at runtime
     const defaultClient = SibApiV3Sdk.ApiClient.instance;
     defaultClient.authentications["api-key"].apiKey =
-      process.env.SENDINGBLUE_BREVO_API_KEY;
+      process.env.SENDINBLUE_API_KEY;
 
     // ✅ Ensure sender is defined
-    const senderEmail = process.env.SENDINGBLUE_BREVO_EMAIL_USER;
+    const senderEmail = process.env.SENDINBLUE_SENDER_EMAIL;
     if (!senderEmail) {
       throw new Error("Missing sender email. Check your .env in Render!");
     }
