@@ -14,11 +14,8 @@ const TitleForPages = () => {
   const { getTitleForPage } = useTitleForPage();
 
   const [loadingForButton, setLoadingForButton] = useState(false);
+  const [initialized, setInitialized] = useState(false);
 
- 
-  
-  
-  
   const [formData, setFormData] = useState({
     serviceTitle: "",
     serviceDescription: "",
@@ -32,15 +29,9 @@ const TitleForPages = () => {
     connectionTitle: "",
     connectionDescription: ""
   });
-  
-  
-
-
-
-
 
 useEffect(() => {
-  if (!getTitleForPage?.titleForPage) return;
+  if (!getTitleForPage?.titleForPage || initialized) return;
 
   setFormData({
     serviceTitle: getTitleForPage.titleForPage.serviceTitle ?? "",
@@ -55,7 +46,8 @@ useEffect(() => {
     connectionTitle: getTitleForPage.titleForPage.connectionTitle ?? "",
     connectionDescription: getTitleForPage.titleForPage.connectionDescription ?? "",
   });
-}, [getTitleForPage?.titleForPage]);
+  setInitialized(true);
+}, [getTitleForPage?.titleForPage, initialized]);
 
 
 
