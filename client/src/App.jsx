@@ -53,6 +53,7 @@ import AuthLayout from './User-Layouts/Register-Login/AuthLayout'
 
 
 import razorLogo from './assets/Razor.png'
+import ScrollToTop from './Scroll-to-top/ScrollToTop'
 
 
 
@@ -124,90 +125,93 @@ const App = () => {
 
 
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
 
-      {/* USER SIDE */}
+        {/* USER SIDE */}
 
-        <Route element={<UserLayout />}>
-          <Route path='/' element={<Etusivut />}></Route>
-          <Route path='/meistä' element={<Meistä />}></Route>
-          <Route path='/palvelut' element={<PalvelutHinta />}></Route>
-          <Route path='/galleria' element={<Galleria />}></Route>
-          <Route path='/tuotet' element={<Tuote />}></Route>
-          <Route path='/tuote/:id' element={<TuoateSivu />}></Route>
-          <Route path='/yhteystiedot' element={<Yhteystiedot />}></Route>
+          <Route element={<UserLayout />}>
+            <Route path='/' element={<Etusivut />}></Route>
+            <Route path='/meistä' element={<Meistä />}></Route>
+            <Route path='/palvelut' element={<PalvelutHinta />}></Route>
+            <Route path='/galleria' element={<Galleria />}></Route>
+            <Route path='/tuotet' element={<Tuote />}></Route>
+            <Route path='/tuote/:id' element={<TuoateSivu />}></Route>
+            <Route path='/yhteystiedot' element={<Yhteystiedot />}></Route>
 
-          //! USER FORGOT PASSWORD
-          <Route path='/forgot-password' element={<ForgotPassword />}></Route>
-          <Route path='/reset-password/:token' element={<ResetPassword />}></Route>
-          //! USER VERIFY EMAIL
-          <Route path='/verify-email/:token' element={<VerifyEmail />}></Route>
-          <Route path='/profile' element={
-            <ProtectUserRoute isAuthenticated={userIsAuthenticated} user={user} loading={loading}>
-              <ProfileUser />
-            </ProtectUserRoute>
-          }>
+            //! USER FORGOT PASSWORD
+            <Route path='/forgot-password' element={<ForgotPassword />}></Route>
+            <Route path='/reset-password/:token' element={<ResetPassword />}></Route>
+            //! USER VERIFY EMAIL
+            <Route path='/verify-email/:token' element={<VerifyEmail />}></Route>
+            <Route path='/profile' element={
+              <ProtectUserRoute isAuthenticated={userIsAuthenticated} user={user} loading={loading}>
+                <ProfileUser />
+              </ProtectUserRoute>
+            }>
+            </Route>
+            <Route path='/opinion' element={<OpinionUser />}></Route>
+            <Route path='/profile/:id' element={<UserProfile />}></Route>
           </Route>
-          <Route path='/opinion' element={<OpinionUser />}></Route>
-          <Route path='/profile/:id' element={<UserProfile />}></Route>
-        </Route>
-      
-        {/* USER LOGIN REGISTER */}
-        <Route element={<AuthLayout />}>
-          <Route path='/register' element={<Register />}></Route>
-          <Route path='/kirjaudu' element={<Kirjaudu />}></Route>
-        </Route>
-
-      {/* END USER SIDE */}
-
-
-      {/* ADMIN SIDE */}
-
-        <Route element={<AdminLayout />}>
-          <Route path='/admin' element={
-            <ProtectRoute isAuthenticated={isAuthenticated} admin={admin} loading={loading}>
-              <Home />
-            </ProtectRoute>
-          }>
-            <Route index element={<AdminPageText />}></Route>
-            <Route path='sidebar' element={<Sidebar />}></Route>
-            <Route path='myaccount' element={<MyAccount />}></Route>
-            <Route path='allusers' element={<AllUsers />}></Route>
-            <Route path='allreviews' element={<AllReviews />}></Route>
-            <Route path='addreviews' element={<AddReview />}></Route>
-            <Route path='addinformation' element={<AddInformation />}></Route>
-            <Route path='imagevideo' element={<ImageVideo />}></Route>
-            <Route path='imagevideoDisplay' element={<ImagevideoDisplay />}></Route>
-            <Route path='addprice' element={<AddPrice />}></Route>
-            <Route path='galleri' element={<AddGalleriImage />}></Route>
-            <Route path='displayGalleri' element={<DisplayGalleryImage />}></Route>
-            <Route path='addProduct' element={<AddProduct />}></Route>
-            <Route path='displayProduct' element={<DisplayProduct />}></Route>
-            <Route path='addheaderlogo' element={<AddHeaderLogo />}></Route>
-            <Route path='addaboutus' element={<AddAboutUs />}></Route>
-            <Route path='titleforPages' element={<TitleForPages />}></Route>
-            <Route path='edit-user/:id' element={<EditUser />}></Route>
-            <Route path="review/:id" element={<SingleReview />}></Route>
+        
+          {/* USER LOGIN REGISTER */}
+          <Route element={<AuthLayout />}>
+            <Route path='/register' element={<Register />}></Route>
+            <Route path='/kirjaudu' element={<Kirjaudu />}></Route>
           </Route>
 
-          <Route path='/login' element={<Login />}></Route>
-          //! ADMIN FORGOT PASSWORD
-          <Route path='/admin-forgot-password' element={<AdminForgotPassword />}></Route>
-          <Route path='/admin-reset-password/:token' element={<AdminResetPasssword />}></Route>
-          //! ADMIN VERIFY EMAIL
-          <Route path='/admin-verify-email/:token' element={<AdminVerifyEmail />}></Route>
-        </Route>
+        {/* END USER SIDE */}
 
-      {/* END ADMIN SIDE */}
 
-  
-      {/* No Found Page */}
-        <Route path='*' element={<NoFoundPage />}></Route>
-      
-      {/* Unauth Page */}
-        <Route path='/unauth-page' element={<UnAuthPage />} />
+        {/* ADMIN SIDE */}
 
-    </Routes>
+          <Route element={<AdminLayout />}>
+            <Route path='/admin' element={
+              <ProtectRoute isAuthenticated={isAuthenticated} admin={admin} loading={loading}>
+                <Home />
+              </ProtectRoute>
+            }>
+              <Route index element={<AdminPageText />}></Route>
+              <Route path='sidebar' element={<Sidebar />}></Route>
+              <Route path='myaccount' element={<MyAccount />}></Route>
+              <Route path='allusers' element={<AllUsers />}></Route>
+              <Route path='allreviews' element={<AllReviews />}></Route>
+              <Route path='addreviews' element={<AddReview />}></Route>
+              <Route path='addinformation' element={<AddInformation />}></Route>
+              <Route path='imagevideo' element={<ImageVideo />}></Route>
+              <Route path='imagevideoDisplay' element={<ImagevideoDisplay />}></Route>
+              <Route path='addprice' element={<AddPrice />}></Route>
+              <Route path='galleri' element={<AddGalleriImage />}></Route>
+              <Route path='displayGalleri' element={<DisplayGalleryImage />}></Route>
+              <Route path='addProduct' element={<AddProduct />}></Route>
+              <Route path='displayProduct' element={<DisplayProduct />}></Route>
+              <Route path='addheaderlogo' element={<AddHeaderLogo />}></Route>
+              <Route path='addaboutus' element={<AddAboutUs />}></Route>
+              <Route path='titleforPages' element={<TitleForPages />}></Route>
+              <Route path='edit-user/:id' element={<EditUser />}></Route>
+              <Route path="review/:id" element={<SingleReview />}></Route>
+            </Route>
+
+            <Route path='/login' element={<Login />}></Route>
+            //! ADMIN FORGOT PASSWORD
+            <Route path='/admin-forgot-password' element={<AdminForgotPassword />}></Route>
+            <Route path='/admin-reset-password/:token' element={<AdminResetPasssword />}></Route>
+            //! ADMIN VERIFY EMAIL
+            <Route path='/admin-verify-email/:token' element={<AdminVerifyEmail />}></Route>
+          </Route>
+
+        {/* END ADMIN SIDE */}
+
+    
+        {/* No Found Page */}
+          <Route path='*' element={<NoFoundPage />}></Route>
+        
+        {/* Unauth Page */}
+          <Route path='/unauth-page' element={<UnAuthPage />} />
+
+      </Routes>
+    </>
   )
 }
 
