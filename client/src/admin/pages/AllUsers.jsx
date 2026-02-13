@@ -76,8 +76,6 @@ const AllUsers = () => {
             <th className='py-1.5'>Image</th>
             <th className='py-1.5 md:block hidden'>Full Name</th>
             <th className='py-1.5'>Email</th>
-            <th className='py-1.5 px-2'>Verify</th>
-            <th className='py-1.5'>Gender</th>
             <th className='py-1.5'>Role</th>
             <th className='py-1.5'>Action</th>
           </tr>
@@ -101,14 +99,8 @@ const AllUsers = () => {
                 </td>
                 <td className='py-1 md:block hidden'>{user?.firstName} {user?.lastName}</td>
                 <td className='py-1 text-slate-500'>{user?.email}</td>
-                <td className='py-1'>
-                  {user?.isEmailVerified ? (
-                    <span className='text-green-600 text-lg'>✔</span>
-                  ) : (
-                    <small>❌</small>
-                  )}
-                </td>
-                <td className='py-1'>{user?.gender}</td>
+               
+                
                 <td className='py-1'>
                   {
                     user?.role === "user" ? (

@@ -63,17 +63,37 @@ const EditUser = () => {
 
       <div className='mt-4 flex flex-col gap-1.5 bg-white px-4 py-7 rounded shadow border border-slate-200'>
         <div className='flex items-center gap-2.5'>
-          <strong className='flex-1 text-slate-700'>Full Name: </strong>
+          <strong className='flex-2 text-slate-700'>Full Name: </strong>
           <p className='flex-5 text-red-700'>{editUser.firstName}  {editUser.lastName}</p>
         </div>
         <div className='flex items-center gap-2.5'>
-        <strong className='flex-1 text-slate-700'>Email:</strong>
-        <p className='flex-5 text-red-700'>{editUser.email}</p> 
+          <strong className='flex-2 text-slate-700'>Email:</strong>
+          <p className='flex-5 text-red-700'>{editUser.email}</p> 
+        </div>
+        <div className='flex items-center gap-2.5'>
+          <strong className='flex-2 text-slate-700'>Created Email:</strong>
+          <p className='flex-5 text-red-700'>{new Date(editUser.createdAt).toLocaleDateString()}</p> 
         </div>
 
         <div className='flex items-center gap-2.5'>
-          <strong className='flex-1 text-slate-700'>Current Role:</strong>
+          <strong className='flex-2 text-slate-700'>Current Role:</strong>
           <p className='flex-5 text-red-700'>{editUser.role}</p>
+        </div>
+
+        <div className='flex items-center gap-2.5'>
+          <strong className='flex-2 text-slate-700'>Gender:</strong>
+          <p className='flex-5 text-red-700'>{editUser.gender}</p>
+        </div>
+
+        <div className='flex items-center gap-2.5'>
+          <strong className='flex-2 text-slate-700'>Verify Email:</strong>
+          <p className='flex-5 text-red-700'>
+            {editUser?.isEmailVerified ? (
+              <span className='text-green-600 text-lg'>✔ verified</span>
+              ) : (
+                <small>❌ not verified</small>
+              )}
+          </p>
         </div>
 
         <select value={role} onChange={(e) => setRole(e.target.value)} className='mt-4 p-1 rounded mb-4 border'>
