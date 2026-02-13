@@ -318,10 +318,16 @@ export const login = async (req, res) => {
 
 //! logout FOR ADMIN
 export const logout = async (req, res) => {
-  res.clearCookie("adminToken").json({
+  // Clear cookie using the same attributes used when setting it
+  res.clearCookie("adminToken", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+    path: "/",
+  }).json({
     success: true,
     message: "Logged out successfully",
-  })
+  });
 };
 
 //! admin forgot password

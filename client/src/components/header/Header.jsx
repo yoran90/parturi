@@ -87,7 +87,9 @@ const Header = () => {
       <div ref={menuRef} className='md:flex sticky top-0 p-2 hidden items-center justify-between bg-white dark:bg-black dark:text-white text-black border-t-2 border-b-2  border-slate-800 z-50'>
         <div className='bg-white dark:bg-black'>
           {headerLogo && headerLogo.url && (
-            <img src={headerLogo?.url} alt="Header Logo" className='w-12 h-12 rounded-full border border-slate-500 ml-4' />
+            <Link to={'/'}>
+              <img src={headerLogo?.url} alt="Header Logo" className='w-12 h-12 rounded-full border border-slate-500 ml-4' />
+            </Link>
           )}
           
         </div>
@@ -186,9 +188,9 @@ const Header = () => {
       </div>
       {/* for mobile screen */}
       <div className='md:hidden sticky top-0 z-50 flex items-center justify-between bg-black border-t-2 border-slate-800'>
-        <div className='bg-black p-2'> 
+        <Link to={'/'} className='bg-black p-2'> 
           <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
-        </div>
+        </Link>
         <div className='text-white pr-4.5'>
           {
             showTheHeader && <CgClose onClick={clickTheMenuShowHeader} className='text-white' size={25} /> 
