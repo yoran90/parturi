@@ -360,7 +360,7 @@ const ProfileUser = () => {
       {/* USER Post */}
       <div className='md:w-[60%] w-full flex-flex-col gap-1.5 mb-12'>
         {/* menu for user perofile for mobile screen */}
-        <div onClick={() => setOpenUserProfileMenu(true)} className='m-2 md:hidden flex items-center gap-0.5'>
+        <div onClick={() => setOpenUserProfileMenu(true)} className='m-2 md:hidden flex items-center gap-2 cursor-pointer py-1.5'>
           <div>
             {
               user?.profileImage?.url ? (
@@ -373,6 +373,9 @@ const ProfileUser = () => {
                 )
               )
             }
+          </div>
+          <div className='flex flex-col'>
+            <small className='text-sm text-slate-600'>Profiili</small>
           </div>
         </div>
        {/* user review postedt */}

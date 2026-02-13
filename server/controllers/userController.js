@@ -59,14 +59,21 @@ export const userLogin = async (req, res) => {
       timezone: checkUser.timezone
     }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    const cookie = {
+    /* const cookie = {
       httpOnly: true,
       secure: true,
       sameSite: "none",
       maxAge: 60 * 60 * 1000,
     };
 
-    res.cookie("userToken", token, cookie);
+    res.cookie("userToken", token, cookie); */
+    res.cookie("userToken", token, {
+      httpOnly: true,
+      secure: true,      
+      sameSite: "None",  
+      maxAge: 60 * 60 * 1000,
+    });
+
     res.status(200).json({ 
       success: true, 
       message: "User logged in successfully", 
