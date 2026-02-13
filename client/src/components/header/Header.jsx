@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 
 
 
+
 const Header = () => {
 
 
@@ -88,6 +89,7 @@ const Header = () => {
           {headerLogo && headerLogo.url && (
             <img src={headerLogo?.url} alt="Header Logo" className='w-12 h-12 rounded-full border border-slate-500 ml-4' />
           )}
+          
         </div>
         <div className='flex justify-end px-4.5'>
           <NavLink to={`/`} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
@@ -127,7 +129,7 @@ const Header = () => {
                     )
                   }
                 </button>
-                <div className={`${openUserMenu ? 'block' : 'hidden'} absolute w-[300px] top-10 right-0 mt-2 bg-white rounded shadow-lg border border-slate-300`}>
+                <div className={`${openUserMenu ? 'block' : 'hidden'} absolute w-75 top-10 right-0 mt-2 bg-white rounded shadow-lg border border-slate-300`}>
                   {
                     openUserMenu && (
                       <div className='py-2 px-2'>
