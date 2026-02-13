@@ -92,7 +92,7 @@ const MyAccount = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("userToken");
 
     try {
       setLoadingForButton(true);
@@ -123,7 +123,7 @@ const MyAccount = () => {
         withCredentials: true,
       }
       );
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("userToken", response.data.token);
       toast.success("Updated successfully!");
       dispatch({ type: 'adminAuth/updateUserSuccess', payload: response.data.user });
       dispatch(setAdmin(response.data.user));

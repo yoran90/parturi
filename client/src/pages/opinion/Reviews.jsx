@@ -146,7 +146,7 @@ const Reviews = () => {
 
     try {
       setLoadingReply(true);
-      const token = localStorage.getItem("token"); // add instaed cookies
+      const token = localStorage.getItem("userToken"); // add instaed cookies
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/${reviewId}/comments/${parentId}/reply`, formData, { 
         withCredentials: true,
         headers: {

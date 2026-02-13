@@ -507,7 +507,7 @@ const ProfileUser = () => {
                           </div>
                           {
                             review?.likes?.likedBy.length === 0 && (
-                              <p className='text-sm text-center text-red-600'>Kukaan ei ole vielä tykännyt tästä arvostelusta. Ole ensimmäinen tykkääjä. 🩷</p>
+                              <p className='text-sm text-center text-red-600'>Kukaan ei ole vielä tykännyt tästä arvostelusta.</p>
                             )
                           }
                         </div>
