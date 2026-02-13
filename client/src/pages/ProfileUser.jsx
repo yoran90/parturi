@@ -167,7 +167,7 @@ const ProfileUser = () => {
       );
       toast.success(response.data.message, "Pleasse login again");
       dispatch(userLogout());
-      navigate('/profile');
+      navigate('/');
       
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong");
