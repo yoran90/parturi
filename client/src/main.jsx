@@ -29,6 +29,9 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+function Root() {
+  const [bgColor, setBgColor] = useState('#ffffff');
+
   return (
     <StrictMode>
       <Provider store={store}>
