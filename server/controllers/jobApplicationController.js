@@ -22,11 +22,22 @@ export const sendJobApplicationEmail = async ({
       <p><strong>📜 Viesti:</strong><br>${message || "(ei viestiä)"}</p>
     `;
 
+    // ✅ Format attachment if resume exists
+    let attachment = null;
+    if (resume && resume.buffer) {
+      const base64Content = resume.buffer.toString('base64');
+      attachment = {
+        name: resume.originalname,
+        content: base64Content
+      };
+    }
+
     // ✅ Use centralized sendEmail function
     await sendEmail({
       to: process.env.SENDINBLUE_SENDER_EMAIL,
       subject: `Uusi työhakemus käyttäjältä ${firstName} ${lastName}`,
-      htmlContent
+      htmlContent,
+      attachment
     });
 
     return { success: true };

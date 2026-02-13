@@ -77,9 +77,14 @@ export const sendEmail = async ({ to, subject, htmlContent, attachment = null })
       htmlContent,
     };
     
-    // Add attachment if provided
+    // Add attachment if provided (Brevo expects base64 content)
     if (attachment) {
-      emailConfig.attachment = [attachment];
+      emailConfig.attachment = [
+        {
+          name: attachment.name,
+          content: attachment.content // base64 encoded string
+        }
+      ];
     }
     
     return await emailApi.sendTransacEmail(emailConfig);
