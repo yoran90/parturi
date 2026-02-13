@@ -26,6 +26,7 @@ export const adminLogin = createAsyncThunk("adminAuth/login", async ({ email, pa
 //! ADMIN LOGOUT
 export const adminLogout = createAsyncThunk("adminAuth/logout", async () => {
     try {
+      localStorage.removeItem("userToken");
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/logout`,{}, { withCredentials: true });
       return response.data;
     } catch (error) {
@@ -130,11 +131,13 @@ const adminAuthSlice = createSlice({
         state.loading = false;
         state.isAuthenticated = false;
         state.admin = null;
+        localStorage.removeItem("userToken");
       })
       .addCase(adminLogout.rejected, (state) => {
         state.loading = false;
         state.isAuthenticated = false;
         state.admin = null;
+        localStorage.removeItem("userToken");
       })
 
       //! get user by id for admin
