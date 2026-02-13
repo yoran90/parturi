@@ -51,6 +51,8 @@ const Header = () => {
  
 
   const handleLogout = () => {
+    // Clear localStorage immediately to avoid stale token on refresh
+    localStorage.removeItem("userToken");
     dispatch(userLogout());
     navigate('/kirjaudu');
     toast.success("Logged out successfully!");

@@ -71,6 +71,8 @@ export const getProfileUserById = createAsyncThunk("userAuth/getProfileUserById"
 //! user logout
 export const userLogout = createAsyncThunk("userAuth/logout", async () => {
   try {
+    // Remove local token immediately (avoid stale login on refresh)
+    localStorage.removeItem("userToken");
     const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/userLogout`,{}, { withCredentials: true });
     return response.data;
   } catch (error) {
