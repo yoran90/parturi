@@ -16,7 +16,7 @@ const VerifyEmail = () => {
     try {
       setLoading(true);
 
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/verify-email/${token}`);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/verify-email/${token}`, {}, { withCredentials: true });
       toast.success(response.data.message);
       navigate("/kirjaudu");
     } catch (error) {

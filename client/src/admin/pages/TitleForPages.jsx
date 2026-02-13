@@ -62,10 +62,10 @@ useEffect(() => {
     try {
 
       if (getTitleForPage?.titleForPage) {
-        const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/titleForPages/updateT-Dforpage`, formData);
+        const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/titleForPages/updateT-Dforpage`, formData, { withCredentials: true });
         toast.success(response.data.message);
       } else {
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/titleForPages/addT-Dforpage`, formData);
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/titleForPages/addT-Dforpage`, formData, { withCredentials: true });
         toast.success(response.data.message);
       }
 

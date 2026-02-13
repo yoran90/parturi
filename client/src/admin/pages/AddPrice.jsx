@@ -55,7 +55,7 @@ const AddPrice = () => {
 
     try {
       setLoadingForButton(true);
-        await axios.post(`${import.meta.env.VITE_API_URL}/api/price/addprice`, { prices: priceObjects });
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/price/addprice`, { prices: priceObjects }, { withCredentials: true });
         toast.success("Prices added successfully");
       } catch (error) {
         console.log(error);
@@ -114,7 +114,7 @@ const AddPrice = () => {
 
       if (priceId[index]) {
         try {
-          await axios.delete(`${import.meta.env.VITE_API_URL}/api/price/deleteprice/${priceId[index]}`);
+          await axios.delete(`${import.meta.env.VITE_API_URL}/api/price/deleteprice/${priceId[index]}`, { withCredentials: true });
           toast.success("Price deleted successfully");
         } catch (error) {
           console.log(error);

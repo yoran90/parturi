@@ -13,7 +13,8 @@ const DisplayGalleryImage = () => {
     try {
       setDeleteLoading(prev => ({ ...prev, [publicId]: true }));
       const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/media/deleteGalleryImage`, {
-        data: { galleryId, publicId  }
+        data: { galleryId, publicId  },
+        withCredentials: true
       });
 
       if (response.data.success) {

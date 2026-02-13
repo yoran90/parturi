@@ -97,7 +97,7 @@ const AddInformation = () => {
           holyday, 
           socialMedia,
           headerText
-        }
+        }, { withCredentials: true }
       );
       toast.success('Information added successfully');
     } catch (error) {

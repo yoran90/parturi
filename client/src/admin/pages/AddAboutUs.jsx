@@ -85,6 +85,7 @@ const AddAboutUs = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        withCredentials: true
       });
       toast.success('About us updated successfully!');
     } else {
@@ -92,6 +93,7 @@ const AddAboutUs = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        withCredentials: true
       });
       toast.success('About us added successfully!');
     }

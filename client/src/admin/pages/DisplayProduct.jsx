@@ -46,7 +46,7 @@ const DisplayProduct = () => {
   const deleteProduct = async (id) => {
     try {
       setDeletingId(id);
-      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/products/deleteProduct/${id}`);
+      const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/products/deleteProduct/${id}`, { withCredentials: true });
       if (response.status === 200) {
         toast.success("Product deleted successfully.");
         setProdects(products.filter(item => item._id !== id));

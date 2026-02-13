@@ -82,7 +82,7 @@ const Login = () => {
       setLoadingForVerifyEmail(true);
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/admin-send-verification-email`, {
         email
-      });
+      }, { withCredentials: true });
       toast.success(response.data.message);
     } catch (error) {
       console.log(error);

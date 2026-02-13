@@ -72,7 +72,8 @@ const JobApplication = ({ close }) => {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/job/apply-job`, formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data'
-        }
+        },
+        withCredentials: true
       });
       if (response) {
         setSuccessMessage(true);

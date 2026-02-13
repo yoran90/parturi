@@ -39,6 +39,7 @@ const AddHeaderLogo = () => {
 
       const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/header-logo/logo`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
+        withCredentials: true
       });
 
         toast.success('Header logo uploaded successfully!');

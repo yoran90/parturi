@@ -26,7 +26,7 @@ const ImagevideoDisplay = () => {
 
     const handleDelete = async (item) => {
       try {
-        const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/media/delete/${item._id}`);
+        const response = await axios.delete(`${import.meta.env.VITE_API_URL}/api/media/delete/${item._id}`, { withCredentials: true });
         if (response.data.success) {
           toast.success("Media deleted successfully.");
            setMedia(media.filter(m => m._id !== item._id));

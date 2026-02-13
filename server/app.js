@@ -157,7 +157,7 @@ const allowedOrigins = [
   "https://www.razorr.fi"
 ];
 
-// CORS middleware
+// CORS middleware - Enhanced for Safari compatibility
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (server-to-server requests)
@@ -182,8 +182,10 @@ app.use(cors({
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-  exposedHeaders: ["Content-Length", "Authorization"]
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
+  exposedHeaders: ["Content-Length", "Authorization"],
+  maxAge: 86400, // 24 hours for preflight cache
+  optionsSuccessStatus: 200 // for legacy browser support
 }));
 
 

@@ -41,7 +41,8 @@ const AddGalleriImage = () => {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/media/gallery`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
-        }
+        },
+        withCredentials: true
       });
       toast.success('Gallery images uploaded successfully');
       setLoadingUpload(false);

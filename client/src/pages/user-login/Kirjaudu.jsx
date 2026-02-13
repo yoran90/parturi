@@ -103,7 +103,7 @@ const Kirjaudu = () => {
       setLoadingVerification(true);
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/send-verification-email`, {
         email
-      });
+      }, { withCredentials: true });
       toast.success(response.data.message);
       
     } catch (error) {

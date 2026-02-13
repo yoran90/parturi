@@ -58,7 +58,8 @@ const UpdateProduct = ({ closeModal, product, refreshProducts }) => {
       const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/products/updateProduct/${product._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
-        }
+        },
+        withCredentials: true
       });
       if (response.status === 200) {
         toast.success('Product updated successfully ✅');

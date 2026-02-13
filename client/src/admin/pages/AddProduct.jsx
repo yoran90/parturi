@@ -56,7 +56,7 @@ const AddProduct = () => {
       images.forEach(img => formData.append('images', img));
 
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/products/addproduct`, formData,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
+        { headers: { 'Content-Type': 'multipart/form-data' }, withCredentials: true }
       );
 
       toast.success(response.data.message);
