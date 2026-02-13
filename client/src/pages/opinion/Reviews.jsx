@@ -111,13 +111,13 @@ const Reviews = () => {
         formData.append("imageComment", thisImage);
       }
 
-      const token = localStorage.getItem("token"); // add instaed cookies
-      /* const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/${reviewId}/addComment`, formData,{ withCredentials: true }); */
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/${reviewId}/addComment`, formData,{ withCredentials: true });
+      /* const token = localStorage.getItem("token"); // add instaed cookies
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/${reviewId}/addComment`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
+      }); */
       
       const updatedReviews = getReviews.map((review) =>
         review._id === reviewId
@@ -148,7 +148,7 @@ const Reviews = () => {
       setLoadingReply(true);
       const token = localStorage.getItem("token"); // add instaed cookies
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/${reviewId}/comments/${parentId}/reply`, formData, { 
-        /* withCredentials: true, */
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -186,13 +186,13 @@ const Reviews = () => {
     }
     try {
       
-      /* const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/${reviewId}/like`, {}, { withCredentials: true }); */
-      const token = localStorage.getItem("token"); // add instaed cookies
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/${reviewId}/like`, {}, { 
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/${reviewId}/like`, {}, { withCredentials: true });
+        /* const token = localStorage.getItem("token"); // add instaed cookies
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/${reviewId}/like`, {}, { 
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }); */
       const updatedReviews = getReviews.map(review => {
         if (review._id === reviewId) {
           return { ...review, likes: response.data.likes };
@@ -211,13 +211,13 @@ const Reviews = () => {
   const handleDeleteConfirmReviewByUser = async (reviewId) => {
     try {
       setLoadingUserDeleteReview(true);
-      /* await axios.delete(`${import.meta.env.VITE_API_URL}/api/reviwes/deleteReview/${reviewId}`, { withCredentials: true }); */
-      const token = localStorage.getItem("token"); // add instaed cookies
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/reviwes/deleteReview/${reviewId}`, { withCredentials: true });
+      /* const token = localStorage.getItem("token"); // add instaed cookies
       await axios.delete(`${import.meta.env.VITE_API_URL}/api/reviwes/deleteReview/${reviewId}`, { 
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
+      }); */
       const updatedReviews = getReviews.filter(review => review._id !== reviewId);
       setGetReviews(updatedReviews);
       setOpenUserMenu(null);
