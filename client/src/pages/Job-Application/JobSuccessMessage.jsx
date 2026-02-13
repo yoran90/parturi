@@ -6,9 +6,9 @@ const JobSuccessMessage = ({ closeSuccessMessage }) => {
       <div className='bg-white shadow md:w-full w-[95%] max-w-2xl md:px-6 px-3 md:py-14 py-10 rounded'>
         <div className='flex flex-col items-center justify-center text-center'>
           <img 
-            src="https://media.istockphoto.com/id/893852520/vector/green-approved-star-sticker-vector-illustration-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=bWXm78KGXS6oJL7R65DQkv5Qq0j7cZY-PNG9hrvijGo=" 
+            src="https://img.freepik.com/premium-photo/3d-man-with-huge-tick-thumb-up_168450-29.jpg?semt=ais_hybrid&w=740&q=80" 
             alt="Success" 
-            className='w-[120px] h-[120px] mb-4' 
+            className='w-30 h-30 mb-4' 
           />
           <h3 className='text-green-600 text-lg font-semibold mb-2'>
             Hakemuksesi on lähetetty onnistuneesti!
@@ -21,7 +21,7 @@ const JobSuccessMessage = ({ closeSuccessMessage }) => {
           </p>
           <button 
             onClick={closeSuccessMessage} 
-            className='bg-green-600 mt-4 text-white w-[120px] py-2 px-3 rounded hover:bg-green-700 transition-colors'
+            className='bg-green-600 mt-4 text-white w-30 py-2 px-3 rounded hover:bg-green-700 transition-colors'
           >
             Ok
           </button>
