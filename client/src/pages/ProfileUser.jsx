@@ -14,7 +14,7 @@ import { GoStarFill } from "react-icons/go";
 import { FaRegCommentDots } from "react-icons/fa";
 import { BsTrash3Fill } from "react-icons/bs";
 import ReviewText from './opinion/ReviewText';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDeleteReviewByUser } from '../hooks/useReviews';
 import ConfirmDelete from '../admin/pages/ConfirmDelete';
 
@@ -54,6 +54,7 @@ const ProfileUser = () => {
   const { userDeleteOwnreviewPost, loadingForDeleteUserReview } = useDeleteReviewByUser();
   const [getOwnReviwes, setGetOwnReviwes] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
 
   const [loadingForButtonUpdate, setLoadingForButtonUpdate] = useState(false);
@@ -166,6 +167,8 @@ const ProfileUser = () => {
       );
       toast.success(response.data.message, "Pleasse login again");
       dispatch(userLogout());
+      navigate('/kirjaudu');
+      
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong");
       console.log(error);
