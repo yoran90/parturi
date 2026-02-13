@@ -167,7 +167,7 @@ const ProfileUser = () => {
       );
       toast.success(response.data.message, "Pleasse login again");
       dispatch(userLogout());
-      navigate('/kirjaudu');
+      navigate('/profile');
       
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong");
