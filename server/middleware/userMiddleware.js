@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import Auth from "../models/authModel.js";
 
 
-export const userMiddleware = async (req, res, next) => {
+/* export const userMiddleware = async (req, res, next) => {
   try {
     const token = req.cookies.userToken || req.headers.authorization?.split(" ")[1];
     if (!token) {
@@ -20,4 +20,31 @@ export const userMiddleware = async (req, res, next) => {
   } catch (error) {
     res.status(401).json({ message: "Unauthorized user normal. Invalid token." });
   }
-}
+} */
+
+
+
+export const userMiddleware = async (req, res, next) => {
+  try {
+    // Prefer Authorization header first
+    const authHeader = req.headers.authorization;
+    let token;
+
+    if (authHeader && authHeader.startsWith("Bearer ")) {
+      token = authHeader.split(" ")[1];
+    } else if (req.cookies.userToken) {
+      token = req.cookies.userToken;
+    }
+
+    if (!token) return res.status(401).json({ message: "Unauthorized. Invalid token." });
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await Auth.findById(decoded.id);
+    if (!user) return res.status(404).json({ message: "User not found." });
+
+    req.user = user;
+    next();
+  } catch (error) {
+    res.status(401).json({ message: "Unauthorized. Invalid token." });
+  }
+};

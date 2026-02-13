@@ -53,7 +53,7 @@ const OpinionForm = ({ closeModel, isOpen }) => {
       const token = localStorage.getItem("token"); // add instaed cookies
 
       await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/addReview`, formData, { 
-        withCredentials: true,
+   
         headers: {
           Authorization: `Bearer ${token}`,
         },
