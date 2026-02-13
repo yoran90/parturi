@@ -49,14 +49,15 @@ const OpinionForm = ({ closeModel, isOpen }) => {
       formData.append('rating', rating);
       if (mediaReview) formData.append('mediaReview', mediaReview);
 
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/addReview`, formData, { withCredentials: true });
-      /* const token = localStorage.getItem("token"); // add instaed cookies
+     /*  await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/addReview`, formData, { withCredentials: true }); */
+      const token = localStorage.getItem("token"); // add instaed cookies
 
       await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/addReview`, formData, { 
+        withCredentials: true,
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }); */
+      });
       toast.success('Review added successfully.');
       closeModel();
     } catch (error) {
