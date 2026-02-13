@@ -84,9 +84,27 @@ export const userMiddleware = createAsyncThunk(
   "userAuth/check-user",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/check-user`, { withCredentials: true });
+      const token = localStorage.getItem("userToken");
+      const config = { withCredentials: true };
+      
+      // If we have a token in localStorage, send it as Authorization header (fallback for Safari)
+      if (token) {
+        config.headers = {
+          ...config.headers,
+          Authorization: `Bearer ${token}`
+        };
+      }
+      
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/check-user`, config);
+      
+      // Store token if returned
+      if (response.data?.token) {
+        localStorage.setItem("userToken", response.data.token);
+      }
+      
       return response.data
     } catch (error) {
+      localStorage.removeItem("userToken");
       return rejectWithValue(error.response?.data || error.message);
     }
   }
@@ -128,11 +146,16 @@ const authSlice = createSlice({
         state.loading = false;
         state.isAuthenticated = true;
         state.user = action.payload?.user || action.payload || null;
+        // ✅ Store token in localStorage for Safari compatibility
+        if (action.payload?.token) {
+          localStorage.setItem("userToken", action.payload.token);
+        }
       })
       .addCase(userLogin.rejected, (state) => {
         state.loading = false;
         state.isAuthenticated = false;
         state.user = null;
+        localStorage.removeItem("userToken");
       })
 
       //! GOOGLE LOGIN
@@ -143,11 +166,16 @@ const authSlice = createSlice({
         state.loading = false;
         state.isAuthenticated = true;
         state.user = action.payload?.user || action.payload || null;
+        // ✅ Store token in localStorage for Safari compatibility
+        if (action.payload?.token) {
+          localStorage.setItem("userToken", action.payload.token);
+        }
       })
       .addCase(googleLogin.rejected, (state) => {
         state.loading = false;
         state.isAuthenticated = false;
         state.user = null;
+        localStorage.removeItem("userToken");
       })
 
       //! GET USER BY ID
@@ -187,11 +215,15 @@ const authSlice = createSlice({
         state.loading = false;
         state.isAuthenticated = false;
         state.user = null;
+        // ✅ Clear token from localStorage on logout
+        localStorage.removeItem("userToken");
       })
       .addCase(userLogout.rejected, (state) => {
         state.loading = false;
         state.isAuthenticated = false;
         state.user = null;
+        // ✅ Clear token from localStorage even if logout fails
+        localStorage.removeItem("userToken");
       })
 
       //! USER MIDELLWARE

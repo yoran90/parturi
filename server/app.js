@@ -183,13 +183,10 @@ app.use(cors({
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
-  exposedHeaders: ["Content-Length", "Authorization"],
+  exposedHeaders: ["Content-Length", "Authorization", "Set-Cookie"],
   maxAge: 86400, // 24 hours for preflight cache
   optionsSuccessStatus: 200 // for legacy browser support
 }));
-
-
-
 
 
 

@@ -7,15 +7,28 @@ import { Provider } from 'react-redux'
 import store from './store/store.js' 
 import { ToastContainer, toast } from 'react-toastify';
 import { useState } from 'react'
+import axios from 'axios'
 
+// ✅ Configure axios globally for Safari compatibility
+axios.defaults.withCredentials = true;
+axios.interceptors.request.use((config) => {
+  config.withCredentials = true;
+  const token = localStorage.getItem('userToken');
+  if (token && !config.headers.Authorization) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
-
-
-
-export function Root() {
-
-  const [bgColor, setBgColor] = useState('#f2f2f2e0')
-
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.clear();
+    }
+    return Promise.reject(error);
+  }
+);
   return (
     <StrictMode>
       <Provider store={store}>
