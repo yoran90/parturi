@@ -49,15 +49,14 @@ const OpinionForm = ({ closeModel, isOpen }) => {
       formData.append('rating', rating);
       if (mediaReview) formData.append('mediaReview', mediaReview);
 
-     /*  await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/addReview`, formData, { withCredentials: true }); */
-      const token = localStorage.getItem("token"); // add instaed cookies
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/addReview`, formData, { withCredentials: true });
+      /* const token = localStorage.getItem("token"); // add instaed cookies
 
       await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/addReview`, formData, { 
-   
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      });
+      }); */
       toast.success('Review added successfully.');
       closeModel();
     } catch (error) {
@@ -70,7 +69,7 @@ const OpinionForm = ({ closeModel, isOpen }) => {
 
   return (
     <div className='fixed top-0 bottom-0 left-0 right-0 bg-black/60 flex items-center justify-center z-50'>
-      <div className='flex flex-col bg-white w-full max-w-2xl md:px-12 px-4 py-14 h-[92vh] md:h-auto rounded-lg relative overflow-y-scroll screollStyle'>
+      <div className='flex flex-col bg-white w-full max-w-2xl md:px-12 px-4 py-14 h-[92vh] md:h-auto rounded-lg relative md:overflow-y-hidden overflow-y-scroll screollStyle'>
         <button onClick={closeModel} className='absolute top-4 right-4 text-sm cursor-pointer'>❌</button>
 
         {/* User info */}

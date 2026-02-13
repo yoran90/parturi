@@ -7,7 +7,6 @@ import HolyDay from '../components/holy-day/HolyDay';
 import Header from '../components/header/Header';
 import { FaRegUserCircle } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
-import { MdOutlineAttachEmail } from "react-icons/md";
 import { FaPhone } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaMapPin } from "react-icons/fa6";
@@ -79,10 +78,6 @@ const UserProfile = () => {
               </div>
             </div>
             <hr className='text-slate-300 mt-2 mb-2' />
-            <div className='flex items-center gap-1.5'>
-              <MdOutlineAttachEmail className='text-slate-800' />
-              <p className='text-sm'>{userProfile?.email}</p>
-            </div>
             <div className='flex items-center gap-1.5'>
               <FaPhone className='text-slate-800' />
               <p className='text-sm'>{userProfile?.phoneNumber}</p>

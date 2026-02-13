@@ -380,8 +380,8 @@ const ProfileUser = () => {
         </div>
        {/* user review postedt */}
        <div className='m-2'>
-        <div className='bg-white sticky shadow py-4 px-2 mt-2 -z-10 mb-2 border border-slate-200 rounded text-sm'>
-          <h3 className='w-full'>Arvostelusi julkaistu</h3>
+        <div className='bg-white sticky shadow py-4 px-2 mt-2 w-full mb-2 border border-slate-200 rounded text-sm'>
+          <h3 className='w-full ml-2'>Arvostelusi julkaistu</h3>
         </div>
         {
           getOwnReviwes?.length === 0 && (
