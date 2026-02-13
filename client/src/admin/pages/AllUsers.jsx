@@ -59,8 +59,6 @@ const AllUsers = () => {
    setConfirmDeleteUser(true);
   }
 
-
-  console.log(getAllusersForAdmin);
   
 
   return (

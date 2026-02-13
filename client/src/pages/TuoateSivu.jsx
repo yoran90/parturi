@@ -24,7 +24,7 @@ const TuoateSivu = () => {
     const fetchProductByid = async (productId) => {
       try {
         setLoading(true);
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/getProduct/${productId}`)
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/getProduct/${productId}`, { withCredentials: true })
         setProduct(response.data)
       } catch (error) {
         console.log(error)

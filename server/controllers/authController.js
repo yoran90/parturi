@@ -154,7 +154,7 @@ export const getUserByIdInAdmin = async (req, res) => {
 //! update user by id for admin change own data
 export const updateUserById = async (req, res) => {
   try {
-    const id = req.admin.id;
+    const id = req.admin._id || req.admin.id;
     
     const user = await Auth.findById(id);
     if (!user) {

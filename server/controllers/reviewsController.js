@@ -18,7 +18,7 @@ export const createReview = async (req, res) => {
       return res.status(400).json({ message: "Review text must be at least 5 characters long" });
     }
 
-    const userId = req.user.id;
+    const userId = req.user._id || req.user.id;
 
     let mediaReview = null;
     if (req.file) {
@@ -118,7 +118,8 @@ export const deleteReviewByUser = async (req, res) => {
       return res.status(404).json({ message: "Review not found" });
     }
 
-    if (review.userId.toString() !== req.user.id.toString()) {
+    const userIdToCheck = req.user._id || req.user.id;
+    if (review.userId.toString() !== userIdToCheck.toString()) {
       return res.status(403).json({ message: "Forbidden" });
     }
 
@@ -170,7 +171,8 @@ export const userUpdateOwnReview = async (req, res) => {
       return res.status(404).json({ message: "Review not found" });
     }
 
-    if (review.userId.toString() !== req.user.id.toString()) {
+    const userId = req.user._id || req.user.id;
+    if (review.userId.toString() !== userId.toString()) {
       return res.status(403).json({ message: "Forbidden" });
     }
 

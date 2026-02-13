@@ -312,9 +312,9 @@ export const getProfileUserById = async (req, res) => {
 //! update own user by id
 export const userUpdateOwnData = async (req, res) => {
   try {
-    const { id } = req.user;
+    const userId = req.user._id || req.user.id;
 
-    const user = await Auth.findById(id);
+    const user = await Auth.findById(userId);
 
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found" });
@@ -395,7 +395,7 @@ const deleteUserReplies = async (replies, userId) => {
 
 export const userDeleteOwnAccount = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.user._id || req.user.id;
 
     if (!userId) return res.status(404).json({ success: false, message: "User Unauthorized" });
 

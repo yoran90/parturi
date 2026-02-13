@@ -21,7 +21,7 @@ const Tuote = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response  = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/getAllProducts`);
+        const response  = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/getAllProducts`, { withCredentials: true });
         setProdects(response.data);
       } catch (error) {
         console.log(error);

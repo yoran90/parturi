@@ -6,7 +6,7 @@ export default function useReviews() {
   const [getReviews, setGetReviews] = useState(null);
 
   const fetchReviwes = async () => {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/reviwes/getReviews`);
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/reviwes/getReviews`, { withCredentials: true });
     setGetReviews(response.data);
   }
 
