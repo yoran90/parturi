@@ -39,6 +39,7 @@ const Header = ({ setIsSidebarOpen, isSidebarOpen }) => {
   try {
     dispatch(adminLogout())
     navigate('/login');
+    localStorage.removeItem("userToken");
   } catch (err) {
     console.error("Logout failed", err);
   }
