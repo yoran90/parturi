@@ -8,6 +8,7 @@ import store from './store/store.js'
 import { ToastContainer, toast } from 'react-toastify';
 import { useState } from 'react'
 import axios from 'axios'
+import AnalogClock from './components/analogClock/AnalogClock.jsx'
 
 
 // ✅ Configure axios globally for Safari compatibility
@@ -41,7 +42,6 @@ function Root() {
             <div className='top-0 items-center left-0 fixed z-50 md:flex hidden'>
               <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-12 h-8 rounded-lg cursor-pointer" />
             </div>
-            
             <div id='appBackground' style={{ backgroundColor: bgColor, minHeight: "100vh"}}>
               <div className='w-fit' style={{zoom: '80%'}}>
                 <ToastContainer autoClose={5000} theme="colored" position="top-center"   />

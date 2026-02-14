@@ -13,6 +13,7 @@ import { IoIosPricetags } from "react-icons/io";
 import { AiFillProduct } from "react-icons/ai";
 
 import { SiGitconnected } from "react-icons/si";
+import AnalogClock from '../analogClock/AnalogClock';
 
 const Footer = () => {
 
@@ -67,25 +68,28 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className='flex flex-col gap-5.5'>
-            <h3 className='text-md flex items-center gap-2'>
-              <MdOutlineOnlinePrediction size={18} />
-              Follow Us
-            </h3>
-            <div className='flex items-center gap-5.5'>
-              {
-                getInformation?.socialMedia?.map((sm, index) => (
-                  <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" aria-label={sm.platform} className='cursor-pointer'>
-                    {sm.platform === "facebook" && <FaFacebook size={16} />}
-                    {sm.platform === "instagram" && <CgInstagram size={16} />}
-                    {sm.platform === "tiktok" && <FaTiktok size={16} />}
-                    {sm.platform === "snapchat" && <FaSnapchat size={16} />}
-                    {sm.platform === "twitter" && <FaTwitter size={16} />}
-                    {sm.platform === "youtube" && <FaYoutube size={16} />}
-                  </a>
-                ))
-              }
+          <div className='flex md:flex-col md:justify-center justify-between gap-5.5'>
+            <div className='flex flex-col gap-5.5'>
+              <h3 className='text-md flex items-center gap-2'>
+                <MdOutlineOnlinePrediction size={18} />
+                Follow Us
+              </h3>
+              <div className='flex items-center gap-5.5'>
+                {
+                  getInformation?.socialMedia?.map((sm, index) => (
+                    <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" aria-label={sm.platform} className='cursor-pointer'>
+                      {sm.platform === "facebook" && <FaFacebook size={16} />}
+                      {sm.platform === "instagram" && <CgInstagram size={16} />}
+                      {sm.platform === "tiktok" && <FaTiktok size={16} />}
+                      {sm.platform === "snapchat" && <FaSnapchat size={16} />}
+                      {sm.platform === "twitter" && <FaTwitter size={16} />}
+                      {sm.platform === "youtube" && <FaYoutube size={16} />}
+                    </a>
+                  ))
+                }
+              </div>
             </div>
+            <AnalogClock />
           </div>
           
         </div>
@@ -100,7 +104,7 @@ const Footer = () => {
           <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
         </div>
         {/* for mobile */}
-         <div className='md:hidden flex flex-col items-center text-center justify-center mt-8 text-xs gap-1'>
+         <div className='md:hidden flex gap-2.5 items-center text-center justify-center mt-8 text-xs'>
           <div>
             Copyright © {getYears()} 
           </div>

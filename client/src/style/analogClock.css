@@ -1,0 +1,123 @@
+.clock {
+  width: 80px;
+  height: 80px;
+  background:  white;
+  border-radius: 50%;
+  border: 2px solid black;
+  position: relative;
+  box-shadow: 0 2vw 4vw -1vw rgba(0, 0, 0, 0.8);
+  color: black;
+
+}
+.dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: black;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 110;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.5);
+}
+.hour {
+  position: absolute;
+  font-weight: bold;
+  font-size: 8px;
+}
+
+.twelve {
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.one {
+  top: 7px;
+  right: 18px;
+}
+.two {
+  top: 18px;
+  right: 8px;
+}
+
+.three {
+  top: 50%;
+  right: 2px;
+  transform: translateY(-50%);
+}
+.four {
+  bottom: 16px;
+  right: 7px;
+}
+.five {
+  bottom: 5px;
+  right: 19px;
+}
+.six {
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.seven {
+  bottom: 6px;
+  left: 19px;
+}
+.eight {
+  bottom: 17px;
+  left: 8px;
+}
+.nine {
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+}
+.ten {
+  top: 18px;
+  left: 6px;
+}
+.eleven {
+  top: 7px;
+  left: 18px;
+}
+.hour-hand {
+  position: absolute;
+  z-index: 5;
+  width: 3px;
+  height: 24px;
+  background: black;
+  top: 15px;
+  left: 49%;
+  transform-origin: bottom;
+  border-top-Left-radius: 14px;
+  border-top-right-radius: 14px;
+
+}
+.minute-hand {
+  position: absolute;
+  z-index: 5;
+  width: 2px;
+  height: 30px;
+  background: black;
+  top: 8px;
+  left: 50%;
+  transform-origin: bottom;
+  border-top-Left-radius: 14px;
+  border-top-right-radius: 14px;
+
+}
+.second-hand {
+  position: absolute;
+  z-index: 5;
+  width: 1px;
+  height: 35px;
+  background: red;
+  top: 3px;
+  left: 50%;
+  transform-origin: bottom;
+  border-top-Left-radius: 14px;
+  border-top-right-radius: 14px;
+
+}

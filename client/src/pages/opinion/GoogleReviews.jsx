@@ -35,7 +35,7 @@ const GoogleReviews = () => {
         <hr className='text-slate-300 mt-3 mb-3' />
         {googlereview.length === 0 && <p>No reviews available yet.</p>}
         {googlereview.map((review, index) => (
-          <div key={index} style={{ padding: "10px 0" }} className='border border-slate-200'>
+          <div key={index} style={{ padding: "10px 0" }} className='border-b border-slate-300 mb-2'>
             <div className='flex justify-between mb-4'>
               <div className='flex items-center gap-2'>
                 <img src={review.profile_photo_url} alt="" className='w-8 h-8 rounded-full' />
