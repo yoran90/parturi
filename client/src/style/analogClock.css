@@ -20,7 +20,7 @@
   right: 0;
   bottom: 0;
   margin: auto;
-  z-index: 110;
+  z-index: 10;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.5);
 }
 .hour {
