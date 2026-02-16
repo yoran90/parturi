@@ -3,11 +3,11 @@
   height: 80px;
   background:  #1a1a1a;
   border-radius: 50%;
-  border: 2px solid #4d4d4d;
+  border: 3px solid #4d4d4d;
   position: relative;
   box-shadow: 0 2vw 4vw -1vw rgba(0, 0, 0, 0.8);
   color: white;
-
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.15);
 }
 .dot {
   position: absolute;
