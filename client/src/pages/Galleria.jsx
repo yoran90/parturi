@@ -70,7 +70,7 @@ const Galleria = () => {
           selectedImage && (
             <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={() => setSelectedImage(null)}>
               <button className='flex absolute z-100 top-2.5 right-2.5 cursor-pointer' onClick={() => setSelectedImage(false)}>❌</button>
-              <img className="max-w-full max-h-full md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%] h-[50%] rounded-xl border-3 border-red-600" src={selectedImage?.url} alt="" />
+              <img className="max-w-full w-[90%] max-h-full md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%] h-[55%] rounded-xl border-3 border-red-600" src={selectedImage?.url} alt="" />
             </div>
           )
         }
