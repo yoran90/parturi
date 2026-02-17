@@ -60,17 +60,17 @@ const Galleria = () => {
         )
       }
       {/* image gallery */}
-      <div className='grid md:grid-cols-4 lg:grid-cols-4 grid-cols-2 gap-1.5 m-2 mt-8 mb-8'>
+      <div className='grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-6 grid-cols-2 gap-1.5 m-2 mt-8 mb-8'>
         {
           galleryImages?.map((image, index) => (
-            <img key={index} src={image?.url} onClick={() => setSelectedImage(image)} className='md:w-75 w-full h-75 cursor-pointer border border-slate-300 shadow-lg rounded-md' alt={`Gallery image ${index + 1}`} />
+            <img key={index} src={image?.url} onClick={() => setSelectedImage(image)} className='w-75 h-64 cursor-pointer border border-slate-300 shadow-lg rounded-md' alt={`Gallery image ${index + 1}`} />
           ))
         }
         {
           selectedImage && (
             <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50" onClick={() => setSelectedImage(null)}>
               <button className='flex absolute z-100 top-2.5 right-2.5 cursor-pointer' onClick={() => setSelectedImage(false)}>❌</button>
-              <img className="max-w-full max-h-full w-[90%] h-[90%]" src={selectedImage?.url} alt="" />
+              <img className="max-w-full max-h-full md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%] h-[50%] rounded-xl border-3 border-red-600" src={selectedImage?.url} alt="" />
             </div>
           )
         }

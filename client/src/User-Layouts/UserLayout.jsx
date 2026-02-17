@@ -7,7 +7,7 @@ const UserLayout = () => {
 
 
   return (
-    <div className='md:w-[78%] m-auto min-h-screen bg-white text-black border-l border-r border-slate-200 shadow-2xl'>
+    <div className='md:w-[85%] lg:w-[85%] xl:w-[75%] 2xl:w-[60%] m-auto min-h-screen bg-white text-black border-l border-r border-slate-200 shadow-2xl'>
       <Outlet />
     </div>
   )

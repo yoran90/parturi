@@ -27,28 +27,28 @@ const YksiTuoate = ({ id, images, title, price, discount, description }) => {
     <Link to={`/tuote/${id}`} className='bg-white text-black shadow border border-slate-300 overflow-hidden rounded-md w-full cursor-pointer'>
       {
         images && images.length > 0 && (
-          <img src={images && images.length > 0 ? images[0].url : '/placeholder.png'}  alt={title} className='w-full h-[150px] border-slate-300' />
+          <img src={images && images.length > 0 ? images[0].url : '/placeholder.png'}  alt={title} className='w-full h-37 object-center border-red-600' />
         )
       }
       <hr className='mt-2 text-slate-200' />
       <div className='px-1 mt-2'>
-        <div className='flex items-center justify-between'>
-          <h2 className='py-2 text-slate-500 font-semibold text-xs line-clamp-2'>{shortTitle}</h2>
+        <div className='flex items-center justify-between mt-3 mb-2'>
+          <h2 className=' text-slate-500 font-semibold text-xs line-clamp-1 overflow-hidden'>{shortTitle}</h2>
           {
               discount > 0 ? (
                 <div className='flex items-center justify-center gap-2 relative'>
-                  <p className=' text-slate-500 line-through'>{price}€</p>
-                  <p className='font-semibold text-lg text-red-600'>{(price - (price * discount) / 100).toFixed(2)}€</p>
+                  <p className=' text-slate-500 text-xs line-through'>{price}€</p>
+                  <p className='font-semibold text-sm text-red-600'>{(price - (price * discount) / 100).toFixed(2)}€</p>
                   <small className='absolute -top-6 right-0 text-xs bg-red-500 text-white py-1 px-2'>{discount}%</small>
                 </div>
               ) : (
                 <div>
-                  <p className='font-semibold text-lg text-red-600'>{price}€</p>
+                  <p className='font-semibold text-sm text-red-600'>{price}€</p>
                 </div>
               )
             }
         </div>
-        <div className='text-sm py-2 px-1' dangerouslySetInnerHTML={{ __html: shortTextForDescription }} />
+        <div className='w-full wrap-break-word whitespace-normal text-sm line-clamp-4 px-1 mb-2 overflow-hidden' dangerouslySetInnerHTML={{ __html: shortTextForDescription }} />
         
       </div>
     </Link>

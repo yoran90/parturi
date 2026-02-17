@@ -74,7 +74,7 @@ const TuoateSivu = () => {
       <HolyDay />
       <Header />
       <div className='md:flex w-full mt-12 p-4 gap-3.5 mb-12'>
-        <div className='md:w-[50%] h-[80vh] '>
+        <div className={`${product?.images.length > 1 ? 'md:w-[50%] h-[80vh]' : 'md:w-[50%] h-[60vh]'}`}>
           <img src={ selectImages ? selectImages.url : product?.images[0]?.url } alt={product?.title} className='w-full h-[60vh] border border-slate-300 rounded object-fill' />
           {
             product?.images.length > 1 && (
@@ -110,8 +110,8 @@ const TuoateSivu = () => {
             }
           </div>
             </div>
-          <div className='text-sm leading-5'>
-            <div dangerouslySetInnerHTML={{__html: product?.description}} />
+          <div className='text-sm leading-5 w-full h-[51vh] overflow-y-scroll scrollbarStyle pr-2'>
+            <div className='w-full wrap-break-word whitespace-normal' dangerouslySetInnerHTML={{__html: product?.description}} />
           </div>
         </div>
       </div>
@@ -127,3 +127,4 @@ const TuoateSivu = () => {
 }
 
 export default TuoateSivu
+

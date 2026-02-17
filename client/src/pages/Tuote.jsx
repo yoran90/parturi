@@ -79,7 +79,7 @@ const Tuote = () => {
       </div>
       {/* product */}
       <div className='w-full mt-12 mb-12'>
-        <div className='grid md:grid-cols-4 lg:grid-cols-4 grid-cols-2 gap-1.5 m-2'>
+        <div className='grid md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-6 grid-cols-2 gap-1.5 m-2'>
           {
             products.map((product) => {
               return (
