@@ -102,7 +102,7 @@ const JobApplication = ({ close }) => {
     <>
       {!successMessage && (
         <div className='fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center z-50 bg-black/60'>
-          <div className='w-full md:max-w-[70%] md:mx-0 mx-1 bg-white rounded shadow-lg md:px-12 md:py-12 py-8 h-auto md:mt-0 mt-12 overflow-hidden px-3 md:h-auto md:mb-0 mb-12  relative'>
+          <div className='w-[98%] md:max-w-[75%] lg:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[50%] md:mx-0 mx-1 bg-white rounded shadow-lg md:px-12 md:py-12 py-8 h-[90vh] md:mt-0 mt-12 overflow-y-scroll scrollbarStyle px-3  md:mb-0 mb-12  relative'>
             <button className='absolute top-4 right-4 text-slate-500 text-xs cursor-pointer hover:text-slate-700' onClick={close}>❌</button>
             <div className='flex items-center md:justify-center md:ml-14 gap-4 mb-12 md:mt-0 mt-6'>
               <div>
@@ -114,7 +114,7 @@ const JobApplication = ({ close }) => {
               </div>
             </div>
             {/* form */}
-            <form onSubmit={handleSubmit} className='flex flex-col md:gap-7 gap-6 md:overflow-hidden overflow-y-scroll scrollbarStyle md:h-auto h-[70vh] md:pb-0 pb-12 md:pr-0 pr-4'>
+            <form onSubmit={handleSubmit} className='flex flex-col md:gap-7 gap-6 md:pb-0 pb-12'>
               <div className='flex items-center'>
                 <div className='md:flex hidden gap-1 w-1/3 items-center'>
                   <p>Koko nimi</p>
