@@ -89,7 +89,9 @@ const Footer = () => {
                 }
               </div>
             </div>
-            <AnalogClock />
+            <div className='md:ml-3 mr-4 md:mr-0'>
+              <AnalogClock />
+            </div>
           </div>
           
         </div>
