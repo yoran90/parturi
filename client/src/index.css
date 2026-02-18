@@ -62,7 +62,7 @@ body::-webkit-scrollbar {
 }
 
 .product-description p {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   color: #333;
 }
 
@@ -73,20 +73,20 @@ body::-webkit-scrollbar {
 .product-description h3 {
   font-size: 15px;
   font-weight: 600;
-  margin-top: 1rem;
+  margin-top: 10px;
   margin-bottom: 0.75rem;
   color: #1f2937;
 }
 
 .product-description ol {
-  margin-left: 1.5rem;
+  margin-left: 10px;
   margin-bottom: 10px;
   list-style-type: decimal;
   list-style-position: outside;
 }
 
 .product-description ul {
-  margin-left: 1.5rem;
+  margin-left: 10px;
   margin-bottom: 10px;
   list-style-type: disc;
   list-style-position: outside;
