@@ -91,27 +91,28 @@ const TuoateSivu = () => {
         <div className='md:w-[50%] md:mt-0 mt-8'>
           <div className='flex items-center justify-between'>
 
-          <h1 className='font-semibold text-sm'>{product?.title}</h1>
-          <div className='flex items-center justify-between mb-8 mt-4'>
-            {
-              product?.discount > 0 ? (
-                <div className='flex flex-col text-sm  gap-2.5'>
-                  <div className='flex gap-2.5'>
-                    <p className='text-lg text-slate-400 line-through'>{product?.price}€</p>
-                    <p className='font-semibold text-lg text-red-600'>{(product.price - (product.price * product.discount) / 100).toFixed(2)}€</p>
+            <h1 className='font-semibold text-sm'>{product?.title}</h1>
+            <div className='flex items-center justify-between mb-8 mt-4'>
+              {
+                product?.discount > 0 ? (
+                  <div className='flex flex-col text-sm  gap-2.5'>
+                    <div className='flex gap-2.5'>
+                      <p className='text-lg text-slate-400 line-through'>{product?.price}€</p>
+                      <p className='font-semibold text-lg text-red-600'>{(product.price - (product.price * product.discount) / 100).toFixed(2)}€</p>
+                    </div>
+                    <p className='bg-red-500 text-white py-1 px-4 rounded text-sm'>{product?.discount}% alennus</p>
                   </div>
-                  <p className='bg-red-500 text-white py-1 px-4 rounded text-sm'>{product?.discount}% alennus</p>
-                </div>
-              ) : (
-                <div>
-                  <p className='font-semibold text-lg text-red-600'>{product?.price}€</p>
-                </div>
-              )
-            }
-          </div>
+                ) : (
+                  <div>
+                    <p className='font-semibold text-lg text-red-600'>{product?.price}€ </p>
+                  </div>
+                )
+              }
             </div>
+          </div>
           <div className='text-sm leading-5 w-full h-[51vh] overflow-y-scroll scrollbarStyle pr-2'>
-            <div className='w-full wrap-break-word whitespace-normal' dangerouslySetInnerHTML={{__html: product?.description}} />
+            <div className='w-full wrap-break-word whitespace-normal product-description' dangerouslySetInnerHTML={{__html: product?.description}} />
+  
           </div>
         </div>
       </div>
