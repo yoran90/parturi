@@ -9,6 +9,16 @@
   color: white;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(255, 255, 255, 0.15);
 }
+.tick {
+  position: absolute;
+  width: 0.2px;
+  height: 4px;
+  background: white;
+  top: 100%;
+  left: 50%;
+
+  transform-origin: center -32px;
+}
 .dot {
   position: absolute;
   width: 5px;
@@ -26,11 +36,11 @@
 .hour {
   position: absolute;
   font-weight: bold;
-  font-size: 7px;
+  font-size: 6px;
 }
 
 .twelve {
-  top: 2px;
+  top: 4px;
   left: 50%;
   transform: translateX(-50%);
 }

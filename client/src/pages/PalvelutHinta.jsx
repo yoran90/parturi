@@ -97,7 +97,7 @@ const PalvelutHinta = () => {
             ))}
           </div>
           {/* video */}
-          <div className='md:w-[50%] md:block hidden w-full h-full'>
+          <div className='md:w-[50%] md:h-[50vh] md:block hidden w-full h-full'>
             {media && (
               <video
                 data-testid="service-video"

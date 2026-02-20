@@ -15,11 +15,19 @@ const AnalogClock = () => {
       setTime(getFinlandTime());
     }, 1000);
     return () => clearInterval(interval);
-  })
+  }, []);
 
 
   return (
     <div className='clock'>
+
+      {/* {[...Array(60)].map((_, index) => (
+        <div
+          key={index}
+          className="tick"
+          style={{ transform: `translate(-50%, -100%) rotate(${index * 6}deg)` }}
+        />
+      ))} */}
 
       <div className='dot'></div>
       <div className='hour twelve'>12</div>
