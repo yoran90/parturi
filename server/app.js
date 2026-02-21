@@ -19,6 +19,7 @@ import reviewsRoutes from './routes/reviewsRoute.js';
 import shopMediaRoutes from './routes/shopRoute.js';
 import jobApplicationRoutes from './routes/jobApplicationRoute.js';
 import googleReviewsRoute from './routes/googleReviewsRoute.js';
+import notificationRoutes from './routes/notificationRoute.js';
 
 
 import { SitemapStream, streamToPromise } from 'sitemap';
@@ -211,6 +212,7 @@ app.use("/api/reviwes", reviewsRoutes);
 app.use("/api/shopMedia", shopMediaRoutes);
 app.use("/api/job", jobApplicationRoutes);
 app.use("/api/google-reviews", googleReviewsRoute);
+app.use("/api/notifications", notificationRoutes);
 
 
 export default app

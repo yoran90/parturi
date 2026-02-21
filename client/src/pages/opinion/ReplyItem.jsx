@@ -66,14 +66,8 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
           }
           <div className='flex flex-col'>
             <p className="text-[12px]">{reply?.firstName} {reply?.lastName}</p>
-            <small className='text-[11px] text-slate-400'>
-              {reply?.createdAt
-                ? new Date(reply.createdAt).toLocaleString("fi-FI", {
-                    month: "short",
-                    day: "numeric",
-                    year: "numeric",
-                  })
-                : "Just now"}
+            <small className='text-[11px] text-slate-900'>
+              {reply?.createdAt ? new Date(reply.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : ""}
             </small>
           </div>
         </Link>

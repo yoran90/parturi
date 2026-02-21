@@ -1,5 +1,6 @@
 
 import cloudinary from "../config/cloudinary.js";
+import Notification from "../models/notificationModel.js";
 import Reviews from "../models/reviewsModel.js";
 //import User from "../models/authModel.js";
 
@@ -311,6 +312,18 @@ export const createComments = async (req, res) => {
     review.comments.push(newComment);
     await review.save();
 
+    if (review.userId.toString() !== userId.toString()) {
+      await Notification.create({
+        recipient: review.userId,
+        sender: userId,
+        type: "comment",
+        reviewId: review._id,
+        commentId: newComment._id
+      })
+    };
+
+
+
     res.status(201).json({ success: true, message: "Comment added successfully", comment:  review.comments.slice().reverse() }); //-> reverse show the lsat message first
 
     
@@ -372,6 +385,16 @@ export const createLike = async (req, res) => {
       });
     }
 
+    if (review.userId.toString() !== userId.toString()) {
+      await Notification.create({
+        recipient: review.userId,
+        sender: userId,
+        type: "like",
+        reviewId: review._id,
+      })
+    };
+
+
     review.likes.count = review.likes.likedBy.length;
 
     await review.save();
@@ -426,6 +449,19 @@ export const createReply = async (req, res) => {
         // Insert here
         if (c._id?.toString() === commentId) {
           c.replies.push(newReply);
+
+          // Add notification
+          if (c.userId.toString() !== req.user._id.toString()) {
+            Notification.create({
+              recipient: c.userId,
+              sender: req.user._id,
+              type: "reply",
+              reviewId: review._id,
+              commentId: c._id,
+              replyId: newReply._id,
+            });
+          }
+
           return true;
         }
 

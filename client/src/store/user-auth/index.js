@@ -6,7 +6,8 @@ const initialState = {
   isAuthenticated: false,
   loading: false,
   user: null,
-  userProfile: null
+  userProfile: null,
+  userNotifications: [],
 };
 
 //! user register 
@@ -66,6 +67,25 @@ export const getProfileUserById = createAsyncThunk("userAuth/getProfileUserById"
     return rejectWithValue(error.response?.data || error.message);
     
   }
+});
+
+//! get notification 
+export const getNotifications = createAsyncThunk("notifications", async (_, { rejectWithValue }) => {
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/notifications/get-notifications`, { withCredentials: true }); 
+    return response.data;    
+  } catch (error) {
+    return rejectWithValue(error.response?.data || error.message);
+  }
+});
+
+//! mark notification as read
+export const markNotificationAsRead = createAsyncThunk("notifications/mark-as-read", async (id, { rejectWithValue }) => {
+  try {    const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/notification/mark-as-read/${id}`, {}, { withCredentials: true });
+    return response.data;    
+  } catch (error) {
+    return rejectWithValue(error.response?.data || error.message);
+  }  
 });
 
 //! user logout
@@ -207,6 +227,23 @@ const authSlice = createSlice({
         state.loading = false;
         state.isAuthenticated = false;
         state.userProfile = null;
+      })
+
+      //! GET NOTIFICATIONS
+      .addCase(getNotifications.pending, (state) => {
+        state.loading = true;  
+      })
+      .addCase(getNotifications.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userNotifications = {
+          ...state.userNotifications,
+          notifications: action.payload.notifications
+        };
+      })
+      .addCase(getNotifications.rejected, (state) => {
+        state.loading = false;
+        state.isAuthenticated = false;
+        state.userNotifications = null; 
       })
 
       //! USER LOGOUT

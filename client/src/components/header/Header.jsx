@@ -8,16 +8,16 @@ import { TbLogout } from "react-icons/tb";
 import { useDispatch, useSelector } from 'react-redux';
 import { useRef } from 'react';
 import { useEffect } from 'react';
-import { userLogout } from '../../store/user-auth';
+import { getNotifications, markNotificationAsRead, userLogout } from '../../store/user-auth';
 import { toast } from 'react-toastify';
-
+import { IoMdNotifications } from "react-icons/io";
 
 
 
 const Header = () => {
 
 
-  const { user, loading } = useSelector((state) => state.userAuth);
+  const { user, userNotifications, loading } = useSelector((state) => state.userAuth);
   const [openUserMenu, setOpenUserMenu] = useState(false);
 
   const dispatch = useDispatch();
@@ -26,6 +26,21 @@ const Header = () => {
   const handleOpenUserMenu = () => {
     setOpenUserMenu(!openUserMenu);
   };
+
+  useEffect(() => {
+      if (user) {
+        dispatch(getNotifications());
+        console.log("User data in Header:", userNotifications);
+      }
+  }, [user]);
+
+  const handleMarkAsRead = (id) => {
+    dispatch(markNotificationAsRead(id)).then(() => {
+      dispatch(getNotifications());
+    })
+  }
+
+  const unreadCount = userNotifications?.notifications?.filter(notification => !notification.isRead).length || 0;
 
   const menuRef = useRef();
 
@@ -115,21 +130,54 @@ const Header = () => {
           <NavLink to={'/yhteystiedot'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Yhteystiedot
           </NavLink>
+          <div className='flex items-center ml-2 mr-3 justify-center'>
+          {
+            user && (
+              <div className='relative'>
+                {
+                  unreadCount > 0 && (
+                    <span className='absolute -top-2 -right-1 bg-red-500 text-white rounded-full w-4.5 h-4.5 flex items-center justify-center text-[12px]'>{unreadCount}</span>
+                  )
+                }
+                <button type='button' className='cursor-pointer'><IoMdNotifications size={23} /></button>
+              </div>
+            )
+          }
+          <div className="absolute right-16 mt-20 w-72 bg-white border shadow-lg z-50">
+            {userNotifications?.notifications?.length === 0 ? (
+              <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
+            ) : (
+              userNotifications?.notifications?.map(n => (
+                <div key={n._id} className={`p-2 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
+                  <p className="text-sm">{`${n.sender.firstName} ${n.sender.lastName} ${n.type} your review`}</p>
+                  {!n.isRead && (
+                    <button className="text-xs text-blue-500" onClick={() => handleMarkAsRead(n._id)}>
+                      Mark as read
+                    </button>
+                  )}
+                </div>
+              ))
+            )}
+          </div>
+
+          </div>
+
           {
             user ? (
-              <div ref={menuRef} className='ml-4 mr-2 relative z-50'>
+              <div ref={menuRef} className=' mr-2 relative z-50'>
                 <button className='cursor-pointer' onClick={handleOpenUserMenu}>
                   {
                     user?.profileImage?.url ? (
-                      <img className='w-8.5 h-8.5 border border-slate-100 rounded-full' src={user?.profileImage?.url} alt="" />
+                      <img className='w-7.5 h-7.5 border border-slate-100 rounded-full' src={user?.profileImage?.url} alt="" />
                     ) : (
                       user?.gender === 'men' ? (
-                        <img className='w-8.5 h-8.5 rounded-full border border-slate-100 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                        <img className='w-7.5 h-7.5 rounded-full border border-slate-100 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
                       ) : (
-                        <img className='w-8.5 h-8.5  rounded-full border border-slate-100' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                        <img className='w-7.5 h-7.5  rounded-full border border-slate-100' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
                       )
                     )
                   }
+                  
                 </button>
                 <div className={`${openUserMenu ? 'block' : 'hidden'} absolute w-75 top-10 right-0 mt-2 bg-white rounded shadow-lg border border-slate-300`}>
                   {
@@ -191,13 +239,30 @@ const Header = () => {
         <Link to={'/'} className='bg-black p-2'> 
           <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
         </Link>
-        <div className='text-white pr-4.5'>
+        <div className='flex items-center justify-center'>
+          <div className='ml-2 mr-3 mt-2 text-white'>
           {
-            showTheHeader && <CgClose onClick={clickTheMenuShowHeader} className='text-white' size={25} /> 
+            user && (
+              <div className='relative'>
+                {
+                  unreadCount > 0 && (
+                    <span className='absolute -top-2 -right-1 bg-red-500 text-white rounded-full w-4.5 h-4.5 flex items-center justify-center text-[12px]'>{unreadCount}</span>
+                  )
+                }
+                <button type='button'><IoMdNotifications size={23} /></button>
+              </div>
+            )
           }
-          {
-            !showTheHeader && <LuMenu onClick={clickTheMenuShowHeader} className='text-white' size={25} />
-          }
+          </div>
+          <div className='text-white pr-4.5'>
+            {
+              showTheHeader && <CgClose onClick={clickTheMenuShowHeader} className='text-white' size={25} /> 
+            }
+            {
+              !showTheHeader && <LuMenu onClick={clickTheMenuShowHeader} className='text-white' size={25} />
+            }
+          </div>
+        
         </div>
         <div className={`${showTheHeader ? 'absolute flex flex-col bg-black z-50 top-14 right-0 w-full pl-3.5 py-6' : 'hidden'}`}>
           <NavLink to={'/'}>

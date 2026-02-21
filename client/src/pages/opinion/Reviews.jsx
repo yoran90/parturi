@@ -319,11 +319,7 @@ const Reviews = () => {
                   <div className='flex flex-col'>
                     <p className=' text-sm'>{item?.firstName} {item?.lastName}</p>
                     <small className="text-xs">
-                      {new Date(item?.updatedAt).toLocaleDateString("fi-FI", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric"
-                      })}
+                      {new Date(item?.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                     </small>
                   </div>
                 </Link>
