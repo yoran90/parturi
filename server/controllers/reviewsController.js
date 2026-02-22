@@ -321,7 +321,7 @@ export const createComments = async (req, res) => {
         sender: userId,               
         type: "comment",
         reviewId: review._id,
-        commentId: mongoose.Types.ObjectId(savedComment._id), 
+        commentId: savedComment._id,, 
       });
     }
 

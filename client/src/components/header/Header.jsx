@@ -290,10 +290,10 @@ useEffect(() => {
         
         </div>
         <div className={`fixed inset-0 z-50 bg-black bg-opacity-50 ${showNotifications ? 'block' : 'hidden'}`}>
-          <div className="absolute bottom-0 w-full max-h-screen bg-white overflow-y-auto shadow-lg scrollbarStyle">
-            <div>
-              <h3 className="text-md font-semibold p-4 border-b text-slate-600">Ilmoitukset</h3>
-              <button className="absolute top-3 right-3 text-xs text-red-600 cursor-pointer" onClick={() => toggleNotifications()}>Sulje</button>
+          <div className="w-full max-h-screen bg-white overflow-y-auto shadow-lg scrollbarStyle">
+            <div className='flex p-4 border-b border-slate-500 justify-between'>
+              <h3 className="text-md font-semibold text-slate-600">🔔 Ilmoitukset</h3>
+              <button className="text-xs text-red-600 cursor-pointer" onClick={() => toggleNotifications()}>Sulje</button>
             </div>
             {userNotifications?.notifications?.length === 0 ? (
               <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
