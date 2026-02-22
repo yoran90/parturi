@@ -38,9 +38,9 @@ const Header = () => {
   }
 }, [user]);
 
-useEffect(() => {
-  console.log("Updated notifications:", userNotifications);
-}, [userNotifications]);
+  useEffect(() => {
+    console.log("Updated notifications:", userNotifications);
+  }, [userNotifications]);
 
   const handleMarkAsRead = (id) => {
     dispatch(markNotificationAsRead(id)).then(() => {
