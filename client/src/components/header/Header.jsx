@@ -327,7 +327,7 @@ const Header = () => {
               <p className="p-4 text-sm text-red-500 text-center">Ei ilmoituksia 🔔</p>
             ) : (
               userNotifications?.notifications?.map(n => (
-                <div key={n._id} className={`p-4 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
+                <div onClick={() => markNotificationAsRead(n._id)} key={n._id} className={`p-4 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
                    <div className='flex items-center mb-1'>
                       <div>
                         {n.sender?.profileImage?.url ? (

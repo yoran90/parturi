@@ -247,42 +247,42 @@ const Reviews = () => {
 
 
   useEffect(() => {
-  if (!getReviews || getReviews.length === 0) return;
+    if (!getReviews || getReviews.length === 0) return;
 
-  const params = new URLSearchParams(location.search);
-  const scrollTo = params.get("scrollTo");
-  if (!scrollTo) return;
+    const params = new URLSearchParams(location.search);
+    const scrollTo = params.get("scrollTo");
+    if (!scrollTo) return;
 
-  const reviewWithComment = getReviews.find(r =>
-    r.comments?.some(c => c._id === scrollTo || c.replies?.some(rep => rep._id === scrollTo))
-  );
-
-  if (reviewWithComment) {
-    setShowTheComment(reviewWithComment._id);
-
-    const parentComment = reviewWithComment.comments.find(c =>
-      c._id === scrollTo || c.replies?.some(rep => rep._id === scrollTo)
+    const reviewWithComment = getReviews.find(r =>
+      r.comments?.some(c => c._id === scrollTo || c.replies?.some(rep => rep._id === scrollTo))
     );
 
-    if (parentComment?.replies?.some(rep => rep._id === scrollTo)) {
-      setOpenReplyInput({ reviewId: reviewWithComment._id, commentId: parentComment._id });
-    }
-  }
+    if (reviewWithComment) {
+      setShowTheComment(reviewWithComment._id);
 
-  const interval = setInterval(() => {
-    const element =
-      document.getElementById(`review-${scrollTo}`) ||
-      document.getElementById(`comment-${scrollTo}`);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "center" });
-      element.style.backgroundColor = "#fff3cd";
-      setTimeout(() => (element.style.backgroundColor = ""), 10000);
-      clearInterval(interval);
-    }
-  }, 10000);
+      const parentComment = reviewWithComment.comments.find(c =>
+        c._id === scrollTo || c.replies?.some(rep => rep._id === scrollTo)
+      );
 
-  return () => clearInterval(interval);
-}, [location, getReviews]);
+      if (parentComment?.replies?.some(rep => rep._id === scrollTo)) {
+        setOpenReplyInput({ reviewId: reviewWithComment._id, commentId: parentComment._id });
+      }
+    }
+
+    const interval = setInterval(() => {
+      const element =
+        document.getElementById(`review-${scrollTo}`) ||
+        document.getElementById(`comment-${scrollTo}`);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+        element.style.backgroundColor = "#fff3cd";
+        setTimeout(() => (element.style.backgroundColor = ""), 10000);
+        clearInterval(interval);
+      }
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [location, getReviews]);
 
 
   
