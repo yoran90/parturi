@@ -388,7 +388,7 @@ export const createLike = async (req, res) => {
       });
     }
 
-    if (likedIndex === -1 && review.userId.toString() !== userId.toString()) {
+    if (review.userId.toString() !== userId.toString()) {
       await Notification.create({
         recipient: review.userId,
         sender: userId,

@@ -33,6 +33,11 @@ const notificationSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
+notificationSchema.index(
+  { createdAt: 1 },
+  { expireAfterSeconds: 7776000 }  /// 90 days in seconds delete notifications after 90 days
+)
+
 const Notification = mongoose.model('Notification', notificationSchema);
 
 export default Notification;
