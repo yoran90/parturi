@@ -25,7 +25,6 @@ const notificationSchema = new mongoose.Schema({
   commentId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Reviews",
-    required: true,
   },
   isRead: {
     type: Boolean,

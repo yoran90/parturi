@@ -19,6 +19,11 @@ const Header = () => {
 
   const { user, userNotifications, loading } = useSelector((state) => state.userAuth);
   const [openUserMenu, setOpenUserMenu] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications);
+  }
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,11 +33,14 @@ const Header = () => {
   };
 
   useEffect(() => {
-      if (user) {
-        dispatch(getNotifications());
-        console.log("User data in Header:", userNotifications);
-      }
-  }, [user]);
+  if (user) {
+    dispatch(getNotifications());
+  }
+}, [user]);
+
+useEffect(() => {
+  console.log("Updated notifications:", userNotifications);
+}, [userNotifications]);
 
   const handleMarkAsRead = (id) => {
     dispatch(markNotificationAsRead(id)).then(() => {
@@ -131,35 +139,34 @@ const Header = () => {
             Yhteystiedot
           </NavLink>
           <div className='flex items-center ml-2 mr-3 justify-center'>
-          {
-            user && (
-              <div className='relative'>
-                {
-                  unreadCount > 0 && (
-                    <span className='absolute -top-2 -right-1 bg-red-500 text-white rounded-full w-4.5 h-4.5 flex items-center justify-center text-[12px]'>{unreadCount}</span>
-                  )
-                }
-                <button type='button' className='cursor-pointer'><IoMdNotifications size={23} /></button>
-              </div>
-            )
-          }
-          <div className="absolute right-16 mt-20 w-72 bg-white border shadow-lg z-50">
-            {userNotifications?.notifications?.length === 0 ? (
-              <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
-            ) : (
-              userNotifications?.notifications?.map(n => (
-                <div key={n._id} className={`p-2 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
-                  <p className="text-sm">{`${n.sender.firstName} ${n.sender.lastName} ${n.type} your review`}</p>
-                  {!n.isRead && (
-                    <button className="text-xs text-blue-500" onClick={() => handleMarkAsRead(n._id)}>
-                      Mark as read
-                    </button>
-                  )}
+            {
+              user && (
+                <div className='relative'>
+                  {
+                    unreadCount > 0 && (
+                      <span className='absolute -top-2 -right-1 bg-red-500 text-white rounded-full w-4.5 h-4.5 flex items-center justify-center text-[12px]'>{unreadCount}</span>
+                    )
+                  }
+                  <button type='button' className='cursor-pointer' onClick={() => toggleNotifications()}><IoMdNotifications size={23} /></button>
                 </div>
-              ))
-            )}
-          </div>
-
+              )
+            }
+            <div className={`absolute right-20 mt-20 w-72 bg-white border shadow-lg z-50 ${showNotifications ? 'block' : 'hidden'}`}>
+              {userNotifications?.notifications?.length === 0 ? (
+                <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
+              ) : (
+                userNotifications?.notifications?.map(n => (
+                  <div key={n._id} className={`p-2 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
+                    <p className="text-sm">{`${n.sender.firstName} ${n.sender.lastName} ${n.type} your review`}</p>
+                    {!n.isRead && (
+                      <button className="text-xs text-blue-500" onClick={() => handleMarkAsRead(n._id)}>
+                        Mark as read
+                      </button>
+                    )}
+                  </div>
+                ))
+              )}
+            </div>
           </div>
 
           {

@@ -1,7 +1,6 @@
 import express from 'express';
 import { getNotifications, markNotificationsAsRead } from '../controllers/notificationController.js';
-const { userMiddleware } = await import('../middleware/userMiddleware.js');
-
+import { userMiddleware } from '../middleware/userMiddleware.js';
 
 const router = express.Router();
 

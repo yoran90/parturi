@@ -312,15 +312,18 @@ export const createComments = async (req, res) => {
     review.comments.push(newComment);
     await review.save();
 
-    if (review.userId.toString() !== userId.toString()) {
+    const savedComment = review.comments[review.comments.length - 1];
+
+    // Only create notification if comment is not by review owner
+    if (review.userId.toString() !== userId.toString() && savedComment._id) {
       await Notification.create({
         recipient: review.userId,
         sender: userId,
         type: "comment",
         reviewId: review._id,
-        commentId: newComment._id
-      })
-    };
+        commentId: mongoose.Types.ObjectId(savedComment._id), // ✅ cast to ObjectId
+      });
+    }
 
 
 
@@ -385,14 +388,14 @@ export const createLike = async (req, res) => {
       });
     }
 
-    if (review.userId.toString() !== userId.toString()) {
+    if (likedIndex === -1 && review.userId.toString() !== userId.toString()) {
       await Notification.create({
         recipient: review.userId,
         sender: userId,
         type: "like",
         reviewId: review._id,
-      })
-    };
+      });
+    }
 
 
     review.likes.count = review.likes.likedBy.length;

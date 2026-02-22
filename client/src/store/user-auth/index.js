@@ -81,7 +81,8 @@ export const getNotifications = createAsyncThunk("notifications", async (_, { re
 
 //! mark notification as read
 export const markNotificationAsRead = createAsyncThunk("notifications/mark-as-read", async (id, { rejectWithValue }) => {
-  try {    const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/notification/mark-as-read/${id}`, {}, { withCredentials: true });
+  try {    
+    const response = await axios.put(`${import.meta.env.VITE_API_URL}/api/notification/mark-as-read/${id}`, {}, { withCredentials: true });
     return response.data;    
   } catch (error) {
     return rejectWithValue(error.response?.data || error.message);
