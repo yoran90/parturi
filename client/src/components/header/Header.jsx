@@ -247,19 +247,35 @@ useEffect(() => {
           <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
         </Link>
         <div className='flex items-center justify-center'>
-          <div className='ml-2 mr-3 mt-2 text-white'>
-          {
-            user && (
-              <div className='relative'>
-                {
-                  unreadCount > 0 && (
-                    <span className='absolute -top-2 -right-1 bg-red-500 text-white rounded-full w-4.5 h-4.5 flex items-center justify-center text-[12px]'>{unreadCount}</span>
-                  )
-                }
-                <button type='button'><IoMdNotifications size={23} /></button>
-              </div>
-            )
-          }
+          <div className='flex items-center ml-2 mr-3 mt-2 justify-center'>
+            {
+              user && (
+                <div className='relative'>
+                  {
+                    unreadCount > 0 && (
+                      <span className='absolute -top-2 -right-1 bg-red-500 text-white rounded-full w-4.5 h-4.5 flex items-center justify-center text-[12px]'>{unreadCount}</span>
+                    )
+                  }
+                  <button type='button' className='cursor-pointer text-white' onClick={() => toggleNotifications()}><IoMdNotifications size={23} /></button>
+                </div>
+              )
+            }
+            <div className={`absolute right-0 mt-22 w-full bg-white border shadow-lg z-50 ${showNotifications ? 'block' : 'hidden'}`}>
+              {userNotifications?.notifications?.length === 0 ? (
+                <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
+              ) : (
+                userNotifications?.notifications?.map(n => (
+                  <div key={n._id} className={`p-2 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
+                    <p className="text-sm">{`${n.sender.firstName} ${n.sender.lastName} ${n.type} your review`}</p>
+                    {!n.isRead && (
+                      <button className="text-xs text-blue-500" onClick={() => handleMarkAsRead(n._id)}>
+                        Mark as read
+                      </button>
+                    )}
+                  </div>
+                ))
+              )}
+            </div>
           </div>
           <div className='text-white pr-4.5'>
             {
