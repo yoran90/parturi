@@ -159,10 +159,10 @@ const Header = () => {
           <NavLink to={'/yhteystiedot'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Yhteystiedot
           </NavLink>
-          <div className='flex relative items-center ml-2 mr-3 justify-center'>
+          <div className='flex relative items-center  justify-center'>
             {
               user && (
-                <div className='relative'>
+                <div className='relative mr-4 ml-1'>
                   {
                     unreadCount > 0 && (
                       <span className='absolute -top-2 -right-1 bg-red-500 text-white rounded-full w-4.5 h-4.5 flex items-center text-center font-semibold justify-center text-[11px]'>{unreadCount}</span>
