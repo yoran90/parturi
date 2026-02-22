@@ -259,7 +259,7 @@ const Reviews = () => {
       {
         getReviews?.map((item, index) => {
           return (
-            <div key={index} className='border-t border-b border-slate-300 pt-5 pb-5'>
+            <div id={`comment-${comment?._id}`} key={index} className='border-t border-b border-slate-300 pt-5 pb-5'>
                {item?.userId === user?.id && (
                 
                 <div className='flex items-end justify-end mb-2 -mt-4 relative'>
@@ -374,6 +374,7 @@ const Reviews = () => {
               <div className='flex items-center gap-[30%] relative'>
                 <div className='flex items-center gap-1 cursor-pointer'>
                   <button
+                    id={`like-${comment._id}`} 
                     type="button"
                     onClick={() => handleClickLike(item._id)}
                     className="cursor-pointer"
@@ -534,6 +535,7 @@ const Reviews = () => {
                                         reviewId={item._id}
                                         parentId={comment._id}
                                         onReply={handleSubmitReply}
+                                        openReply={openReplyInput.reviewId === review._id && openReplyInput.commentId === reply._id}
                                       />
                                     ))}
                                   </div>

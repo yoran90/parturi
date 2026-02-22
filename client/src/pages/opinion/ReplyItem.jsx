@@ -8,8 +8,8 @@ import { RiSendPlaneFill } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
-  const [showReplyBox, setShowReplyBox] = useState(false);
+const ReplyItem = ({ reply, reviewId, parentId, onReply, openReply  }) => {
+  const [showReplyBox, setShowReplyBox] = useState(openReply || false);
   const [replyText, setReplyText] = useState("");
   const [replyImage, setReplyImage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -46,7 +46,7 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply }) => {
   
 
   return (
-    <div className="mt-2">
+    <div id={`reply-${reply._id}`} className="mt-2" data-review-id={reviewId} data-parent-comment-id={parentId}>
       <div className="p-1 rounded-md">
 
         {/* Reply User Info */}

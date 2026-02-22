@@ -38,15 +38,38 @@ const Header = () => {
   }
 }, [user]);
 
-  useEffect(() => {
-    console.log("Updated notifications:", userNotifications);
-  }, [userNotifications]);
 
   const handleMarkAsRead = (id) => {
     dispatch(markNotificationAsRead(id)).then(() => {
       dispatch(getNotifications());
     })
   }
+
+  const handleNotificationClick = (notification) => {
+  if (notification.replyId) {
+    // 1️⃣ Find the reply element
+    const el = document.getElementById(`reply-${notification.replyId}`);
+    if (el) {
+      // 2️⃣ Get parent comment and review IDs
+      const parentCommentId = el.dataset.parentCommentId;
+      const reviewId = el.dataset.reviewId;
+
+      // 3️⃣ Open the reply input for this comment
+      setOpenReplyInput({ reviewId, commentId: parentCommentId });
+
+      // 4️⃣ Scroll the reply into view
+      el.scrollIntoView({ block: 'center' });
+    }
+  } else if (notification.commentId) {
+    // Scroll to comment if it's not a reply
+    const el = document.getElementById(`comment-${notification.commentId}`);
+    if (el) el.scrollIntoView({ block: 'center' });
+  }
+
+  // Mark the notification as read
+  markNotificationAsRead(notification._id);
+};
+
 
   const unreadCount = userNotifications?.notifications?.filter(n => !n.isRead).length || 0;
 
@@ -158,7 +181,7 @@ const Header = () => {
                 <p className="p-4 text-sm text-red-500 text-center">Ei ilmoituksia 🔔</p>
               ) : (
                 userNotifications?.notifications?.map(n => (
-                  <div key={n._id} className={`p-2 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
+                  <div onClick={() => handleNotificationClick(n)} key={n._id} className={`p-2 border-b cursor-pointer ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
                     <div className='flex items-center mb-1'>
                       <div>
                         {n.sender?.profileImage?.url ? (
