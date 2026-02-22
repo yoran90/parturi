@@ -7,6 +7,7 @@ import Loading from '../../loading/Loading';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 const ReplyItem = ({ reply, reviewId, parentId, onReply, openReply  }) => {
   const [showReplyBox, setShowReplyBox] = useState(openReply || false);
@@ -44,6 +45,11 @@ const ReplyItem = ({ reply, reviewId, parentId, onReply, openReply  }) => {
     setReplyImage(null);
   }
   
+ 
+
+useEffect(() => {
+  setShowReplyBox(openReply);
+}, [openReply]);
 
   return (
     <div id={`reply-${reply._id}`} className="mt-2" data-review-id={reviewId} data-parent-comment-id={parentId}>
