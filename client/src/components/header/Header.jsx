@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 import { getNotifications, markNotificationAsRead, userLogout } from '../../store/user-auth';
 import { toast } from 'react-toastify';
 import { IoMdNotifications } from "react-icons/io";
-
+import { CgPlayListRemove } from "react-icons/cg";
 
 
 const Header = () => {
@@ -172,14 +172,18 @@ const Header = () => {
                         )}
                       </div>
                       <div className='flex flex-col '>
-                        <p className="text-sm">{`${n.sender?.firstName} ${n.sender.lastName} ${n.type} your review`}</p>
+                        <div className="text-sm flex items-center gap-1">{`${n.sender?.firstName} ${n.sender.lastName}`} <p className='text-red-600'>{`${n.type}`}</p> your review</div>
                         <small className='text-[11px] text-slate-700'>{new Date(n.createdAt).toLocaleString()}</small>
+                        <p className='text-xs line-clamp-1'>{n?.reviewId?.reviewText}</p>
                       </div>
                     </div>
                     {!n.isRead && (
-                      <button className="text-xs text-blue-500" onClick={() => handleMarkAsRead(n._id)}>
-                        Merkitse luetuksi
-                      </button>
+                      <div className='flex items-end justify-end'>
+                        <button className="text-xs text-blue-500 flex items-center gap-0.5" onClick={() => handleMarkAsRead(n._id)}>
+                          Merkitse luetuksi
+                          <CgPlayListRemove size={18} />
+                        </button>
+                      </div>
                     )}
                   </div>
                 ))
