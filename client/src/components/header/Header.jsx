@@ -151,12 +151,21 @@ useEffect(() => {
                 </div>
               )
             }
-            <div className={`absolute right-0 mt-42 rounded-2xl w-72 bg-white text-slate-800 shadow-lg z-50 ${showNotifications ? 'block' : 'hidden'}`}>
+            
+          </div>
+          <div className={`absolute right-20 mt-13 rounded-b w-72 bg-white border border-slate-200 overflow-hidden text-slate-800 shadow-lg z-50 ${showNotifications ? 'block' : 'hidden'}`}>
               {userNotifications?.notifications?.length === 0 ? (
                 <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
               ) : (
                 userNotifications?.notifications?.map(n => (
                   <div key={n._id} className={`p-2 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
+                    <div>
+                      {n.sender?.profileImage?.url ? (
+                        <img className='w-6 h-6 rounded-full border border-slate-300 inline-block mr-2' src={n.sender.profileImage.url} alt={`${n.sender.firstName} ${n.sender.lastName}`} />
+                      ) : (
+                        <img className='w-6 h-6 rounded-full border border-slate-300 inline-block mr-2' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt={`${n.sender.firstName} ${n.sender.lastName}`} />
+                      )}
+                    </div>
                     <p className="text-sm">{`${n.sender?.firstName} ${n.sender.lastName} ${n.type} your review`}</p>
                     {!n.isRead && (
                       <button className="text-xs text-blue-500" onClick={() => handleMarkAsRead(n._id)}>
@@ -167,7 +176,6 @@ useEffect(() => {
                 ))
               )}
             </div>
-          </div>
 
           {
             user ? (
@@ -246,7 +254,7 @@ useEffect(() => {
         <Link to={'/'} className='bg-black p-2'> 
           <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
         </Link>
-        <div className='flex items-center justify-center'>
+        <div className='flex relative items-center justify-center'>
           <div className='flex items-center ml-2 mr-3 mt-2 justify-center'>
             {
               user && (
@@ -260,7 +268,21 @@ useEffect(() => {
                 </div>
               )
             }
-            <div className={`absolute right-0 mt-22 w-full bg-white border shadow-lg z-50 ${showNotifications ? 'block' : 'hidden'}`}>
+            
+          </div>
+          <div className='text-white pr-4.5'>
+            {
+              showTheHeader && <CgClose onClick={clickTheMenuShowHeader} className='text-white' size={25} /> 
+            }
+            {
+              !showTheHeader && <LuMenu onClick={clickTheMenuShowHeader} className='text-white' size={25} />
+            }
+          </div>
+        
+        </div>
+        <div className={`fixed w-full h-screen flex flex-col items-center justify-center  ${showNotifications ? 'block' : 'hidden'}`}>
+          <div className='overflow-y-scroll scrollbarStyle bg-white border shadow-lg z-50 w-full h-full'>
+
               {userNotifications?.notifications?.length === 0 ? (
                 <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
               ) : (
@@ -277,16 +299,6 @@ useEffect(() => {
               )}
             </div>
           </div>
-          <div className='text-white pr-4.5'>
-            {
-              showTheHeader && <CgClose onClick={clickTheMenuShowHeader} className='text-white' size={25} /> 
-            }
-            {
-              !showTheHeader && <LuMenu onClick={clickTheMenuShowHeader} className='text-white' size={25} />
-            }
-          </div>
-        
-        </div>
         <div className={`${showTheHeader ? 'absolute flex flex-col bg-black z-50 top-14 right-0 w-full pl-3.5 py-6' : 'hidden'}`}>
           <NavLink to={'/'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Etusivu</button>
