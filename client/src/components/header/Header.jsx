@@ -20,6 +20,7 @@ const Header = () => {
   const { user, userNotifications, loading } = useSelector((state) => state.userAuth);
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
+  const [openReplyInput, setOpenReplyInput] = useState(null);
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
@@ -46,25 +47,16 @@ const Header = () => {
   }
 
   const handleNotificationClick = (notification) => {
-  if (notification.replyId) {
-    const el = document.getElementById(`reply-${notification.replyId}`);
-    if (el) {
-      // Scroll the reply into view
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      
-      // Open the reply box
-      setOpenReplyInput({ reviewId: el.dataset.reviewId, commentId: el.dataset.parentCommentId });
-    }
-  } else if (notification.commentId) {
-    const el = document.getElementById(`comment-${notification.commentId}`);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+  if (notification.reviewId) {
+    // Set the reply input to open for this notification
+    setOpenReplyInput({
+      reviewId: notification.reviewId,
+      commentId: notification.commentId || null,
+    });
   }
 
-  // Optionally mark notification as read
+  // Mark the notification as read
   dispatch(markNotificationAsRead(notification._id));
-  setShowNotifications(false);
 };
 
 
