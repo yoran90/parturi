@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"; 
 import cloudinary from "../config/cloudinary.js";
 import Notification from "../models/notificationModel.js";
 import Reviews from "../models/reviewsModel.js";
@@ -314,14 +314,14 @@ export const createComments = async (req, res) => {
 
     const savedComment = review.comments[review.comments.length - 1];
 
-    // Only create notification if comment is not by review owner
+    
     if (review.userId.toString() !== userId.toString() && savedComment._id) {
       await Notification.create({
-        recipient: review.userId,
-        sender: userId,
+        recipient: review.userId,      
+        sender: userId,               
         type: "comment",
         reviewId: review._id,
-        commentId: mongoose.Types.ObjectId(savedComment._id), // ✅ cast to ObjectId
+        commentId: mongoose.Types.ObjectId(savedComment._id), 
       });
     }
 
