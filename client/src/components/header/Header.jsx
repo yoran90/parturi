@@ -151,13 +151,13 @@ useEffect(() => {
                 </div>
               )
             }
-            <div className={`absolute right-20 mt-20 w-72 bg-white border shadow-lg z-50 ${showNotifications ? 'block' : 'hidden'}`}>
+            <div className={`absolute right-20 mt-20 w-72 bg-white text-black border shadow-lg z-50 ${showNotifications ? 'block' : 'hidden'}`}>
               {userNotifications?.notifications?.length === 0 ? (
                 <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
               ) : (
                 userNotifications?.notifications?.map(n => (
                   <div key={n._id} className={`p-2 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
-                    <p className="text-sm">{`${n.sender.firstName} ${n.sender.lastName} ${n.type} your review`}</p>
+                    <p className="text-sm">{`${n.sender?.firstName} ${n.sender.lastName} ${n.type} your review`}</p>
                     {!n.isRead && (
                       <button className="text-xs text-blue-500" onClick={() => handleMarkAsRead(n._id)}>
                         Mark as read

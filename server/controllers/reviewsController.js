@@ -1,4 +1,4 @@
-
+import mongoose from "mongoose";
 import cloudinary from "../config/cloudinary.js";
 import Notification from "../models/notificationModel.js";
 import Reviews from "../models/reviewsModel.js";
