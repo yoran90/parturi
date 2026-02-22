@@ -45,6 +45,7 @@ const Reviews = () => {
   const [loadingReply, setLoadingReply] = useState(false);
   const [openReviewModel, setOpenReviewModel] = useState(null);
   const [openUserMenu, setOpenUserMenu] = useState(false);
+  const [loadingLike, setLoadingLike] = useState(false);
 
 
   const handleToggleOpenUserMenu = (reviewId) => {
@@ -185,7 +186,7 @@ const Reviews = () => {
       return;
     }
     try {
-      
+      setLoadingLike(reviewId);
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/${reviewId}/like`, {}, { withCredentials: true });
         /* const token = localStorage.getItem("token"); // add instaed cookies
         const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reviwes/${reviewId}/like`, {}, { 
@@ -203,6 +204,8 @@ const Reviews = () => {
       setOpenUserMenu(null);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingLike(false);
     }
   };
 
@@ -376,12 +379,21 @@ const Reviews = () => {
                     className="cursor-pointer"
                   >
                     {
-                      item?.likes?.likedBy?.some(
-                        like => String(like.userId) === String(user?.id)
-                      ) ? (
-                        <GoHeartFill className="text-red-600 pointer-events-none" />
+                      loadingLike === item._id ? (
+                        <Loading width={15} height={15} border='3px' topBorder='3px' borderColor='red' borderTopColor='white' />
+
                       ) : (
-                        <GoHeart className="pointer-events-none" />
+                        <>
+                          {
+                            item?.likes?.likedBy?.some(
+                              like => String(like.userId) === String(user?.id)
+                            ) ? (
+                              <GoHeartFill className="text-red-600 pointer-events-none" />
+                            ) : (
+                              <GoHeart className="pointer-events-none" />
+                            )
+                          }
+                        </>
                       )
                     }
                   </button>
@@ -635,7 +647,7 @@ const Reviews = () => {
                         <input type="text" value={comment[item._id] || ''} onChange={(e) => setComment({ ...comment, [item._id]: e.target.value })} className='border-none w-full outline-none' placeholder='Kirjoittaa kommentti...'/>
                         <label htmlFor={`imageComment-${item._id}`} className='pl-4'>
                           {
-                            loadinComment ? (
+                            loadinComment[item._id] ? (
                               <div>
                                 <Loading width={16} height={16} border='3px' topBorder='3px' borderColor='red' borderTopColor='white' />
                               </div>

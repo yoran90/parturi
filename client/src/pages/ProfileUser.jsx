@@ -439,6 +439,7 @@ const ProfileUser = () => {
                           confirmButton="Poista" 
                           onConfirm={() => handleDeleteReview(review?._id)}
                           loading={loadingForDeleteUserReview}
+                          loadingText="Poistetaan"
                         />
                       )
                     }

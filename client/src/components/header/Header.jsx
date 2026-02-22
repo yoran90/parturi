@@ -138,7 +138,7 @@ useEffect(() => {
           <NavLink to={'/yhteystiedot'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Yhteystiedot
           </NavLink>
-          <div className='flex items-center ml-2 mr-3 justify-center'>
+          <div className='flex relative items-center ml-2 mr-3 justify-center'>
             {
               user && (
                 <div className='relative'>
@@ -151,7 +151,7 @@ useEffect(() => {
                 </div>
               )
             }
-            <div className={`absolute right-20 mt-20 w-72 bg-white text-black border shadow-lg z-50 ${showNotifications ? 'block' : 'hidden'}`}>
+            <div className={`absolute right-0 mt-42 rounded-2xl w-72 bg-white text-slate-800 shadow-lg z-50 ${showNotifications ? 'block' : 'hidden'}`}>
               {userNotifications?.notifications?.length === 0 ? (
                 <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
               ) : (
