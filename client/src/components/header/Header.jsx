@@ -48,7 +48,7 @@ useEffect(() => {
     })
   }
 
-  const unreadCount = userNotifications?.notifications?.filter(notification => !notification.isRead).length || 0;
+  const unreadCount = userNotifications?.notifications?.filter(n => !n.isRead).length || 0;
 
   const menuRef = useRef();
 
