@@ -155,7 +155,7 @@ const Header = () => {
           </div>
           <div className={`absolute right-20 mt-13 rounded-b w-96 h-[93vh] overflow-y-scroll scrollbarStyle bg-white border border-slate-200 overflow-hidden text-slate-800 shadow-lg z-50 ${showNotifications ? 'block' : 'hidden'}`}>
               {userNotifications?.notifications?.length === 0 ? (
-                <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
+                <p className="p-4 text-sm text-red-500 text-center">Ei ilmoituksia 🔔</p>
               ) : (
                 userNotifications?.notifications?.map(n => (
                   <div key={n._id} className={`p-2 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
@@ -296,7 +296,7 @@ const Header = () => {
               <button className="text-xs text-red-600 cursor-pointer" onClick={() => toggleNotifications()}>Sulje</button>
             </div>
             {userNotifications?.notifications?.length === 0 ? (
-              <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
+              <p className="p-4 text-sm text-red-500 text-center">Ei ilmoituksia 🔔</p>
             ) : (
               userNotifications?.notifications?.map(n => (
                 <div key={n._id} className={`p-4 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
