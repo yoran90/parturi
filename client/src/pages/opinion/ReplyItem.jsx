@@ -79,7 +79,7 @@ useEffect(() => {
         </Link>
 
         {/* Reply Text */}
-        <p className="text-[13px] ml-8" data-testid="reply-text">{reply?.reply || ""}</p>
+        <p id={`reply-${reply._id}`} className="text-[13px] ml-8" data-testid="reply-text">{reply?.reply || ""}</p>
 
 
         {/* Reply Image */}

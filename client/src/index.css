@@ -97,3 +97,8 @@ body::-webkit-scrollbar {
   color: #333;
   margin-left: 0.5rem;
 }
+
+.highlight {
+  background-color: #fff3cd; /* yellow highlight */
+  transition: background-color 1s ease;
+}

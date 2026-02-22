@@ -11,7 +11,7 @@ import { IoMdImage } from 'react-icons/io';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { BsThreeDots } from "react-icons/bs";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import ReplyItem from './ReplyItem';
@@ -31,6 +31,7 @@ const Reviews = () => {
   const { getReviews, setGetReviews, fetchReviwes } = useReviews();
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [comment, setComment] = useState({});
   const [imageComment, setImageComment] = useState({});
@@ -245,6 +246,44 @@ const Reviews = () => {
 
 
 
+  useEffect(() => {
+  if (!getReviews || getReviews.length === 0) return;
+
+  const params = new URLSearchParams(location.search);
+  const scrollTo = params.get("scrollTo");
+  if (!scrollTo) return;
+
+  const reviewWithComment = getReviews.find(r =>
+    r.comments?.some(c => c._id === scrollTo || c.replies?.some(rep => rep._id === scrollTo))
+  );
+
+  if (reviewWithComment) {
+    setShowTheComment(reviewWithComment._id);
+
+    const parentComment = reviewWithComment.comments.find(c =>
+      c._id === scrollTo || c.replies?.some(rep => rep._id === scrollTo)
+    );
+
+    if (parentComment?.replies?.some(rep => rep._id === scrollTo)) {
+      setOpenReplyInput({ reviewId: reviewWithComment._id, commentId: parentComment._id });
+    }
+  }
+
+  const interval = setInterval(() => {
+    const element =
+      document.getElementById(`review-${scrollTo}`) ||
+      document.getElementById(`comment-${scrollTo}`);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
+      element.style.backgroundColor = "#fff3cd";
+      setTimeout(() => (element.style.backgroundColor = ""), 10000);
+      clearInterval(interval);
+    }
+  }, 10000);
+
+  return () => clearInterval(interval);
+}, [location, getReviews]);
+
 
   
 
@@ -259,7 +298,7 @@ const Reviews = () => {
       {
         getReviews?.map((item, index) => {
           return (
-            <div id={`comment-${comment?._id}`} key={index} className='border-t border-b border-slate-300 pt-5 pb-5'>
+            <div id={`review-${item._id}`} key={index} className='border-t border-b border-slate-300 pt-5 pb-5'>
                {item?.userId === user?.id && (
                 
                 <div className='flex items-end justify-end mb-2 -mt-4 relative'>
@@ -374,7 +413,7 @@ const Reviews = () => {
               <div className='flex items-center gap-[30%] relative'>
                 <div className='flex items-center gap-1 cursor-pointer'>
                   <button
-                    id={`like-${comment._id}`} 
+                    id={`like-${item._id}`} 
                     type="button"
                     onClick={() => handleClickLike(item._id)}
                     className="cursor-pointer"
@@ -478,7 +517,7 @@ const Reviews = () => {
                         <div className='flex flex-col gap-3 mt-2 bg-slate-50  text-black p-2 rounded'>
                           {
                             item?.comments?.map((comment) => (
-                              <div key={comment._id} className='border-b last:border-b-0 border-slate-300 pt-2 pb-2'>
+                              <div id={`comment-${comment._id}`} key={comment._id} className='border-b last:border-b-0 border-slate-300 pt-2 pb-2'>
                                 <Link to={`/profile/${comment?.userId}`} className='flex items-center gap-3'>
                                   {
                                     comment?.profileImage ? (

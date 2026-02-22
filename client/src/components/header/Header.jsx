@@ -14,6 +14,7 @@ import { IoMdNotifications } from "react-icons/io";
 import { CgPlayListRemove } from "react-icons/cg";
 
 
+
 const Header = () => {
 
 
@@ -21,6 +22,8 @@ const Header = () => {
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [openReplyInput, setOpenReplyInput] = useState(null);
+
+  
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
@@ -46,17 +49,26 @@ const Header = () => {
     })
   }
 
-  const handleNotificationClick = (notification) => {
-  if (notification.reviewId) {
-    // Set the reply input to open for this notification
-    setOpenReplyInput({
-      reviewId: notification.reviewId,
-      commentId: notification.commentId || null,
-    });
+ const handleNotificationClick = (notification) => {
+  let targetId = null;
+
+  if (notification.type === "like") {
+    targetId = notification.reviewId?._id;
   }
 
-  // Mark the notification as read
-  dispatch(markNotificationAsRead(notification._id));
+  if (notification.type === "comment") {
+    targetId = notification.commentId; // already string
+  }
+
+  if (notification.type === "reply") {
+    // since you don't store replyId,
+    // scroll to the parent comment
+    targetId = notification.commentId;
+  }
+
+  console.log("Target ID:", targetId);
+
+  navigate(`/opinion?scrollTo=${targetId}`);
 };
 
 
