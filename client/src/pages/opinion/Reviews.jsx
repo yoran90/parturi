@@ -535,7 +535,7 @@ const Reviews = () => {
                                         reviewId={item._id}
                                         parentId={comment._id}
                                         onReply={handleSubmitReply}
-                                        openReply={openReplyInput.reviewId === review._id && openReplyInput.commentId === reply._id}
+                                         openReply={openReplyInput.reviewId === item._id && openReplyInput.commentId === comment._id}
                                       />
                                     ))}
                                   </div>
