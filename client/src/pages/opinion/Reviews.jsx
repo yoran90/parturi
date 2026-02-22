@@ -276,10 +276,10 @@ const Reviews = () => {
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "center" });
         element.style.backgroundColor = "#fff3cd";
-        setTimeout(() => (element.style.backgroundColor = ""), 1000);
+        setTimeout(() => (element.style.backgroundColor = ""), 10000);
         clearInterval(interval);
       }
-    }, 10000);
+    }, 10);
 
     return () => clearInterval(interval);
   }, [location, getReviews]);
