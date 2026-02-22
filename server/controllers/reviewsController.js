@@ -375,10 +375,23 @@ export const createLike = async (req, res) => {
       return res.status(404).json({ message: "Review not found" });
     }
 
-    const likedIndex = review.likes.likedBy.findIndex(like => like.userId.toString() === userId.toString());
+    const likedIndex = review.likes.likedBy.findIndex(
+      like => like.userId.toString() === userId.toString()
+    );
+
     if (likedIndex !== -1) {
+      //  UNLIKE
       review.likes.likedBy.splice(likedIndex, 1);
+
+      //  DELETE notification
+      await Notification.findOneAndDelete({
+        sender: userId,
+        reviewId: review._id,
+        type: "like"
+      });
+
     } else {
+      //  LIKE
       review.likes.likedBy.push({
         userId,
         firstName: req.user.firstName,
@@ -386,28 +399,33 @@ export const createLike = async (req, res) => {
         profileImage: req.user.profileImage?.url || null,
         gender: req.user.gender
       });
-    }
 
-    if (review.userId.toString() !== userId.toString()) {
-      await Notification.create({
-        recipient: review.userId,
-        sender: userId,
-        type: "like",
-        reviewId: review._id,
-      });
+      //  CREATE notification only when liking
+      if (review.userId.toString() !== userId.toString()) {
+        await Notification.create({
+          recipient: review.userId,
+          sender: userId,
+          type: "like",
+          reviewId: review._id,
+        });
+      }
     }
-
 
     review.likes.count = review.likes.likedBy.length;
 
     await review.save();
-    res.status(200).json({ success: true, message: "Like added successfully", likes: review.likes });
+
+    res.status(200).json({
+      success: true,
+      message: likedIndex !== -1 ? "Unliked successfully" : "Liked successfully",
+      likes: review.likes
+    });
 
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });
   }
-}
+};
 
 //! CREATE REPLY (supports nested replies)
 export const createReply = async (req, res) => {
