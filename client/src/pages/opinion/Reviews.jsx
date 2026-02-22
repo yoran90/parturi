@@ -276,7 +276,7 @@ const Reviews = () => {
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "center" });
         element.style.backgroundColor = "#fff3cd";
-        setTimeout(() => (element.style.backgroundColor = ""), 10000);
+        setTimeout(() => (element.style.backgroundColor = ""), 1000);
         clearInterval(interval);
       }
     }, 10000);

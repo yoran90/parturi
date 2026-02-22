@@ -61,12 +61,9 @@ const Header = () => {
   }
 
   if (notification.type === "reply") {
-    // since you don't store replyId,
-    // scroll to the parent comment
+
     targetId = notification.commentId;
   }
-
-  console.log("Target ID:", targetId);
 
   navigate(`/opinion?scrollTo=${targetId}`);
 };
