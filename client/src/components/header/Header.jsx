@@ -144,7 +144,7 @@ useEffect(() => {
                 <div className='relative'>
                   {
                     unreadCount > 0 && (
-                      <span className='absolute -top-2 -right-1 bg-red-500 text-white rounded-full w-4.5 h-4.5 flex items-center justify-center text-[12px]'>{unreadCount}</span>
+                      <span className='absolute -top-2 -right-1 bg-red-500 text-white rounded-full w-4.5 h-4.5 flex items-center text-center font-semibold justify-center text-[11px]'>{unreadCount}</span>
                     )
                   }
                   <button type='button' className='cursor-pointer' onClick={() => toggleNotifications()}><IoMdNotifications size={23} /></button>
@@ -153,23 +153,32 @@ useEffect(() => {
             }
             
           </div>
-          <div className={`absolute right-20 mt-13 rounded-b w-72 bg-white border border-slate-200 overflow-hidden text-slate-800 shadow-lg z-50 ${showNotifications ? 'block' : 'hidden'}`}>
+          <div className={`absolute right-20 mt-13 rounded-b w-96 h-[93vh] overflow-y-scroll scrollbarStyle bg-white border border-slate-200 overflow-hidden text-slate-800 shadow-lg z-50 ${showNotifications ? 'block' : 'hidden'}`}>
               {userNotifications?.notifications?.length === 0 ? (
                 <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
               ) : (
                 userNotifications?.notifications?.map(n => (
                   <div key={n._id} className={`p-2 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
-                    <div>
-                      {n.sender?.profileImage?.url ? (
-                        <img className='w-6 h-6 rounded-full border border-slate-300 inline-block mr-2' src={n.sender.profileImage.url} alt={`${n.sender.firstName} ${n.sender.lastName}`} />
-                      ) : (
-                        <img className='w-6 h-6 rounded-full border border-slate-300 inline-block mr-2' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt={`${n.sender.firstName} ${n.sender.lastName}`} />
-                      )}
+                    <div className='flex items-center mb-1'>
+                      <div>
+                        {n.sender?.profileImage?.url ? (
+                          <img className='w-9 h-9 rounded-full border border-slate-300 inline-block mr-2' src={n.sender.profileImage.url} alt={`${n.sender.firstName} ${n.sender.lastName}`} />
+                        ) : (
+                          n.sender?.gender === 'men' ? (
+                            <img className='w-9 h-9 rounded-full border border-slate-300 inline-block mr-2' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt={`${n.sender.firstName} ${n.sender.lastName}`} />
+                          ) : (
+                            <img className='w-9 h-9 rounded-full border border-slate-300 inline-block mr-2' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt={`${n.sender.firstName} ${n.sender.lastName}`} />
+                          )
+                        )}
+                      </div>
+                      <div className='flex flex-col '>
+                        <p className="text-sm">{`${n.sender?.firstName} ${n.sender.lastName} ${n.type} your review`}</p>
+                        <small className='text-[11px] text-slate-700'>{new Date(n.createdAt).toLocaleString()}</small>
+                      </div>
                     </div>
-                    <p className="text-sm">{`${n.sender?.firstName} ${n.sender.lastName} ${n.type} your review`}</p>
                     {!n.isRead && (
                       <button className="text-xs text-blue-500" onClick={() => handleMarkAsRead(n._id)}>
-                        Mark as read
+                        Merkitse luetuksi
                       </button>
                     )}
                   </div>
@@ -261,7 +270,7 @@ useEffect(() => {
                 <div className='relative'>
                   {
                     unreadCount > 0 && (
-                      <span className='absolute -top-2 -right-1 bg-red-500 text-white rounded-full w-4.5 h-4.5 flex items-center justify-center text-[12px]'>{unreadCount}</span>
+                      <span className='absolute -top-2 -right-1 bg-red-500 text-white rounded-full w-4.5 h-4.5 flex items-center text-center font-semibold justify-center text-[11px]'>{unreadCount}</span>
                     )
                   }
                   <button type='button' className='cursor-pointer text-white' onClick={() => toggleNotifications()}><IoMdNotifications size={23} /></button>
@@ -280,25 +289,48 @@ useEffect(() => {
           </div>
         
         </div>
-        <div className={`fixed w-full h-screen flex flex-col items-center justify-center  ${showNotifications ? 'block' : 'hidden'}`}>
-          <div className='overflow-y-scroll scrollbarStyle bg-white border shadow-lg z-50 w-full h-full'>
-
-              {userNotifications?.notifications?.length === 0 ? (
-                <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
-              ) : (
-                userNotifications?.notifications?.map(n => (
-                  <div key={n._id} className={`p-2 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
-                    <p className="text-sm">{`${n.sender.firstName} ${n.sender.lastName} ${n.type} your review`}</p>
-                    {!n.isRead && (
-                      <button className="text-xs text-blue-500" onClick={() => handleMarkAsRead(n._id)}>
-                        Mark as read
-                      </button>
-                    )}
-                  </div>
-                ))
-              )}
+        <div className={`fixed inset-0 z-50 bg-black bg-opacity-50 ${showNotifications ? 'block' : 'hidden'}`}>
+          <div className="absolute bottom-0 w-full max-h-screen bg-white overflow-y-auto shadow-lg scrollbarStyle">
+            <div>
+              <h3 className="text-md font-semibold p-4 border-b text-slate-600">Ilmoitukset</h3>
+              <button className="absolute top-3 right-3 text-xs text-red-600 cursor-pointer" onClick={() => toggleNotifications()}>Sulje</button>
             </div>
+            {userNotifications?.notifications?.length === 0 ? (
+              <p className="p-4 text-sm text-red-500 text-center">No notifications 🔔</p>
+            ) : (
+              userNotifications?.notifications?.map(n => (
+                <div key={n._id} className={`p-4 border-b ${n.isRead ? 'bg-gray-100' : 'bg-white'}`}>
+                   <div className='flex items-center mb-1'>
+                      <div>
+                        {n.sender?.profileImage?.url ? (
+                          <img className='w-9 h-9 rounded-full border border-slate-300 inline-block mr-2' src={n.sender.profileImage.url} alt={`${n.sender.firstName} ${n.sender.lastName}`} />
+                        ) : (
+                          n.sender?.gender === 'men' ? (
+                            <img className='w-9 h-9 rounded-full border border-slate-300 inline-block mr-2' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt={`${n.sender.firstName} ${n.sender.lastName}`} />
+                          ) : (
+                            <img className='w-9 h-9 rounded-full border border-slate-300 inline-block mr-2' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt={`${n.sender.firstName} ${n.sender.lastName}`} />
+                          )
+                        )}
+                      </div>
+                      <div className='flex flex-col '>
+                        <p className="text-sm">{`${n.sender?.firstName} ${n.sender.lastName} ${n.type} your review`}</p>
+                        <small className='text-[11px] text-slate-700'>{new Date(n.createdAt).toLocaleString()}</small>
+                      </div>
+                    </div>
+                  {!n.isRead && (
+                    <button
+                      className="mt-2 text-xs text-blue-500"
+                      onClick={() => handleMarkAsRead(n._id)}
+                    >
+                      Merkitse luetuksi
+                    </button>
+                  )}
+                </div>
+              ))
+            )}
+
           </div>
+        </div>
         <div className={`${showTheHeader ? 'absolute flex flex-col bg-black z-50 top-14 right-0 w-full pl-3.5 py-6' : 'hidden'}`}>
           <NavLink to={'/'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Etusivu</button>
