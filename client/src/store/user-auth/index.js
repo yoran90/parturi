@@ -247,6 +247,23 @@ const authSlice = createSlice({
         state.userNotifications = null; 
       })
 
+      //! MARK NOTIFICATION AS READ
+      .addCase(markNotificationAsRead.pending, (state) => {
+        state.loading = true;  
+      })
+      .addCase(markNotificationAsRead.fulfilled, (state, action) => {
+        state.loading = false;
+        state.userNotifications = {
+          ...state.userNotifications,
+          notifications: action.payload.notifications
+        };
+      })
+      .addCase(markNotificationAsRead.rejected, (state) => {
+        state.loading = false;
+        state.isAuthenticated = false;
+        state.userNotifications = null; 
+      })
+
       //! USER LOGOUT
       .addCase(userLogout.pending, (state) => {
         state.loading = true;
