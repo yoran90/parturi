@@ -1,7 +1,7 @@
 import { jest, test, beforeEach, describe, expect } from "@jest/globals";
 
 
-// Mock Cloudinary
+
 jest.unstable_mockModule("../../config/cloudinary.js", () => ({
   default: {
     uploader: {

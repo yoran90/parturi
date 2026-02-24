@@ -32,7 +32,7 @@ describe("useInformation hook", () => {
 
     expect(axios.get).toHaveBeenCalledOnce();
     expect(axios.get).toHaveBeenCalledWith(
-      "http://localhost:8001/api/information/getInformation"
+      "https://parturi-backend.onrender.com/api/information/getInformation"
     );
   });
 

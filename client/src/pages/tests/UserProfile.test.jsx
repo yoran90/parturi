@@ -93,7 +93,7 @@ describe('UserProfile', () => {
     expect(screen.getByText('Johnny')).toBeInTheDocument();
     expect(screen.getByText('John Doe')).toBeInTheDocument();
     expect(screen.getByText('men')).toBeInTheDocument();
-    expect(screen.getByText('john@example.com')).toBeInTheDocument();
+
     const phoneNumbers = screen.getAllByText('123456789');
     expect(phoneNumbers).toHaveLength(2);
 

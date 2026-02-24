@@ -140,7 +140,7 @@ describe('OpinionForm', () => {
 
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledWith(
-        'http://localhost:8001/api/reviwes/addReview',
+        'https://parturi-backend.onrender.com/api/reviwes/addReview',
         expect.any(FormData),
         { withCredentials: true }
       );

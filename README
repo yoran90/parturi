@@ -1,6 +1,14 @@
 
 
+/* "test": "cross-env NODE_ENV=test node --experimental-vm-modules node_modules/jest/bin/jest.js --setupFiles ./tests/jest.env.js --setupFilesAfterEnv ./tests/setup.js" */  orginal
 
 
+/* 
+"jest": {
+    "testEnvironment": "node"
+  }
+ */
 
-
+server side  test code failed
+    authController.test.js
+    notificationController.test.js

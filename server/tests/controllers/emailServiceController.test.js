@@ -1,24 +1,32 @@
-import { jest, describe, test, expect } from "@jest/globals";
+import { jest, describe, test, expect, beforeEach } from "@jest/globals";
 import request from "supertest";
 
-jest.unstable_mockModule("nodemailer", () => ({
+// Mock sib-api-v3-sdk instead of nodemailer
+const sendTransacEmailMock = jest.fn();
+
+jest.unstable_mockModule("sib-api-v3-sdk", () => ({
   default: {
-    createTransport: jest.fn(),
+    ApiClient: {
+      instance: {
+        authentications: {
+          "api-key": {},
+        },
+      },
+    },
+    TransactionalEmailsApi: jest.fn().mockImplementation(() => ({
+      sendTransacEmail: sendTransacEmailMock,
+    })),
   },
 }));
 
-
-const nodemailer = (await import("nodemailer")).default;
 const app = (await import("../../app.js")).default;
 
-const sendMailMock  = jest.fn();
-
-nodemailer.createTransport.mockReturnValue({
-  sendMail: sendMailMock,
-});
-
 describe("Email Service Controller", () => {
-  test("shuold return 400 if fields are missing", async () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test("should return 400 if fields are missing", async () => {
     const res = await request(app)
       .post("/api/email/send-email")
       .send({
@@ -31,7 +39,7 @@ describe("Email Service Controller", () => {
   });
 
   test("should send email successfully", async () => {
-    sendMailMock.mockResolvedValueOnce({});
+    sendTransacEmailMock.mockResolvedValueOnce({});
 
     const res = await request(app).post("/api/email/send-email").send({
       name: "John",
@@ -44,21 +52,21 @@ describe("Email Service Controller", () => {
     expect(res.body.message).toBe("Email sent successfully");
   });
 
-  
   test("should return 500 if email fails", async () => {
-    sendMailMock.mockRejectedValueOnce(new Error("SMTP error"));
+    sendTransacEmailMock.mockRejectedValueOnce(
+      new Error("Sendinblue error")
+    );
 
     const res = await request(app)
-    .post("/api/email/send-email")
-    .send({
-      name: "John",
-      phone: "1234567890",
-      email: "test@test.com",
-      message: "Test Message",
-    });
+      .post("/api/email/send-email")
+      .send({
+        name: "John",
+        phone: "1234567890",
+        email: "test@test.com",
+        message: "Test Message",
+      });
 
     expect(res.statusCode).toBe(500);
     expect(res.body.message).toBe("Failed to send email");
-
   });
 });

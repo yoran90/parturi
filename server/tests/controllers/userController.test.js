@@ -198,8 +198,12 @@ describe("userForgetPassword", () => {
 
     expect(fakeUser.generatePasswordReset).toHaveBeenCalled();
     expect(fakeUser.save).toHaveBeenCalled();
-    expect(sendEmail).toHaveBeenCalledWith("test@example.com", expect.any(String),
-      expect.stringContaining("fake-reset-token")
+    expect(sendEmail).toHaveBeenCalledWith(
+      expect.objectContaining({
+        to: "test@example.com",
+        subject: "Password Reset Request",
+        htmlContent: expect.stringContaining("fake-reset-token")
+      })
     );
     expect(res.json).toHaveBeenCalledWith({ message: "Password reset link sent to email" });
   });
@@ -330,9 +334,11 @@ describe("sendVerificationEmail", () => {
     expect(fakeUser.generateEmailVerificationToken).toHaveBeenCalled();
     expect(fakeUser.save).toHaveBeenCalled();
     expect(sendEmail).toHaveBeenCalledWith(
-      "test@example.com",
-      "Email Verification",
-      expect.stringContaining("fake-token")
+      expect.objectContaining({
+        to: "test@example.com",
+        subject: "Email Verification",
+        htmlContent: expect.stringContaining("fake-token"),
+      })
     );
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
@@ -581,11 +587,15 @@ describe("userLogout", () => {
   it("should clear userToken cookie and return success message", async () => {
     await userLogout(req, res);
 
-    expect(res.clearCookie).toHaveBeenCalledWith("userToken");
+    expect(res.clearCookie).toHaveBeenCalledWith("userToken", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      path: "/",
+    });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ message: "User logged out successfully" });
   });
-
   it("should return 500 if there is a server error", async () => {
     res.clearCookie = jest.fn(() => { throw new Error("Cookie error"); });
 

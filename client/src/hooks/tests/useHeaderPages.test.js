@@ -35,7 +35,7 @@ describe("useHeaderPages hook", () => {
 
     expect(axios.get).toHaveBeenCalledOnce();
     expect(axios.get).toHaveBeenCalledWith(
-      "http://localhost:8001/api/headerPages/getHeaderPages"
+      "https://parturi-backend.onrender.com/api/headerPages/getHeaderPages"
     );
   });
 

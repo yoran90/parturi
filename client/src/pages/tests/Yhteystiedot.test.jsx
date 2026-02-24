@@ -201,14 +201,15 @@ describe('Yhteystiedot page', () => {
 
     fireEvent.click(screen.getByText('lähetä viesti'))
 
-    expect(axios.post).toHaveBeenCalledWith(
-      'http://localhost:8001/api/email/send-email',
+   expect(axios.post).toHaveBeenCalledWith(
+      'https://parturi-backend.onrender.com/api/email/send-email',
       {
         name: 'John Doe',
         phone: '+35812345678',
         email: 'test@test.com',
         message: 'Hello!',
-      }
+      },
+      { withCredentials: true }
     )
   })
 })

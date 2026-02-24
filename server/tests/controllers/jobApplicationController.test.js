@@ -1,18 +1,14 @@
 import { jest } from "@jest/globals";
 
-// 🔹 mock sendMail
-const sendMailMock = jest.fn();
+const sendEmailMock = jest.fn();
 
-// 🔹 mock nodemailer BEFORE importing the function
-jest.unstable_mockModule("nodemailer", () => ({
-  default: {
-    createTransport: jest.fn(() => ({
-      sendMail: sendMailMock
-    }))
-  }
+jest.unstable_mockModule("../../utlis/sendEmail.js", () => ({
+  __esModule: true,
+  sendEmail: sendEmailMock,
+  default: sendEmailMock
 }));
 
-// 🔹 now import AFTER mock
+
 const { sendJobApplicationEmail } = await import(
   "../../controllers/jobApplicationController.js"
 );
@@ -21,12 +17,12 @@ describe("sendJobApplicationEmail", () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
-    process.env.EMAIL_USER = "test@gmail.com";
-    process.env.EMAIL_PASSWORD = "password123";
+    process.env.SENDINBLUE_SENDER_EMAIL = "test@example.com";
+    process.env.SENDINBLUE_SENDER_NAME = "Test Sender";
   });
 
   it("should send email with resume attachment", async () => {
-    sendMailMock.mockResolvedValue({ messageId: "12345" });
+    sendEmailMock.mockResolvedValue({ messageId: "12345" });
 
     const data = {
       firstName: "John",
@@ -45,30 +41,27 @@ describe("sendJobApplicationEmail", () => {
 
     const result = await sendJobApplicationEmail(data);
 
-    // ✅ sendMail was called
-    expect(sendMailMock).toHaveBeenCalledTimes(1);
 
-    // ✅ verify email payload
-    expect(sendMailMock).toHaveBeenCalledWith(
+    expect(sendEmailMock).toHaveBeenCalledTimes(1);
+
+    expect(sendEmailMock).toHaveBeenCalledWith(
       expect.objectContaining({
-        from: `"John Doe" <john@example.com>`,
-        to: process.env.EMAIL_USER,
-        subject: "Uusi työhakemus käyttäjältä ➖ (John Doe)",
-        attachments: [
-          expect.objectContaining({
-            filename: "cv.pdf",
-            contentType: "application/pdf"
-          })
-        ]
+        to: process.env.SENDINBLUE_SENDER_EMAIL,
+        subject: `Uusi työhakemus käyttäjältä ${data.firstName} ${data.lastName}`,
+        htmlContent: expect.any(String),
+        attachment: expect.objectContaining({
+          name: "cv.pdf",
+          content: Buffer.from("fake-pdf").toString("base64")
+        })
       })
     );
 
-    // ✅ return value
-    expect(result).toEqual({ messageId: "12345" });
+  
+    expect(result).toEqual({ success: true });
   });
 
   it("should send email WITHOUT resume", async () => {
-    sendMailMock.mockResolvedValue({ accepted: ["test@gmail.com"] });
+    sendEmailMock.mockResolvedValue({ messageId: "67890" });
 
     const data = {
       firstName: "Jane",
@@ -81,17 +74,19 @@ describe("sendJobApplicationEmail", () => {
       resume: null
     };
 
-    await sendJobApplicationEmail(data);
+    const result = await sendJobApplicationEmail(data);
 
-    expect(sendMailMock).toHaveBeenCalledWith(
+    expect(sendEmailMock).toHaveBeenCalledWith(
       expect.objectContaining({
-        attachments: []
+        attachment: null
       })
     );
+
+    expect(result).toEqual({ success: true });
   });
 
-  it("should throw error if sendMail fails", async () => {
-    sendMailMock.mockRejectedValue(new Error("SMTP failed"));
+  it("should throw error if sendEmail fails", async () => {
+    sendEmailMock.mockRejectedValue(new Error("Sendinblue API failed"));
 
     const data = {
       firstName: "Error",
@@ -106,6 +101,6 @@ describe("sendJobApplicationEmail", () => {
 
     await expect(sendJobApplicationEmail(data))
       .rejects
-      .toThrow("SMTP failed");
+      .toThrow("Sendinblue API failed");
   });
 });

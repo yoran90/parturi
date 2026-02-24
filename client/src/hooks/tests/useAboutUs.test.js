@@ -27,7 +27,7 @@ describe("useAboutUs hook", () => {
 
     expect(axios.get).toHaveBeenCalledOnce();
     expect(axios.get).toHaveBeenCalledWith(
-      "http://localhost:8001/api/about-us/aboutUs"
+      "https://parturi-backend.onrender.com/api/about-us/aboutUs"
     );
   });
 

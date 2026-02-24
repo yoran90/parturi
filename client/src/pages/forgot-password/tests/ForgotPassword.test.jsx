@@ -86,7 +86,7 @@ describe('ForgotPassword Component', () => {
 
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledWith(
-        'http://localhost:8001/api/user/forgetPassword',
+        'https://parturi-backend.onrender.com/api/user/forgetPassword',
         { email: 'test@example.com' }
       )
     })

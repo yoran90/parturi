@@ -26,6 +26,8 @@ vi.mock('react-redux', async () => {
 });
 
 vi.mock('../../../store/user-auth', () => ({
+  getNotifications: vi.fn(() => ({ type: 'GET_NOTIFICATIONS' })),
+  markNotificationAsRead: vi.fn(() => ({ type: 'MARK_AS_READ' })),
   userLogout: vi.fn(() => ({ type: 'LOGOUT' }))
 }));
 

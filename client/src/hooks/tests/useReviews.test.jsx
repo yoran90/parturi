@@ -26,7 +26,8 @@ describe("Reviews hooks", () => {
     });
 
     expect(axios.get).toHaveBeenCalledWith(
-      "http://localhost:8001/api/reviwes/getReviews"
+      "https://parturi-backend.onrender.com/api/reviwes/getReviews",
+      { withCredentials: true }
     );
   });
 
@@ -45,7 +46,7 @@ describe("Reviews hooks", () => {
     });
 
     expect(axios.get).toHaveBeenCalledWith(
-      "http://localhost:8001/api/auth/getReview/123",
+      "https://parturi-backend.onrender.com/api/auth/getReview/123",
       { withCredentials: true }
     );
   });
@@ -72,7 +73,7 @@ describe("Reviews hooks", () => {
     expect(result.current.loadingForButton).toBe(false);
 
     expect(axios.delete).toHaveBeenCalledWith(
-      "http://localhost:8001/api/auth/deleteReview/456",
+      "https://parturi-backend.onrender.com/api/auth/deleteReview/456",
       { withCredentials: true }
     );
   });
@@ -97,7 +98,7 @@ describe("Reviews hooks", () => {
     expect(result.current.loadingForDeleteUserReview).toBe(false);
 
     expect(axios.delete).toHaveBeenCalledWith(
-      "http://localhost:8001/api/reviwes/deleteReview/789",
+      "https://parturi-backend.onrender.com/api/reviwes/deleteReview/789",
       { withCredentials: true }
     );
   });

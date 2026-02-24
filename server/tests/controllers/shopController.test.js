@@ -44,7 +44,7 @@ it("should create a new shop if none exists", async () => {
   expect(res.status).toHaveBeenCalledWith(200);
   expect(res.json).toHaveBeenCalledWith(
     expect.objectContaining({
-      message: "Shop media updated",
+      message: "Shop media saved successfully",
       shop: expect.objectContaining({
         title: "My Shop",
         description: "Shop Desc",
@@ -60,10 +60,8 @@ it("should create a new shop if none exists", async () => {
 
 it("should update existing shop media and add new files", async () => {
   const req = {
-    body: { title: "Updated Shop" },
-    files: [
-      { path: "newimage.jpg", filename: "newimg", mimetype: "image/jpeg" },
-    ],
+    body: { title: "Updated Shop", existingMedia: JSON.stringify(["oldimg"]) },
+    files: [{ path: "newimage.jpg", filename: "newimg", mimetype: "image/jpeg" }],
   };
 
   const res = mockRes();
@@ -81,14 +79,14 @@ it("should update existing shop media and add new files", async () => {
 
   expect(Shop.findOne).toHaveBeenCalled();
   expect(existingShop.save).toHaveBeenCalled();
-  expect(existingShop.media.length).toBe(2); 
+  expect(existingShop.media.length).toBe(2); // old + new
 
   expect(existingShop.title).toBe("Updated Shop");
 
   expect(res.status).toHaveBeenCalledWith(200);
   expect(res.json).toHaveBeenCalledWith(
     expect.objectContaining({
-      message: "Shop media updated",
+      message: "Shop media saved successfully",
       shop: expect.objectContaining({ title: "Updated Shop" }),
     })
   );

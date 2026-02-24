@@ -113,7 +113,7 @@ describe('Reviews Component', () => {
 
     renderWithRouter(<Reviews />)
 
-    fireEvent.click(screen.getByText(/1 Tykätty/i))
+    fireEvent.click(screen.getByRole('button', { name: /tykätty/i }))
 
     await waitFor(() => {
       const headings = screen.getAllByRole('heading', { name: /tykätty/i })

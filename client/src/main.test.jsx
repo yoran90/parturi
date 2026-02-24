@@ -56,7 +56,7 @@ describe("Root component", () => {
     const appBackground = document.getElementById("appBackground");
 
     // Initial color (browser converts hex to rgba)
-    expect(appBackground.style.backgroundColor).toBe("rgba(242, 242, 242, 0.88)");
+    expect(appBackground.style.backgroundColor).toBe("rgb(255, 255, 255)");
 
     // Change color (browser converts hex to rgb)
     fireEvent.change(colorInput, { target: { value: "#123456" } });

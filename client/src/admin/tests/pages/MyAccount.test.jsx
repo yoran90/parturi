@@ -128,7 +128,7 @@ describe('MyAccount Component', () => {
     });
 
     expect(axios.put).toHaveBeenCalledWith(
-      'http://localhost:8001/api/auth/updateUser',
+      'https://parturi-backend.onrender.com/api/auth/updateUser',
       expect.any(FormData),
       { withCredentials: true }
     );

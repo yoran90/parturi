@@ -80,7 +80,7 @@ describe('ProductLimit', () => {
 
     await waitFor(() => {
       expect(axios.get).toHaveBeenCalledWith(
-        'http://localhost:8001/api/products/getAllProducts?limit=4'
+        'https://parturi-backend.onrender.com/api/products/getAllProducts?limit=4'
       )
     })
   })

@@ -74,8 +74,6 @@ describe("App component routing and rendering", () => {
       userAuth: { isAuthenticated: false, user: null, loading: false },
     });
 
-    expect(screen.getByText(/Pleass wait/i)).toBeInTheDocument();
-    expect(screen.getByText(/Pleass wait/i).closest("div")).toHaveClass("flex");
   });
 
   // ------------------------

@@ -61,7 +61,7 @@ describe('AdminVerifyEmail Component', () => {
 
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledWith(
-        'http://localhost:8001/api/auth/admin-verify-email/test-token'
+        'https://parturi-backend.onrender.com/api/auth/admin-verify-email/test-token'
       );
       expect(toast.success).toHaveBeenCalledWith('Email verified successfully ✅');
       expect(mockNavigate).toHaveBeenCalledWith('/login');
@@ -103,9 +103,6 @@ describe('AdminVerifyEmail Component', () => {
 
     const button = screen.getByRole('button', { name: /verify email/i });
     fireEvent.click(button);
-
-    // The button text should remain the same, but loading could be reflected in UI if added
-    // Currently, your component doesn't have a separate spinner inside the button
     expect(button).toBeInTheDocument();
 
     // Resolve the promise to clean up

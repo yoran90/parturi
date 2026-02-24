@@ -94,7 +94,7 @@ describe('AdminResetPasssword Component', () => {
 
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledWith(
-        'http://localhost:8001/api/auth/admin-reset-password/test-token',
+        'https://parturi-backend.onrender.com/api/auth/admin-reset-password/test-token',
         { password: 'password123', confirmPassword: 'password123' }
       );
       expect(toast.success).toHaveBeenCalledWith('Password reset successful ✅');

@@ -4,7 +4,8 @@ import crypto from "crypto";
 import jwt from "jsonwebtoken";
 //import { v2 as cloudinaryV2 } from "cloudinary";
 import cloudinary from "cloudinary";
-import { sendEmail } from "../utlis/sendEmail.js";
+import { sendEmail } from "../utlis/sendEmail.js"; 
+
 import mongoose from "mongoose";
 import Reviews from "../models/reviewsModel.js";
 

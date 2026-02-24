@@ -121,8 +121,9 @@ describe("Kirjaudu Component", () => {
 
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledWith(
-        "http://localhost:8001/api/user/send-verification-email",
-        { email: "test@example.com" }
+        "https://parturi-backend.onrender.com/api/user/send-verification-email",        
+        { email: "test@example.com" },
+        { withCredentials: true }
       );
     });
   });

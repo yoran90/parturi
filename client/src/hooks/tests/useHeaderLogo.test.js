@@ -63,7 +63,7 @@ describe("useGallery hook", () => {
 
     expect(axios.get).toHaveBeenCalledOnce();
     expect(axios.get).toHaveBeenCalledWith(
-      "http://localhost:8001/api/media/galleryImages"
+      "https://parturi-backend.onrender.com/api/media/galleryImages"
     );
   });
 

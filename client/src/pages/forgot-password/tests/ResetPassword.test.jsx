@@ -134,7 +134,7 @@ describe('ResetPassword Component', () => {
 
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledWith(
-        'http://localhost:8001/api/user/reset-password/test-reset-token',
+        'https://parturi-backend.onrender.com/api/user/reset-password/test-reset-token',
         {
           password: 'password123',
           confirmPassword: 'password123',

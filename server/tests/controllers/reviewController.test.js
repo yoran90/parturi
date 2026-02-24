@@ -12,6 +12,13 @@ jest.unstable_mockModule("../../config/cloudinary.js", () => ({
   },
 }));
 
+jest.unstable_mockModule("../../models/notificationModel.js", () => ({
+  default: {
+    create: jest.fn(),
+    findOneAndDelete: jest.fn()
+  }
+}));
+
 
 
 jest.unstable_mockModule("../../models/reviewsModel.js", () => ({
@@ -25,6 +32,7 @@ jest.unstable_mockModule("../../models/reviewsModel.js", () => ({
 
 const cloudinary = (await import("../../config/cloudinary.js")).default;
 const Reviews = (await import("../../models/reviewsModel.js")).default;
+const Notification = (await import("../../models/notificationModel.js")).default;
 const { 
   createReview, getReviews, getReviewById, getOwnReviews, deleteReviewByUser, userUpdateOwnReview, getReviewByIdAndDelete, createComments, getComments, createLike, createReply
 } = await import("../../controllers/reviewsController.js");
@@ -694,7 +702,13 @@ describe("Reviews Controller - createComments", () => {
   });
 
   it("should add comment successfully without image", async () => {
-    const fakeReview = { comments: [], save: jest.fn().mockResolvedValue(true) };
+    const fakeReview = {
+      _id: "review123",
+      userId: "anotherUser",
+      comments: [],
+      save: jest.fn().mockResolvedValue(true),
+    };
+
     Reviews.findById.mockResolvedValue(fakeReview);
 
     await createComments(req, res);
@@ -711,7 +725,14 @@ describe("Reviews Controller - createComments", () => {
 
   it("should add comment with image", async () => {
     req.file = { path: "fake-path.jpg" };
-    const fakeReview = { comments: [], save: jest.fn().mockResolvedValue(true) };
+
+    const fakeReview = {
+      _id: "review123",
+      userId: "anotherUser",
+      comments: [],
+      save: jest.fn().mockResolvedValue(true),
+    };
+
     Reviews.findById.mockResolvedValue(fakeReview);
     cloudinary.uploader.upload.mockResolvedValue({
       secure_url: "http://cloudinary.com/fake.jpg",
@@ -726,6 +747,10 @@ describe("Reviews Controller - createComments", () => {
       public_id: "cloud123"
     });
     expect(res.status).toHaveBeenCalledWith(201);
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
+      success: true,
+      message: "Comment added successfully"
+    }));
   });
 
   it("should handle errors and return 500", async () => {
@@ -859,42 +884,51 @@ describe("Reviews Controller - createLike", () => {
   });
 
   it("should add a like if user hasn't liked yet", async () => {
-    const fakeReview = {
-      likes: { count: 0, likedBy: [] },
-      save: jest.fn().mockResolvedValue(true)
-    };
+  const fakeReview = {
+    _id: "review123",
+    userId: "author123",
+    likes: { likedBy: [], count: 0 },
+    save: jest.fn().mockResolvedValue(true)
+  };
+  Reviews.findById.mockResolvedValue(fakeReview);
 
-    Reviews.findById.mockResolvedValue(fakeReview);
+  await createLike(req, res);
 
-    await createLike(req, res);
-
-    expect(Reviews.findById).toHaveBeenCalledWith("review123");
-    expect(fakeReview.likes.likedBy.length).toBe(1);
-    expect(fakeReview.likes.count).toBe(1);
-    expect(fakeReview.save).toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
-      success: true,
-      message: "Like added successfully",
-      likes: fakeReview.likes
-    });
-  });
+  expect(fakeReview.likes.likedBy.length).toBe(1);
+  expect(fakeReview.likes.count).toBe(1);
+  expect(fakeReview.save).toHaveBeenCalled();
+  expect(res.status).toHaveBeenCalledWith(200);
+  expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
+    success: true,
+    message: "Liked successfully",
+    likes: expect.objectContaining({ count: 1 })
+  }));
+});
 
   it("should remove a like if user already liked", async () => {
-    const fakeReview = {
-      likes: { count: 1, likedBy: [{ userId: "user123" }] },
-      save: jest.fn().mockResolvedValue(true)
-    };
+  const fakeReview = {
+    _id: "review123",
+    userId: "author123",
+    likes: {
+      likedBy: [{ userId: "user123", firstName: "John", lastName: "Doe", profileImage: "profile.jpg", gender: "male" }],
+      count: 1
+    },
+    save: jest.fn().mockResolvedValue(true)
+  };
+  Reviews.findById.mockResolvedValue(fakeReview);
 
-    Reviews.findById.mockResolvedValue(fakeReview);
+  await createLike(req, res);
 
-    await createLike(req, res);
-
-    expect(fakeReview.likes.likedBy.length).toBe(0);
-    expect(fakeReview.likes.count).toBe(0);
-    expect(fakeReview.save).toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(200);
-  });
+  expect(fakeReview.likes.likedBy.length).toBe(0);
+  expect(fakeReview.likes.count).toBe(0);
+  expect(fakeReview.save).toHaveBeenCalled();
+  expect(res.status).toHaveBeenCalledWith(200);
+  expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
+    success: true,
+    message: "Unliked successfully",
+    likes: expect.objectContaining({ count: 0 })
+  }));
+});
 
   it("should return 404 if review not found", async () => {
     Reviews.findById.mockResolvedValue(null);
@@ -944,9 +978,8 @@ describe("Reviews Controller - createReply", () => {
 
   it("should add a reply to an existing comment", async () => {
     const fakeReview = {
-      comments: [
-        { _id: "comment123", replies: [] }
-      ],
+      _id: "review123",
+      comments: [{ _id: "comment123", userId: "author123", replies: [] }],
       save: jest.fn().mockResolvedValue(true)
     };
 
@@ -957,6 +990,7 @@ describe("Reviews Controller - createReply", () => {
     expect(fakeReview.comments[0].replies.length).toBe(1);
     expect(fakeReview.comments[0].replies[0].reply).toBe("This is a reply");
     expect(fakeReview.save).toHaveBeenCalled();
+    expect(Notification.create).toHaveBeenCalled();  // ✅ notification branch triggered
     expect(res.status).toHaveBeenCalledWith(201);
     expect(res.json).toHaveBeenCalledWith({
       success: true,
@@ -998,7 +1032,8 @@ describe("Reviews Controller - createReply", () => {
     });
 
     const fakeReview = {
-      comments: [{ _id: "comment123", replies: [] }],
+      _id: "review123",
+      comments: [{ _id: "comment123", userId: "author123", replies: [] }],
       save: jest.fn().mockResolvedValue(true)
     };
 
@@ -1010,7 +1045,9 @@ describe("Reviews Controller - createReply", () => {
       url: "uploaded.jpg",
       publicId: "img123"
     });
-    expect(fakeReview.save).toHaveBeenCalled();
+
+    expect(fakeReview.save).toHaveBeenCalled();        // ✅ now gets called
+    expect(Notification.create).toHaveBeenCalled();    // ✅ notification triggered
     expect(res.status).toHaveBeenCalledWith(201);
   });
 

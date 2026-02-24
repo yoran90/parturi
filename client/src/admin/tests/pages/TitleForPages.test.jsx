@@ -116,11 +116,12 @@ describe('TitleForPages Component', () => {
     fireEvent.click(screen.getByText('Add Save'));
 
     await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledWith(
-        'http://localhost:8001/api/titleForPages/addT-Dforpage',
-        expect.any(Object)
-      );
-    });
+    expect(axios.post).toHaveBeenCalledWith(
+      'https://parturi-backend.onrender.com/api/titleForPages/addT-Dforpage',
+      expect.objectContaining({ serviceTitle: 'Service Title' }), // formData
+      { withCredentials: true }
+    );
+  });
   });
 
   it('submits PUT request when existing data exists', async () => {
@@ -139,11 +140,12 @@ describe('TitleForPages Component', () => {
     fireEvent.click(await screen.findByText('Add Save'));
 
     await waitFor(() => {
-      expect(axios.put).toHaveBeenCalledWith(
-        'http://localhost:8001/api/titleForPages/updateT-Dforpage',
-        expect.any(Object)
-      );
-    });
+    expect(axios.put).toHaveBeenCalledWith(
+      'https://parturi-backend.onrender.com/api/titleForPages/updateT-Dforpage',
+      expect.objectContaining({ serviceTitle: 'Existing' }), // formData
+      { withCredentials: true }
+    );
+  });
   });
 
   it('shows loading state while saving', async () => {

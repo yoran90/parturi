@@ -131,7 +131,8 @@ describe('DisplayProduct (Vitest)', () => {
 
     await waitFor(() => {
       expect(axios.delete).toHaveBeenCalledWith(
-        'http://localhost:8001/api/products/deleteProduct/1'
+        'https://parturi-backend.onrender.com/api/products/deleteProduct/1',
+        { withCredentials: true }
       );
     });
 

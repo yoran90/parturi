@@ -31,7 +31,7 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-function Root() {
+export function Root() {
   const [bgColor, setBgColor] = useState('#ffffff');
 
   return (

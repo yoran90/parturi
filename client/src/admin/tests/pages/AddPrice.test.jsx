@@ -106,12 +106,13 @@ describe("AddPrice Component", () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledWith(
-        "http://localhost:8001/api/price/addprice",
-        { prices: [{ _id: null, title: "Haircut Prices", service: "Haircut – 33 €" }] }
-      );
-      expect(toast.success).toHaveBeenCalledWith("Prices added successfully");
-    });
+    expect(axios.post).toHaveBeenCalledWith(
+      "https://parturi-backend.onrender.com/api/price/addprice",
+      { prices: [{ _id: null, title: "Haircut Prices", service: "Haircut – 33 €" }] },
+      { withCredentials: true } 
+    );
+    expect(toast.success).toHaveBeenCalledWith("Prices added successfully");
+  });
   });
 
 

@@ -11,7 +11,6 @@ export const sendJobApplicationEmail = async ({
   message
 }) => {
   try {
-    // ✅ Build HTML content
     const htmlContent = `
       <h2>Uusi työhakemus käyttäjältä (${firstName} ${lastName})</h2>
       <p><strong>👤 Nimi:</strong> ${firstName} ${lastName}</p>
@@ -22,7 +21,6 @@ export const sendJobApplicationEmail = async ({
       <p><strong>📜 Viesti:</strong><br>${message || "(ei viestiä)"}</p>
     `;
 
-    // ✅ Format attachment if resume exists
     let attachment = null;
     if (resume && resume.buffer) {
       const base64Content = resume.buffer.toString('base64');
@@ -32,7 +30,6 @@ export const sendJobApplicationEmail = async ({
       };
     }
 
-    // ✅ Use centralized sendEmail function
     await sendEmail({
       to: process.env.SENDINBLUE_SENDER_EMAIL,
       subject: `Uusi työhakemus käyttäjältä ${firstName} ${lastName}`,
