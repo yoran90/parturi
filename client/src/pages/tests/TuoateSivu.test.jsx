@@ -150,7 +150,9 @@ describe('TuoateSivu', () => {
     })
 
     expect(screen.getByText('20% alennus')).toBeInTheDocument()
-    expect(screen.getByText('100€')).toBeInTheDocument()
+    expect(
+      screen.getByText(`${mockProduct.price.toFixed(2)}€`)
+    ).toBeInTheDocument()
   })
 
   it('renders ProductLimit section', async () => {

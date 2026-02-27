@@ -37,13 +37,13 @@ const YksiTuoate = ({ id, images, title, price, discount, description }) => {
           {
               discount > 0 ? (
                 <div className='flex items-center justify-center gap-2 relative'>
-                  <p className=' text-slate-500 text-xs line-through'>{price}€</p>
+                  <p className=' text-slate-500 text-xs line-through'>{(price).toFixed(2)}€</p>
                   <p className='font-semibold text-sm text-red-600'>{(price - (price * discount) / 100).toFixed(2)}€</p>
                   <small className='absolute -top-6 right-0 text-xs bg-red-500 text-white py-1 px-2'>{discount}%</small>
                 </div>
               ) : (
                 <div>
-                  <p className='font-semibold text-sm text-red-600'>{price}€</p>
+                  <p className='font-semibold text-sm text-red-600'>{(price).toFixed(2)}€</p>
                 </div>
               )
             }

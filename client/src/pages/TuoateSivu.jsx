@@ -97,14 +97,14 @@ const TuoateSivu = () => {
                 product?.discount > 0 ? (
                   <div className='flex flex-col text-sm  gap-2.5'>
                     <div className='flex gap-2.5'>
-                      <p className='text-lg text-slate-400 line-through'>{product?.price}€</p>
+                      <p className='text-lg text-slate-400 line-through'>{Number(product?.price).toFixed(2)}€</p>
                       <p className='font-semibold text-lg text-red-600'>{(product.price - (product.price * product.discount) / 100).toFixed(2)}€</p>
                     </div>
                     <p className='bg-red-500 text-white py-1 px-4 rounded text-sm'>{product?.discount}% alennus</p>
                   </div>
                 ) : (
                   <div>
-                    <p className='font-semibold text-lg text-red-600'>{product?.price}€ </p>
+                    <p className='font-semibold text-lg text-red-600'>{Number(product?.price).toFixed(2)}€ </p>
                   </div>
                 )
               }

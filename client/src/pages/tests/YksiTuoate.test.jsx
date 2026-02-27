@@ -51,13 +51,17 @@ describe('YksiTuoate component', () => {
     renderComponent()
     const discountedPrice = (mockProduct.price - (mockProduct.price * mockProduct.discount) / 100).toFixed(2)
     expect(screen.getByText(`${discountedPrice}€`)).toBeInTheDocument()
-    expect(screen.getByText(`${mockProduct.price}€`)).toBeInTheDocument() // original price line-through
+    expect(
+      screen.getByText(new RegExp(`${mockProduct.price.toFixed(2)}€`))
+    ).toBeInTheDocument()
     expect(screen.getByText(`${mockProduct.discount}%`)).toBeInTheDocument()
   })
 
   test('renders price correctly if no discount', () => {
     renderComponent({ discount: 0 })
-    expect(screen.getByText(`${mockProduct.price}€`)).toBeInTheDocument()
+    expect(
+      screen.getByText(new RegExp(`${mockProduct.price.toFixed(2)}€`))
+    ).toBeInTheDocument()
     expect(screen.queryByText(/%/)).not.toBeInTheDocument()
   })
 })
