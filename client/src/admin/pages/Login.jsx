@@ -67,8 +67,8 @@ const Login = () => {
       }
     })
     .catch((error) => {
-      console.log(error);
-      toast.error(error.response?.data?.error || "Invalid email or password");
+      console.log("Login error:", error);
+      toast.error(error || "Invalid email or password");
     });
   }
 
