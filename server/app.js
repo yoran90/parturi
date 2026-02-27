@@ -157,9 +157,6 @@ app.use(cors({
 }));
 
 
-
-import rateLimit from 'express-rate-limit';
-
 // Limit for login attempts
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, //! 15 min
