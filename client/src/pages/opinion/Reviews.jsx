@@ -584,9 +584,9 @@ const Reviews = () => {
                                 { comment?.replies?.length === 0 &&
                                   openReplyInput.reviewId === item._id && openReplyInput.commentId === comment._id && (
                                     <div className='ml-10 mt-3'>
-                                      {/* <hr className='mb-3 text-slate-200' /> */}
+                                      <hr className='mb-3 text-slate-200' />
                                       {
-                                        user && (
+                                        user ? (
                                           <div className='flex flex-col items-center gap-1 cursor-pointer'>
                                             <div className='flex items-center gap-1.5 w-full'>
                                               {
@@ -645,7 +645,22 @@ const Reviews = () => {
                                               }
                                             </div>
                                           </div>
-                                        )  
+                                        ) : (
+                                          <div onClick={() => {navigate('/kirjaudu'); toast.error('Jos haluat kommentoida, kirjaudu sisään täältä. tai rekisteröidy')}} className='w-full flex justify-between rounded-full text-[12px] px-3 py-1 border border-slate-300'>
+                                            <p>Kirjaudu sisään vastuakseksi ...</p>
+                                            <label className='pl-4'>
+                                              {
+                                                loadinComment ? (
+                                                  <div>
+                                                    <Loading width={16} height={16} border='3px' topBorder='3px' borderColor='red' borderTopColor='white' />
+                                                  </div>
+                                                ) : (
+                                                  <IoMdImage size={15} className='cursor-pointer' />
+                                                )
+                                              }
+                                            </label>
+                                          </div>
+                                        )
                                       }
                                    
                                     </div>
