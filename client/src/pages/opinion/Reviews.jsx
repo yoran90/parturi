@@ -574,17 +574,17 @@ const Reviews = () => {
                                         reviewId={item._id}
                                         parentId={comment._id}
                                         onReply={handleSubmitReply}
-                                         openReply={openReplyInput.reviewId === item._id && openReplyInput.commentId === comment._id}
+                                        openReply={openReplyInput.reviewId === item._id && openReplyInput.commentId === comment._id}
                                       />
                                     ))}
                                   </div>
                                 )}
 
                                 {/* add replay comment */}
-                                {
+                                { comment?.replies?.length === 0 &&
                                   openReplyInput.reviewId === item._id && openReplyInput.commentId === comment._id && (
                                     <div className='ml-10 mt-3'>
-                                      <hr className='mb-3 text-slate-200' />
+                                      {/* <hr className='mb-3 text-slate-200' /> */}
                                       {
                                         user && (
                                           <div className='flex flex-col items-center gap-1 cursor-pointer'>
@@ -600,7 +600,7 @@ const Reviews = () => {
                                                   )
                                                 )
                                               }
-                                              <form onSubmit={(e) => {
+                                             { <form onSubmit={(e) => {
                                                   e.preventDefault();
                                                   const key = `${item._id}-${comment._id}`;
                                                   
@@ -612,7 +612,7 @@ const Reviews = () => {
                                                 }} 
                                                 className='w-full flex rounded-full text-[12px] px-3 py-1 border border-slate-300'
                                               >
-                                                <input type="text" value={reply[`${item._id}-${comment._id}`] || ''} onChange={(e) => setReply({ ...reply, [`${item._id}-${comment._id}`]: e.target.value })} className='border-none w-full outline-none' placeholder='Kirjoittaa kommentti...'/>
+                                                <input type="text" value={reply[`${item._id}-${comment._id}`] || ''} onChange={(e) => setReply({ ...reply, [`${item._id}-${comment._id}`]: e.target.value })} className='border-none w-full outline-none' placeholder='Kirjoita vastaus...'/>
                                                 <label htmlFor={`imageReply-${item._id}-${comment._id}`} className='pl-4'>
                                                   {
                                                     loadingReply ? (
@@ -628,7 +628,7 @@ const Reviews = () => {
                                                 <button type='submit'>
                                                   <RiSendPlaneFill className='-mt-0.5 ml-1 mr-1' size={15} />
                                                 </button>
-                                              </form>
+                                              </form>}
                                             </div>
                                             <div className='w-full relative overflow-hidden'>
                                               {

@@ -94,16 +94,24 @@ useEffect(() => {
         {/* Reply Button */}
         <div className='flex gap-4 text-[12px] ml-8 mt-2.5'>
           {/* replya */}
-          <button type='button' aria-label="Toggle reply" onClick={() => setShowReplyBox(!showReplyBox)} className='flex gap-1 text-blue-500 cursor-pointer'>
-            {showReplyBox ? (
-              <IoIosArrowDown />
-            ) : (
-              <IoIosArrowUp />
-            )
-          }
-            <p>Näytä vastaus</p>
-            <FaReply className='text-[8px]' />
-          </button>
+        
+            <div className='flex gap-4 text-[12px] ml-8 mt-2.5'>
+              <button
+                type='button'
+                aria-label="Toggle reply"
+                onClick={() => setShowReplyBox(!showReplyBox)}
+                className='flex gap-1 text-blue-500 cursor-pointer'
+              >
+                {showReplyBox ? <IoIosArrowDown /> : <IoIosArrowUp />}
+                <p>
+                  {reply?.replies?.length > 0
+                    ? `Näytä vastaukset (${reply.replies.length})`
+                    : "Vastaa"}
+                </p>
+                <FaReply className='text-[8px]' />
+              </button>
+            </div>
+          
           {/* like comment */}
           {/* <div className='flex gap-1 items-center text-blue-500'>
             <BsHandThumbsUp size={14} />
@@ -170,11 +178,13 @@ useEffect(() => {
         )}
           </>
         ) : (
-          <div className='mt-3 ml-8'> 
-          <div onClick={() => {navigate('/kirjaudu'); toast.error('Jos haluat kommentoida, kirjaudu sisään täältä. tai rekisteröidy')}} className='w-full flex justify-between rounded-full text-[12px] px-3 py-1 border border-slate-300'>
-            <p>Kirjaudu sisään kommentoidaksesi ...</p>
+          
+             <div className='mt-3 ml-8'> 
+            <div onClick={() => {navigate('/kirjaudu'); toast.error('Jos haluat kommentoida, kirjaudu sisään täältä. tai rekisteröidy')}} className='w-full flex justify-between rounded-full text-[12px] px-3 py-1 border border-slate-300'>
+              <p>Kirjaudu sisään vastaukseksi ...</p>
+            </div>
           </div>
-          </div>
+         
         )}
       </div>
 

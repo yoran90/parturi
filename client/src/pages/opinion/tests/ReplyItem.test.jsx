@@ -147,14 +147,16 @@ describe("ReplyItem", () => {
     });
   });
 
-  it("shows login prompt if user is not logged in", () => {
-    const { container } = renderComponent(null);
+ it("shows login prompt if user is not logged in", () => {
+    renderComponent(null);
 
-    const loginPrompt = container.querySelector("div.ml-8 > div");
+    const toggleBtn = screen.getAllByLabelText("Toggle reply")[0];
+    fireEvent.click(toggleBtn);
 
-    expect(loginPrompt).toBeInTheDocument();
+    const loginPrompts = screen.queryAllByText(/Kirjaudu sisään/i);
+    const loginPrompt = loginPrompts[0];
 
-    fireEvent.click(loginPrompt);
+    fireEvent.click(loginPrompt.closest("div"));
 
     expect(mockNavigate).toHaveBeenCalledWith("/kirjaudu");
     expect(toast.error).toHaveBeenCalled();
