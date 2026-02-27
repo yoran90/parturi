@@ -162,16 +162,13 @@ import rateLimit from 'express-rate-limit';
 
 // Limit for login attempts
 const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, 
-  max: 5, 
+  windowMs: 15 * 60 * 1000, //! 15 min
+  max: 5,
   message: { error: "Liian monta kirjautumisyritystä. Odota 15 minuuttia." },
-  standardHeaders: true, 
+  standardHeaders: true,
   legacyHeaders: false,
-  keyGenerator: (req) => {
-    //! Use email or username as key if you want per user instead of per IP
-    return req.body.email || req.ip;
-  },
-  skipSuccessfulRequests: true, //! only count failed attempts
+  keyGenerator: (req) => req.body.email || req.ip,
+  skipSuccessfulRequests: true, //! count all requests; frontend will show message
 });
 
 app.get("/test", (req, res) => {

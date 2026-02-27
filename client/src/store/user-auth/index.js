@@ -29,8 +29,11 @@ export const userLogin = createAsyncThunk("userAuth/login", async ({ email, pass
     return response.data;
   } catch (error) {
     console.log(error);
-    const message = error.response?.data?.message || error.message;
-    return rejectWithValue(message); 
+    const message =
+      error.response?.data?.error || 
+      error.response?.data?.message ||
+      error.message;
+    return rejectWithValue(message);
   }
 })
 

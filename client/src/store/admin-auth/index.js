@@ -12,14 +12,18 @@ const initialState = {
 
 //! ADMIN LOGIN
 export const adminLogin = createAsyncThunk("adminAuth/login", async ({ email, password }, { rejectWithValue }) => {
-  try {
-    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, { email, password }, { withCredentials: true });
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    return rejectWithValue(error.response?.data || error.message);
-    
-  }
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, { email, password }, { withCredentials: true });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      const message =
+        error.response?.data?.error || 
+        error.response?.data?.message ||
+        error.message;
+      return rejectWithValue(message);
+      
+    }
   }
 );
 

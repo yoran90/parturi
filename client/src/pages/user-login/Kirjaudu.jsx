@@ -86,7 +86,7 @@ const Kirjaudu = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error(error);
+      toast.error(error.response?.data?.error || "Invalid email or password");
 
     } finally {
       setLoadingForButton(false);

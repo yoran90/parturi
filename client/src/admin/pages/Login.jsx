@@ -66,8 +66,9 @@ const Login = () => {
         navigate("/admin");
       }
     })
-    .catch((err) => {
-      toast.error(err?.message);
+    .catch((error) => {
+      console.log(error);
+      toast.error(error.response?.data?.error || "Invalid email or password");
     });
   }
 
