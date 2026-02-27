@@ -271,7 +271,7 @@ const JobApplication = ({ close }) => {
                 </button>
               </div>
             </form>
-            <div className='md:ml-[25%] md:mt-2 -mt-8 gap-0.5 flex flex-col'>
+            <div className='md:ml-[25%] md:mt-2 -mt-8 gap-1 flex flex-col'>
               <p className="text-xs text-slate-500">
                 Tarkistathan, että kaikki pakolliset kentät (*) on täytetty ennen lähettämistä.
               </p>
