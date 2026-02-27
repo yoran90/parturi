@@ -1,4 +1,4 @@
-import rateLimit from 'express-rate-limit'; 
+import rateLimit, { ipKeyGenerator } from "express-rate-limit";
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -164,7 +164,7 @@ const loginLimiter = rateLimit({
   message: { error: "Liian monta kirjautumisyritystä. Odota 15 minuuttia." },
   standardHeaders: true,
   legacyHeaders: false,
-  keyGenerator: (req) => req.body.email || req.ip,
+  keyGenerator: (req) => req.body.email || ipKeyGenerator(req),
   skipSuccessfulRequests: true, //! count all requests; frontend will show message
 });
 
