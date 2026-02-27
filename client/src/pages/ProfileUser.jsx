@@ -347,7 +347,7 @@ const ProfileUser = () => {
         {/* end user profile */}
 
         {/* open model confirm delete own account */}
-        { confirmDeleteUserOwnAccownt && (
+        {confirmDeleteUserOwnAccownt && (
             <ConfirmDelete
               closeModel={() => setConfirmDeleteUserOwnAccownt(false)} 
               cacelButton="Peruuta"
@@ -357,6 +357,7 @@ const ProfileUser = () => {
               confirmButton="Poista tili"
               onConfirm={handleDeleteOwnAccount}
               loading={loadingConfrimDeleteUserOwnAccount}
+              loadingText="Poistetaan tili"
             />
           )
         }
