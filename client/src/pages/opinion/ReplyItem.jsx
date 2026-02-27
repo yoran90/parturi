@@ -71,15 +71,15 @@ useEffect(() => {
             )
           }
           <div className='flex flex-col'>
-            <p className="text-[12px]">{reply?.firstName} {reply?.lastName}</p>
-            <small className='text-[11px] text-slate-900'>
+            <p className="text-[13px]">{reply?.firstName} {reply?.lastName}</p>
+            <small className='text-[11px] text-slate-500'>
               {reply?.createdAt ? new Date(reply.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : ""}
             </small>
           </div>
         </Link>
 
         {/* Reply Text */}
-        <p id={`reply-${reply._id}`} className="text-[13px] ml-8" data-testid="reply-text">{reply?.reply || ""}</p>
+        <p id={`reply-${reply._id}`} className="text-[13px] ml-10" data-testid="reply-text">{reply?.reply || ""}</p>
 
 
         {/* Reply Image */}

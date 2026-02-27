@@ -531,8 +531,8 @@ const Reviews = () => {
                                     )
                                   }
                                   <div className='flex flex-col gap-0'>
-                                    <p className='text-xs'>{comment?.firstName} {comment?.lastName}</p>
-                                    <small className='text-[11px]'>{new Date(comment?.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</small>
+                                    <p className='text-[13px]'>{comment?.firstName} {comment?.lastName}</p>
+                                    <small className='text-[11px] text-slate-600'>{new Date(comment?.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</small>
                                   </div>
                                 </Link>
                                 <p className='text-[13px] ml-10 mt-2' data-testid="comment-text">{typeof comment?.comment === 'string' ? comment.comment : comment?.comment?.comment || ''}</p>

@@ -1,3 +1,4 @@
+import rateLimit from 'express-rate-limit'; 
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -115,40 +116,6 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 
 
 
-//app.use('/robots.txt', express.static(path.join(__dirname, 'public', 'robots.txt')));
-// end for searching the site in google
-
-
-/* app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-
-    // Allow localhost
-    if (origin.includes('localhost')) {
-      return callback(null, true);
-    }
-
-    // Allow all Vercel previews
-    if (origin.endsWith('.vercel.app')) {
-      return callback(null, true);
-    }
-
-    // Allow known production domains
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-
-    console.log(`CORS blocked origin: ${origin}`);
-    return callback(
-      new Error(`Origin ${origin} not allowed by CORS`),
-      false
-    );
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-})); */
-
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -191,11 +158,30 @@ app.use(cors({
 
 
 
+import rateLimit from 'express-rate-limit';
+
+// Limit for login attempts
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, 
+  max: 10, 
+  message: { error: "Liian monta kirjautumisyritystä. Odota 15 minuuttia." },
+  standardHeaders: true, 
+  legacyHeaders: false,
+  keyGenerator: (req) => {
+    //! Use email or username as key if you want per user instead of per IP
+    return req.body.email || req.ip;
+  },
+  skipSuccessfulRequests: true, //! only count failed attempts
+});
+
 app.get("/test", (req, res) => {
   res.json("API is working!");
 });
 
 
+//! for limiting login attempts
+app.use("/api/auth/login", loginLimiter);
+app.use("/api/user/userLogin", loginLimiter);
 
 
 app.use("/api/information", informationRoutes);
