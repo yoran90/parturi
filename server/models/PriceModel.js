@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const PriceSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
   },
   service: {
     type: String, 

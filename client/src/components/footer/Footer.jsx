@@ -96,9 +96,9 @@ const Footer = () => {
           
         </div>
         <hr className='mt-6 text-slate-500' />
-        <div className='md:flex hidden items-center justify-center mt-8 text-xs gap-1'>
+        <div className='md:flex hidden items-center justify-center mt-8 text-xs gap-0.5'>
           <div>
-            Copyright © {getYears()} 
+            Copyright All Rights Reserved  © {getYears()} 
           </div>
           <div>
             <img src={headerLogo?.url} alt="Site Logo" className='w-5 h-5 mr-2 ml-2 rounded-full border border-slate-300' />
@@ -106,9 +106,9 @@ const Footer = () => {
           <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
         </div>
         {/* for mobile */}
-         <div className='md:hidden flex gap-2.5 items-center text-center justify-center mt-8 text-xs'>
+         <div className='md:hidden flex flex-col gap-0.5 items-center text-center justify-center mt-8 text-xs'>
           <div>
-            Copyright © {getYears()} 
+            Copyright All Rights Reserved  © {getYears()} 
           </div>
           <div className='mt-1 mb-1'>
             <img src={headerLogo?.url} alt="Site Logo" className='w-5 h-5 rounded-full border border-slate-300' />

@@ -82,7 +82,7 @@ const PalvelutHinta = () => {
           <div className='text-sm w-[98%] m-auto ' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.serviceDescription}} />
         </div>
 
-        <div className='flex md:flex-row w-full m-auto flex-col md:px-0 px-2 mt-6 gap-2 justify-center items-center'>
+        <div className='flex md:flex-row w-full m-auto flex-col md:px-0 px-2 mt-6 gap-2 '>
           {/* Render Prices */}
           <div className="flex flex-col items-start gap-5.5 justify-between md:w-[50%] md:px-4">
             {prices.map((price, index) => (
@@ -90,7 +90,8 @@ const PalvelutHinta = () => {
                 <h3 className="text-lg font-semibold border-b border-slate-300 pb-1">
                   {price.title}
                 </h3>
-                <div className="flex flex-col space-y-1">
+                <h3>{price.priceNumber}</h3>
+                <div className="flex flex-col space-y-1 w-full wrap-break-word overflow-hidden">
                   <div dangerouslySetInnerHTML={{ __html: price.service }} />
                 </div>
               </div>

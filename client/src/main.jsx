@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useState } from 'react'
 import axios from 'axios'
 import AnalogClock from './components/analogClock/AnalogClock.jsx'
+import BackToTop from './Scroll-to-top/BackToTop.jsx'
 
 
 // ✅ Configure axios globally for Safari compatibility
@@ -47,6 +48,9 @@ export function Root() {
                 <ToastContainer autoClose={5000} theme="colored" position="top-center"   />
               </div>
               <App />
+            </div>
+            <div>
+              <BackToTop />
             </div>
           </div>
         </BrowserRouter>
