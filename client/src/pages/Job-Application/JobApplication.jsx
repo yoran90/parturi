@@ -102,7 +102,7 @@ const JobApplication = ({ close }) => {
     <>
       {!successMessage && (
         <div className='fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center z-50 bg-black/60'>
-          <div className='w-[98%] md:max-w-[75%] lg:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[50%] h-[96%] md:h-[98%] lg:max-h-[98%] xl:max-h-[98%] 2xl:h-[99%] md:mx-0 mx-1 bg-white rounded shadow-lg md:px-12 md:py-12 py-8  md:mt-0 mt-12 overflow-y-scroll scrollbarStyle px-3  md:mb-0 mb-12  relative'>
+          <div className='w-[98%] md:max-w-[75%] lg:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[50%] h-[97%] md:h-[98%] lg:max-h-[98%] xl:max-h-[98%] 2xl:h-[99%] md:mx-0 mx-1 bg-white rounded shadow-lg md:px-12 md:py-12 py-8  md:mt-0 mt-12 overflow-y-scroll scrollbarStyle px-3  md:mb-0 mb-12  relative'>
             <button className='absolute top-4 right-4 text-slate-500 text-xs cursor-pointer hover:text-slate-700' onClick={close}>❌</button>
             <div className='flex items-center md:justify-center md:ml-14 gap-4 mb-12 md:mt-0 mt-6'>
               <div>
