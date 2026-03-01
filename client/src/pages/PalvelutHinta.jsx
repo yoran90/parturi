@@ -82,9 +82,9 @@ const PalvelutHinta = () => {
           <div className='text-sm w-[98%] m-auto ' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.serviceDescription}} />
         </div>
 
-        <div className='flex md:flex-row w-full m-auto flex-col md:px-0 px-2 mt-6 gap-2 '>
+        <div className='flex md:flex-row w-full m-auto flex-col md:items-center md:justify-center md:px-0 px-2 mt-6 gap-2 '>
           {/* Render Prices */}
-          <div className="flex flex-col items-start gap-5.5 justify-between md:w-[50%] md:px-4">
+          <div className="flex flex-col items-start gap-5.5 justify-between md:w-full md:px-12">
             {prices.map((price, index) => (
               <div key={index} className="flex flex-col gap-3 w-full">
                 <h3 className="text-lg font-semibold border-b border-slate-300 pb-1">
@@ -98,7 +98,7 @@ const PalvelutHinta = () => {
             ))}
           </div>
           {/* video */}
-          <div className='md:w-[50%] md:h-[50vh] md:block hidden w-full h-full'>
+          <div className='md:w-[50%] md:h-[80vh] md:hidden hidden w-full h-full'>
             {media && (
               <video
                 data-testid="service-video"
