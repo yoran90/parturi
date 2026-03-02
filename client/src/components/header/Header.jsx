@@ -361,7 +361,15 @@ const Header = () => {
 
           </div>
         </div>
-        <div className={`${showTheHeader ? 'absolute flex flex-col bg-black z-50 top-14 right-0 w-full pl-3.5 py-6' : 'hidden'}`}>
+        <div
+            className={`
+              absolute flex flex-col bg-black z-50 top-14 right-0 w-full pl-3.5 py-6
+              transform transition-all duration-300 ease-in-out
+              ${showTheHeader 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 -translate-y-4 pointer-events-none'}
+            `}
+          >
           <NavLink to={'/'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Etusivu</button>
           </NavLink>

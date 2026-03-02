@@ -86,11 +86,10 @@ const PalvelutHinta = () => {
           {/* Render Prices */}
           <div className="flex flex-col items-start gap-5.5 justify-between md:w-full md:px-12">
             {prices.map((price, index) => (
-              <div key={index} className="flex flex-col gap-3 w-full">
-                <h3 className="text-lg font-semibold border-b border-slate-300 pb-1">
+              <div key={index} className="flex flex-col gap-2 w-full">
+                <h3 className="text-lg text-slate-600 font-roboto font-semibold border-b border-slate-300 pb-1">
                   {price.title}
                 </h3>
-                <h3>{price.priceNumber}</h3>
                 <div className="flex flex-col space-y-1 w-full wrap-break-word overflow-hidden">
                   <div dangerouslySetInnerHTML={{ __html: price.service }} />
                 </div>
