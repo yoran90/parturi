@@ -116,6 +116,7 @@ const App = () => {
             border: 4px solid #bfbfbf;
             border-top: 4px solid #0080ff;
             border-left: 4px solid #0080ff;
+            border-right: 4px solid #0080ff;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
             overflow: hidden;
