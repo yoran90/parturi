@@ -168,7 +168,7 @@ const loginLimiter = rateLimit({
   skipSuccessfulRequests: true, //! count all requests; frontend will show message
 });
 
-app.get("/test", (req, res) => {
+app.get("/", (req, res) => {
   res.json("API is working!");
 });
 
