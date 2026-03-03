@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Etusivut from './pages/Etusivut'
 import PalvelutHinta from './pages/PalvelutHinta'
@@ -63,6 +63,7 @@ const App = () => {
 
   const { isAuthenticated, loading, admin } = useSelector((state) => state.adminAuth);
   const { isAuthenticated: userIsAuthenticated, user } = useSelector((state) => state.userAuth);
+  const [firstHitLoading, setFirstHitLoading] = useState(true);  //! this tiny trick if backen slow to load
 
 
   const dispatch = useDispatch();
@@ -78,7 +79,14 @@ const App = () => {
   }, [dispatch]);
   
 
-  if (loading) {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFirstHitLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading || firstHitLoading) {
     return (
       <div className="flex items-center justify-center h-screen w-full">
         <div className="loader">
