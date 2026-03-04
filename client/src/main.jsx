@@ -8,8 +8,9 @@ import store from './store/store.js'
 import { ToastContainer, toast } from 'react-toastify';
 import { useState } from 'react'
 import axios from 'axios'
-import AnalogClock from './components/analogClock/AnalogClock.jsx'
 import BackToTop from './Scroll-to-top/BackToTop.jsx'
+import { MdOutlineMessage } from "react-icons/md";
+import FeedBack from './feedBack/FeedBack.jsx'
 
 
 // ✅ Configure axios globally for Safari compatibility
@@ -34,6 +35,7 @@ axios.interceptors.response.use(
 );
 export function Root() {
   const [bgColor, setBgColor] = useState('#ffffff');
+  const [openFeedBack, setOpenFeedBack] = useState(false);
 
   return (
     <StrictMode>
@@ -49,9 +51,18 @@ export function Root() {
               </div>
               <App />
             </div>
+            {/* back to top */}
             <div>
               <BackToTop />
             </div>
+            {/* feed back */}
+            <div className={`fixed bottom-4 left-4 border-2 border-amber-600 bg-amber-400 text-white rounded-full cursor-pointer p-2 ${openFeedBack ? 'hidden' : 'block'}`}>
+              <MdOutlineMessage onClick={() => setOpenFeedBack(true)}  size={22} className={`text-white z-50`}/>
+            </div>
+            {openFeedBack && (
+                <FeedBack onClose={() => setOpenFeedBack(false)} /> 
+              )  
+            }
           </div>
         </BrowserRouter>
       </Provider>
