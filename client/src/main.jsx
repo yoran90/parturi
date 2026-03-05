@@ -9,9 +9,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useState } from 'react'
 import axios from 'axios'
 import BackToTop from './Scroll-to-top/BackToTop.jsx'
-import { MdOutlineMessage } from "react-icons/md";
-import FeedBack from './feedBack/FeedBack.jsx'
+import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 
+import FeedBack from './feedBack/FeedBack.jsx'
+import { VscFeedback } from "react-icons/vsc";
 
 // ✅ Configure axios globally for Safari compatibility
 axios.defaults.withCredentials = true;
@@ -56,9 +57,9 @@ export function Root() {
               <BackToTop />
             </div>
             {/* feed back */}
-            <div className={`fixed bottom-4 left-4 border-2 border-amber-600 bg-amber-400 text-white rounded-full cursor-pointer p-2 ${openFeedBack ? 'hidden' : 'block'}`}>
-              <MdOutlineMessage onClick={() => setOpenFeedBack(true)}  size={22} className={`text-white z-50`}/>
-            </div>
+            <button type='button' onClick={() => setOpenFeedBack(true)} className={`fixed bottom-4 left-4 border-2 border-amber-600 bg-amber-400 text-white rounded-full cursor-pointer p-2 ${openFeedBack ? 'hidden' : 'block'}`}>
+              <IoChatbubbleEllipsesSharp  size={20} className={`text-white z-50`}/>
+            </button>
             {openFeedBack && (
                 <FeedBack onClose={() => setOpenFeedBack(false)} /> 
               )  

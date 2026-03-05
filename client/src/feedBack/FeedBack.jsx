@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify';
+import { GiRazor } from "react-icons/gi";
 
 const FeedBack = ({ onClose }) => {
 
@@ -9,7 +10,7 @@ const FeedBack = ({ onClose }) => {
   
 
   const handleSubmit = () => {
-    if (!selectedEmoji) {
+    if (selectedEmoji = "") {
       toast.error('Valitse emoji', { autoClose: 10000 });
       return;
     }
@@ -22,18 +23,18 @@ const FeedBack = ({ onClose }) => {
 
   return (
     <div className='fixed bottom-1 left-1 right-1 z-50'>
-      <div className='bg-white shadow-xl w-full max-w-lg border border-slate-200 rounded py-10 px-3 relative'>
+      <div className='bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-10 px-3 relative' style={{ boxShadow: "4px 4px 10px rgba(255, 255, 255, 0.3), 4px 4px 10px rgba(255, 255, 255, 0.15)" }}>
         <div className='absolute top-2 right-2'>
-          <button className='text-xs cursor-pointer' onClick={onClose}>❌</button>
+          <button className='text-xs cursor-pointer' onClick={onClose}><GiRazor size={20} className='text-red-600' /></button>
         </div>
         <div className='flex flex-col items-center justify-center gap-2 text-center mt-2'>
           <h3 className='text-sm text-slate-700'>👋 Miten onnistuimme? Arvioi palvelumme ja jaa kokemuksesi.</h3>
           <p className='text-xs text-slate-700'>Palautteesi auttaa meitä parantamaan palveluamme ja tarjoamaan sinulle parhaan mahdollisen parturikokemuksen. Valitse sopiva emoji ja halutessasi kirjoita viesti meille.</p>
         </div>
         
-        <div className='flex gap-3 items-center justify-center mt-5 text-xl'>
+        <div className='flex gap-4 items-center justify-center mt-5 text-xl '>
           {emojis.map((emoji, index) => (
-              <button key={index} onClick={() => setSelectedEmoji(index)} className={`  ${selectedEmoji === index ? 'bg-amber-300 text-white' : ''} border border-amber-500 rounded-full p-1 cursor-pointer`}>{emoji}</button>
+              <button key={index} onClick={() => setSelectedEmoji(index)} className={`  ${selectedEmoji === index ? 'bg-amber-300 text-white' : ''} border border-amber-500 rounded-full w-9 h-9   cursor-pointer`}>{emoji}</button>
             )
           )}
         </div>
@@ -43,15 +44,20 @@ const FeedBack = ({ onClose }) => {
           <textarea cols="30" rows="8" className='border border-slate-300 resize-none w-full rounded text-xs p-2 outline-blue-800' placeholder='haluaisimme kuulla ehdotuksesi'></textarea>
         </div>
 
-        <div className='flex items-end justify-end gap-2 mt-5'>
-          <button type='button' onClick={onClose} className='bg-black/80 hover:bg-black/90 text-white py-2 px-4 text-xs rounded cursor-pointer'>Peruuta</button>
-          <button type='button' onClick={handleSubmit} disabled={!selectedEmoji} className='bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 text-xs rounded cursor-pointer'>Lähetä palauta</button>
+        <div className='flex justify-between gap-2 mt-5'>
+          <div >
+            <button type='button' onClick={onClose} className='bg-amber-600 flex items-center justify-center text-xs py-2 px-4 rounded text-white cursor-pointer'>Sivuuttaa</button>
+          </div>
+          <div className='flex items-center gap-2'>
+            <button type='button' onClick={onClose} className='bg-black/80 hover:bg-black/90 text-white py-2 px-4 text-xs rounded cursor-pointer'>Peruuta</button>
+            <button type='button' onClick={handleSubmit} disabled={!selectedEmoji} className='bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 text-xs rounded cursor-pointer'>Lähetä palauta</button>
+          </div>
         </div>
 
         <div className='flex gap-1 items-center justify-center mt-8 text-sm'>
           <small>Powered by</small>
           <img src="https://columbus.fi/wp-content/uploads/2024/02/Razor.png" alt="razor" className='w-4 h-4 rounded-full' />
-          <a href="https://www.razorr.fi" className='text-blue-500 text-xs'>www.razorr.fi</a>
+          <a href="https://www.razorr.fi" className='text-blue-500 text-xs flex items-center gap-0.5'>Razor <GiRazor /> parturi</a>
         </div>
       </div>
 

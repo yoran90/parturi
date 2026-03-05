@@ -11,7 +11,7 @@ import { FaLink } from "react-icons/fa";
 import { FcAbout } from "react-icons/fc";
 import { IoIosPricetags } from "react-icons/io";
 import { AiFillProduct } from "react-icons/ai";
-
+import { GiRazor } from "react-icons/gi";
 import { SiGitconnected } from "react-icons/si";
 import AnalogClock from '../analogClock/AnalogClock';
 
@@ -35,6 +35,7 @@ const Footer = () => {
             <h3 className='text-md flex items-center gap-2'>
               <img src={headerLogo?.url} alt="Site Logo" className='w-6 h-6 rounded-full border border-slate-300' />
               <p>{getTitleForPage?.titleForPage?.footerTitle}</p>
+            <GiRazor />
             </h3>
             <div className='text-sm text-slate-200' dangerouslySetInnerHTML={{ __html: getTitleForPage?.titleForPage?.footerDescription}} />
           </div>

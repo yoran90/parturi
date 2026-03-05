@@ -24,6 +24,7 @@ const UserProfile = () => {
   const { userProfile, loading } = useSelector((state) => state.userAuth);
 
 
+  console.log(userProfile);
   
 
   useEffect(() => {
@@ -102,10 +103,6 @@ const UserProfile = () => {
             <div className='flex items-center gap-1.5'>
               <FaMapPin  className='text-slate-800' />
               <p className='text-sm'>{userProfile?.addressTwo}</p>
-            </div>
-            <div className='flex items-center gap-1.5'>
-              <FaPhone className='text-slate-800' />
-              <p className='text-sm'>{userProfile?.phoneNumber}</p>
             </div>
           </div>
         </div>
