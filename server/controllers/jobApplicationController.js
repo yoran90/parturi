@@ -3,6 +3,7 @@ import { sendEmail } from "../utlis/sendEmail.js";
 export const sendJobApplicationEmail = async ({
   firstName,
   lastName,
+  gender,
   email,
   phone,
   selectJob,
@@ -14,6 +15,7 @@ export const sendJobApplicationEmail = async ({
     const htmlContent = `
       <h2>Uusi työhakemus käyttäjältä (${firstName} ${lastName})</h2>
       <p><strong>👤 Nimi:</strong> ${firstName} ${lastName}</p>
+      <p><strong>👤 Sukupuoli:</strong> ${gender}</p>
       <p><strong>📞 Puhelin:</strong> ${phone}</p>
       <p><strong>📧 Sähköposti:</strong> ${email}</p>
       <p><strong>💼 Haettu tehtävä:</strong> ${selectJob}</p>

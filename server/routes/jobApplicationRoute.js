@@ -9,11 +9,11 @@ const upload = multer({ storage });
 
 // POST /api/job/apply-job
 router.post('/apply-job', upload.single('resume'), async (req, res) => {
-  const { firstName, lastName, email, phone, selectJob, startDate, message } = req.body;
+  const { firstName, lastName, gender, email, phone, selectJob, startDate, message } = req.body;
   const resume = req.file;
 
   // Validation
-  if (!firstName || !lastName || !email || !phone || !selectJob || !startDate) {
+  if (!firstName || !lastName || !gender || !email || !phone || !selectJob || !startDate) {
     return res.status(400).json({ 
       success: false, 
       message: 'Kaikki kentät ovat pakollisia, jos tähdellä on * se on pakollinen' 
@@ -21,7 +21,7 @@ router.post('/apply-job', upload.single('resume'), async (req, res) => {
   }
 
   try {
-    await sendJobApplicationEmail({ firstName, lastName, email, phone, selectJob, startDate, resume, message });
+    await sendJobApplicationEmail({ firstName, lastName, gender, email, phone, selectJob, startDate, resume, message });
     res.status(200).json({ success: true, message: 'Työhakemus lähetetty onnistuneesti' });
   } catch (error) {
     console.error('Job application email error:', error.response?.body || error.message);

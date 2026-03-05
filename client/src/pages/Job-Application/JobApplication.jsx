@@ -144,6 +144,7 @@ const JobApplication = ({ close }) => {
                   <label  className='flex items-center gap-1.5 justify-center'>
                     <input
                       type="radio"
+                      id='gender'
                       name="gender"
                       value="Mies"
                       checked={formData.gender === "Mies"}
@@ -155,6 +156,7 @@ const JobApplication = ({ close }) => {
                   <label className='flex items-center gap-1.5 justify-center'>
                     <input
                       type="radio"
+                      id='gender'
                       name="gender"
                       value="Nainen"
                       checked={formData.gender === "Nainen"}
