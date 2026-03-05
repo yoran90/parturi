@@ -34,7 +34,7 @@ const FeedBack = ({ onClose }) => {
         
         <div className='flex gap-4 items-center justify-center mt-5 text-xl '>
           {emojis.map((emoji, index) => (
-              <button key={index} onClick={() => setSelectedEmoji(index)} className={`  ${selectedEmoji === index ? 'bg-amber-300 text-white' : ''} border border-amber-500 rounded-full w-9 h-9   cursor-pointer`}>{emoji}</button>
+              <button key={index} onClick={() => setSelectedEmoji(index)} className={`  ${selectedEmoji === index ? 'border-2 border-amber-600 text-white' : ''} border border-amber-500 rounded-full w-9 h-9   cursor-pointer`}>{emoji}</button>
             )
           )}
         </div>
