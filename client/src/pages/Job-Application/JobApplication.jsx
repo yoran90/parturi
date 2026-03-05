@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import Loading from '../../loading/Loading';
 import JobSuccessMessage from './JobSuccessMessage';
+import { GiRazor } from "react-icons/gi";
 
 
 
@@ -18,6 +19,7 @@ const JobApplication = ({ close }) => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
+    gender: '',
     email: '',
     phone: '',
     selectJob: '',
@@ -50,9 +52,9 @@ const JobApplication = ({ close }) => {
     e.preventDefault();
 
     const startDate = getStartDay();
-    const { firstName, lastName, email, phone, selectJob, resume, message } = formData;
+    const { firstName, lastName, gender, email, phone, selectJob, resume, message } = formData;
 
-    if (!firstName || !lastName || !email || !phone || !selectJob || !startDate) {
+    if (!firstName || !lastName || !gender || !email || !phone || !selectJob || !startDate) {
       toast.error('Kaikki kentät ovat pakollisia, jos tahdel on *, se on pakollinen');
       return;
     }
@@ -62,6 +64,7 @@ const JobApplication = ({ close }) => {
       const formDataToSend = new FormData();
       formDataToSend.append('firstName', firstName);
       formDataToSend.append('lastName', lastName);
+      formDataToSend.append('gender', gender);
       formDataToSend.append('email', email);
       formDataToSend.append('phone', phone);
       formDataToSend.append('selectJob', selectJob);
@@ -80,6 +83,7 @@ const JobApplication = ({ close }) => {
         setFormData({
           firstName: '',
           lastName: '',
+          gender: '',
           email: '',
           phone: '',
           selectJob: '',
@@ -103,7 +107,7 @@ const JobApplication = ({ close }) => {
       {!successMessage && (
         <div className='fixed top-0 right-0 left-0 bottom-0 flex items-center justify-center z-50 bg-black/60'>
           <div className='w-[98%] md:max-w-[75%] lg:max-w-[70%] xl:max-w-[60%] 2xl:max-w-[50%] h-[97%] md:h-[98%] lg:max-h-[98%] xl:max-h-[98%] 2xl:h-[99%] md:mx-0 mx-1 bg-white rounded shadow-lg md:px-12 md:py-12 py-8  md:mt-0 mt-12 overflow-y-scroll scrollbarStyle px-3  md:mb-0 mb-12  relative'>
-            <button className='absolute top-4 right-4 text-slate-500 text-xs cursor-pointer hover:text-slate-700' onClick={close}>❌</button>
+            <button className='absolute top-4 right-4 text-slate-500 text-xs cursor-pointer hover:text-slate-700' onClick={close}><GiRazor data-testid="razor-icon" size={20} className='text-red-600' /></button>
             <div className='flex items-center md:justify-center md:ml-14 gap-4 mb-12 md:mt-0 mt-6'>
               <div>
                 <RxBackpack size={46} className='text-slate-500'/>
@@ -129,6 +133,35 @@ const JobApplication = ({ close }) => {
                     <label htmlFor="lastName">Sukunimi <small className='text-red-700'>*</small></label>
                     <input type="text" id='lastName' name='lastName' value={formData.lastName || ''} onChange={handleChange} className='border border-slate-400 rounded outline-none py-1 px-3 w-full' placeholder='Anna sukunimesi' />
                   </div>
+                </div>
+              </div>
+              <div className='md:flex-row flex flex-col md:items-center'>
+                <div className='flex gap-1 w-1/3 items-center md:mb-0 mb-1'>
+                  <p>Sukupuoli</p>
+                  <small className='text-red-700'>*</small>
+                </div>
+                <div className='flex items-center gap-5.5 w-full text-sm'>
+                  <label  className='flex items-center gap-1.5 justify-center'>
+                    <input
+                      type="radio"
+                      name="gender"
+                      value="Mies"
+                      checked={formData.gender === "Mies"}
+                      onChange={handleChange}
+                    />
+                    Mies
+                  </label>
+
+                  <label className='flex items-center gap-1.5 justify-center'>
+                    <input
+                      type="radio"
+                      name="gender"
+                      value="Nainen"
+                      checked={formData.gender === "Nainen"}
+                      onChange={handleChange}
+                    />
+                    Nainen
+                  </label>
                 </div>
               </div>
 
@@ -271,7 +304,7 @@ const JobApplication = ({ close }) => {
                 </button>
               </div>
             </form>
-            <div className='md:ml-[25%] md:mt-2 -mt-8 gap-1 flex flex-col'>
+            <div className='md:ml-[25%] md:mt-6 -mt-5 gap-1 flex flex-col'>
               <p className="text-xs text-slate-500">
                 Tarkistathan, että kaikki pakolliset kentät (*) on täytetty ennen lähettämistä.
               </p>

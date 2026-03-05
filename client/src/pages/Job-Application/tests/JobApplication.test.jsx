@@ -4,6 +4,7 @@ import JobApplication from '../JobApplication';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+
 // Mock axios and toast
 vi.mock('axios');
 vi.mock('react-toastify', () => ({
@@ -46,6 +47,7 @@ describe('JobApplication Component', () => {
     // Fill out inputs
     fireEvent.change(screen.getByLabelText(/Etunimi/i), { target: { value: 'Jane' } });
     fireEvent.change(screen.getByLabelText(/Sukunimi/i), { target: { value: 'Doe' } });
+    fireEvent.click(screen.getByLabelText(/Mies/i));
     fireEvent.change(screen.getByPlaceholderText(/Anna sähköpostiosoite/i), { target: { value: 'jane@example.com' } });
     fireEvent.change(screen.getByPlaceholderText(/Anna puhelinnumero/i), { target: { value: '1234567890' } });
     fireEvent.change(screen.getByRole('combobox'), { target: { value: 'Osa-aikainen' } });
@@ -80,7 +82,7 @@ describe('JobApplication Component', () => {
 
 
   test('calls close when clicking ❌ button', () => {
-    fireEvent.click(screen.getByText('❌'));
+    fireEvent.click(screen.getByTestId('razor-icon'));
     expect(closeMock).toHaveBeenCalled();
   });
 });
