@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Etusivut from './pages/Etusivut'
 import PalvelutHinta from './pages/PalvelutHinta'
 import Galleria from './pages/Galleria'
@@ -54,6 +55,9 @@ import AuthLayout from './User-Layouts/Register-Login/AuthLayout'
 
 import razorLogo from './assets/Razor.png'
 import ScrollToTop from './Scroll-to-top/ScrollToTop'
+import FeedBack from './feedBack/FeedBack'
+import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
+
 
 
 
@@ -64,6 +68,24 @@ const App = () => {
   const { isAuthenticated, loading, admin } = useSelector((state) => state.adminAuth);
   const { isAuthenticated: userIsAuthenticated, user } = useSelector((state) => state.userAuth);
   const [firstHitLoading, setFirstHitLoading] = useState(true);  //! this tiny trick if backen slow to load
+
+
+  const location = useLocation();
+
+  const [openFeedBack, setOpenFeedBack] = useState(false);
+
+  const feedBackRoutes = [
+    "/",
+    "/meistä",
+    "/palvelut",
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showFeedBack = feedBackRoutes.some((route) => route === location.pathname);
 
 
   const dispatch = useDispatch();
@@ -220,6 +242,19 @@ const App = () => {
           <Route path='/unauth-page' element={<UnAuthPage />} />
 
       </Routes>
+      {/* feed back */}
+      {showFeedBack && (
+          <>
+            <button type='button' onClick={() => setOpenFeedBack(true)} className={`fixed bottom-4 left-4 border-2 border-amber-600 bg-amber-400 text-white rounded-full cursor-pointer p-2 ${openFeedBack ? 'hidden' : 'block'}`}>
+              <IoChatbubbleEllipsesSharp  size={20} className={`text-white z-50`}/>
+            </button>
+            {openFeedBack && (
+                <FeedBack onClose={() => setOpenFeedBack(false)} /> 
+              )  
+            }
+          </>
+        )
+      }
     </>
   )
 }

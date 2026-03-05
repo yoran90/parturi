@@ -5,17 +5,13 @@ import { GiRazor } from "react-icons/gi";
 const FeedBack = ({ onClose }) => {
 
   const [selectedEmoji, setSelectedEmoji] = useState(null);
+  const [userChoosedFeedback, setUserChosenFeedback] = useState('');
 
   const emojis = ['😡', '😕', '😐', '🙂', '😍'];
-  
+
 
   const handleSubmit = () => {
-    if (selectedEmoji = "") {
-      toast.error('Valitse emoji', { autoClose: 10000 });
-      return;
-    }
-    toast.error('Työskentelemme asian parissa. Et voi lähettää palautetta nyt, pahoittelemme.', { autoClose: 10000 });
-    console.log('hi');
+
     
 
   }
@@ -37,6 +33,16 @@ const FeedBack = ({ onClose }) => {
               <button key={index} onClick={() => setSelectedEmoji(index)} className={`  ${selectedEmoji === index ? 'border-2 border-amber-600 text-white' : ''} border border-amber-500 rounded-full w-9 h-9   cursor-pointer`}>{emoji}</button>
             )
           )}
+        </div>
+        <div className={`mt-4 text-sm text-red-600 ${selectedEmoji !== null ? 'block border border-red-500 rounded-md p-2' : 'hidden'}`}>
+          {selectedEmoji !== null && (
+            <div className='md:flex items-center text-center justify-center gap-2'>
+              <p>Oletko varma, että haluat palauttaa palveluamme?</p>
+              <p className='text-xl'>{emojis[selectedEmoji]}</p>
+            </div>
+          )
+
+          }
         </div>
 
         <div className='flex flex-col gap-1 mt-6'>
