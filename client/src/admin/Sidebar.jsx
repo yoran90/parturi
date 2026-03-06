@@ -17,6 +17,7 @@ import { RiApps2AddFill } from "react-icons/ri";
 import { FaUsers } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import { MdReviews } from "react-icons/md";
+import { FcFeedback } from "react-icons/fc";
 
 
 
@@ -110,9 +111,15 @@ const adminSidebarMenuItems = [
   },
   {
     id: 'titleforPages',
-    label: (<div className='flex flex-col'>Add Title & Description For Pages </div>),
+    label: (<div className='flex flex-col'>Add (Title & Des) For Pages </div>),
     path: '/admin/titleforPages',
     icons: <AiFillFileAdd className='text-gray-500'  size={20} />
+  },
+  {
+    id: 'displayFeedback',
+    label: (<div className='flex flex-col'>Display Feedback </div>),
+    path: '/admin/displayFeedback',
+    icons: <FcFeedback className='text-gray-500'  size={20} />
   }
 ]
 
@@ -135,7 +142,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       <div
           className={`bg-white shadow h-screen border-r border-slate-200 transform overflow-y-scroll scrollbarStyle scrollbarStyle transition-transform duration-300 fixed top-0 left-0 z-50 w-[80%] 
             ${isOpen ? "translate-x-0" : "-translate-x-full"} 
-            md:translate-x-0 md:static md:block md:w-[30%]`}
+            md:translate-x-0 md:static md:block md:w-[32%]`}
       >
         <div className='pt-6 bg-white sticky top-0'>
           <div className='md:flex px-4 flex md:px-0 justify-between gap-1.5 font-semibold text-red-600 items-center md:justify-center '>

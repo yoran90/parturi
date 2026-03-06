@@ -57,6 +57,7 @@ import razorLogo from './assets/Razor.png'
 import ScrollToTop from './Scroll-to-top/ScrollToTop'
 import FeedBack from './feedBack/FeedBack'
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
+import DisplayFeedBack from './admin/pages/DisplayFeedBack'
 
 
 
@@ -196,7 +197,6 @@ const App = () => {
 
 
         {/* ADMIN SIDE */}
-
           <Route element={<AdminLayout />}>
             <Route path='/admin' element={
               <ProtectRoute isAuthenticated={isAuthenticated} admin={admin} loading={loading}>
@@ -222,6 +222,7 @@ const App = () => {
               <Route path='titleforPages' element={<TitleForPages />}></Route>
               <Route path='edit-user/:id' element={<EditUser />}></Route>
               <Route path="review/:id" element={<SingleReview />}></Route>
+              <Route path="displayFeedback" element={<DisplayFeedBack />}></Route>
             </Route>
 
             <Route path='/login' element={<Login />}></Route>

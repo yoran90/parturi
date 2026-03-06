@@ -16,16 +16,15 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
   const [openSuccesMessage, setOpenSuccesMessage] = useState(false);
   const [selectedEmoji, setSelectedEmoji] = useState(null);
   const [optional, setOptional] = useState('');
-  const [rating, setRating] = useState('');
   const [message, setMessage] = useState('');
-  const [firstname, setFirstName] = useState('');
-  const [lastname, setLastName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
 
   const [loading, setLoading] = useState(false);
 
   const toggleOptional = () => {
-    setOptional(prevOptional => !prevOptional);
+    setOptional(prev => !prev);
   };
 
   const emojis = ['😡', '😕', '😐', '🙂', '😍'];
@@ -41,9 +40,9 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
     const feedBackdata = {
       rating: selectedEmoji,
       message,
-      firstname: optional ? firstname : null,
-      lastname: optional ? lastname : null,
-      email: optional ? email : null
+      firstName: optional && firstName ? firstName : null,
+  lastName: optional && lastName ? lastName : null,
+  email: optional && email ? email : null
     };
 
 
@@ -106,12 +105,12 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
               }`}>
               <div className='flex w-full gap-2'>
                 <div className='flex flex-col gap-1 text-sm w-full'>
-                  <label htmlFor="">👤 Etunimi</label>
-                  <input type="text" value={firstname} onChange={(e) => setFirstName(e.target.value)} className='border border-slate-300 rounded outline-none py-1 px-2 w-full' placeholder='Etunimesi ...' />
+                  <label htmlFor="firstName">👤 Etunimi</label>
+                  <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} className='border border-slate-300 rounded outline-none py-1 px-2 w-full' placeholder='Etunimesi ...' />
                 </div>
                 <div className='flex flex-col gap-1 text-sm w-full'>
-                  <label htmlFor="">🆔 sukunimi</label>
-                  <input type="text" value={lastname} onChange={(e) => setLastName(e.target.value)} className='border border-slate-300 rounded outline-none py-1 px-2 w-full' placeholder='Sukunimesi ...' />
+                  <label htmlFor="lastName">🆔 sukunimi</label>
+                  <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} className='border border-slate-300 rounded outline-none py-1 px-2 w-full' placeholder='Sukunimesi ...' />
                 </div>
               </div>
               <div className='flex flex-col gap-1 text-sm w-full'>
