@@ -47,7 +47,7 @@ const FeedBack = ({ onClose }) => {
 
     try {
         setLoading(true);
-        const resposnse = await axios.post(apiUrl, feedBackdata);
+        const resposnse = await axios.post(`${import.meta.env.VITE_API_URL}/api/feedBack/addFeedback`, feedBackdata);
         toast.success(resposnse.data.message);
       } catch (error) {
         console.log(error);
