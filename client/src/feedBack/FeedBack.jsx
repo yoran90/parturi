@@ -47,7 +47,7 @@ const FeedBack = ({ onClose }) => {
 
     try {
         setLoading(true);
-        const resposnse = await axios.post("https://parturi-backend.onrender.com/api/feedBack/addFeedback", feedBackdata);
+        const resposnse = await axios.post("http://localhost:8001/api/feedBack/addFeedbackk", feedBackdata);
         toast.success(resposnse.data.message);
       } catch (error) {
         console.log(error);
