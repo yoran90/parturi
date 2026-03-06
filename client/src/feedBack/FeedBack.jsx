@@ -18,6 +18,7 @@ const FeedBack = ({ onClose }) => {
   const [email, setEmail] = useState('');
 
   const [loading, setLoading] = useState(false);
+  const [loadingForButton, setLoadingForButton] = useState(false);
 
   const toggleOptional = () => {
     setOptional(prevOptional => !prevOptional);
@@ -121,7 +122,7 @@ const FeedBack = ({ onClose }) => {
             <div className='flex items-center gap-2'>
               <button type='button' onClick={onClose} className='bg-black/80 hover:bg-black/90 text-white py-2 px-4 z-50 text-xs rounded cursor-pointer'>Peruuta</button>
               <button type='button' onClick={handleSubmit} disabled={!selectedEmoji} className='bg-blue-500 hover:bg-blue-600 z-50 text-white py-2 px-4 text-xs rounded cursor-pointer'>
-                {loading ? (
+                {loadingForButton ? (
                   <div className='flex items-center justify-center gap-1.5'>
                     <p>Llähettäminen</p>
                     <Loading width={18} height={18} border='3px' topBorder='3px' borderColor='white' borderTopColor='#3498db' />
