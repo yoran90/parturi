@@ -11,6 +11,9 @@ import FeedBackSuccesMessage from './FeedBackSuccesMessage';
 
 const FeedBack = ({ onClose, setOpenFeedBack }) => {
   
+
+  console.log(import.meta.env.VITE_API_URL, "hi")
+
   const [openInfo, setOpenInfo] = useState(false);
   const [openSuccesMessage, setOpenSuccesMessage] = useState(false);
   const [selectedEmoji, setSelectedEmoji] = useState(null);
@@ -48,7 +51,7 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
 
     try {
         setLoading(true);
-        const resposnse = await axios.post(`${import.meta.env.VITE_API_URL}/api/feedBack/addFeedback`, feedBackdata);
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/feedBack/addFeedback`, feedBackdata);
         
           setOpenSuccesMessage(true);
           onClose();
