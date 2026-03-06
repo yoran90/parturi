@@ -25,9 +25,6 @@ const FeedBack = ({ onClose }) => {
 
   const emojis = ['😡', '😕', '😐', '🙂', '😍'];
 
-  const apiUrl = import.meta.env.VITE_API_URL
-  ? `${import.meta.env.VITE_API_URL}/api/feedBack/addFeedback`
-  : "http://localhost:8001/api/feedBack/addFeedback";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
