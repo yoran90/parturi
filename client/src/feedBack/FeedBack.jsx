@@ -25,6 +25,9 @@ const FeedBack = ({ onClose }) => {
 
   const emojis = ['😡', '😕', '😐', '🙂', '😍'];
 
+  const apiUrl = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api/feedBack/addFeedback`
+  : "http://localhost:8001/api/feedBack/addFeedback";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,9 +44,10 @@ const FeedBack = ({ onClose }) => {
       email: optional ? email : null
     };
 
+
     try {
         setLoading(true);
-        const resposnse = await axios.post(`${import.meta.env.VITE_API_URL}/api/feedBack/addFeedback`, feedBackdata);
+        const resposnse = await axios.post(apiUrl, feedBackdata);
         toast.success(resposnse.data.message);
       } catch (error) {
         console.log(error);
