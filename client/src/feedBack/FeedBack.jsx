@@ -12,8 +12,6 @@ import FeedBackSuccesMessage from './FeedBackSuccesMessage';
 const FeedBack = ({ onClose, setOpenFeedBack }) => {
   
 
-  console.log(import.meta.env.VITE_API_URL, "hi")
-
   const [openInfo, setOpenInfo] = useState(false);
   const [openSuccesMessage, setOpenSuccesMessage] = useState(false);
   const [selectedEmoji, setSelectedEmoji] = useState(null);
@@ -65,8 +63,8 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
 
   return (
 
-        <div className='fixed bottom-1 left-1 right-1 z-50'>
-      <div className={`bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-10 px-3 relative ${openInfo ? 'hidden' : ''}`} style={{ boxShadow: "4px 4px 10px rgba(255, 255, 255, 0.3), 4px 4px 10px rgba(255, 255, 255, 0.15)" }}>
+    <div className='fixed bottom-1 left-1 right-1 z-50'>
+      <div className={`bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-10 px-3 relative md:h-fit h-[98vh] md:overflow-hidden overflow-y-scroll scrollbarStyle ${openInfo ? 'hidden' : ''}`} style={{ boxShadow: "4px 4px 10px rgba(255, 255, 255, 0.3), 4px 4px 10px rgba(255, 255, 255, 0.15)" }}>
         <div className='absolute top-2 right-2'>
           <button className='text-xs cursor-pointer' onClick={onClose}><GiRazor size={20} className='text-red-600' /></button>
         </div>
