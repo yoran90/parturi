@@ -4,7 +4,7 @@ import { GiRazor } from "react-icons/gi";
 const FeedBackSuccesMessage = ({ onCloseSuccesMessage, onClose }) => {
   return (
     <div className='fixed bottom-1 left-1 right-1 z-50'>
-      <div className='bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-6 px-3 relative md:h-fit h-[98vh] md:overflow-hidden overflow-y-scroll scrollbarStyle'> 
+      <div className='bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-6 px-3 relative md:overflow-hidden overflow-y-scroll scrollbarStyle'> 
         <div className='absolute top-2 right-2'>
           <button className='text-xs cursor-pointer' onClick={onCloseSuccesMessage}><GiRazor size={20} className='text-red-600' /></button>
         </div>

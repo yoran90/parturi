@@ -5,7 +5,7 @@ import { GiRazor } from "react-icons/gi";
 const InfoFeedBack = ({ setOpenFeedBack, onCloseInfo }) => {
   return (
     <div className='fixed bottom-1 left-1 right-1 z-50'>
-      <div className='bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-10 px-3 relative md:h-fit h-[98vh] md:overflow-hidden overflow-y-scroll scrollbarStyle'>
+      <div className='bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-10 px-3 relative md:overflow-hidden overflow-y-scroll scrollbarStyle'>
         <div className='flex justify-between mt-2'>
           <button onClick={() => {setOpenFeedBack(true); onCloseInfo()}} className='left-4 absolute top-4'><IoArrowBackOutline className='text-slate-600 cursor-pointer' size={20} /></button>
           <button onClick={onCloseInfo} className='right-2 absolute top-2'><GiRazor className='text-red-700 cursor-pointer' size={18}  /></button>
