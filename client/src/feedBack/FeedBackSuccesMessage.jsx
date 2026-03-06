@@ -1,0 +1,30 @@
+import React from 'react'
+import { GiRazor } from "react-icons/gi";
+
+const FeedBackSuccesMessage = ({ onCloseSuccesMessage }) => {
+  return (
+    <div className='fixed bottom-1 left-1 right-1 z-50'>
+      <div className='bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-10 px-3 relative'> 
+        <div className='absolute top-2 right-2'>
+                  <button className='text-xs cursor-pointer' onClick={onCloseSuccesMessage}><GiRazor size={20} className='text-red-600' /></button>
+                </div>
+        <div className='flex items-center justify-center mb-8'>
+          <img src="https://thumbs.dreamstime.com/b/d-smiley-face-positive-thumbs-up-gesture-cheerful-d-yellow-emoji-face-thumbs-up-representing-positive-feedback-379138408.jpg" alt="feedBack" className='w-32 h-32 rounded-full' />
+        </div>
+        <div className='flex flex-col gap-3 text-center text-green-600'>
+          <p className='text-md'>✅ Kiitos palautteestasi!</p>
+          <p className='text-sm'>Kiitos, että käytit hetken ajastasi palautteen antamiseen. Arvostamme suuresti mielipidettäsi, sillä palautteesi auttaa meitä kehittämään parturimme palvelua sekä parantamaan asiakaskokemusta.</p>
+          <p className='text-sm'>Luemme kaikki palautteet huolellisesti ja käytämme niitä toimintamme kehittämiseen. Jokainen palaute on meille tärkeä ja auttaa meitä tarjoamaan entistä parempaa palvelua asiakkaillemme.</p>
+          <p className='text-sm'>Jos jätit yhteystietosi, saatamme olla sinuun yhteydessä palautteeseesi liittyen.</p>
+          <p className='text-sm'>Kiitos vielä kerran ja tervetuloa uudelleen!</p>
+        </div>
+
+        <div className='mt-8 flex items-center justify-center'>
+          <button type='button' onClick={onCloseSuccesMessage} className='bg-green-600 text-white py-2 px-6 rounded'>Sulje</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default FeedBackSuccesMessage

@@ -249,7 +249,7 @@ const App = () => {
               <IoChatbubbleEllipsesSharp  size={22} className={`text-white z-50`}/>
             </button>
             {openFeedBack && (
-                <FeedBack onClose={() => setOpenFeedBack(false)} /> 
+                <FeedBack onClose={() => setOpenFeedBack(false)} setOpenFeedBack={setOpenFeedBack} /> 
               )  
             }
           </>

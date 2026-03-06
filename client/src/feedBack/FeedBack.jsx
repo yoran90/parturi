@@ -5,10 +5,14 @@ import { ImUserPlus } from "react-icons/im";
 import Loading from '../loading/Loading';
 import { IoIosArrowDown } from "react-icons/io";
 import axios from 'axios';
+import { BsInfoCircle } from "react-icons/bs";
+import InfoFeedBack from './InfoFeedBack';
+import FeedBackSuccesMessage from './FeedBackSuccesMessage';
 
-
-const FeedBack = ({ onClose }) => {
-
+const FeedBack = ({ onClose, setOpenFeedBack }) => {
+  
+  const [openInfo, setOpenInfo] = useState(false);
+  const [openSuccesMessage, setOpenSuccesMessage] = useState(false);
   const [selectedEmoji, setSelectedEmoji] = useState(null);
   const [optional, setOptional] = useState('');
   const [rating, setRating] = useState('');
@@ -45,7 +49,10 @@ const FeedBack = ({ onClose }) => {
     try {
         setLoading(true);
         const resposnse = await axios.post(`${import.meta.env.VITE_API_URL}/api/feedBack/addFeedback`, feedBackdata);
-        toast.success(resposnse.data.message);
+        
+          setOpenSuccesMessage(true);
+          onClose();
+        
       } catch (error) {
         console.log(error);
         
@@ -58,9 +65,12 @@ const FeedBack = ({ onClose }) => {
 
   return (
     <div className='fixed bottom-1 left-1 right-1 z-50'>
-      <div className='bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-10 px-3 relative' style={{ boxShadow: "4px 4px 10px rgba(255, 255, 255, 0.3), 4px 4px 10px rgba(255, 255, 255, 0.15)" }}>
+      <div className={`bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-10 px-3 relative ${openInfo ? 'hidden' : ''}`} style={{ boxShadow: "4px 4px 10px rgba(255, 255, 255, 0.3), 4px 4px 10px rgba(255, 255, 255, 0.15)" }}>
         <div className='absolute top-2 right-2'>
           <button className='text-xs cursor-pointer' onClick={onClose}><GiRazor size={20} className='text-red-600' /></button>
+        </div>
+        <div className='absolute top-3 left-3'>
+          <button className='text-xs cursor-pointer' onClick={() => { setOpenInfo(true) }}><BsInfoCircle  size={18} className='text-slate-600' /></button>
         </div>
         <div className='flex flex-col items-center justify-center gap-2 text-center mt-2'>
           <h3 className='text-sm text-slate-700'>👋 Miten onnistuimme? Arvioi palvelumme ja jaa kokemuksesi.</h3>
@@ -141,7 +151,17 @@ const FeedBack = ({ onClose }) => {
           <a href="https://www.razorr.fi" className='text-blue-500 text-xs flex items-center gap-0.5'>Razor <GiRazor /> parturi</a>
         </div>
       </div>
+      {/* open info model */}
+      {openInfo && (
+          <InfoFeedBack onCloseInfo={() => setOpenInfo(false)} setOpenFeedBack={setOpenFeedBack} />
+        )
+      }
+      {/* open success message model */}
+      {openSuccesMessage && (
+        <FeedBackSuccesMessage onCloseSuccesMessage={() => setOpenSuccesMessage(false)}  />
+      )
 
+      }
     </div>
   )
 }
