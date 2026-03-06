@@ -36,7 +36,7 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!selectedEmoji) {
+    if (selectedEmoji === null) {
       toast.error("valitse emoji, joka on pakollinen");
       return;
     }
@@ -52,11 +52,7 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
     try {
         setLoading(true);
         const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/feedback/addFeedback`, feedBackdata);
-        if (openSuccesMessage === true) {
-          onClose();
-        }
         setOpenSuccesMessage(true);
-        
       } catch (error) {
         console.log(error);
         
@@ -68,7 +64,8 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
 
 
   return (
-    <div className='fixed bottom-1 left-1 right-1 z-50'>
+
+        <div className='fixed bottom-1 left-1 right-1 z-50'>
       <div className={`bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-10 px-3 relative ${openInfo ? 'hidden' : ''}`} style={{ boxShadow: "4px 4px 10px rgba(255, 255, 255, 0.3), 4px 4px 10px rgba(255, 255, 255, 0.15)" }}>
         <div className='absolute top-2 right-2'>
           <button className='text-xs cursor-pointer' onClick={onClose}><GiRazor size={20} className='text-red-600' /></button>
@@ -167,6 +164,7 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
 
       }
     </div>
+      
   )
 }
 
