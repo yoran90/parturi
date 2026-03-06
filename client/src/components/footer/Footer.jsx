@@ -47,7 +47,7 @@ const Footer = () => {
               Linkki
             </h3>
             <div className='flex flex-col'>
-              <Link to='/meistä' className='text-sm text-slate-200 flex items-center gap-3'><FcAbout /> Meistä</Link>
+              <Link to='/meista' className='text-sm text-slate-200 flex items-center gap-3'><FcAbout /> Meistä</Link>
               <Link to='/palvelut' className='text-sm text-slate-200 flex items-center gap-3'><IoIosPricetags /> Palvelut</Link>
               <Link to='/tuotet' className='text-sm text-slate-200 flex items-center gap-3'><AiFillProduct /> Tuotteet</Link>
               <Link to='/yhteystiedot' className='text-sm text-slate-200 flex items-center gap-3'><SiGitconnected />Yhteystiedot</Link>

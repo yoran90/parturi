@@ -141,7 +141,7 @@ const Header = () => {
           <NavLink to={`/`} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Etusivu
           </NavLink>
-          <NavLink to={'/meistä'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={'/meista'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Meistä
           </NavLink>
           <NavLink to={'/palvelut'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-black dark:text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
@@ -373,7 +373,7 @@ const Header = () => {
           <NavLink to={'/'}>
             <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Etusivu</button>
           </NavLink>
-          <NavLink to={'/meistä'}>
+          <NavLink to={'/meista'}>
             <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Meistä</button>
           </NavLink>
           <NavLink to={'/palvelut'}>

@@ -76,7 +76,7 @@ const App = () => {
 
   const feedBackRoutes = [
     "/",
-    "/meistä",
+    "/meista",
     "/palvelut",
     "/galleria",
     "/opinion",
@@ -164,7 +164,7 @@ const App = () => {
 
           <Route element={<UserLayout />}>
             <Route path='/' element={<Etusivut />}></Route>
-            <Route path='/meistä' element={<Meistä />}></Route>
+            <Route path='/meista' element={<Meistä />}></Route>
             <Route path='/palvelut' element={<PalvelutHinta />}></Route>
             <Route path='/galleria' element={<Galleria />}></Route>
             <Route path='/tuotet' element={<Tuote />}></Route>
