@@ -41,8 +41,8 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
       rating: selectedEmoji,
       message,
       firstName: optional && firstName ? firstName : null,
-  lastName: optional && lastName ? lastName : null,
-  email: optional && email ? email : null
+      lastName: optional && lastName ? lastName : null,
+      email: optional && email ? email : null
     };
 
 

@@ -110,17 +110,18 @@ const adminSidebarMenuItems = [
     icons: <FcAbout size={18} />
   },
   {
-    id: 'titleforPages',
-    label: (<div className='flex flex-col'>Add (Title & Des) For Pages </div>),
-    path: '/admin/titleforPages',
-    icons: <AiFillFileAdd className='text-gray-500'  size={20} />
-  },
-  {
     id: 'displayFeedback',
     label: (<div className='flex flex-col'>Display Feedback </div>),
     path: '/admin/displayFeedback',
     icons: <FcFeedback className='text-gray-500'  size={20} />
+  },
+  {
+    id: 'titleforPages',
+    label: (<div className='flex flex-col'>Add (Title & Des) For Pages </div>),
+    path: '/admin/titleforPages',
+    icons: <AiFillFileAdd className='text-gray-500'  size={20} />
   }
+  
 ]
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
