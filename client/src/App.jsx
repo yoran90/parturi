@@ -245,8 +245,8 @@ const App = () => {
       {/* feed back */}
       {showFeedBack && (
           <>
-            <button type='button' onClick={() => setOpenFeedBack(true)} className={`fixed bottom-4 left-4 border-2 border-amber-600 bg-amber-400 text-white rounded-full cursor-pointer p-2 ${openFeedBack ? 'hidden' : 'block'}`}>
-              <IoChatbubbleEllipsesSharp  size={20} className={`text-white z-50`}/>
+            <button type='button' onClick={() => setOpenFeedBack(true)} className={`fixed bottom-4 left-4 border-2 border-amber-700 bg-amber-400 text-white rounded-full cursor-pointer p-2 ${openFeedBack ? 'hidden' : 'block'}`}>
+              <IoChatbubbleEllipsesSharp  size={22} className={`text-white z-50`}/>
             </button>
             {openFeedBack && (
                 <FeedBack onClose={() => setOpenFeedBack(false)} /> 
