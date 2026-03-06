@@ -64,14 +64,17 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
   return (
 
     <div className='fixed bottom-1 left-1 right-1 z-50'>
-      <div className={`bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-10 px-3 relative md:h-fit h-[98vh] md:overflow-hidden overflow-y-scroll scrollbarStyle ${openInfo ? 'hidden' : ''}`} style={{ boxShadow: "4px 4px 10px rgba(255, 255, 255, 0.3), 4px 4px 10px rgba(255, 255, 255, 0.15)" }}>
-        <div className='absolute top-2 right-2'>
-          <button className='text-xs cursor-pointer' onClick={onClose}><GiRazor size={20} className='text-red-600' /></button>
+      <div className={`bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-12 px-3 relative md:h-fit h-[98vh] md:overflow-hidden overflow-y-scroll scrollbarStyle ${openInfo ? 'hidden' : ''}`} style={{ boxShadow: "4px 4px 10px rgba(255, 255, 255, 0.3), 4px 4px 10px rgba(255, 255, 255, 0.15)" }}>
+        <div className='absolute top-3 right-3'>
+          <button className='text-xs cursor-pointer' onClick={onClose}>
+            <GiRazor size={20} className='text-red-600' />
+          </button>
         </div>
         <div className='absolute top-3 left-3'>
-          <button className='text-xs cursor-pointer' onClick={() => { setOpenInfo(true) }}><BsInfoCircle  size={18} className='text-slate-600' /></button>
+          <button className='text-xs cursor-pointer' onClick={() => { setOpenInfo(true) }}><BsInfoCircle  size={18} className='text-slate-600' />
+          </button>
         </div>
-        <div className='flex flex-col items-center justify-center gap-2 text-center mt-2'>
+        <div className='flex flex-col items-center justify-center gap-2 text-center mt-6'>
           <h3 className='text-sm text-slate-700'>👋 Miten onnistuimme? Arvioi palvelumme ja jaa kokemuksesi.</h3>
           <p className='text-xs text-slate-700'>Palautteesi auttaa meitä parantamaan palveluamme ja tarjoamaan sinulle parhaan mahdollisen parturikokemuksen. Valitse sopiva emoji ja halutessasi kirjoita viesti meille.</p>
         </div>
