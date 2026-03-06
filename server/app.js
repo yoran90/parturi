@@ -193,7 +193,7 @@ app.use("/api/shopMedia", shopMediaRoutes);
 app.use("/api/job", jobApplicationRoutes);
 app.use("/api/google-reviews", googleReviewsRoute);
 app.use("/api/notifications", notificationRoutes);
-app.use("/api/feedBack", feedBackRoutes);
+app.use("/api/feedback", feedBackRoutes);
 
 
 export default app
