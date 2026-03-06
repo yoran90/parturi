@@ -172,6 +172,10 @@ app.get("/", (req, res) => {
   res.json("API is working!");
 });
 
+app.get("/api/feedback/test", (req, res) => {
+  res.json({ message: "Feedback route is live" });
+});
+
 
 //! for limiting login attempts
 app.use("/api/auth/login", loginLimiter);
