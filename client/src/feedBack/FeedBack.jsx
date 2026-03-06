@@ -116,11 +116,11 @@ const FeedBack = ({ onClose }) => {
 
           <div className='flex justify-between gap-2 mt-5 mb-5'>
             <div >
-              <button type='button' onClick={onClose} className='bg-amber-600 flex items-center justify-center text-xs py-2 px-4 rounded text-white cursor-pointer'>Sivuuttaa</button>
+              <button type='button' onClick={onClose} className='bg-amber-600 flex items-center justify-center z-50 text-xs py-2 px-4 rounded text-white cursor-pointer'>Sivuuttaa</button>
             </div>
             <div className='flex items-center gap-2'>
-              <button type='button' onClick={onClose} className='bg-black/80 hover:bg-black/90 text-white py-2 px-4 text-xs rounded cursor-pointer'>Peruuta</button>
-              <button type='button' onClick={handleSubmit} disabled={!selectedEmoji} className='bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 text-xs rounded cursor-pointer'>
+              <button type='button' onClick={onClose} className='bg-black/80 hover:bg-black/90 text-white py-2 px-4 z-50 text-xs rounded cursor-pointer'>Peruuta</button>
+              <button type='button' onClick={handleSubmit} disabled={!selectedEmoji} className='bg-blue-500 hover:bg-blue-600 z-50 text-white py-2 px-4 text-xs rounded cursor-pointer'>
                 {loading ? (
                   <div className='flex items-center justify-center gap-1.5'>
                     <p>Llähettäminen</p>
