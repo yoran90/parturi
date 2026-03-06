@@ -52,9 +52,10 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
     try {
         setLoading(true);
         const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/feedback/addFeedback`, feedBackdata);
-        
-          setOpenSuccesMessage(true);
+        if (openSuccesMessage === true) {
           onClose();
+        }
+        setOpenSuccesMessage(true);
         
       } catch (error) {
         console.log(error);
@@ -161,7 +162,7 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
       }
       {/* open success message model */}
       {openSuccesMessage && (
-        <FeedBackSuccesMessage onCloseSuccesMessage={() => setOpenSuccesMessage(false)}  />
+        <FeedBackSuccesMessage onCloseSuccesMessage={() => setOpenSuccesMessage(false)} onClose={onClose}  />
       )
 
       }

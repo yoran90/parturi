@@ -1,7 +1,7 @@
 import React from 'react'
 import { GiRazor } from "react-icons/gi";
 
-const FeedBackSuccesMessage = ({ onCloseSuccesMessage }) => {
+const FeedBackSuccesMessage = ({ onCloseSuccesMessage, onClose }) => {
   return (
     <div className='fixed bottom-1 left-1 right-1 z-50'>
       <div className='bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-10 px-3 relative'> 
@@ -20,7 +20,7 @@ const FeedBackSuccesMessage = ({ onCloseSuccesMessage }) => {
         </div>
 
         <div className='mt-8 flex items-center justify-center'>
-          <button type='button' onClick={onCloseSuccesMessage} className='bg-green-600 text-white py-2 px-6 rounded'>Sulje</button>
+          <button type='button' onClick={() => { onCloseSuccesMessage(); onClose(); }} className='bg-green-600 text-white py-2 px-6 rounded'>Sulje</button>
         </div>
       </div>
     </div>
