@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdPhoneInTalk } from "react-icons/md";
 import { FaFacebook, FaMapMarkerAlt, FaSnapchat, FaTiktok, FaTwitter, FaYoutube } from "react-icons/fa";
-import { IoMdClock } from "react-icons/io";
+import { GiRazor } from "react-icons/gi";
 import { CgInstagram } from 'react-icons/cg';
 import useInformation from '../../hooks/useInformation';
 import { TbCurrentLocation } from "react-icons/tb";
@@ -16,9 +16,9 @@ const Information = () => {
 
   return (
     <>
-      <div className='bg-white dark:bg-black dark:text-white hidden md:flex items-center justify-between text-black py-2 px-4'>
-        <div className='text-xs flex items-center gap-1'>
-          {/* <IoMdClock className='text-white' /> */}
+      <div className='bg-black text-white hidden md:flex items-center justify-between  py-2 px-4'>
+        <div className='text-xs flex gap-2'>
+          <GiRazor size={25} className='razor' />
           <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
         </div>
         <div className='flex items-center gap-4'>
@@ -60,8 +60,8 @@ const Information = () => {
       </div>
       {/* for mobile screen */}
       <div className='bg-white dark:bg-black dark:text-white flex flex-col gap-2 md:hidden items-center text-black py-3'>
-        <div className='text-xs flex items-center gap-1'>
-          {/* <IoMdClock className='text-white' /> */}
+        <div className='text-xs flex gap-3'>
+          <GiRazor size={20} className='razor' />
           <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
         </div>
         <div className='flex items-center gap-5.5 mb-2 mt-2'>
@@ -78,7 +78,7 @@ const Information = () => {
             ))
           }
         </div>
-        <div className='text-xs flex items-center justify-between gap-8'>
+        <div className='text-xs flex items-center justify-between gap-10'>
           <div>
            <a className='flex flex-col gap-0.5'
               href={getInformation?.addressUrl}
