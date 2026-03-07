@@ -20,7 +20,7 @@ body::-webkit-scrollbar {
 }
 
 .scrollbarStyle::-webkit-scrollbar-thumb {
-  background: #808080;
+  background: black;
   border-radius: 50px;
   //border: 1px solid #ffffff;
 }
