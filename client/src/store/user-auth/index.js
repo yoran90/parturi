@@ -186,6 +186,7 @@ const authSlice = createSlice({
         state.isAuthenticated = false;
         state.user = null;
         localStorage.removeItem("userToken");
+        sessionStorage.removeItem("userToken");
       })
 
       //! GOOGLE LOGIN
