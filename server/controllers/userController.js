@@ -19,7 +19,7 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 //! user login
 export const userLogin = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, rememberMe  } = req.body;
 
     if (!email || !password) {
       return res.status(400).json({ message: "All fields are required" });
@@ -59,19 +59,11 @@ export const userLogin = async (req, res) => {
       timezone: checkUser.timezone
     }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    /* const cookie = {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      maxAge: 60 * 60 * 1000,
-    };
-
-    res.cookie("userToken", token, cookie); */
     res.cookie("userToken", token, {
       httpOnly: true,
       secure: true,      
       sameSite: "None",  
-      maxAge: 60 * 60 * 1000,
+      maxAge: rememberMe ? 30 * 24 * 60 * 60 * 1000 : 60 * 60 * 1000,
     });
 
     res.status(200).json({ 

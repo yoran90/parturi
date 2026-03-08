@@ -23,9 +23,9 @@ export const userRegister = createAsyncThunk("userAuth/register", async ({ first
 });
 
 //! user login
-export const userLogin = createAsyncThunk("userAuth/login", async ({ email, password }, { rejectWithValue }) => {
+export const userLogin = createAsyncThunk("userAuth/login", async ({ email, password, rememberMe }, { rejectWithValue }) => {
   try {
-    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/userLogin`, { email, password }, { withCredentials: true });
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/userLogin`, { email, password, rememberMe  }, { withCredentials: true });
     return response.data;
   } catch (error) {
     console.log(error);
@@ -174,7 +174,11 @@ const authSlice = createSlice({
         state.user = action.payload?.user || action.payload || null;
         // ✅ Store token in localStorage for Safari compatibility
         if (action.payload?.token) {
-          localStorage.setItem("userToken", action.payload.token);
+          if (action.meta.arg.rememberMe) {
+            localStorage.setItem("userToken", action.payload.token);
+          } else {
+            localStorage.setItem("userToken", action.payload.token);
+          }
         }
       })
       .addCase(userLogin.rejected, (state) => {

@@ -22,6 +22,7 @@ const Kirjaudu = () => {
   const { isAuthenticated, user} = useSelector((state) => state.userAuth);
   const { getInformation } = useInformation();
 
+  const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [selectLanguage, setSelectLanguage] = useState(false);
   const [language, setLanguage] = useState("fi");
@@ -75,7 +76,7 @@ const Kirjaudu = () => {
     
     try {
      setLoadingForButton(true);
-      const result =  await dispatch(userLogin({ email, password })).unwrap();
+      const result =  await dispatch(userLogin({ email, password, rememberMe })).unwrap();
       if (result?.user?.role === "user") {
         toast.success("Logged in successfully!");
         navigate("/"); 
@@ -210,8 +211,15 @@ const Kirjaudu = () => {
                 }
               </div>
             </div>
-            <div className='flex justify-end mt-1'>
-              <Link to="/forgot-password" className='text-blue-400 text-sm cursor-pointer'>{translate.forgotPassword}</Link>
+            <div className='flex items-center justify-between w-full mt-1'>
+              <div className='flex items-center gap-1.5'>
+                <input type="checkbox" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} />
+                <small className='text-white'>{translate.rememberMeTranslation}</small>
+              </div>
+              <div>
+                <Link to="/forgot-password" className='text-blue-400 text-sm cursor-pointer'>{translate.forgotPassword}</Link>
+              </div>
+              
             </div>
             <div className='flex flex-col mt-6'>
               <button type='submit' className='bg-red-700 text-white py-2 w-full px-4 rounded border cursor-pointer'>

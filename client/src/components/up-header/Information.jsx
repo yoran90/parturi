@@ -60,7 +60,7 @@ const Information = () => {
       </div>
       {/* for mobile screen */}
       <div className='bg-white dark:bg-black dark:text-white flex flex-col gap-2 md:hidden items-center text-black py-3'>
-        <div className='text-xs flex gap-3'>
+        <div className='text-xs flex gap-3 w-full justify-center'>
           <GiRazor size={20} className='razor' />
           <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
         </div>
@@ -78,7 +78,7 @@ const Information = () => {
             ))
           }
         </div>
-        <div className='text-xs flex items-center justify-between gap-10'>
+        <div className='flex justify-between text-xs w-full px-2'>
           <div>
            <a className='flex flex-col gap-0.5'
               href={getInformation?.addressUrl}

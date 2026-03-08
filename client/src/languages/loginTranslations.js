@@ -8,6 +8,7 @@ export const fi = {
   forgotPasswordAdmin: "Unohtuiko salasana?",
   resendVerificationEmail: "Lähetä vahvistussähköposti uudelleen",
   resendVerifyAgain: "lähetetään vahvistussähköposti uudelleen",
+  
 };
 
 export const en = {
@@ -20,6 +21,7 @@ export const en = {
   forgotPasswordAdmin: "Forgot password?",
   resendVerificationEmail: "Resend Verification Email",
   resendVerifyAgain: "sending verify email again",
+ 
 };
 
 export const fiUser = {
@@ -46,7 +48,8 @@ export const fiUser = {
   forgotPassword: "Unohtuiko salasana?",
   resendVerificationEmail: "Lähetä vahvistussähköposti uudelleen",
   resendVerifyAgain: "lähetetään vahvistussähköposti uudelleen",
-  loginWithGoogle: "Kirjaudu sisään Googlella"
+  loginWithGoogle: "Kirjaudu sisään Googlella",
+  rememberMeTranslation: "Muista minut",
 };
 
 export const enUser = {
@@ -73,5 +76,6 @@ export const enUser = {
   forgotPassword: "Forgot Password?",
   resendVerificationEmail: "Resend Verification Email",
   resendVerifyAgain: "sending verify email again",
-  loginWithGoogle: "Login with Google"
+  loginWithGoogle: "Login with Google",
+  rememberMeTranslation: "Remember me",
 };

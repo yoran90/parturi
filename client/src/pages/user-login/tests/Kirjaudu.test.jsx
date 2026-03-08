@@ -93,6 +93,7 @@ describe("Kirjaudu Component", () => {
       expect(userLogin).toHaveBeenCalledWith({
         email: "test@example.com",
         password: "password123",
+        rememberMe: false,
       });
     });
   });
