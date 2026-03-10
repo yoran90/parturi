@@ -109,6 +109,6 @@ body::-webkit-scrollbar {
 }
 
 .highlight {
-  background-color: #fff3cd; /* yellow highlight */
+  background-color: #fff3cd; 
   transition: background-color 1s ease;
 }
