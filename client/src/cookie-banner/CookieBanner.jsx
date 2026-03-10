@@ -109,7 +109,7 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('svCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <Flag code="SE" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                    Swedish
+                    Svenska
                     <div className='w-6'>
                       {language === 'svCookieBanner' && (
                           <div><FaCheck /></div>
@@ -119,7 +119,7 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('ruCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <Flag code="RU" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                    Russian
+                    Русский
                     <div className='w-6'>
                       {language === 'ruCookieBanner' && (
                           <div><FaCheck /></div>
@@ -129,7 +129,7 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('etCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <Flag code="EE" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                    Estonian
+                    Eesti
                     <div className='w-6'>
                       {language === 'etCookieBanner' && (
                           <div><FaCheck /></div>
@@ -149,7 +149,7 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('trCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <Flag code="TR" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                    Turkish
+                    Türkçe
                     <div className='w-6'>
                       {language === 'trCookieBanner' && (
                           <div><FaCheck /></div>
