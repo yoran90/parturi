@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { fiCookieBanner, enCookieBanner, svCookieBanner, ruCookieBanner, etCookieBanner, arCookieBanner, trCookieBanner, faCookieBanner, kuSoraniCookieBanner } from '../languages/cookieBanner';
-import razorImage from '../assets/razor.png'
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { FaEarthAsia } from "react-icons/fa6";
@@ -61,7 +60,7 @@ const CookieBanner = () => {
       <div className='bg-white shadow md:w-full w-[98%] m-auto max-w-2xl p-4 rounded'>
         <div className='flex gap-4  justify-between'>
           <div className='flex items-center gap-0.5'>
-            <img src={razorImage} alt="razor" className='w-12 h-12 mr-2 rounded border border-amber-500' />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMtyb9KiIO6XRBm-kdpfP3m9EcIJGN1k9DEw&s" alt="razor" className='w-12 h-12 mr-2 rounded border border-amber-500' />
             <div className='flex flex-col gap-0'>
                <div className='flex items-center gap-0.5'> 
                 <p>Razor parturi</p>
