@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useState } from 'react'
 import axios from 'axios'
 import BackToTop from './Scroll-to-top/BackToTop.jsx'
+import CookieBanner from './cookie-banner/CookieBanner.jsx'
 
 
 // ✅ Configure axios globally for Safari compatibility
@@ -36,28 +37,31 @@ export function Root() {
   
 
   return (
-    <StrictMode>
-      <Provider store={store}>
-        <BrowserRouter>
-          <div>
-            <div className='top-0 items-center left-0 fixed z-50 md:flex hidden'>
-              <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-12 h-8 rounded-lg cursor-pointer" />
-            </div>
-            <div id='appBackground' style={{ backgroundColor: bgColor, minHeight: "100vh"}}>
-              <div className='w-fit' style={{zoom: '80%'}}>
-                <ToastContainer autoClose={5000} theme="colored" position="top-center"   />
-              </div>
-              <App />
-            </div>
-            {/* back to top */}
+    <>
+    <CookieBanner />
+      <StrictMode>
+        <Provider store={store}>
+          <BrowserRouter>
             <div>
-              <BackToTop />
+              <div className='top-0 items-center left-0 fixed z-50 md:flex hidden'>
+                <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-12 h-8 rounded-lg cursor-pointer" />
+              </div>
+              <div id='appBackground' style={{ backgroundColor: bgColor, minHeight: "100vh"}}>
+                <div className='w-fit' style={{zoom: '80%'}}>
+                  <ToastContainer autoClose={5000} theme="colored" position="top-center"   />
+                </div>
+                <App />
+              </div>
+              {/* back to top */}
+              <div>
+                <BackToTop />
+              </div>
+              
             </div>
-            
-          </div>
-        </BrowserRouter>
-      </Provider>
-    </StrictMode>
+          </BrowserRouter>
+        </Provider>
+      </StrictMode>
+    </>
   )
 }
 
