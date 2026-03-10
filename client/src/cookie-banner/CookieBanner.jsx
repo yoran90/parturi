@@ -196,11 +196,11 @@ const CookieBanner = () => {
         </div>
         {/* button */}
         <div className='mt-12 md:flex items-center justify-between gap-1.5'>
-          <div className='w-full md:w-fit md:mb-0 mb-4'>
+          <div className='w-full md:w-fit md:mb-0 mb-1.5'>
             <button onClick={handleRejectAll} className='py-2 px-4 border border-red-700 w-full md:w-fit cursor-pointer rounded text-sm bg-red-500 hover:bg-red-600 text-white flex items-center text-center justify-center'>{translateLanguage.rejectAll}</button>
           </div>
           <div className='md:flex gap-1.5 w-full md:w-fit'>
-            <button onClick={handleAcceptNecesary} className='py-2 px-4 border border-slate-300 w-full md:w-fit md:mb-0 mb-4 rounded text-sm cursor-pointer hover:bg-slate-100 flex items-center text-center justify-center'>{translateLanguage.onlyNecessary}</button>
+            <button onClick={handleAcceptNecesary} className='py-2 px-4 border border-slate-300 w-full md:w-fit md:mb-0 mb-1.5 rounded text-sm cursor-pointer hover:bg-slate-100 flex items-center text-center justify-center'>{translateLanguage.onlyNecessary}</button>
             <button onClick={handleAcceptAll} className='py-2 px-4 border border-blue-700 w-full md:w-fit cursor-pointer rounded text-sm bg-blue-500 hover:bg-blue-600 text-white flex items-center text-center justify-center'>{translateLanguage.acceptAll}</button>
           </div>
         </div>
