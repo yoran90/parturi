@@ -40,7 +40,6 @@ body::-webkit-scrollbar {
 .scrollbarStylex::-webkit-scrollbar-thumb {
   background: #808080;
   border-radius: 50px;
-  //border: 1px solid #ffffff;
 }
 
 .scrollbarStylex::-webkit-scrollbar-thumb:hover {
