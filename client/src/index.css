@@ -22,7 +22,6 @@ body::-webkit-scrollbar {
 .scrollbarStyle::-webkit-scrollbar-thumb {
   background: black;
   border-radius: 50px;
-  //border: 1px solid #ffffff;
 }
 
 .scrollbarStyle::-webkit-scrollbar-thumb:hover {
