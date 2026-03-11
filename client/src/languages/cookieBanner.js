@@ -15,7 +15,7 @@ export const fiCookieBanner = {
   informationBodyTextTwo: "Evästeiden avulla voimme kerätä tietoa siitä, miten verkkosivustoamme käytetään. Näihin tietoihin voi kuulua esimerkiksi milloin ja miten sivustoa käytetään, miltä sivulta käyttäjä on siirtynyt sivustolle, mitä sivuja on katsottu, mitä linkkejä on klikattu sekä mitä selainta, käyttöjärjestelmää ja näytön tarkkuutta käytetään. Näitä tietoja käytetään verkkosivuston toiminnan parantamiseen ja käyttökokemuksen kehittämiseen.",
   informationHeaderThree: "Miten evästeet toimivat?",
   informationBodyTextThree: "Kun vierailet Razor Barber -verkkosivustolla, sivusto voi tallentaa evästeen laitteellesi. Seuraavalla vierailukerralla eväste auttaa tunnistamaan selaimesi ja muistamaan aikaisemmat asetuksesi. Osa evästeistä on sivuston toiminnan kannalta välttämättömiä, kun taas toisia käytetään esimerkiksi analytiikkaan, jotta voimme ymmärtää paremmin, miten sivustoamme käytetään ja miten voimme parantaa palveluamme."
-
+  
 };
 
 export const enCookieBanner = {

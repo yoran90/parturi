@@ -6,7 +6,7 @@ import { FaEarthAsia } from "react-icons/fa6";
 import { GiRazor } from "react-icons/gi";
 import Flag from 'react-world-flags';
 import { FaCheck } from "react-icons/fa6";
-import InformationCookie from './InformationCookie';
+
 
 
 const CookieBanner = () => {
@@ -62,14 +62,14 @@ const CookieBanner = () => {
 
   return (
     <div className='fixed top-0 bottom-0 left-0 right-0 bg-black/50 z-100 flex flex-col items-center justify-center'>
-      <div className='bg-white shadow md:w-full w-[98%] m-auto max-w-2xl py-4 rounded'>
+      <div className='bg-white shadow md:w-full lg:w-full xl:w-full xxl:w-full  w-[98%] m-auto md:max-w-2xl lg:max-w-3xl xl:max-w-4xl xxl:max-w-5xl py-4 rounded'>
         <div className='flex gap-4  justify-between w-full'>
           <div className='flex items-center gap-0.5 md:px-4 px-1'>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMtyb9KiIO6XRBm-kdpfP3m9EcIJGN1k9DEw&s" alt="razor" className='w-12 h-12 mr-2 rounded border border-amber-500' />
             <div className='flex flex-col gap-0'>
                <div className='flex items-center'> 
                 <p>Razor parturi</p>
-                <GiRazor size={20} className='mb-4 rotate-45 -ml-2' />
+                <GiRazor size={20} className='mb-4 rotate-45' />
               </div>
               <div className='-mt-2'>
                 <a href="https://www.razorr.fi" target='_blank' className='text-blue-500 text-sm'>www.razorr.fi</a>
