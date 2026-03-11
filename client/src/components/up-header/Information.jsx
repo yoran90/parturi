@@ -1,10 +1,11 @@
 import React from 'react';
 import { MdPhoneInTalk } from "react-icons/md";
-import { FaFacebook, FaMapMarkerAlt, FaSnapchat, FaTiktok, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaFacebookF, FaMapMarkerAlt, FaSnapchat, FaSnapchatGhost, FaTiktok, FaTwitter, FaYoutube } from "react-icons/fa";
 import { GiRazor } from "react-icons/gi";
 import { CgInstagram } from 'react-icons/cg';
 import useInformation from '../../hooks/useInformation';
 import { TbCurrentLocation } from "react-icons/tb";
+import { IoLogoInstagram } from 'react-icons/io';
 
 const Information = () => {
 
@@ -25,12 +26,12 @@ const Information = () => {
           {
             getInformation?.socialMedia?.map((sm, index) => (
               <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
-                {sm.platform === "facebook" && <FaFacebook size={16} />}
-                {sm.platform === "instagram" && <CgInstagram size={16} />}
-                {sm.platform === "tiktok" && <FaTiktok size={16} />}
-                {sm.platform === "snapchat" && <FaSnapchat size={16} />}
-                {sm.platform === "twitter" && <FaTwitter size={16} />}
-                {sm.platform === "youtube" && <FaYoutube size={16} />}
+                {sm.platform === "facebook" && <FaFacebookF className='bg-blue-600 border rounded-full p-1'  size={22} />}
+                {sm.platform === "instagram" && <IoLogoInstagram className='bg-pink-900 border rounded-full p-1'  size={22} />}
+                {sm.platform === "tiktok" && <FaTiktok className='bg-black border rounded-full p-1'  size={22} />}
+                {sm.platform === "snapchat" && <FaSnapchatGhost  className='bg-yellow-400 border rounded-full p-1'  size={22} />}
+                {sm.platform === "twitter" && <FaTwitter className='bg-blue-400 border rounded-full p-1'  size={22} />}
+                {sm.platform === "youtube" && <FaYoutube className='bg-red-600 border rounded-full p-1'  size={22} />}
               </a>
             ))
           }
@@ -59,21 +60,21 @@ const Information = () => {
         </div>
       </div>
       {/* for mobile screen */}
-      <div className='bg-white dark:bg-black dark:text-white flex flex-col gap-2 md:hidden items-center text-black py-3'>
-        <div className='text-xs flex gap-3 w-full justify-center'>
+      <div className='bg-black text-white flex flex-col gap-2 md:hidden items-center py-3'>
+        <div className='text-xs flex gap-3 w-full justify-center mr-4'>
           <GiRazor size={20} className='razor' />
           <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
         </div>
         <div className='flex items-center gap-5.5 mb-2 mt-2'>
           {
             getInformation?.socialMedia?.map((sm, index) => (
-              <a key={index} href={sm.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
-                {sm.platform === "facebook" && <FaFacebook size={16} />}
-                {sm.platform === "instagram" && <CgInstagram size={16} />}
-                {sm.platform === "tiktok" && <FaTiktok size={16} />}
-                {sm.platform === "snapchat" && <FaSnapchat size={16} />}
-                {sm.platform === "twitter" && <FaTwitter size={16} />}
-                {sm.platform === "youtube" && <FaYoutube size={16} />}
+              <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
+                {sm.platform === "facebook" && <FaFacebookF className='bg-blue-600 border rounded-full p-1'  size={22} />}
+                {sm.platform === "instagram" && <IoLogoInstagram className='bg-pink-900 border rounded-full p-1'  size={22} />}
+                {sm.platform === "tiktok" && <FaTiktok className='bg-black border rounded-full p-1'  size={22} />}
+                {sm.platform === "snapchat" && <FaSnapchatGhost  className='bg-yellow-400 border rounded-full p-1'  size={22} />}
+                {sm.platform === "twitter" && <FaTwitter className='bg-blue-400 border rounded-full p-1'  size={22} />}
+                {sm.platform === "youtube" && <FaYoutube className='bg-red-600 border rounded-full p-1'  size={22} />}
               </a>
             ))
           }
