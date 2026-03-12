@@ -375,7 +375,7 @@ const Register = () => {
           )
         }
       </div>
-      <div className='flex md:w-full items-center justify-center min-h-screen pb-24 md:pb-12'>
+      <div className='flex md:w-full items-center justify-center min-h-screen pb-24 md:pb-12 md:mt-0 mt-8'>
         <div className='md:w-[50%] w-full md:p-8 p-4'>
           <div className='md:flex md:justify-between'>
             <div className='flex flex-col gap-1 mb-8'>
