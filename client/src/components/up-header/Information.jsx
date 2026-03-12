@@ -25,7 +25,7 @@ const Information = () => {
           {
             getInformation?.socialMedia?.map((sm, index) => (
               <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
-                {sm.platform === "facebook" && <FaFacebookF className='bg-blue-600 border rounded-full p-1'  size={22} />}
+                {sm.platform === "facebook" && <FaFacebookF className='bg-blue-600 border rounded-full p-1' size={22}  />}
                 {sm.platform === "instagram" && <IoLogoInstagram className='bg-pink-900 border rounded-full p-1'  size={22} />}
                 {sm.platform === "tiktok" && <FaTiktok className='bg-black border rounded-full p-1'  size={22} />}
                 {sm.platform === "snapchat" && <FaSnapchatGhost  className='bg-yellow-400 border rounded-full p-1'  size={22} />}
