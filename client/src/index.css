@@ -57,6 +57,10 @@ body::-webkit-scrollbar {
 .razor {
   animation: razorSpin 2s linear infinite;
 }
+.razorRight {
+  animation: razorRightSpin 2s linear infinite;
+  transform: scaleX(-1);
+}
 
 @keyframes razorSpin {
   0% {
@@ -64,6 +68,14 @@ body::-webkit-scrollbar {
   }
   100% {
     transform: rotate(360deg)
+  }
+}
+@keyframes razorRightSpin {
+  0% {
+    transform: rotate(0deg)
+  }
+  100% {
+    transform: rotate(-360deg)
   }
 }
 

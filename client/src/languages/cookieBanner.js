@@ -7,7 +7,7 @@ export const fiCookieBanner = {
   rejectAll: "Hylkää kaikki",
   onlyNecessary: "Vain valletmattomat",
   chooseLanguage: "Valitse kieli",
-  consent: "Sustumus",
+  consent: "Suostumus",
   information: "Tietoja",
   informationHeaderOne: "Mitä evästeet ovat?",
   informationBodyTextOne: "Evästeet ovat pieniä tekstitiedostoja, jotka tallennetaan tietokoneellesi, mobiililaitteellesi tai muulle laitteellesi, kun vierailet verkkosivustolla. Evästeiden avulla verkkosivusto voi tunnistaa laitteesi ja muistaa tiettyjä asetuksia tai toimintoja, kuten kielivalinnan tai käyttäjän tekemät valinnat. Tämä auttaa parantamaan käyttökokemusta ja varmistamaan, että sivusto toimii oikein.",
@@ -108,6 +108,98 @@ export const etCookieBanner = {
 
   informationHeaderThree: "Kuidas küpsised töötavad?",
   informationBodyTextThree: "Kui külastate Razor Barberi veebisaiti, võib veebisait salvestada teie seadmesse küpsise. Järgmisel külastusel aitab küpsis teie brauserit ära tunda ja meelde jätta varasemad seaded. Mõned küpsised on vajalikud veebisaidi korrektseks toimimiseks, samas kui teisi kasutatakse näiteks analüütikaks, et paremini mõista, kuidas meie veebisaiti kasutatakse, ja kuidas saame oma teenuseid parandada."
+};
+
+export const elCookieBanner = {
+  textHeader: "Μια καλύτερη εμπειρία με cookies",
+  textBodyOne: "Χρησιμοποιούμε cookies και παρόμοιες τεχνολογίες για να διασφαλίσουμε ότι ο ιστότοπος Razor Barber λειτουργεί σωστά και για να παρέχουμε μια καλύτερη εμπειρία χρήστη. Τα cookies μας επιτρέπουν να θυμόμαστε τις προτιμήσεις σας, να βελτιώνουμε τη λειτουργικότητα του ιστότοπου και να κατανοούμε πώς χρησιμοποιούν οι επισκέπτες τον ιστότοπό μας.",
+  textBodyTwo: "Ορισμένα cookies είναι απαραίτητα για τη λειτουργία του ιστότοπου, ενώ άλλα μας βοηθούν να βελτιώσουμε τις υπηρεσίες μας και να σας δείξουμε πιο σχετικό περιεχόμενο.",
+  textBodyThree: "Μπορείτε να αποδεχτείτε όλα τα cookies επιλέγοντας «Αποδοχή όλων», ή να επιτρέψετε μόνο τα απαραίτητα cookies επιλέγοντας «Μόνο απαραίτητα»",
+
+  acceptAll: "Αποδοχή όλων",
+  rejectAll: "Απόρριψη όλων",
+  onlyNecessary: "Μόνο απαραίτητα",
+  chooseLanguage: "Επιλέξτε γλώσσα",
+  consent: "Συναίνεση",
+  information: "Πληροφορίες",
+
+  informationHeaderOne: "Τι είναι τα cookies;",
+  informationBodyTextOne: "Τα cookies είναι μικρά αρχεία κειμένου που αποθηκεύονται στον υπολογιστή, τη φορητή συσκευή ή άλλη συσκευή σας όταν επισκέπτεστε έναν ιστότοπο. Τα cookies επιτρέπουν στον ιστότοπο να αναγνωρίζει τη συσκευή σας και να θυμάται ορισμένες ρυθμίσεις ή ενέργειες, όπως την προτίμηση γλώσσας ή τις επιλογές που έχετε κάνει. Αυτό βοηθά στη βελτίωση της εμπειρίας χρήστη και διασφαλίζει ότι ο ιστότοπος λειτουργεί σωστά.",
+
+  informationHeaderTwo: "Μπορούμε να συλλέξουμε τις ακόλουθες πληροφορίες χρησιμοποιώντας cookies:",
+  informationBodyTextTwo: "Τα cookies μας επιτρέπουν να συλλέγουμε πληροφορίες σχετικά με τον τρόπο χρήσης του ιστότοπού μας. Αυτό μπορεί να περιλαμβάνει πότε και πώς χρησιμοποιείται ο ιστότοπος, από ποια σελίδα ήρθατε, ποιες σελίδες επισκεφθήκατε, ποια συνδέσμους κάνατε κλικ, καθώς και τον περιηγητή που χρησιμοποιείτε, το λειτουργικό σύστημα της συσκευής σας και την ανάλυση οθόνης. Αυτές οι πληροφορίες μας βοηθούν να βελτιώνουμε τη λειτουργικότητα και την απόδοση του ιστότοπού μας.",
+
+  informationHeaderThree: "Πώς λειτουργούν τα cookies;",
+  informationBodyTextThree: "Όταν επισκέπτεστε τον ιστότοπο Razor Barber, ο ιστότοπος μπορεί να αποθηκεύσει ένα cookie στη συσκευή σας. Την επόμενη φορά που θα επισκεφθείτε, το cookie βοηθά στην αναγνώριση του περιηγητή σας και στην αποθήκευση των προηγούμενων προτιμήσεών σας. Ορισμένα cookies είναι απαραίτητα για τη σωστή λειτουργία του ιστότοπου, ενώ άλλα χρησιμοποιούνται για αναλύσεις ώστε να κατανοήσουμε καλύτερα πώς χρησιμοποιούν οι επισκέπτες τον ιστότοπό μας και πώς μπορούμε να βελτιώσουμε τις υπηρεσίες μας."
+};
+
+export const itCookieBanner = {
+  textHeader: "Un'esperienza migliore con i cookie",
+  textBodyOne: "Utilizziamo cookie e tecnologie simili per garantire che il sito Razor Barber funzioni correttamente e per offrire una migliore esperienza utente. I cookie ci permettono di ricordare le tue preferenze, migliorare la funzionalità del sito e comprendere come i visitatori utilizzano il nostro sito.",
+  textBodyTwo: "Alcuni cookie sono necessari per il corretto funzionamento del sito, mentre altri ci aiutano a migliorare i nostri servizi e a mostrarti contenuti più pertinenti.",
+  textBodyThree: "Puoi accettare tutti i cookie selezionando “Accetta tutto”, oppure consentire solo i cookie necessari selezionando “Solo necessari”",
+
+  acceptAll: "Accetta tutto",
+  rejectAll: "Rifiuta tutto",
+  onlyNecessary: "Solo necessari",
+  chooseLanguage: "Scegli la lingua",
+  consent: "Consenso",
+  information: "Informazioni",
+
+  informationHeaderOne: "Cosa sono i cookie?",
+  informationBodyTextOne: "I cookie sono piccoli file di testo che vengono memorizzati sul tuo computer, dispositivo mobile o altro dispositivo quando visiti un sito web. I cookie consentono al sito web di riconoscere il tuo dispositivo e ricordare alcune impostazioni o azioni, come la tua preferenza linguistica o le selezioni che hai effettuato. Questo aiuta a migliorare l'esperienza utente e garantisce il corretto funzionamento del sito.",
+
+  informationHeaderTwo: "Potremmo raccogliere le seguenti informazioni utilizzando i cookie:",
+  informationBodyTextTwo: "I cookie ci permettono di raccogliere informazioni su come viene utilizzato il nostro sito web. Questo può includere quando e come viene utilizzato il sito, da quale pagina sei arrivato, quali pagine hai visualizzato, quali link hai cliccato, nonché il browser che utilizzi, il sistema operativo del tuo dispositivo e la risoluzione dello schermo. Queste informazioni ci aiutano a migliorare la funzionalità e le prestazioni del nostro sito.",
+
+  informationHeaderThree: "Come funzionano i cookie?",
+  informationBodyTextThree: "Quando visiti il sito Razor Barber, il sito potrebbe memorizzare un cookie sul tuo dispositivo. La volta successiva che visiterai, il cookie aiuta a riconoscere il tuo browser e a ricordare le tue preferenze precedenti. Alcuni cookie sono necessari per il corretto funzionamento del sito, mentre altri vengono utilizzati per le analisi per aiutarci a comprendere meglio come i visitatori utilizzano il nostro sito e come possiamo migliorare i nostri servizi."
+};
+
+export const esCookieBanner = {
+  textHeader: "Una mejor experiencia con cookies",
+  textBodyOne: "Usamos cookies y tecnologías similares para asegurarnos de que el sitio web Razor Barber funcione correctamente y para ofrecer una mejor experiencia al usuario. Las cookies nos permiten recordar tus preferencias, mejorar la funcionalidad del sitio web y entender cómo los visitantes usan nuestro sitio.",
+  textBodyTwo: "Algunas cookies son necesarias para que el sitio web funcione, mientras que otras nos ayudan a mejorar nuestros servicios y mostrarte contenido más relevante.",
+  textBodyThree: "Puedes aceptar todas las cookies seleccionando “Aceptar todas”, o permitir solo las cookies necesarias seleccionando “Solo necesarias”",
+
+  acceptAll: "Aceptar todas",
+  rejectAll: "Rechazar todas",
+  onlyNecessary: "Solo necesarias",
+  chooseLanguage: "Elegir idioma",
+  consent: "Consentimiento",
+  information: "Información",
+
+  informationHeaderOne: "¿Qué son las cookies?",
+  informationBodyTextOne: "Las cookies son pequeños archivos de texto que se almacenan en tu computadora, dispositivo móvil u otro dispositivo cuando visitas un sitio web. Las cookies permiten que el sitio web reconozca tu dispositivo y recuerde ciertos ajustes o acciones, como tu preferencia de idioma o las selecciones que hayas realizado. Esto ayuda a mejorar la experiencia del usuario y garantiza que el sitio web funcione correctamente.",
+
+  informationHeaderTwo: "Podemos recopilar la siguiente información mediante cookies:",
+  informationBodyTextTwo: "Las cookies nos permiten recopilar información sobre cómo se utiliza nuestro sitio web. Esto puede incluir cuándo y cómo se utiliza el sitio web, de qué página provienes, qué páginas has visitado, qué enlaces has hecho clic, así como el navegador que utilizas, el sistema operativo de tu dispositivo y la resolución de pantalla. Esta información nos ayuda a mejorar la funcionalidad y el rendimiento de nuestro sitio web.",
+
+  informationHeaderThree: "¿Cómo funcionan las cookies?",
+  informationBodyTextThree: "Cuando visitas el sitio web Razor Barber, el sitio puede almacenar una cookie en tu dispositivo. La próxima vez que visites, la cookie ayuda a reconocer tu navegador y recordar tus preferencias anteriores. Algunas cookies son necesarias para el correcto funcionamiento del sitio, mientras que otras se utilizan para análisis que nos ayudan a comprender mejor cómo los visitantes usan nuestro sitio y cómo podemos mejorar nuestros servicios."
+};
+
+export const frCookieBanner = {
+  textHeader: "Une meilleure expérience avec les cookies",
+  textBodyOne: "Nous utilisons des cookies et des technologies similaires pour nous assurer que le site Razor Barber fonctionne correctement et pour offrir une meilleure expérience utilisateur. Les cookies nous permettent de mémoriser vos préférences, d’améliorer la fonctionnalité du site et de comprendre comment les visiteurs utilisent notre site.",
+  textBodyTwo: "Certains cookies sont nécessaires au fonctionnement du site, tandis que d'autres nous aident à améliorer nos services et à vous montrer un contenu plus pertinent.",
+  textBodyThree: "Vous pouvez accepter tous les cookies en sélectionnant « Accepter tout », ou autoriser uniquement les cookies nécessaires en sélectionnant « Uniquement nécessaires »",
+
+  acceptAll: "Tout accepter",
+  rejectAll: "Tout refuser",
+  onlyNecessary: "Uniquement nécessaires",
+  chooseLanguage: "Choisir la langue",
+  consent: "Consentement",
+  information: "Informations",
+
+  informationHeaderOne: "Que sont les cookies ?",
+  informationBodyTextOne: "Les cookies sont de petits fichiers texte stockés sur votre ordinateur, appareil mobile ou autre appareil lorsque vous visitez un site Web. Les cookies permettent au site Web de reconnaître votre appareil et de mémoriser certains paramètres ou actions, comme votre préférence de langue ou vos sélections. Cela aide à améliorer l'expérience utilisateur et à garantir que le site fonctionne correctement.",
+
+  informationHeaderTwo: "Nous pouvons collecter les informations suivantes à l'aide de cookies :",
+  informationBodyTextTwo: "Les cookies nous permettent de collecter des informations sur l'utilisation de notre site Web. Cela peut inclure le moment et la manière dont le site est utilisé, la page d'où vous venez, les pages que vous avez consultées, les liens sur lesquels vous avez cliqué, ainsi que le navigateur que vous utilisez, le système d'exploitation de votre appareil et la résolution de l'écran. Ces informations nous aident à améliorer la fonctionnalité et les performances de notre site.",
+
+  informationHeaderThree: "Comment fonctionnent les cookies ?",
+  informationBodyTextThree: "Lorsque vous visitez le site Razor Barber, le site peut stocker un cookie sur votre appareil. Lors de votre prochaine visite, le cookie aide à reconnaître votre navigateur et à mémoriser vos préférences précédentes. Certains cookies sont nécessaires au bon fonctionnement du site, tandis que d'autres sont utilisés pour les analyses afin de mieux comprendre comment les visiteurs utilisent notre site et comment nous pouvons améliorer nos services."
 };
 
 export const arCookieBanner = {

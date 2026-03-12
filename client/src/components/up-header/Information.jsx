@@ -1,8 +1,7 @@
 import React from 'react';
 import { MdPhoneInTalk } from "react-icons/md";
-import { FaFacebook, FaFacebookF, FaMapMarkerAlt, FaSnapchat, FaSnapchatGhost, FaTiktok, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaMapMarkerAlt, FaSnapchat, FaSnapchatGhost, FaTiktok, FaTwitter, FaYoutube } from "react-icons/fa";
 import { GiRazor } from "react-icons/gi";
-import { CgInstagram } from 'react-icons/cg';
 import useInformation from '../../hooks/useInformation';
 import { TbCurrentLocation } from "react-icons/tb";
 import { IoLogoInstagram } from 'react-icons/io';
@@ -20,7 +19,7 @@ const Information = () => {
       <div className='bg-black text-white hidden md:flex items-center justify-between  py-2 px-4'>
         <div className='text-xs flex gap-2'>
           <GiRazor size={25} className='razor' />
-          <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
+          <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} /> 
         </div>
         <div className='flex items-center gap-4'>
           {
@@ -64,6 +63,8 @@ const Information = () => {
         <div className='text-xs flex gap-3 w-full justify-center mr-4'>
           <GiRazor size={20} className='razor' />
           <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
+          <GiRazor size={20} className='razorRight' />
+
         </div>
         <div className='flex items-center gap-5.5 mb-2 mt-2'>
           {

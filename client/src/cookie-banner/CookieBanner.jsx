@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { fiCookieBanner, enCookieBanner, svCookieBanner, ruCookieBanner, etCookieBanner, arCookieBanner, trCookieBanner, faCookieBanner, kuSoraniCookieBanner } from '../languages/cookieBanner';
+import { fiCookieBanner, enCookieBanner, svCookieBanner, ruCookieBanner, etCookieBanner, elCookieBanner, itCookieBanner, esCookieBanner, frCookieBanner, arCookieBanner, trCookieBanner, faCookieBanner, kuSoraniCookieBanner } from '../languages/cookieBanner';
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { FaEarthAsia } from "react-icons/fa6";
@@ -25,6 +25,10 @@ const CookieBanner = () => {
     svCookieBanner: svCookieBanner,
     ruCookieBanner: ruCookieBanner,
     etCookieBanner: etCookieBanner,
+    elCookieBanner: elCookieBanner,
+    itCookieBanner: itCookieBanner,
+    esCookieBanner: esCookieBanner,
+    frCookieBanner: frCookieBanner,
     arCookieBanner: arCookieBanner,
     trCookieBanner: trCookieBanner,
     faCookieBanner: faCookieBanner,
@@ -62,7 +66,7 @@ const CookieBanner = () => {
 
   return (
     <div className='fixed top-0 bottom-0 left-0 right-0 bg-black/50 z-100 flex flex-col items-center justify-center'>
-      <div className='bg-white shadow md:w-full lg:w-full xl:w-full xxl:w-full  w-[98%] m-auto md:max-w-2xl lg:max-w-3xl xl:max-w-4xl xxl:max-w-5xl py-4 rounded'>
+      <div className='bg-white shadow md:w-full lg:w-full xl:w-full xxl:w-full  w-[98%] m-auto md:max-w-2xl lg:max-w-3xl xl:max-w-3xl xxl:max-w-4xl py-4 rounded'>
         <div className='flex gap-4  justify-between w-full'>
           <div className='flex items-center gap-0.5 md:px-4 px-1'>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMtyb9KiIO6XRBm-kdpfP3m9EcIJGN1k9DEw&s" alt="razor" className='w-12 h-12 mr-2 rounded border border-amber-500' />
@@ -146,6 +150,54 @@ const CookieBanner = () => {
                     </div>
                     <div className='w-6'>
                       {language === 'etCookieBanner' && (
+                          <div><FaCheck /></div>
+                        )
+                      }
+                    </div>
+                  </button>
+                  <button onClick={() => {setLanguage('elCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
+                    <div className='flex items-center gap-2.5'>
+                      <Flag code="GR" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      Ελληνικά
+                    </div>
+                    <div className='w-6'>
+                      {language === 'elCookieBanner' && (
+                          <div><FaCheck /></div>
+                        )
+                      }
+                    </div>
+                  </button>
+                  <button onClick={() => {setLanguage('itCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
+                    <div className='flex items-center gap-2.5'>
+                      <Flag code="IT" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      Italian
+                    </div>
+                    <div className='w-6'>
+                      {language === 'itCookieBanner' && (
+                          <div><FaCheck /></div>
+                        )
+                      }
+                    </div>
+                  </button>
+                  <button onClick={() => {setLanguage('frCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
+                    <div className='flex items-center gap-2.5'>
+                      <Flag code="FR" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      Français
+                    </div>
+                    <div className='w-6'>
+                      {language === 'frCookieBanner' && (
+                          <div><FaCheck /></div>
+                        )
+                      }
+                    </div>
+                  </button>
+                  <button onClick={() => {setLanguage('esCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
+                    <div className='flex items-center gap-2.5'>
+                      <Flag code="ES" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      Italian
+                    </div>
+                    <div className='w-6'>
+                      {language === 'esCookieBanner' && (
                           <div><FaCheck /></div>
                         )
                       }

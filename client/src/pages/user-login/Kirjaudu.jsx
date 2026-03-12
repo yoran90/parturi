@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { enUser, fiUser } from '../../languages/loginTranslations'
+import { enUser, fiUser, svUser, ruUser, etUser, elUser, frUser, itUser, esUser, kuUser, arUser, trUser, faUser } from '../../languages/loginTranslations'
 import { toast } from 'react-toastify';
-import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import { IoIosArrowDown, IoIosArrowUp, IoIosCheckmark } from 'react-icons/io';
 import Flag from 'react-world-flags';
-import { FaEye, FaEyeSlash, FaSnapchat, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa';
 import Loading from '../../loading/Loading';
 import { googleLogin, userLogin, userLogout } from '../../store/user-auth';
 import axios from 'axios';
@@ -15,6 +15,8 @@ import useInformation from '../../hooks/useInformation';
 import { FaFacebookF } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io5";
 import { FaSnapchatGhost } from "react-icons/fa";
+import { FaEarthAsia } from "react-icons/fa6";
+
 
 
 const Kirjaudu = () => {
@@ -33,8 +35,24 @@ const Kirjaudu = () => {
   const [loadingVerification, setLoadingVerification] = useState(false);
 
 
+  const translateLanguages = {
+    fi: fiUser,
+    en: enUser,
+    sv: svUser,
+    ru: ruUser,
+    et: etUser,
+    el: elUser,
+    fr: frUser,
+    it: itUser,
+    es: esUser,
+    ku: kuUser,
+    ar: arUser,
+    tr: trUser,
+    fa: faUser
 
-  const translate = language === "fi" ? fiUser : enUser;
+  }
+
+  const translate = translateLanguages[language];
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -124,7 +142,9 @@ const Kirjaudu = () => {
   return (
      <div className='w-full flex flex-col justify-center h-screen bg-black relative'>
       <div className='text-white justify-end flex flex-col items-end mt-4 mr-6 absolute top-0 right-0' onClick={() => setSelectLanguage(!selectLanguage)}>
-        <h3 className='flex items-center text-sm gap-2.5 cursor-pointer'>{translate.selectLanguageuser}
+        <div className='flex items-center text-sm gap-2.5 cursor-pointer'>
+          <FaEarthAsia />
+          <p>{translate.selectLanguageuser}</p>
           {
             selectLanguage ? (
               <IoIosArrowDown />
@@ -132,30 +152,269 @@ const Kirjaudu = () => {
               <IoIosArrowUp />
             )
           }
-        </h3>
+        </div>
 
         {
           selectLanguage && (
-            <div className='flex flex-col text-start w-30 text-sm justify-start gap-4 mt-2 text-black bg-white shadow rounded py-4 px-2'>
-              <button className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
-                onClick={() => {
-                  setLanguage("en");
-                  setSelectLanguage(false);
-                }}
-              >
-                <Flag code="US" width={30} height={30} />
-                English
-              </button>
-
+            <div className='flex flex-col text-start w-36 text-sm justify-start gap-4 mt-2 text-black bg-white shadow rounded py-4 px-2'>
               <button
-                className='text-left flex gap-2 items-center cursor-pointer hover:text-red-600'
+                className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
                 onClick={() => {
                   setLanguage("fi");
                   setSelectLanguage(false);
                 }}
               >
-                <Flag code="FI" width={30} height={30} />
-                Suomi
+                <div className='flex items-center gap-1.5'>
+                  <Flag code="FI" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
+                  Suomi
+                </div>
+                <div>
+                  {
+                    language === "fi" && (
+                      <IoIosCheckmark size={25} />
+                    )
+                  }
+                </div>
+              </button>
+              <button className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("en");
+                  setSelectLanguage(false);
+                }}
+              >
+                <div className='flex items-center gap-1.5'>
+                  <Flag code="US" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
+                  English
+                </div>
+                <div>
+
+                  {
+                    language === "en" && (
+                      <IoIosCheckmark size={25} />
+                    )
+                  }
+                </div>
+              </button>
+              <button className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("sv");
+                  setSelectLanguage(false);
+                }}
+              >
+                <div className='flex items-center gap-1.5'>
+                  <Flag code="SE" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
+                  Svenska
+                </div>
+                <div>
+
+                  {
+                    language === "sv" && (
+                      <IoIosCheckmark size={25} />
+                    )
+                  }
+                </div>
+              </button>
+              <button className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("ru");
+                  setSelectLanguage(false);
+                }}
+              >
+                <div className='flex items-center gap-1.5'>
+                  <Flag code="RU" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
+                  Русский
+                </div>
+                <div>
+
+                  {
+                    language === "ru" && (
+                      <IoIosCheckmark size={25} />
+                    )
+                  }
+                </div>
+              </button>
+              
+              <button className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("et");
+                  setSelectLanguage(false);
+                }}
+              >
+                <div className='flex items-center gap-1.5'>
+                  <Flag code="EE" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
+                  Eesti
+                </div>
+                <div>
+
+                  {
+                    language === "et" && (
+                      <IoIosCheckmark size={25} />
+                    )
+                  }
+                </div>
+              </button>
+              
+              <button className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("el");
+                  setSelectLanguage(false);
+                }}
+              >
+                <div className='flex items-center gap-1.5'>
+                  <Flag code="GR" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
+                  Ελληνικά
+                </div>
+                <div>
+
+                  {
+                    language === "el" && (
+                      <IoIosCheckmark size={25} />
+                    )
+                  }
+                </div>
+              </button>
+              
+              <button className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("fr");
+                  setSelectLanguage(false);
+                }}
+              >
+                <div className='flex items-center gap-1.5'>
+                  <Flag code="FR" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
+                  Français
+                </div>
+                <div>
+
+                  {
+                    language === "fr" && (
+                      <IoIosCheckmark size={25} />
+                    )
+                  }
+                </div>
+              </button>
+              
+              <button className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("it");
+                  setSelectLanguage(false);
+                }}
+              >
+                <div className='flex items-center gap-1.5'>
+                  <Flag code="IT" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
+                  Italian
+                </div>
+                <div>
+
+                  {
+                    language === "it" && (
+                      <IoIosCheckmark size={25} />
+                    )
+                  }
+                </div>
+              </button>
+              
+              <button className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("es");
+                  setSelectLanguage(false);
+                }}
+              >
+                <div className='flex items-center gap-1.5'>
+                  <Flag code="ES" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
+                  Español
+                </div>
+                <div>
+
+                  {
+                    language === "es" && (
+                      <IoIosCheckmark size={25} />
+                    )
+                  }
+                </div>
+              </button>
+              
+              
+              <button className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("tr");
+                  setSelectLanguage(false);
+                }}
+              >
+                <div className='flex items-center gap-1.5'>
+                  <Flag code="TR" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
+                  Türkçe
+                </div>
+                <div>
+
+                  {
+                    language === "tr" && (
+                      <IoIosCheckmark size={25} />
+                    )
+                  }
+                </div>
+              </button>
+              
+              <button className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("ar");
+                  setSelectLanguage(false);
+                }}
+              >
+                <div className='flex items-center gap-1.5'>
+                  <Flag code="SA" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
+                  العربية
+                </div>
+                <div>
+
+                  {
+                    language === "ar" && (
+                      <IoIosCheckmark size={25} />
+                    )
+                  }
+                </div>
+              </button>
+              
+              <button className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("fr");
+                  setSelectLanguage(false);
+                }}
+              >
+                <div className='flex items-center gap-1.5'>
+                  <Flag code="IR" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
+                  فارسی
+                </div>
+                <div>
+
+                  {
+                    language === "fa" && (
+                      <IoIosCheckmark size={25} />
+                    )
+                  }
+                </div>
+              </button>
+              
+              <button className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
+                onClick={() => {
+                  setLanguage("ku");
+                  setSelectLanguage(false);
+                }}
+              >
+                <div className='flex items-center gap-1.5'>
+                  
+                  <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQfiQzqNW7VNJ-9RidWzpO_zPYyZJuaLrHPw&s' className='border w-5 h-5 object-cover border-slate-400 rounded-full'  />
+
+                  کوردی
+                </div>
+                <div>
+
+                  {
+                    language === "ku" && (
+                      <IoIosCheckmark size={25} />
+                    )
+                  }
+                </div>
               </button>
               
             </div>

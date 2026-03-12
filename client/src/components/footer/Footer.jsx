@@ -1,6 +1,5 @@
 import React from 'react';
-import { CgInstagram } from 'react-icons/cg';
-import { FaFacebook, FaSnapchat, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { FaFacebookF, FaSnapchatGhost, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { MdOutlineContactSupport } from "react-icons/md";
 import { MdOutlineOnlinePrediction } from "react-icons/md";
@@ -9,7 +8,7 @@ import useTitleForPage from '../../hooks/useTitleForPage';
 import useHeaderLogo from '../../hooks/useHeaderLogo';
 import { FaLink } from "react-icons/fa";
 import { FcAbout } from "react-icons/fc";
-import { IoIosPricetags } from "react-icons/io";
+import { IoIosPricetags, IoLogoInstagram } from "react-icons/io";
 import { AiFillProduct } from "react-icons/ai";
 import { GiRazor } from "react-icons/gi";
 import { SiGitconnected } from "react-icons/si";
@@ -78,13 +77,13 @@ const Footer = () => {
               <div className='flex items-center gap-5.5'>
                 {
                   getInformation?.socialMedia?.map((sm, index) => (
-                    <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" aria-label={sm.platform} className='cursor-pointer'>
-                      {sm.platform === "facebook" && <FaFacebook size={16} />}
-                      {sm.platform === "instagram" && <CgInstagram size={16} />}
-                      {sm.platform === "tiktok" && <FaTiktok size={16} />}
-                      {sm.platform === "snapchat" && <FaSnapchat size={16} />}
-                      {sm.platform === "twitter" && <FaTwitter size={16} />}
-                      {sm.platform === "youtube" && <FaYoutube size={16} />}
+                    <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
+                      {sm.platform === "facebook" && <FaFacebookF className='bg-blue-600 border rounded-full p-1'  size={22} />}
+                      {sm.platform === "instagram" && <IoLogoInstagram className='bg-pink-900 border rounded-full p-1'  size={22} />}
+                      {sm.platform === "tiktok" && <FaTiktok className='bg-black border rounded-full p-1'  size={22} />}
+                      {sm.platform === "snapchat" && <FaSnapchatGhost  className='bg-yellow-400 border rounded-full p-1'  size={22} />}
+                      {sm.platform === "twitter" && <FaTwitter className='bg-blue-400 border rounded-full p-1'  size={22} />}
+                      {sm.platform === "youtube" && <FaYoutube className='bg-red-600 border rounded-full p-1'  size={22} />}
                     </a>
                   ))
                 }
