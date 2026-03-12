@@ -141,7 +141,7 @@ const Kirjaudu = () => {
 
   return (
      <div className='w-full flex flex-col justify-center h-screen bg-black relative'>
-      <div className='text-white justify-end flex flex-col items-end mt-4 mr-6 absolute top-0 right-0' onClick={() => setSelectLanguage(!selectLanguage)}>
+      <div className='text-white justify-end flex flex-col items-end mt-4 mr-6 z-50 absolute top-0 right-0' onClick={() => setSelectLanguage(!selectLanguage)}>
         <div className='flex items-center text-sm gap-2.5 cursor-pointer'>
           <FaEarthAsia />
           <p>{translate.selectLanguageuser}</p>
