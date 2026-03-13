@@ -378,18 +378,25 @@ const Header = () => {
         </div>
         <div
           className={`
-            bg-black fixed top-0 left-0 bottom-0 z-50 flex flex-col w-full border-r border-slate-700
+            bg-black fixed top-0 left-0 bottom-0 z-50 flex flex-col w-[85%] border-r border-slate-900
             transform transition-transform duration-300 ease-in-out
             ${showTheHeader 
               ? 'translate-x-0 opacity-100' 
-              : '-translate-x-full opacity-0 pointer-events-none'}
+              : '-translate-x-full  pointer-events-none'}
           `}
+           style={{
+  boxShadow: `
+    4px 4px 15px rgba(0, 0, 0, 0.7),   /* main shadow */
+    8px 8px 30px rgba(0, 0, 0, 0.5),   /* deeper shadow */
+    -2px -2px 8px rgba(255, 255, 255, 0.05)  /* subtle highlight */
+  `
+}}
         >
           <div className=' relative w-full'>
             <img src="https://columbus.fi/wp-content/uploads/2024/02/Razor.png" alt='razor' className='h-34' />
             <button onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer'>
-              <GiRazor className='text-white rotate-180' />
-              <GiRazor className='text-white -mt-2.5' />
+              <GiRazor className='text-amber-500 rotate-180' />
+              <GiRazor className='text-amber-500 -mt-2.5' />
               {/* <IoClose onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer' size={22} /> */}
             </button>
           </div>
