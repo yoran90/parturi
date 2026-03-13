@@ -420,7 +420,7 @@ const Header = () => {
               <MdContactPhone   className='text-white' size={16} />
               <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Yhteystiedot</button>
             </NavLink>
-            <hr className='text-slate-800 mt-4 mb-4' />
+            <hr className='text-slate-800 mt-4 mb-4 m-2' />
             {
               user ? (
                 <div className='mt-2'>
@@ -464,9 +464,9 @@ const Header = () => {
             }
             
           </div>
-          <hr className='text-slate-700 mt-8' />
+          <hr className='text-slate-700 mt-8 m-2' />
 
-          <div className='flex items-center gap-4 absolute bottom-12  justify-center w-full'>
+          <div className='flex items-center gap-4 absolute bottom-14  justify-center w-full'>
           {
             getInformation?.socialMedia?.map((sm, index) => (
               <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
@@ -480,7 +480,7 @@ const Header = () => {
             ))
           }
         </div>
-          <div className='absolute bottom-2 w-full text-center text-slate-400 text-xs px-2'>
+          <div className='absolute bottom-4 w-full text-center text-slate-400 text-xs px-2'>
             <p className='flex items-center gap-1.5 justify-center text-center'>
               Razor Parturi <GiRazor /> Tyylisi meidän käsiimme
             </p>
