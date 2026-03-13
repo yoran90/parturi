@@ -393,7 +393,7 @@ const Header = () => {
               {/* <IoClose onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer' size={22} /> */}
             </button>
           </div>
-          <div className='flex flex-col gap-1.5'>
+          <div className='flex flex-col gap-1.5 mt-6'>
             <NavLink to={'/'} className={'flex items-center gap-2.5 ml-7'}>
               <FaHome className='text-white' size={17} />
               <button onClick={clickTheMenuShowHeader} className='text-white mt-0.5 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Etusivu</button>
