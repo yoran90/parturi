@@ -475,9 +475,9 @@ const Header = () => {
             }
             
           </div>
-          <hr className='text-slate-700 mt-8 m-2' />
+          <hr className='text-slate-700 mt-6 m-2' />
 
-          <div className='flex items-center gap-4 absolute bottom-20  justify-center w-full'>
+          <div className='flex items-center gap-4 absolute bottom-16  justify-center w-full'>
           {
             getInformation?.socialMedia?.map((sm, index) => (
               <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
@@ -491,7 +491,7 @@ const Header = () => {
             ))
           }
         </div>
-          <div className='absolute bottom-5 w-full text-center text-slate-200 text-xs px-2'>
+          <div className='absolute bottom-4 w-full text-center text-slate-200 text-xs px-2'>
             <p className='flex items-center gap-1.5 justify-center text-center'>
               Razor Parturi <GiRazor /> Tyylisi meidän käsiimme
             </p>
