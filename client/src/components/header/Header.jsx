@@ -391,36 +391,36 @@ const Header = () => {
               <IoClose onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer' size={22} />
             </button>
           </div>
-          <div className='flex flex-col gap-1.5 ml-4'>
-            <NavLink to={'/'} className={'flex items-center gap-2.5'}>
+          <div className='flex flex-col gap-1.5'>
+            <NavLink to={'/'} className={'flex items-center gap-2.5 ml-7'}>
               <FaHome className='text-white' size={17} />
               <button onClick={clickTheMenuShowHeader} className='text-white mt-0.5 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Etusivu</button>
             </NavLink>
-            <NavLink to={'/meista'} className={'flex items-center gap-2.5'}>
+            <NavLink to={'/meista'} className={'flex items-center gap-2.5 ml-7'}>
               <FcAbout className='text-white' size={18} />
               <button className='text-white cursor-pointer text-sm p-2 mt-0.5 hover:bg-slate-800'>Meistä</button>
             </NavLink>
-            <NavLink to={'/palvelut'} className={'flex items-center gap-2.5'}>
+            <NavLink to={'/palvelut'} className={'flex items-center gap-2.5 ml-7'}>
               <IoIosPricetags  className='text-white' size={17} />
               <button onClick={clickTheMenuShowHeader} className='text-white mt-0.5 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Palvelut</button>
             </NavLink>
-            <NavLink to={'/galleria'} className={'flex items-center gap-2.5'}>
+            <NavLink to={'/galleria'} className={'flex items-center gap-2.5 ml-7'}>
               <IoIosImages className='text-white' size={17} />
               <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Galleria</button>
             </NavLink>
-            <NavLink to={'/tuotet'} className={'flex items-center gap-2.5'}>
+            <NavLink to={'/tuotet'} className={'flex items-center gap-2.5 ml-7'}>
               <BiSolidShoppingBags className='text-white' size={17} />
               <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Tuote</button>
             </NavLink>
-            <NavLink to={'/opinion'} className={'flex items-center gap-2.5'}>
+            <NavLink to={'/opinion'} className={'flex items-center gap-2.5 ml-7'}>
               <MdReviews  className='text-white' size={17} />
               <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Mielipide</button>
             </NavLink>
-            <NavLink to={'/yhteystiedot'} className={'flex items-center gap-2.5'}>
+            <NavLink to={'/yhteystiedot'} className={'flex items-center gap-2.5 ml-7'}>
               <MdContactPhone   className='text-white' size={16} />
               <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Yhteystiedot</button>
             </NavLink>
-            <hr className='text-slate-800 mt-4 mb-4 mr-2' />
+            <hr className='text-slate-800 mt-4 mb-4' />
             {
               user ? (
                 <div className='mt-2'>
@@ -445,7 +445,7 @@ const Header = () => {
                 </div>
               ) : (
                 <>
-                <div className='flex flex-col ml-1'>
+                <div className='flex flex-col ml-7'>
                     <Link to={'/kirjaudu'}>
                       <button  className='text-blue-400 flex items-center gap-2.5 py-2 justify-center cursor-pointer text-sm  hover:text-blue-300'>
                         <AiOutlineLogin  size={18} />
@@ -464,7 +464,7 @@ const Header = () => {
             }
             
           </div>
-          <hr className='text-slate-700 mt-8 mr-4 ml-4' />
+          <hr className='text-slate-700 mt-8' />
 
           <div className='flex items-center gap-4 absolute bottom-12  justify-center w-full'>
           {
