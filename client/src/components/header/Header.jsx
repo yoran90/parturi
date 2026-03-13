@@ -1,24 +1,39 @@
 import React, { useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { LuMenu } from "react-icons/lu";
-import { CgClose } from "react-icons/cg";
+import { FcAbout } from "react-icons/fc";
 import useHeaderLogo from '../../hooks/useHeaderLogo';
 import { TbLogout } from "react-icons/tb";
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useRef } from 'react';
 import { useEffect } from 'react';
 import { getNotifications, markNotificationAsRead, userLogout } from '../../store/user-auth';
 import { toast } from 'react-toastify';
-import { IoMdNotifications } from "react-icons/io";
+import { IoLogoInstagram, IoMdNotifications } from "react-icons/io";
 import { CgPlayListRemove } from "react-icons/cg";
+import { IoClose } from "react-icons/io5";
+import { FaFacebookF, FaHome, FaSnapchatGhost, FaTiktok, FaTwitter, FaYoutube } from "react-icons/fa";
+import { IoIosPricetags } from "react-icons/io";
+import { IoIosImages } from "react-icons/io";
+import { BiSolidShoppingBags } from "react-icons/bi";
+import { MdReviews } from "react-icons/md";
+import { MdContactPhone } from "react-icons/md";
+import { AiOutlineLogin } from "react-icons/ai";
+import { FaUserPlus } from "react-icons/fa";
+import { GiRazor } from "react-icons/gi";
+import useInformation from '../../hooks/useInformation';
+
+
+
+
 
 
 
 const Header = () => {
-
-
+  
   const { user, userNotifications, loading } = useSelector((state) => state.userAuth);
+  const { getInformation } = useInformation();
+
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [openReplyInput, setOpenReplyInput] = useState(null);
@@ -305,9 +320,9 @@ const Header = () => {
             
           </div>
           <div className='text-white pr-4.5'>
-            {
+            {/* {
               showTheHeader && <CgClose onClick={clickTheMenuShowHeader} className='text-white' size={25} /> 
-            }
+            } */}
             {
               !showTheHeader && <LuMenu onClick={clickTheMenuShowHeader} className='text-white' size={25} />
             }
@@ -362,78 +377,118 @@ const Header = () => {
           </div>
         </div>
         <div
-            className={`
-              absolute flex flex-col bg-black z-50 top-14 right-0 w-full pl-3.5 py-6
-              transform transition-all duration-300 ease-in-out
-              ${showTheHeader 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 -translate-y-4 pointer-events-none'}
-            `}
-          >
-          <NavLink to={'/'}>
-            <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Etusivu</button>
-          </NavLink>
-          <NavLink to={'/meista'}>
-            <button className='text-white cursor-pointer text-sm p-2 hover:bg-slate-800'>Meistä</button>
-          </NavLink>
-          <NavLink to={'/palvelut'}>
-            <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Palvelut</button>
-          </NavLink>
-          <NavLink to={'/galleria'}>
-            <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Galleria</button>
-          </NavLink>
-          <NavLink to={'/tuotet'}>
-            <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Tuote</button>
-          </NavLink>
-          <NavLink to={'/opinion'}>
-            <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Mielipide</button>
-          </NavLink>
-          <NavLink to={'/yhteystiedot'}>
-            <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Yhteystiedot</button>
-          </NavLink>
-          {
-            user ? (
-              <div className='ml-4 mr-2 mt-2 mb-8'>
-                <Link to={'/profile'} className='cursor-pointer flex flex-col items-center gap-2'>
-                  {
-                    user?.profileImage?.url ? (
-                      <img className='w-8.5 h-8.5 border border-slate-100 rounded-full' src={user?.profileImage?.url} alt="" />
-                    ) : (
-                      user?.gender === 'men' ? (
-                        <img className='w-8.5 h-8.5 rounded-full border border-slate-100 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+          className={`
+            bg-black/95 fixed top-0 left-0 bottom-0 z-50 flex flex-col w-full border-r border-slate-700
+            transform transition-transform duration-300 ease-in-out
+            ${showTheHeader 
+              ? 'translate-x-0 opacity-100' 
+              : '-translate-x-full opacity-0 pointer-events-none'}
+          `}
+        >
+          <div className=' relative w-full'>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMtyb9KiIO6XRBm-kdpfP3m9EcIJGN1k9DEw&s" alt='razor' className='w-full h-48' />
+            <button>
+              <IoClose onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer' size={22} />
+            </button>
+          </div>
+          <div className='flex flex-col gap-1.5 ml-4 mt-2'>
+            <NavLink to={'/'} className={'flex items-center gap-2.5'}>
+              <FaHome className='text-white' size={17} />
+              <button onClick={clickTheMenuShowHeader} className='text-white mt-0.5 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Etusivu</button>
+            </NavLink>
+            <NavLink to={'/meista'} className={'flex items-center gap-2.5'}>
+              <FcAbout className='text-white' size={18} />
+              <button className='text-white cursor-pointer text-sm p-2 mt-0.5 hover:bg-slate-800'>Meistä</button>
+            </NavLink>
+            <NavLink to={'/palvelut'} className={'flex items-center gap-2.5'}>
+              <IoIosPricetags  className='text-white' size={17} />
+              <button onClick={clickTheMenuShowHeader} className='text-white mt-0.5 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Palvelut</button>
+            </NavLink>
+            <NavLink to={'/galleria'} className={'flex items-center gap-2.5'}>
+              <IoIosImages className='text-white' size={17} />
+              <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Galleria</button>
+            </NavLink>
+            <NavLink to={'/tuotet'} className={'flex items-center gap-2.5'}>
+              <BiSolidShoppingBags className='text-white' size={17} />
+              <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Tuote</button>
+            </NavLink>
+            <NavLink to={'/opinion'} className={'flex items-center gap-2.5'}>
+              <MdReviews  className='text-white' size={17} />
+              <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Mielipide</button>
+            </NavLink>
+            <NavLink to={'/yhteystiedot'} className={'flex items-center gap-2.5'}>
+              <MdContactPhone   className='text-white' size={16} />
+              <button onClick={clickTheMenuShowHeader} className='text-white cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Yhteystiedot</button>
+            </NavLink>
+            <hr className='text-slate-800 mt-4 mb-4 mr-2' />
+            {
+              user ? (
+                <div className='mt-2'>
+                  <Link to={'/profile'} className='cursor-pointer flex flex-col items-center gap-2'>
+                    {
+                      user?.profileImage?.url ? (
+                        <img className='w-8.5 h-8.5 border border-slate-100 rounded-full' src={user?.profileImage?.url} alt="" />
                       ) : (
-                        <img className='w-8.5 h-8.5  rounded-full border border-slate-100' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                        user?.gender === 'men' ? (
+                          <img className='w-8.5 h-8.5 rounded-full border border-slate-100 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                        ) : (
+                          <img className='w-8.5 h-8.5  rounded-full border border-slate-100' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                        )
                       )
-                    )
-                  }
-                  <p className='text-white'>{user?.firstName} {user?.lastName}</p>
-                </Link>
-                <button onClick={handleLogout} className='flex items-center justify-center gap-2 py-1 w-full text-red-400 tex-sm mt-2 px-2 cursor-pointer rounded'>
-                  Lougout
-                  <TbLogout className='text-md' />
-                </button>
-              </div>
-            ) : (
-              <>
-               <div className='flex flex-col'>
-                  <Link to={'/kirjaudu'}>
-                    <button  className='text-blue-400 flex items-center gap-1 -mr-1 justify-center cursor-pointer text-sm p-2 hover:text-blue-300'>
-                      {/* <FaUser /> */}
-                      Kirjaudu
-                    </button>
+                    }
+                    <p className='text-white'>{user?.firstName} {user?.lastName}</p>
                   </Link>
-                  <Link to={'/register'}>
-                    <button className='flex items-center gap-1 justify-center cursor-pointer p-2 text-red-400 text-sm hover:text-red-800'>
-                      {/* <FaUserLock  /> */}
-                      rekisteröidy
-                    </button>
-                  </Link>
+                  <button onClick={handleLogout} className='flex items-center justify-center gap-2 py-1 w-full text-red-400 tex-sm mt-2 px-2 cursor-pointer rounded'>
+                    Lougout
+                    <TbLogout className='text-md' />
+                  </button>
                 </div>
-              </>
-            )
+              ) : (
+                <>
+                <div className='flex flex-col'>
+                    <Link to={'/kirjaudu'}>
+                      <button  className='text-blue-400 flex items-center gap-2.5 py-2 justify-center cursor-pointer text-sm  hover:text-blue-300'>
+                        <AiOutlineLogin  size={18} />
+                        Kirjaudu
+                      </button>
+                    </Link>
+                    <Link to={'/register'}>
+                      <button className='flex items-center gap-2.5 justify-center cursor-pointer py-2 text-red-400 text-sm hover:text-red-800'>
+                        <FaUserPlus  size={18} />
+                        rekisteröidy
+                      </button>
+                    </Link>
+                  </div>
+                </>
+              )
+            }
+            
+          </div>
+          <hr className='text-slate-700 mt-8 mr-4 ml-4' />
+
+          <div className='flex items-center gap-4 absolute bottom-12  justify-center w-full'>
+          {
+            getInformation?.socialMedia?.map((sm, index) => (
+              <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
+                {sm.platform === "facebook" && <FaFacebookF className='bg-blue-600 text-white border rounded-full p-1' size={22}  />}
+                {sm.platform === "instagram" && <IoLogoInstagram className='bg-pink-900 border text-white rounded-full p-1'  size={22} />}
+                {sm.platform === "tiktok" && <FaTiktok className='bg-white text-black border border-slate-50 rounded-full p-1'  size={22} />}
+                {sm.platform === "snapchat" && <FaSnapchatGhost  className='bg-yellow-400 border rounded-full p-1'  size={22} />}
+                {sm.platform === "twitter" && <FaTwitter className='bg-blue-400 border rounded-full p-1'  size={22} />}
+                {sm.platform === "youtube" && <FaYoutube className='bg-red-600 border rounded-full p-1'  size={22} />}
+              </a>
+            ))
           }
-          
         </div>
+          <div className='absolute bottom-2 w-full text-center text-slate-400 text-xs px-2'>
+            <p className='flex items-center gap-1.5 justify-center text-center'>
+              Razor Parturi <GiRazor /> Tyylisi meidän käsiimme
+            </p>
+          </div>
+          
+  
+        </div>
+        
       </div>
     </>
   )
