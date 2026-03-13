@@ -387,8 +387,10 @@ const Header = () => {
         >
           <div className=' relative w-full'>
             <img src="https://columbus.fi/wp-content/uploads/2024/02/Razor.png" alt='razor' className='h-34' />
-            <button>
-              <IoClose onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer' size={22} />
+            <button className='text-white absolute top-4 right-4 cursor-pointer'>
+              <GiRazor className='text-white rotate-185' />
+              <GiRazor className='text-white -mt-2.5 rotate-4' />
+              {/* <IoClose onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer' size={22} /> */}
             </button>
           </div>
           <div className='flex flex-col gap-1.5'>
