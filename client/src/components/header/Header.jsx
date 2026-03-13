@@ -378,7 +378,7 @@ const Header = () => {
         </div>
         <div
           className={`
-            bg-black/95 fixed top-0 left-0 bottom-0 z-50 flex flex-col w-full border-r border-slate-700
+            bg-black fixed top-0 left-0 bottom-0 z-50 flex flex-col w-full border-r border-slate-700
             transform transition-transform duration-300 ease-in-out
             ${showTheHeader 
               ? 'translate-x-0 opacity-100' 
