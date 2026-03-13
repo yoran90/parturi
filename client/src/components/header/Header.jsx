@@ -404,32 +404,32 @@ const Header = () => {
           </div>
           <div className='flex flex-col gap-1.5 mt-6'>
             <NavLink to={'/'} className={'flex items-center gap-2.5 ml-7'}>
-              <FaHome className='text-amber-400' size={17} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-400 mt-0.5 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Etusivu</button>
+              <FaHome className='text-amber-300' size={17} />
+              <button onClick={clickTheMenuShowHeader} className='text-amber-300 mt-0.5 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Etusivu</button>
             </NavLink>
             <NavLink to={'/meista'} className={'flex items-center gap-2.5 ml-7'}>
-              <BsInfoSquareFill  className='text-amber-400' size={14} />
-              <button className='text-amber-400 cursor-pointer text-sm p-2 mt-0.5 hover:bg-slate-800'>Meistä</button>
+              <BsInfoSquareFill  className='text-amber-300' size={14} />
+              <button className='text-amber-300 cursor-pointer text-sm p-2 mt-0.5 hover:bg-slate-800'>Meistä</button>
             </NavLink>
             <NavLink to={'/palvelut'} className={'flex items-center gap-2.5 ml-7'}>
-              <IoIosPricetags  className='text-amber-400' size={17} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-400 mt-0.5 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Palvelut</button>
+              <IoIosPricetags  className='text-amber-300' size={17} />
+              <button onClick={clickTheMenuShowHeader} className='text-amber-300 mt-0.5 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Palvelut</button>
             </NavLink>
             <NavLink to={'/galleria'} className={'flex items-center gap-2.5 ml-7'}>
-              <IoIosImages className='text-amber-400' size={17} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-400 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Galleria</button>
+              <IoIosImages className='text-amber-300' size={17} />
+              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Galleria</button>
             </NavLink>
             <NavLink to={'/tuotet'} className={'flex items-center gap-2.5 ml-7'}>
-              <BiSolidShoppingBags className='text-amber-400' size={17} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-400 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Tuote</button>
+              <BiSolidShoppingBags className='text-amber-300' size={17} />
+              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Tuote</button>
             </NavLink>
             <NavLink to={'/opinion'} className={'flex items-center gap-2.5 ml-7'}>
-              <MdReviews  className='text-amber-400' size={17} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-400 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Mielipide</button>
+              <MdReviews  className='text-amber-300' size={17} />
+              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Mielipide</button>
             </NavLink>
             <NavLink to={'/yhteystiedot'} className={'flex items-center gap-2.5 ml-7'}>
-              <MdContactPhone   className='text-amber-400' size={16} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-400 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Yhteystiedot</button>
+              <MdContactPhone   className='text-amber-300' size={16} />
+              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Yhteystiedot</button>
             </NavLink>
             <hr className='text-slate-800 mt-4 mb-4 m-2' />
             {
@@ -464,7 +464,7 @@ const Header = () => {
                       </button>
                     </Link>
                     <Link to={'/register'}>
-                      <button className='flex items-center gap-2.5 justify-center cursor-pointer py-2 text-red-500 text-sm hover:text-red-800'>
+                      <button className='flex items-center gap-2.5 justify-center cursor-pointer py-2 text-red-400 text-sm hover:text-red-500'>
                         <FaUserPlus  size={18} />
                         Rekisteröidy
                       </button>
