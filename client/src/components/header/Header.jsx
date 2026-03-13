@@ -386,12 +386,12 @@ const Header = () => {
           `}
         >
           <div className=' relative w-full'>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMtyb9KiIO6XRBm-kdpfP3m9EcIJGN1k9DEw&s" alt='razor' className='w-full h-48' />
+            <img src="https://columbus.fi/wp-content/uploads/2024/02/Razor.png" alt='razor' className='h-34' />
             <button>
               <IoClose onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer' size={22} />
             </button>
           </div>
-          <div className='flex flex-col gap-1.5 ml-4 mt-2'>
+          <div className='flex flex-col gap-1.5 ml-4'>
             <NavLink to={'/'} className={'flex items-center gap-2.5'}>
               <FaHome className='text-white' size={17} />
               <button onClick={clickTheMenuShowHeader} className='text-white mt-0.5 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Etusivu</button>
