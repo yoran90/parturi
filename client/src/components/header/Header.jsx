@@ -491,7 +491,7 @@ const Header = () => {
             ))
           }
         </div>
-          <div className='absolute bottom-5 w-full text-center text-slate-400 text-xs px-2'>
+          <div className='absolute bottom-5 w-full text-center text-slate-200 text-xs px-2'>
             <p className='flex items-center gap-1.5 justify-center text-center'>
               Razor Parturi <GiRazor /> Tyylisi meidän käsiimme
             </p>
