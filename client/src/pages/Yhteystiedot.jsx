@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebook, FaMapMarkerAlt, FaSnapchat, FaTiktok, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaMapMarkerAlt, FaSnapchatGhost, FaTiktok, FaTwitter, FaYoutube } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
 import { MdAttachEmail } from "react-icons/md";
 import Footer from '../components/footer/Footer';
@@ -16,6 +16,7 @@ import HolyDay from '../components/holy-day/HolyDay';
 import { LuSquareArrowOutUpRight } from "react-icons/lu";
 import JobApplication from './Job-Application/JobApplication';
 import HeaderText from '../components/header-text/HeaderText';
+import { IoLogoInstagram } from 'react-icons/io';
 
 
 
@@ -158,12 +159,12 @@ const Yhteystiedot = () => {
             {
               getInformation?.socialMedia?.map((sm, index) => (
                 <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
-                  {sm.platform === "facebook" && <FaFacebook size={16} />}
-                  {sm.platform === "instagram" && <CgInstagram size={16} />}
-                  {sm.platform === "tiktok" && <FaTiktok size={16} />}
-                  {sm.platform === "snapchat" && <FaSnapchat size={16} />}
-                  {sm.platform === "twitter" && <FaTwitter size={16} />}
-                  {sm.platform === "youtube" && <FaYoutube size={16} />}
+                  {sm.platform === "facebook" && <FaFacebookF className='bg-blue-600 text-white border rounded-full p-1' size={22}  />}
+                  {sm.platform === "instagram" && <IoLogoInstagram className='bg-pink-900 border text-white rounded-full p-1'  size={22} />}
+                  {sm.platform === "tiktok" && <FaTiktok className='bg-black border text-white rounded-full p-1'  size={22} />}
+                  {sm.platform === "snapchat" && <FaSnapchatGhost  className='bg-yellow-400 border rounded-full p-1'  size={22} />}
+                  {sm.platform === "twitter" && <FaTwitter className='bg-blue-400 border rounded-full p-1'  size={22} />}
+                  {sm.platform === "youtube" && <FaYoutube className='bg-red-600 border rounded-full p-1'  size={22} />}
                 </a>
               ))
             }
