@@ -380,25 +380,30 @@ const Header = () => {
         </div>
         <div
           className={`
-            bg-black fixed top-0 left-0 bottom-0 z-50 flex flex-col w-[82%] border-r border-slate-900
+            bg-black fixed top-0 left-0 bottom-0 z-50 flex flex-col w-[92%] border-r border-slate-900
             transform transition-transform duration-300 ease-in-out
             ${showTheHeader 
               ? 'translate-x-0 opacity-100' 
-              : '-translate-x-full  pointer-events-none'}
+              : '-translate-x-full pointer-events-none'}
           `}
-           style={{
-            boxShadow: `
-              4px 4px 15px rgba(0, 0, 0, 0.7),   
-              8px 8px 30px rgba(0, 0, 0, 0.5),   
-              -2px -2px 8px rgba(255, 255, 255, 0.05)  
-            `
-          }}
+          style={
+            showTheHeader
+              ? {
+                  boxShadow: `
+                    4px 4px 15px rgba(0, 0, 0, 0.7),
+                    8px 8px 30px rgba(0, 0, 0, 0.5),
+                    -2px -2px 8px rgba(255, 255, 255, 0.05)
+                  `,
+                }
+              : {}
+          }
         >
+
           <div className=' relative w-full'>
             <img src="https://columbus.fi/wp-content/uploads/2024/02/Razor.png" alt='razor' className='h-34' />
             <button onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer'>
-              <GiRazor className='text-amber-500 rotate-180' />
-              <GiRazor className='text-amber-500 -mt-2.5' />
+              <GiRazor className='text-amber-500 rotate-180' size={15} />
+              <GiRazor className='text-amber-500 -mt-2.5' size={15} />
               {/* <IoClose onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer' size={22} /> */}
             </button>
           </div>
@@ -431,7 +436,6 @@ const Header = () => {
               <MdContactPhone   className='text-amber-300' size={16} />
               <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Yhteystiedot</button>
             </NavLink>
-            <hr className='text-slate-800 mt-4 mb-4 m-2' />
             {
               user ? (
                 <div className='mt-2'>
@@ -475,22 +479,7 @@ const Header = () => {
             }
             
           </div>
-          <hr className='text-slate-700 mt-6 m-2' />
-
-          <div className='flex items-center gap-4 absolute bottom-16  justify-center w-full'>
-          {
-            getInformation?.socialMedia?.map((sm, index) => (
-              <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
-                {sm.platform === "facebook" && <FaFacebookF className='bg-blue-600 text-white border rounded-full p-1' size={22}  />}
-                {sm.platform === "instagram" && <IoLogoInstagram className='bg-pink-900 border text-white rounded-full p-1'  size={22} />}
-                {sm.platform === "tiktok" && <FaTiktok className='bg-white text-black border border-slate-50 rounded-full p-1'  size={22} />}
-                {sm.platform === "snapchat" && <FaSnapchatGhost  className='bg-yellow-400 border rounded-full p-1'  size={22} />}
-                {sm.platform === "twitter" && <FaTwitter className='bg-blue-400 border rounded-full p-1'  size={22} />}
-                {sm.platform === "youtube" && <FaYoutube className='bg-red-600 border rounded-full p-1'  size={22} />}
-              </a>
-            ))
-          }
-        </div>
+          
           <div className='absolute bottom-2 w-full text-center text-slate-200 text-xs px-2'>
             <small className='flex items-center gap-1.5 justify-center text-center'>
               Razor Parturi <GiRazor /> Tyylisi meidän käsiimme
