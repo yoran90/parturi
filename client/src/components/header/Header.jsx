@@ -438,7 +438,7 @@ const Header = () => {
             </NavLink>
             {
               user ? (
-                <div className='mt-4'>
+                <div className='mt-8'>
                   <Link to={'/profile'} className='cursor-pointer flex flex-col items-center gap-2'>
                     {
                       user?.profileImage?.url ? (
