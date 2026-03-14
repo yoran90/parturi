@@ -159,9 +159,9 @@ const Yhteystiedot = () => {
             {
               getInformation?.socialMedia?.map((sm, index) => (
                 <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
-                  {sm.platform === "facebook" && <FaFacebookF className='bg-blue-600 text-white border rounded-full p-1' size={22}  />}
-                  {sm.platform === "instagram" && <IoLogoInstagram className='bg-pink-900 border text-white rounded-full p-1'  size={22} />}
-                  {sm.platform === "tiktok" && <FaTiktok className='bg-black border text-white rounded-full p-1'  size={22} />}
+                  {sm.platform === "facebook" && <FaFacebookF className='bg-blue-600 text-white border border-slate-500 rounded-full p-1' size={22}  />}
+                  {sm.platform === "instagram" && <IoLogoInstagram className='bg-pink-900 border border-slate-500 text-white rounded-full p-1'  size={22} />}
+                  {sm.platform === "tiktok" && <FaTiktok className='bg-black border border-slate-500 text-white rounded-full p-1'  size={22} />}
                   {sm.platform === "snapchat" && <FaSnapchatGhost  className='bg-yellow-400 border rounded-full p-1'  size={22} />}
                   {sm.platform === "twitter" && <FaTwitter className='bg-blue-400 border rounded-full p-1'  size={22} />}
                   {sm.platform === "youtube" && <FaYoutube className='bg-red-600 border rounded-full p-1'  size={22} />}
