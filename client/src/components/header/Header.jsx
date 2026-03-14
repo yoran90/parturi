@@ -400,14 +400,14 @@ const Header = () => {
         >
 
           <div className=' relative w-full'>
-            <img src="https://columbus.fi/wp-content/uploads/2024/02/Razor.png" alt='razor' className='h-34' />
+            <img src="https://columbus.fi/wp-content/uploads/2024/02/Razor.png" alt='razor' className='h-24' />
             <button onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer'>
               <GiRazor className='text-amber-500 rotate-180' size={15} />
               <GiRazor className='text-amber-500 -mt-2.5' size={15} />
               {/* <IoClose onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer' size={22} /> */}
             </button>
           </div>
-          <div className='flex flex-col gap-1.5 mt-6'>
+          <div className='flex flex-col gap-1.5 mt-10'>
             <NavLink to={'/'} className={'flex items-center gap-2.5 ml-7'}>
               <FaHome className='text-amber-300' size={17} />
               <button onClick={clickTheMenuShowHeader} className='text-amber-300 mt-0.5 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Etusivu</button>
