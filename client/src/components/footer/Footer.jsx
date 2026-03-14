@@ -34,7 +34,7 @@ const Footer = () => {
             <h3 className='text-md flex items-center gap-2'>
               <img src={headerLogo?.url} alt="Site Logo" className='w-6 h-6 rounded-full border border-slate-300' />
               <p>{getTitleForPage?.titleForPage?.footerTitle}</p>
-            <GiRazor />
+            <GiRazor size={20} className='razorSidebar' />
             </h3>
             <div className='text-sm text-slate-200' dangerouslySetInnerHTML={{ __html: getTitleForPage?.titleForPage?.footerDescription}} />
           </div>

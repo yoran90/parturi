@@ -482,7 +482,7 @@ const Header = () => {
           
           <div className='absolute bottom-2 w-full text-center text-slate-200 text-xs px-2'>
             <small className='flex items-center gap-1.5 justify-center text-center'>
-              Razor Parturi <GiRazor /> Tyylisi meidän käsiimme
+              Razor Parturi <GiRazor size={15} className='razorSidebar' /> Tyylisi meidän käsiimme
             </small>
             <small>&copy; {year} Razor Parturi</small>
           </div>
