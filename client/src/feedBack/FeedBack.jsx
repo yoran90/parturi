@@ -66,7 +66,8 @@ const FeedBack = ({ onClose, setOpenFeedBack }) => {
       <div className={`bg-white shadow-xl w-full max-w-lg border border-slate-300 rounded py-12 px-3 relative md:overflow-hidden h-full max-h-[98vh] overflow-y-scroll scrollbarStyle ${openInfo ? 'hidden' : ''}`} style={{ boxShadow: "4px 4px 10px rgba(255, 255, 255, 0.3), 4px 4px 10px rgba(255, 255, 255, 0.15)" }}>
         <div className='absolute top-3 right-3'>
           <button className='text-xs cursor-pointer' onClick={onClose}>
-            <GiRazor size={20} className='text-red-600' />
+            <GiRazor className='text-red-600 rotate-180' size={13} />
+            <GiRazor className='text-red-600 -mt-2' size={13} />
           </button>
         </div>
         <div className='absolute top-3 left-3'>
