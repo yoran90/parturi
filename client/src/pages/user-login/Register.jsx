@@ -331,7 +331,7 @@ const Register = () => {
               
               <button className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
                 onClick={() => {
-                  setLanguage("fr");
+                  setLanguage("fa");
                   setSelectLanguage(false);
                 }}
               >

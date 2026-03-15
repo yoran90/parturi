@@ -409,32 +409,32 @@ const Header = () => {
           </div>
           <div className='flex flex-col gap-1.5 mt-10'>
             <NavLink to={'/'} className={'flex items-center gap-2.5 ml-7'}>
-              <FaHome className='text-amber-300' size={17} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-300 mt-0.5 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Etusivu</button>
+              <FaHome className='text-amber-300' size={19} />
+              <button onClick={clickTheMenuShowHeader} className='text-amber-300 mt-0.5 cursor-pointer text-[14px] font-medium font- p-2 hover:bg-slate-800'>Etusivu</button>
             </NavLink>
             <NavLink to={'/meista'} className={'flex items-center gap-2.5 ml-7'}>
-              <BsInfoSquareFill  className='text-amber-300' size={14} />
-              <button className='text-amber-300 cursor-pointer text-sm p-2 mt-0.5 hover:bg-slate-800'>Meistä</button>
+              <BsInfoSquareFill  className='text-amber-300' size={16} />
+              <button className='text-amber-300 cursor-pointer text-[14px] font-medium ml-1 text-sm p-2 mt-0.5 hover:bg-slate-800'>Meistä</button>
             </NavLink>
             <NavLink to={'/palvelut'} className={'flex items-center gap-2.5 ml-7'}>
-              <IoIosPricetags  className='text-amber-300' size={17} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-300 mt-0.5 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Palvelut</button>
+              <IoIosPricetags  className='text-amber-300' size={19} />
+              <button onClick={clickTheMenuShowHeader} className='text-amber-300 mt-0.5 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Palvelut</button>
             </NavLink>
             <NavLink to={'/galleria'} className={'flex items-center gap-2.5 ml-7'}>
-              <IoIosImages className='text-amber-300' size={17} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Galleria</button>
+              <IoIosImages className='text-amber-300' size={18} />
+              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Galleria</button>
             </NavLink>
             <NavLink to={'/tuotet'} className={'flex items-center gap-2.5 ml-7'}>
-              <BiSolidShoppingBags className='text-amber-300' size={17} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Tuote</button>
+              <BiSolidShoppingBags className='text-amber-300' size={19} />
+              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[14px] ml-0.5 font-medium p-2 hover:bg-slate-800'>Tuote</button>
             </NavLink>
             <NavLink to={'/opinion'} className={'flex items-center gap-2.5 ml-7'}>
-              <MdReviews  className='text-amber-300' size={17} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Mielipide</button>
+              <MdReviews  className='text-amber-300' size={18} />
+              <button onClick={clickTheMenuShowHeader} className='text-amber-300 ml-1 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Mielipide</button>
             </NavLink>
             <NavLink to={'/yhteystiedot'} className={'flex items-center gap-2.5 ml-7'}>
               <MdContactPhone   className='text-amber-300' size={16} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[13px] font-medium p-2 hover:bg-slate-800'>Yhteystiedot</button>
+              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[14px] ml-1 font-medium p-2 hover:bg-slate-800'>Yhteystiedot</button>
             </NavLink>
             {
               user ? (
@@ -462,13 +462,13 @@ const Header = () => {
                 <>
                 <div className='flex flex-col gap-1 ml-7'>
                     <Link to={'/kirjaudu'}>
-                      <button  className='text-blue-400 flex items-center gap-2.5 py-2 justify-center cursor-pointer text-sm  hover:text-blue-300'>
+                      <button  className='text-blue-400 flex items-center gap-5.5 py-2 justify-center cursor-pointer text-[14px]  hover:text-blue-300'>
                         <LuLogIn size={20} className='-ml-1' />
                         Kirjaudu
                       </button>
                     </Link>
                     <Link to={'/register'}>
-                      <button className='flex items-center gap-2.5 justify-center cursor-pointer py-2 text-red-400 text-sm hover:text-red-500'>
+                      <button className='flex items-center gap-5 justify-center cursor-pointer py-2 text-red-400 text-[14px] hover:text-red-500'>
                         <FaUserPlus  size={18} />
                         Rekisteröidy
                       </button>
