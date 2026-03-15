@@ -413,7 +413,7 @@ const Header = () => {
               <button onClick={clickTheMenuShowHeader} className='text-amber-300 mt-0.5 cursor-pointer text-[14px] font-medium font- p-2 hover:bg-slate-800'>Etusivu</button>
             </NavLink>
             <NavLink to={'/meista'} className={'flex items-center gap-2.5 ml-7'}>
-              <BsInfoSquareFill  className='text-amber-300' size={16} />
+              <BsInfoSquareFill  className='text-amber-300' size={15} />
               <button className='text-amber-300 cursor-pointer text-[14px] font-medium ml-1 text-sm p-2 mt-0.5 hover:bg-slate-800'>Meistä</button>
             </NavLink>
             <NavLink to={'/palvelut'} className={'flex items-center gap-2.5 ml-7'}>
