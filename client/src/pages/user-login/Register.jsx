@@ -13,6 +13,8 @@ import { FaFacebookF } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io5";
 import { FaSnapchatGhost } from "react-icons/fa";
 import { FaEye, FaEyeSlash, FaSnapchat, FaTiktok, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { RiLockPasswordFill } from "react-icons/ri";
+import { TbPasswordFingerprint } from "react-icons/tb";
 
 const Register = () => {
 
@@ -20,6 +22,7 @@ const Register = () => {
   const { getInformation } = useInformation();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [selectLanguage, setSelectLanguage] = useState(false);
   const [language, setLanguage] = useState("fi");
 
@@ -30,6 +33,7 @@ const Register = () => {
   const [gender, setGender] = useState("none");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
 
 
@@ -74,6 +78,14 @@ const Register = () => {
 
     if (gender === "none") {
       toast.error("Please select gender");
+      return;
+    }
+    if (password.length < 8) {
+      toast.error("Password must be at least 8 characters long!");
+      return;
+    }
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match!");
       return;
     }
 
@@ -388,16 +400,16 @@ const Register = () => {
           <form onSubmit={handleSubmit} className='text-white flex flex-col gap-4.5'>
             <div className='flex w-full gap-2'>
               <div className='flex flex-col gap-1.5 w-full'>
-                <label> 📧 {translate.firstname} <span className='text-red-600 font-semibold'>*</span></label>
+                <label> 👤 {translate.firstname} <span className='text-red-600 font-semibold'>*</span></label>
                 <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder={translate.firstname} className='border bg-transparent w-full border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
               </div>
               <div className='flex flex-col gap-1.5 w-full'>
-                <label> 📧 {translate.lastname} <span className='text-red-600 font-semibold'>*</span></label>
+                <label> 🆔 {translate.lastname} <span className='text-red-600 font-semibold'>*</span></label>
                 <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder={translate.lastname} className='border w-full border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
               </div>
             </div>
             <div className='flex flex-col gap-1.5'>
-              <label>{translate.selectGender}</label>
+              <label>♂️ {translate.selectGender}</label>
               <select value={gender} onChange={(e) => setGender(e.target.value)} className='border bg-transparent py-2 rounded px-4'>
                 <option value="men" className='bg-black hover:bg-black'>{translate.men}</option>
                 <option value="women" className='bg-black hover:bg-black'>{translate.women}</option>
@@ -409,7 +421,7 @@ const Register = () => {
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={translate.emailuser} className='border border-slate-200 text-slate-400 text-sm rounded px-4 py-2' />
             </div>
             <div className='flex flex-col gap-1.5'>
-              <label> 🔑 {translate.passworduser} <span className='text-red-600 font-semibold'>*</span></label>
+              <label className='flex items-center gap-1.5'><RiLockPasswordFill /> {translate.passworduser} <span className='text-red-600 font-semibold'>*</span></label>
               <div className='flex justify-between border border-slate-200 rounded py-2 px-4'>
                 <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} placeholder='*******************' className='border-none w-full focus:outline-none bg-transparent text-sm' />
                 {
@@ -419,6 +431,21 @@ const Register = () => {
                   ) : (
                     
                     <FaEye onClick={() => setShowPassword(true)} className='cursor-pointer' />
+                  )
+                }
+              </div>
+            </div>
+            <div className='flex flex-col gap-1.5'>
+              <label className='flex items-center gap-1.5'><TbPasswordFingerprint /> {translate.confirmPassworduser} <span className='text-red-600 font-semibold'>*</span></label>
+              <div className='flex justify-between border border-slate-200 rounded py-2 px-4'>
+                <input type={showConfirmPassword ? "text" : "password"} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder='*******************' className='border-none w-full focus:outline-none bg-transparent text-sm' />
+                {
+                  showConfirmPassword ? (
+                    <FaEyeSlash onClick={() => setShowConfirmPassword(false)} className='cursor-pointer' />
+                    
+                  ) : (
+                    
+                    <FaEye onClick={() => setShowConfirmPassword(true)} className='cursor-pointer' />
                   )
                 }
               </div>
