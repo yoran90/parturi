@@ -8,7 +8,7 @@ const BackToTop = () => {
   const [isVisible, setIsVisible] = React.useState(false);
 
   const toggleVisibility = () => {
-    if (window.pageYOffset > 500) {
+    if (window.pageYOffset > 1200) {
       setIsVisible(true);
     } else {
       setIsVisible(false);

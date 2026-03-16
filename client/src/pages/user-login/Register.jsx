@@ -122,7 +122,7 @@ const Register = () => {
 
         {
           selectLanguage && (
-            <div className='flex flex-col text-start w-36 text-sm justify-start gap-4 mt-2 text-black bg-white shadow rounded py-4 px-2'>
+            <div className='flex flex-col text-start w-42 text-sm justify-start gap-4 mt-2 text-black bg-white shadow rounded py-4 px-2'>
               <button
                 className='text-left flex justify-between gap-2 items-center cursor-pointer hover:text-red-600'
                 onClick={() => {
@@ -132,7 +132,8 @@ const Register = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="FI" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  Suomi
+                  <p>Suomi</p>
+                  <p className='text-xs text-slate-600 font-semibold'>(FI)</p>
                 </div>
                 <div>
                   {
@@ -150,7 +151,8 @@ const Register = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="US" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  English
+                  <p>English</p>
+                  <p className='text-xs text-slate-600 font-semibold'>(US)</p>
                 </div>
                 <div>
 
@@ -169,7 +171,8 @@ const Register = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="SE" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  Svenska
+                  <p>Svenska</p>
+                  <p className='text-xs text-slate-600 font-semibold'>(SE)</p>
                 </div>
                 <div>
 
@@ -188,7 +191,8 @@ const Register = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="RU" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  Русский
+                  <p>Русский</p>
+                  <p className='text-xs text-slate-600 font-semibold'>(RU)</p>
                 </div>
                 <div>
 
@@ -208,7 +212,8 @@ const Register = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="EE" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  Eesti
+                  <p>Eesti</p>
+                  <p className='text-xs text-slate-600 font-semibold'>(EE)</p>
                 </div>
                 <div>
 
@@ -228,7 +233,8 @@ const Register = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="GR" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  Ελληνικά
+                  <p>Ελληνικά</p>
+                  <p className='text-xs text-slate-600 font-semibold'>(GR)</p>
                 </div>
                 <div>
 
@@ -248,7 +254,8 @@ const Register = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="FR" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  Français
+                  <p>Français</p>
+                  <p className='text-xs text-slate-600 font-semibold'>(FR)</p>
                 </div>
                 <div>
 
@@ -268,7 +275,8 @@ const Register = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="IT" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  Italian
+                  <p>Italiano</p>
+                  <p className='text-xs text-slate-600 font-semibold'>(IT)</p>
                 </div>
                 <div>
 
@@ -288,7 +296,8 @@ const Register = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="ES" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  Español
+                  <p>Español</p>
+                  <p className='text-xs text-slate-600 font-semibold'>(ES)</p>
                 </div>
                 <div>
 
@@ -309,7 +318,8 @@ const Register = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="TR" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  Türkçe
+                  <p>Türkçe</p>
+                  <p className='text-xs text-slate-600 font-semibold'>(TR)</p>
                 </div>
                 <div>
 
@@ -329,7 +339,8 @@ const Register = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="SA" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  العربية
+                  <p>العربية</p>
+                  <p className='text-xs text-slate-600 font-semibold'>(AR)</p>
                 </div>
                 <div>
 
@@ -349,7 +360,8 @@ const Register = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="IR" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  فارسی
+                  <p>فارسی</p>
+                  <p className='text-xs text-slate-600 font-semibold'>(FA)</p>
                 </div>
                 <div>
 
@@ -370,8 +382,8 @@ const Register = () => {
                 <div className='flex items-center gap-1.5'>
                   
                   <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQfiQzqNW7VNJ-9RidWzpO_zPYyZJuaLrHPw&s' className='border w-5 h-5 object-cover border-slate-400 rounded-full'  />
-
-                  کوردی
+                  <p>کوردی</p>
+                  <p className='text-xs text-slate-600 font-semibold'>(KU)</p>
                 </div>
                 <div>
 

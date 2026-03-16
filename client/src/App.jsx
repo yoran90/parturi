@@ -51,13 +51,13 @@ import AdminVerifyEmail from './admin/pages/verifyEmail/AdminVerifyEmail'
 import UserLayout from './User-Layouts/UserLayout'
 import AdminLayout from './Admin-Layouts/AdminLayout'
 import AuthLayout from './User-Layouts/Register-Login/AuthLayout'
-
-
+import { FaCalendarAlt } from "react-icons/fa";
 import razorLogo from './assets/Razor.png'
 import ScrollToTop from './Scroll-to-top/ScrollToTop'
 import FeedBack from './feedBack/FeedBack'
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 import DisplayFeedBack from './admin/pages/DisplayFeedBack'
+import Calendar from './components/calendar/Calendar'
 
 
 
@@ -74,6 +74,8 @@ const App = () => {
   const location = useLocation();
 
   const [openFeedBack, setOpenFeedBack] = useState(false);
+  const [openCalendar , setOpenCalendar] = useState(false);
+  const [visibleCalendar, setVisibleCalendar] = useState(false);
 
   const feedBackRoutes = [
     "/",
@@ -85,9 +87,35 @@ const App = () => {
     "/tuote/:id",
     "/yhteystiedot"
   ];
-
   const showFeedBack = feedBackRoutes.some((route) => route === location.pathname);
 
+  const calendarRoutes = [
+    "/",
+    "/meista",
+    "/palvelut",
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showCalandary = calendarRoutes.some((route) => route === location.pathname);
+
+
+  useEffect(() => {
+
+    const handleVisibleCalendar = () => {
+      setVisibleCalendar(window.pageYOffset < 1200);
+    }
+
+    window.addEventListener('scroll', handleVisibleCalendar);
+
+    return () => {
+      window.removeEventListener('scroll', handleVisibleCalendar);
+    }
+
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -256,6 +284,23 @@ const App = () => {
           </>
         )
       }
+      {/* end feed back */}
+      {/* calandery */}
+      {showCalandary && !openFeedBack && visibleCalendar && (
+          <div>
+            <button onClick={() => setOpenCalendar(!openCalendar)} className='fixed bottom-5 right-5  border-2 border-red-800 p-2 bg-red-600 text-white text-sm rounded-full cursor-pointer flex items-center gap-2.5'>
+              <img src="https://play-lh.googleusercontent.com/ttdkcjLXS5B8CLYYfCkrmMcjPk1jJjJZEIcd3S5eP9pLO48Yy3RnRnQgHy0n2WroqYA" alt="calandery" className="w-5 h-5" />
+            </button>
+
+            {openCalendar &&  (
+              <Calendar onClose={() => setOpenCalendar(false)} />
+            )
+
+            }
+          </div>
+        )
+      }
+      {/* end calandery */}
     </>
   )
 }
