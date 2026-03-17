@@ -44,42 +44,25 @@ const Calendar = () => {
     <div className='fixed bottom-16 right-6 flex flex-col z-50'>
       <div className='relative '>
 
-        {/* <div>
-          <div className='flex gap-2 ml-1.5 absolute -top-3.5'>
-            {Array.from({ length: 14}).map((_, index) => (
-              <div key={index}>
-                <div className='w-2 h-6 bg-black border border-red-300 rounded'></div>
-              </div>  
+        <div className="absolute -top-3 left-0 w-full flex justify-center">
+          <div className="flex gap-3">
+            {Array.from({ length: 11 }).map((_, i) => (
+              <div key={i} className="flex flex-col items-center">
+                <div className="w-1.5 h-4.5 border border-slate-600
+                  bg-linear-to-b from-gray-300 via-gray-500 to-gray-800 
+                  rounded-full shadow-sm" />
+                
+                <div className="w-2 h-2 rounded-full 
+                  bg-linear-to-b from-gray-700 to-black 
+                  border border-gray-500 shadow-inner" />
+
+                
+              
+              </div>
             ))}
           </div>
         </div>
-        <div>
-          <div className='flex gap-1 ml-1 absolute top-1'>
-            {Array.from({ length: 14}).map((_, index) => (
-              <div key={index}>
-                <div className='w-3 h-3 bg-black border border-slate-400 rounded-full'></div>
-              </div>  
-            ))}
-          </div>
-        </div> */}
-<div className="absolute -top-3.5 left-0 w-full flex justify-center">
-  <div className="flex gap-3">
-    {Array.from({ length: 11 }).map((_, i) => (
-      <div key={i} className="flex flex-col items-center">
-         <div className="w-1.5 h-5 border border-slate-600
-          bg-linear-to-b from-gray-300 via-gray-500 to-gray-800 
-          rounded-full shadow-sm" />
         
-        <div className="w-2 h-2 rounded-full 
-          bg-linear-to-b from-gray-700 to-black 
-          border border-gray-500 shadow-inner" />
-
-        
-       
-      </div>
-    ))}
-  </div>
-</div>
 
         <div className='w-full max-w-md bg-white shadow border border-slate-300 rounded-t-lg rounded-b-sm overflow-hidden'>
           <div className='flex flex-col gap-2 items-center justify-between py-3 mt-5 bg-red-700 px-4 text-white w-full'>
