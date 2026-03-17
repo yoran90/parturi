@@ -81,7 +81,7 @@ const Calendar = () => {
   </div>
 </div>
 
-        <div className='w-full max-w-md bg-white shadow border border-slate-300 rounded-t-lg rounded-b-md overflow-hidden'>
+        <div className='w-full max-w-md bg-white shadow border border-slate-300 rounded-t-lg rounded-b-sm overflow-hidden'>
           <div className='flex flex-col gap-2 items-center justify-between py-3 mt-5 bg-red-700 px-4 text-white w-full'>
             <div className='flex items-center justify-between text-xs w-full'>
               <button onClick={prevMonth} className='border-2  rounded-full p-0.5'>
