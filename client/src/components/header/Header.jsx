@@ -145,8 +145,8 @@ const Header = () => {
 
   return (
     <>
-      <div ref={menuRef} className='md:flex sticky top-0 p-2 hidden items-center justify-between bg-white dark:bg-black dark:text-white text-black border-t-2 border-b-2  border-slate-800 z-50'>
-        <div className='bg-white dark:bg-black'>
+      <div ref={menuRef} className='md:flex sticky top-0 p-2 hidden items-center justify-between bg-black text-white border-t-2 border-b-2  border-slate-800 z-50'>
+        <div className='bg-black'>
           {headerLogo && headerLogo.url && (
             <Link to={'/'}>
               <img src={headerLogo?.url} alt="Header Logo" className='w-12 h-12 rounded-full border border-slate-500 ml-4' />
