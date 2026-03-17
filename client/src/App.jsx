@@ -108,6 +108,7 @@ const App = () => {
     const handleVisibleCalendar = () => {
       setVisibleCalendar(window.pageYOffset < 1200);
     }
+    handleVisibleCalendar();
 
     window.addEventListener('scroll', handleVisibleCalendar);
 
@@ -274,7 +275,7 @@ const App = () => {
       {/* feed back */}
       {showFeedBack && (
           <>
-            <button type='button' onClick={() => setOpenFeedBack(true)} className={`fixed bottom-5 left-5 border-2 border-amber-700 bg-amber-400 text-white rounded-full cursor-pointer p-2 ${openFeedBack ? 'hidden' : 'block'}`}>
+            <button type='button' onClick={() => setOpenFeedBack(true)} className={`fixed bottom-5 left-5 border-2 border-amber-700 bg-amber-400 text-white rounded-full cursor-pointer w-10 h-10 flex items-center justify-center ${openFeedBack ? 'hidden' : 'block'}`}>
               <IoChatbubbleEllipsesSharp  size={22} className={`text-white z-50`}/>
             </button>
             {openFeedBack && (
@@ -288,7 +289,7 @@ const App = () => {
       {/* calandery */}
       {showCalandary && !openFeedBack && visibleCalendar && (
           <div>
-            <button onClick={() => setOpenCalendar(!openCalendar)} className='fixed bottom-5 right-5  border-2 border-red-800 p-2 bg-red-600 text-white text-sm rounded-full cursor-pointer flex items-center gap-2.5'>
+            <button onClick={() => setOpenCalendar(!openCalendar)} className='fixed bottom-5 right-5  border-2 border-red-800 w-10 h-10 flex items-center justify-center bg-red-600 text-white text-sm rounded-full cursor-pointer gap-2.5'>
               <img src="https://play-lh.googleusercontent.com/ttdkcjLXS5B8CLYYfCkrmMcjPk1jJjJZEIcd3S5eP9pLO48Yy3RnRnQgHy0n2WroqYA" alt="calandery" className="w-5 h-5" />
             </button>
 

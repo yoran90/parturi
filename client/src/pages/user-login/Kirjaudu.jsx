@@ -166,8 +166,10 @@ const Kirjaudu = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="FI" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  <p>Suomi</p>
-                  <p className='text-xs text-slate-600 font-semibold'>(FI)</p>
+                  <div className='flex items-center gap-0.5'>
+                    <p className='font-semibold text-slate-500'>Suomi</p>
+                    <p className='text-xs text-slate-600 font-semibold'>(FI)</p>
+                  </div>
                 </div>
                 <div>
                   {
@@ -185,8 +187,10 @@ const Kirjaudu = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="US" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  <p>English</p>
-                  <p className='text-xs text-slate-600 font-semibold'>(US)</p>
+                  <div className='flex items-center gap-0.5'>
+                    <p className='font-semibold text-slate-500'>English</p>
+                    <p className='text-xs text-slate-600 font-semibold'>(US)</p>
+                  </div>
                 </div>
                 <div>
 
@@ -205,8 +209,10 @@ const Kirjaudu = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="SE" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  <p>Svenska</p>
-                  <p className='text-xs text-slate-600 font-semibold'>(SE)</p>
+                  <div className='flex items-center gap-0.5'>
+                    <p className='font-semibold text-slate-500'>Svenska</p>
+                    <p className='text-xs text-slate-600 font-semibold'>(SE)</p>
+                  </div>
                 </div>
                 <div>
 
@@ -225,8 +231,10 @@ const Kirjaudu = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="RU" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  <p>Русский</p>
-                  <p className='text-xs text-slate-600 font-semibold'>(RU)</p>
+                  <div className='flex items-center gap-0.5'>
+                    <p className='font-semibold text-slate-500'>Русский</p>
+                    <p className='text-xs text-slate-600 font-semibold'>(RU)</p>
+                  </div>
                 </div>
                 <div>
 
@@ -246,8 +254,10 @@ const Kirjaudu = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="EE" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  <p>Eesti</p>
-                  <p className='text-xs text-slate-600 font-semibold'>(EE)</p>
+                  <div className='flex items-center gap-0.5'>
+                    <p className='font-semibold text-slate-500'>Eesti</p>
+                    <p className='text-xs text-slate-600 font-semibold'>(EE)</p>
+                  </div>
                 </div>
                 <div>
 
@@ -267,8 +277,10 @@ const Kirjaudu = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="GR" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  <p>Ελληνικά</p>
-                  <p className='text-xs text-slate-600 font-semibold'>(GR)</p>
+                  <div className='flex items-center gap-0.5'>
+                    <p className='font-semibold text-slate-500'>Ελληνικά</p>
+                    <p className='text-xs text-slate-600 font-semibold'>(GR)</p>
+                  </div>
                 </div>
                 <div>
 
@@ -288,8 +300,10 @@ const Kirjaudu = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="FR" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  <p>Français</p>
-                  <p className='text-xs text-slate-600 font-semibold'>(FR)</p>
+                  <div className='flex items-center gap-0.5'>
+                    <p className='font-semibold text-slate-500'>Français</p>
+                    <p className='text-xs text-slate-600 font-semibold'>(FR)</p>
+                  </div>
                 </div>
                 <div>
 
@@ -309,8 +323,10 @@ const Kirjaudu = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="IT" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  <p>Italiano</p>
-                  <p className='text-xs text-slate-600 font-semibold'>(IT)</p>
+                  <div className='flex items-center gap-0.5'>
+                    <p className='font-semibold text-slate-500'>Italiano</p>
+                    <p className='text-xs text-slate-600 font-semibold'>(IT)</p>
+                  </div>
                 </div>
                 <div>
 
@@ -330,8 +346,10 @@ const Kirjaudu = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="ES" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  <p>Español</p>
-                  <p className='text-xs text-slate-600 font-semibold'>(ES)</p>
+                  <div className='flex items-center gap-0.5'>
+                    <p className='font-semibold text-slate-500'>Español</p>
+                    <p className='text-xs text-slate-600 font-semibold'>(ES)</p>
+                  </div>
                 </div>
                 <div>
 
@@ -352,8 +370,10 @@ const Kirjaudu = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="TR" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  <p>Türkçe</p>
-                  <p className='text-xs text-slate-600 font-semibold'>(TR)</p>
+                  <div className='flex items-center gap-0.5'>
+                    <p className='font-semibold text-slate-500'>Türkçe</p>
+                    <p className='text-xs text-slate-600 font-semibold'>(TR)</p>
+                  </div>
                 </div>
                 <div>
 
@@ -373,8 +393,10 @@ const Kirjaudu = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="SA" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  <p>العربية</p>
-                  <p className='text-xs text-slate-600 font-semibold'>(AR)</p>
+                  <div className='flex items-center gap-0.5'>
+                    <p className='font-semibold text-slate-500'>العربية</p>
+                    <p className='text-xs text-slate-600 font-semibold'>(AR)</p>
+                  </div>
                 </div>
                 <div>
 
@@ -394,8 +416,10 @@ const Kirjaudu = () => {
               >
                 <div className='flex items-center gap-1.5'>
                   <Flag code="IR" className='border w-5 h-5 object-cover border-slate-400 rounded-full' />
-                  <p>فارسی</p>
-                  <p className='text-xs text-slate-600 font-semibold'>(FA)</p>
+                  <div className='flex items-center gap-0.5'>
+                    <p className='font-semibold text-slate-500'>فارسی</p>
+                    <p className='text-xs text-slate-600 font-semibold'>(FA)</p>
+                  </div>
                 </div>
                 <div>
 
@@ -416,9 +440,10 @@ const Kirjaudu = () => {
                 <div className='flex items-center gap-1.5'>
                   
                   <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQfiQzqNW7VNJ-9RidWzpO_zPYyZJuaLrHPw&s' className='border w-5 h-5 object-cover border-slate-400 rounded-full'  />
-
-                  <p>کوردی</p>
-                  <p className='text-xs text-slate-600 font-semibold'>(KU)</p>
+                  <div className='flex items-center gap-0.5'>
+                    <p className='font-semibold text-slate-500'>کوردی</p>
+                    <p className='text-xs text-slate-600 font-semibold'>(KU)</p>
+                  </div>
                 </div>
                 <div>
 

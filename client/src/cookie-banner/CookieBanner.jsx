@@ -97,9 +97,11 @@ const CookieBanner = () => {
                 <div className='flex flex-col items-start absolute top-8 right-1 z-50 px-2 gap-4 bg-white shadow py-3 w-46 border border-slate-300 text-start  justify-items-start rounded'>
                   <button onClick={() => {setLanguage('fiCookieBanner'); setSelectedLanguage(false)}} className='flex items-center justify-between w-full gap-2 text-sm'>
                     <div className='flex items-center gap-2.5'>
-                      <Flag code="FI" width={22} height={22} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                      <p>Suomi</p>
-                      <p className='text-xs text-slate-600 font-semibold'>(FI)</p>
+                      <Flag code="FI" width={22} height={22} className='w-5 h-5 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      <div className='flex items-center gap-0.5'>
+                        <p className='font-semibold  text-slate-500'>Suomi</p>
+                        <p className='text-xs text-slate-600 font-semibold'>(FI)</p>
+                      </div>
                     </div>
                     <div className='w-6'>
                       {language === 'fiCookieBanner' && (
@@ -110,9 +112,11 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('enCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <div className='flex items-center gap-2.5'>
-                      <Flag code="US" width={22} height={22} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                      <p>English</p>
-                      <p className='text-xs text-slate-600 font-semibold'>(US)</p>
+                      <Flag code="US" width={22} height={22} className='w-5 h-5 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      <div className='flex items-center gap-0.5'>
+                        <p className='font-semibold text-slate-500'>English</p>
+                        <p className='text-xs text-slate-600 font-semibold'>(US)</p>
+                      </div>
                     </div>
                     <div className='w-6'>
                       {language === 'enCookieBanner' && (
@@ -123,9 +127,11 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('svCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <div className='flex items-center gap-2.5'>
-                      <Flag code="SE" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                      <p>Svenska</p>
-                      <p className='text-xs text-slate-600 font-semibold'>(SE)</p>
+                      <Flag code="SE" width={20} height={20} className='w-5 h-5 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      <div className='flex items-center gap-0.5'>
+                        <p className='font-semibold text-slate-500'>Svenska</p>
+                        <p className='text-xs text-slate-600 font-semibold'>(SE)</p>
+                      </div>
                     </div>
                     <div className='w-6'>
                       {language === 'svCookieBanner' && (
@@ -136,9 +142,11 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('ruCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <div className='flex items-center gap-2.5'>
-                      <Flag code="RU" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                      <p>Русский</p>
-                      <p className='text-xs text-slate-600 font-semibold'>(RU)</p>
+                      <Flag code="RU" width={20} height={20} className='w-5 h-5 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      <div className='flex items-center gap-0.5'>
+                        <p className='font-semibold text-slate-500'>Русский</p>
+                        <p className='text-xs text-slate-600 font-semibold'>(RU)</p>
+                      </div>
                     </div>
                     <div className='w-6'>
                       {language === 'ruCookieBanner' && (
@@ -149,9 +157,11 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('etCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <div className='flex items-center gap-2.5'>
-                      <Flag code="EE" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                      <p>Eesti</p>
-                      <p className='text-xs text-slate-600 font-semibold'>(EE)</p>
+                      <Flag code="EE" width={20} height={20} className='w-5 h-5 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      <div className='flex items-center gap-0.5'>
+                        <p className='font-semibold text-slate-500'>Eesti</p>
+                        <p className='text-xs text-slate-600 font-semibold'>(EE)</p>
+                      </div>
                     </div>
                     <div className='w-6'>
                       {language === 'etCookieBanner' && (
@@ -162,9 +172,11 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('elCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <div className='flex items-center gap-2.5'>
-                      <Flag code="GR" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                      <p>Ελληνικά</p>
-                      <p className='text-xs text-slate-600 font-semibold'>(GR)</p>
+                      <Flag code="GR" width={20} height={20} className='w-5 h-5 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                       <div className='flex items-center gap-0.5'>
+                        <p className='font-semibold text-slate-500'>Ελληνικά</p>
+                        <p className='text-xs text-slate-600 font-semibold'>(GR)</p>
+                      </div>
                     </div>
                     <div className='w-6'>
                       {language === 'elCookieBanner' && (
@@ -175,9 +187,11 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('itCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <div className='flex items-center gap-2.5'>
-                      <Flag code="IT" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                      <p>Italiano</p>
-                      <p className='text-xs text-slate-600 font-semibold'>(IT)</p>
+                      <Flag code="IT" width={20} height={20} className='w-5 h-5 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      <div className='flex items-center gap-0.5'>
+                        <p className='font-semibold text-slate-500'>Italiano</p>
+                        <p className='text-xs text-slate-600 font-semibold'>(IT)</p>
+                      </div>
                     </div>
                     <div className='w-6'>
                       {language === 'itCookieBanner' && (
@@ -188,9 +202,11 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('frCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <div className='flex items-center gap-2.5'>
-                      <Flag code="FR" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                      <p>Français</p>
-                      <p className='text-xs text-slate-600 font-semibold'>(FR)</p>
+                      <Flag code="FR" width={20} height={20} className='w-5 h-5 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      <div className='flex items-center gap-0.5'>
+                        <p className='font-semibold text-slate-500'>Français</p>
+                        <p className='text-xs text-slate-600 font-semibold'>(FR)</p>
+                      </div>
                     </div>
                     <div className='w-6'>
                       {language === 'frCookieBanner' && (
@@ -201,9 +217,11 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('esCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <div className='flex items-center gap-2.5'>
-                      <Flag code="ES" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                      <p>Español</p>
-                      <p className='text-xs text-slate-600 font-semibold'>(ES)</p>
+                      <Flag code="ES" width={20} height={20} className='w-5 h-5 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      <div className='flex items-center gap-0.5'>
+                        <p className='font-semibold text-slate-500'>Español</p>
+                        <p className='text-xs text-slate-600 font-semibold'>(ES)</p>
+                      </div>
                     </div>
                     <div className='w-6'>
                       {language === 'esCookieBanner' && (
@@ -214,9 +232,11 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('arCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <div className='flex items-center gap-2.5'>
-                      <Flag code="SA" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                      <p>العربية</p>
-                      <p className='text-xs text-slate-600 font-semibold'>(AR)</p>
+                      <Flag code="SA" width={20} height={20} className='w-5 h-5 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      <div className='flex items-center gap-0.5'>
+                        <p className='font-semibold text-slate-500'>العربية</p>
+                        <p className='text-xs text-slate-600 font-semibold'>(AR)</p>
+                      </div>
                     </div>
                     <div className='w-6'>
                       {language === 'arCookieBanner' && (
@@ -227,9 +247,11 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('trCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <div className='flex items-center gap-2.5'>
-                      <Flag code="TR" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                      <p>Türkçe</p>
-                      <p className='text-xs text-slate-600 font-semibold'>(TR)</p>
+                      <Flag code="TR" width={20} height={20} className='w-5 h-5 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      <div className='flex items-center gap-0.5'>
+                        <p className='font-semibold text-slate-500'>Türkçe</p>
+                        <p className='text-xs text-slate-600 font-semibold'>(TR)</p>
+                      </div>
                     </div>
                     <div className='w-6'>
                       {language === 'trCookieBanner' && (
@@ -240,9 +262,11 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('faCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <div className='flex items-center gap-2.5'>
-                      <Flag code="IR" width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                      <p>فارسی</p>
-                      <p className='text-xs text-slate-600 font-semibold'>(FA)</p>
+                      <Flag code="IR" width={20} height={20} className='w-5 h-5 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      <div className='flex items-center gap-0.5'>
+                        <p className='font-semibold text-slate-500'>فارسی</p>
+                        <p className='text-xs text-slate-600 font-semibold'>(FA)</p>
+                      </div>
                     </div>
                     <div className='w-6'>
                       {language === 'faCookieBanner' && (
@@ -253,9 +277,11 @@ const CookieBanner = () => {
                   </button>
                   <button onClick={() => {setLanguage('kuSoraniCookieBanner'); setSelectedLanguage(false)}} className='flex justify-between w-full gap-2 text-sm'>
                     <div className='flex items-center gap-2.5'>
-                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQfiQzqNW7VNJ-9RidWzpO_zPYyZJuaLrHPw&s' width={20} height={20} className='w-4 h-4 rounded-full overflow-hidden border border-slate-500 object-cover'  />
-                      <p> کوردی </p>
-                      <p className='text-xs text-slate-600 font-semibold'>(KU)</p>
+                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQfiQzqNW7VNJ-9RidWzpO_zPYyZJuaLrHPw&s' width={20} height={20} className='w-5 h-5 rounded-full overflow-hidden border border-slate-500 object-cover'  />
+                      <div className='flex items-center gap-0.5'>
+                        <p className='font-semibold text-slate-500'> کوردی </p>
+                        <p className='text-xs text-slate-600 font-semibold'>(KU)</p>
+                      </div>
                     </div>
                     <div className='w-6'>
                       {language === 'kuSoraniCookieBanner' && (
@@ -266,7 +292,6 @@ const CookieBanner = () => {
                   </button>
                 </div>
               )
-
             }
           </div>
         </div>
