@@ -44,7 +44,7 @@ const Calendar = () => {
     <div className='fixed bottom-16 right-6 flex flex-col z-50'>
       <div className='w-full max-w-md bg-white shadow border border-slate-300 rounded-xl overflow-hidden'>
 
-        <div className='flex flex-col gap-2 items-center justify-between py-3.5 bg-red-700 px-4 text-white w-full'>
+        <div className='flex flex-col gap-2 items-center justify-between py-3 bg-red-700 px-4 text-white w-full'>
           <div className='flex items-center justify-between text-xs w-full'>
             <button onClick={prevMonth} className='border-2  rounded-full p-0.5'>
               <IoIosArrowBack />
@@ -60,7 +60,7 @@ const Calendar = () => {
           </div>
         </div>
 
-        <div className='w-full mt-4 mb-6 px-1'>
+        <div className='w-full mt-4 mb-3 px-1'>
           <div className='grid grid-cols-7 gap-2'>
             {dayNames.map((day, index) => (
               <div key={index} className='text-center text-xs font-semibold text-red-600'>{day}</div>
