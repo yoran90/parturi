@@ -64,13 +64,13 @@ const Calendar = () => {
         </div> */}
 <div className="absolute -top-3.5 left-0 w-full flex justify-center">
   <div className="flex gap-3">
-    {Array.from({ length: 9 }).map((_, i) => (
+    {Array.from({ length: 11 }).map((_, i) => (
       <div key={i} className="flex flex-col items-center">
          <div className="w-1.5 h-5 border border-slate-600
           bg-linear-to-b from-gray-300 via-gray-500 to-gray-800 
           rounded-full shadow-sm" />
         
-        <div className="w-3 h-3 rounded-full 
+        <div className="w-2 h-2 rounded-full 
           bg-linear-to-b from-gray-700 to-black 
           border border-gray-500 shadow-inner" />
 
@@ -81,7 +81,7 @@ const Calendar = () => {
   </div>
 </div>
 
-        <div className='w-full max-w-md bg-white shadow border-3 border-red-600 rounded-t-lg rounded-b-md overflow-hidden'>
+        <div className='w-full max-w-md bg-white shadow border border-slate-300 rounded-t-lg rounded-b-md overflow-hidden'>
           <div className='flex flex-col gap-2 items-center justify-between py-3 mt-5 bg-red-700 px-4 text-white w-full'>
             <div className='flex items-center justify-between text-xs w-full'>
               <button onClick={prevMonth} className='border-2  rounded-full p-0.5'>
