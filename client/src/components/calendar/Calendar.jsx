@@ -44,40 +44,40 @@ const Calendar = () => {
     <div className='fixed bottom-16 right-6 flex flex-col z-50'>
       <div className='w-full max-w-md bg-white shadow border border-slate-300 rounded-xl overflow-hidden'>
 
-        <div className='flex flex-col gap-2 items-center justify-between py-4 bg-red-700 px-4 text-white w-full'>
-          <div className='flex items-center justify-between w-full'>
+        <div className='flex flex-col gap-2 items-center justify-between py-3.5 bg-red-700 px-4 text-white w-full'>
+          <div className='flex items-center justify-between text-xs w-full'>
             <button onClick={prevMonth} className='border-2  rounded-full p-0.5'>
               <IoIosArrowBack />
             </button>
             <div className='flex items-center gap-1.5'>
-              <span className='font-medium text-sm'>{currentDate.toLocaleString('default', { month: 'long' })}</span>
+              <span className='font-medium text-xs'>{currentDate.toLocaleString('default', { month: 'long' })}</span>
               <GiRazor className='razorSidebar text-black' />
-              <span className='font-medium text-sm'>{currentDate.getFullYear()}</span>
+              <span className='font-medium text-xs'>{currentDate.getFullYear()}</span>
             </div>
-            <button onClick={nextMonth} className='border-2  rounded-full p-0.5'>
+            <button onClick={nextMonth} className='border-2 text-xs rounded-full p-0.5'>
               <IoIosArrowForward />
             </button>
           </div>
         </div>
 
         <div className='w-full mt-4 mb-6 px-1'>
-          <div className='grid grid-cols-7 gap-4'>
+          <div className='grid grid-cols-7 gap-2'>
             {dayNames.map((day, index) => (
-              <div key={index} className='text-center text-sm font-semibold text-red-600'>{day}</div>
+              <div key={index} className='text-center text-xs font-semibold text-red-600'>{day}</div>
             ))}
           </div>
         </div>
 
         <div className='w-full'>
-          <div className='grid grid-cols-7 gap-3 mb-4'>
+          <div className='grid grid-cols-7 gap-2 mb-4'>
             {[...Array(startDay).keys()].map((index) => (
-              <div key={index} className='text-center text-sm font-semibold'></div>
+              <div key={index} className='text-center text-xs font-semibold'></div>
             ))}
             {daysInMonth.map((day, index) => {
               const isToday = day.toDateString() === new Date().toDateString();
               const isSelected = selectDate?.toDateString() === day.toDateString();
               return (
-                <div key={index} className={`${isSelected ? 'bg-red-500 rounded-6ull p-1 items-center text-center text-xs w-7 h-7 text-white' : isToday ? 'bg-red-600 rounded-full p-1 items-center text-xs w-7 h-7 text-center text-white' : 'hover:bg-gray-200'} text-center flex items-center justify-center text-red-800 text-sm font-semibold cursor-pointer`} onClick={() => setSelectDate(day)}>
+                <div key={index} className={`${isSelected ? 'bg-red-500 rounded-6ull p-1 items-center text-center text-[10px] w-6 h-6 text-white' : isToday ? 'bg-red-600 rounded-full p-1 items-center text-[10px] w-6 h-6 text-center text-white' : 'hover:bg-gray-200'} text-center flex items-center justify-center text-red-800 text-xs font-semibold cursor-pointer`} onClick={() => setSelectDate(day)}>
                   {day.getDate()}
                 </div> 
               )
