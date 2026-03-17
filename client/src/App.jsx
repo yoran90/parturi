@@ -289,7 +289,7 @@ const App = () => {
       {/* calandery */}
       {showCalandary && !openFeedBack && visibleCalendar && (
           <div>
-            <button onClick={() => setOpenCalendar(!openCalendar)} className='fixed bottom-5 right-5  border-2 border-red-800 w-10 h-10 flex items-center justify-center bg-red-600 text-white text-sm rounded-full cursor-pointer gap-2.5'>
+            <button onClick={() => setOpenCalendar(!openCalendar)} className='fixed bottom-5 right-5  border-2 border-red-900 w-10 h-10 flex items-center justify-center bg-red-500 text-white text-sm rounded-full cursor-pointer gap-2.5'>
               <img src="https://play-lh.googleusercontent.com/ttdkcjLXS5B8CLYYfCkrmMcjPk1jJjJZEIcd3S5eP9pLO48Yy3RnRnQgHy0n2WroqYA" alt="calandery" className="w-5 h-5" />
             </button>
 
