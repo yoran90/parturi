@@ -29,7 +29,7 @@ const UserProfile = () => {
   const [activeTab, setActiveTab] = React.useState("information");
 
  
-  console.log(getReviewForProfile);
+
   
   
   
@@ -47,7 +47,7 @@ const UserProfile = () => {
       <Information />
       <HolyDay /> 
       <Header />
-      <div className='flex flex-col py-4  px-4 gap-5 w-full mb-10'>
+      <div className='flex flex-col py-4  px-2 gap-5 w-full mb-10'>
 
         <div className='relative mb-16'>
           <div className='w-full h-52 bg-slate-100 rounded'></div>
@@ -96,9 +96,9 @@ const UserProfile = () => {
           <button onClick={() => setActiveTab('all')} className={`${activeTab === "all" ? "border-b-2 border-blue-600 text-blue-600 font-medium" : ""} cursor-pointer text-sm`}>Kaikki ⭐</button>
         </div>
           
-        <div className='md:flex gap-[20%] w-full'>
+        <div className='md:flex md:gap-0 gap-[20%] w-full'>
           
-          <div className='w-full'> 
+          <div className='w-full md:w-[50%]'> 
             <div>
               {activeTab === "information" && (
                 <div className='flex flex-col gap-3.5'>
@@ -148,7 +148,7 @@ const UserProfile = () => {
               {activeTab === "all" && (
                 <div className='flex flex-col gap-2.5'>
                   {getReviewForProfile?.map((review, index) => (
-                      <div key={index} className='flex flex-col border border-slate-300 shadow-2xl rounded-md overflow-hidden'>
+                      <div key={index} className='flex flex-col border border-slate-200 shadow-2xl rounded-md overflow-hidden'>
                         <div className='flex items-center justify-between p-2'>
                           <div className='flex items-center gap-1'>
                             <p className='text-sm border border-slate-300 p-1 rounded'>
@@ -166,7 +166,7 @@ const UserProfile = () => {
                           </div>
                           <small className='text-xs text-slate-700 border border-slate-200 bg-white shadow p-2 rounded'>{new Date(review?.createdAt).toLocaleString("fi", { dateStyle: "medium", timeStyle: "short" })}</small>
                         </div>
-                        <div className='flex flex-col'>
+                        <div className='flex flex-col pb-2'>
                           <p className='text-slate-700 text-sm p-2'>
                             {review?.reviewText}
                           </p>
@@ -234,7 +234,7 @@ const UserProfile = () => {
 
           <hr className={`${activeTab === "all" || activeTab === "kuva" ? "hidden" : ""} text-slate-200 md:hidden mt-6 mb-6`} />
 
-          <div className={`${activeTab === "all" || activeTab === "kuva" ? "hidden" : ""} flex flex-col md:mt-10`}>
+          <div className={`${activeTab === "all" || activeTab === "kuva" ? "hidden" : ""} flex flex-col md:mt-10 w-full`}>
             <h4 className='text-sm font-semibold text-slate-600 flex items-center gap-2 mb-4'><BsPersonWorkspace size={20}  className='font-bold' />My bio :</h4>
             <p>{userProfile?.bio}</p>
           </div>
