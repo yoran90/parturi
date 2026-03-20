@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+
+
+//
 export default function useReviews() {
 
   const [getReviews, setGetReviews] = useState(null);
@@ -80,3 +83,38 @@ export function useDeleteReviewByUser() {
   return { userDeleteOwnReview, userDeleteOwnreviewPost, loadingForDeleteUserReview };
 
 };
+
+
+//! get user reviews for profile user
+export function getUserReviewsForProfileUser(id) {
+
+
+  const [getReviewForProfile, setGetReviewForProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!id) return;
+
+    const fetchReviewById = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(
+          `http://localhost:8001/api/reviwes/getUserReviews/${id}`,
+          { withCredentials: true }
+        );
+        console.log(response);
+        
+        setGetReviewForProfile(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError(err);
+        setLoading(false);
+      }
+    };
+
+    fetchReviewById();
+  }, [id]);
+
+  return { getReviewForProfile, setGetReviewForProfile, loading, error };
+}

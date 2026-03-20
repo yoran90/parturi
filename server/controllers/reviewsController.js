@@ -109,6 +109,19 @@ export const getOwnReviews = async (req, res) => {
   }
 }
 
+export const getUserReviwes = async (req, res) => {
+  try {
+    const reviwes = await Reviews.find({ userId: req.params.id }).sort({ createdAt: -1 });    
+    if (!reviwes) {
+      return res.status(404).json({ message: "Reviews not found" });
+    }
+    res.status(200).json(reviwes);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 //! user delete own review
 export const deleteReviewByUser = async (req, res) => {
   try {
