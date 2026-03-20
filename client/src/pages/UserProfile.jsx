@@ -50,7 +50,7 @@ const UserProfile = () => {
       <div className='flex flex-col pb-2 gap-5 w-full mb-10'>
 
         <div className='relative'>
-            <div className='w-full h-42 bg-slate-900 rounded-b'></div>
+            <div className='w-full h-42 bg-slate-900 '></div>
             <div className='absolute left-1/2 -translate-x-1/2 -translate-y-1/3'>
               <div className='flex flex-col items-center gap-1 '>
                 <div className=''>
