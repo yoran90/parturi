@@ -101,7 +101,7 @@ const UserProfile = () => {
           <div className='w-full md:w-[50%]'> 
             <div>
               {activeTab === "information" && (
-                <div className='flex flex-col gap-3.5'>
+                <div className='flex flex-col gap-3.5 w-full'>
                   <div className='mb-2'>
                     <h4 className='text-sm font-semibold text-slate-600'>Henkilökohtaiset tiedot</h4>
                   </div>
@@ -246,9 +246,9 @@ const UserProfile = () => {
 
           <hr className={`${activeTab === "all" || activeTab === "kuva" ? "hidden" : ""} text-slate-200 md:hidden mt-6 mb-6`} />
 
-          <div className={`${activeTab === "all" || activeTab === "kuva" ? "hidden" : ""} flex flex-col md:mt-10 w-full`}>
+          <div className={`${activeTab === "all" || activeTab === "kuva" ? "hidden" : ""} flex flex-col md:mt-10 w-full md:pr-4`}>
             <h4 className='text-sm font-semibold text-slate-600 flex items-center gap-2 mb-4'><BsPersonWorkspace size={20}  className='font-bold' />My bio :</h4>
-            <p>{userProfile?.bio}</p>
+            <p className='flex text-justify text-sm'>{userProfile?.bio}</p>
           </div>
         </div>
       </div>

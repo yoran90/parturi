@@ -84,6 +84,7 @@ const ProfileUser = () => {
   const [lastName, setLastName] = useState('');
   const [gender, setGender] = useState('');
   const [email, setEmail] = useState('');
+  const [titleBio, setTitleBio] = useState('');
   const [bio, setBio] = useState('');
   const [addressOne, setAddressOne] = useState('');
   const [addressTwo, setAddressTwo] = useState('');
@@ -103,6 +104,7 @@ const ProfileUser = () => {
       setLastName(user.lastName || '');
       setGender(user.gender || '');
       setEmail(user.email || '');
+      setTitleBio(user.titleBio || '');
       setBio(user.bio || '');
       setAddressOne(user.addressOne || '');
       setAddressTwo(user.addressTwo || '');
@@ -149,6 +151,7 @@ const ProfileUser = () => {
       formData.append('lastName', lastName);
       formData.append('gender', gender);
       formData.append('email', email);
+      formData.append('titleBio', titleBio);
       formData.append('bio', bio);
       formData.append('addressOne', addressOne);
       formData.append('addressTwo', addressTwo);
@@ -235,11 +238,11 @@ const ProfileUser = () => {
           }
           <div>
             <div className='flex flex-col mt-6 items-center justify-center gap-1.5'>
-              <div className='relative'>
+              <div className='relative overflow-hidden'>
                 <img className="w-38 h-38 border-slate-300 rounded-full border-2" src={profileSrc} alt="Profile" />
-                <label htmlFor="profileImage" className='absolute top-15 left-14 text-white/80 flex flex-col items-center gap-1 justify-center text-xs cursor-pointer'>
+                <label htmlFor="profileImage" className='absolute top-0 text-white/80 bg-black/60 w-full h-full rounded-full flex flex-col items-center gap-1 justify-center text-xs cursor-pointer'>
                   <input type="file" id='profileImage' onChange={(e) => setProfileImage(e.target.files[0])} className='hidden' />
-                  <FaUpload />
+                  <FaUpload size={25} />
                   Upload
                 </label>
               </div>
@@ -268,6 +271,10 @@ const ProfileUser = () => {
               <div className='flex flex-col gap-1 text-sm'>
                 <label>Email</label>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' className='border border-slate-400 rounded focus:outline-none py-1.5 px-3' />
+              </div>
+              <div className='flex flex-col gap-1 text-sm'>
+                <label>Title Bio</label>
+                <input type="text" value={titleBio} onChange={(e) => setTitleBio(e.target.value)} placeholder='Title bio' className='border border-slate-400 rounded focus:outline-none py-1.5 px-3' />
               </div>
               <div className='flex flex-col gap-1 text-sm'>
                 <label>My Bio</label>

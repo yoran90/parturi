@@ -43,6 +43,10 @@ const authSchema = new mongoose.Schema({
     enum: ["user", "admin", "super-admin"],
     default: "user",
   },
+  titleBio: {
+    type: String,
+    default: "",
+  },
   bio: {
     type: String,
     default: "Not bio yet",

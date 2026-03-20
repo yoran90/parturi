@@ -317,6 +317,7 @@ export const userUpdateOwnData = async (req, res) => {
     user.lastName = req.body.lastName;
     user.gender = req.body.gender;
     user.email = req.body.email;
+    user.titleBio = req.body.titleBio;
     user.bio = req.body.bio;
     user.addressOne = req.body.addressOne;
     user.addressTwo = req.body.addressTwo;
