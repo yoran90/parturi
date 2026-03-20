@@ -50,19 +50,19 @@ const UserProfile = () => {
       <div className='flex flex-col py-4  px-2 gap-5 w-full mb-10'>
 
         <div className='relative'>
-            <div className=''>
-              <div className='flex flex-col items-center gap-1'>
-
-                <div>
+            <div className='w-full h-42 bg-slate-900 rounded'></div>
+            <div className='absolute left-1/2 -translate-x-1/2 -translate-y-1/3'>
+              <div className='flex flex-col items-center gap-1 '>
+                <div className=''>
 
                   {
                     userProfile?.profileImage?.url ? (
-                      <img className='w-32 h-32 border-4 border-slate-200 rounded-full' src={userProfile?.profileImage?.url} alt="" />
+                      <img className='w-32 h-32 border-4 border-white rounded-full' src={userProfile?.profileImage?.url} alt="" />
                     ) : (
                       userProfile?.gender === 'men' ? (
-                        <img className='w-32 h-32 border-4 border-slate-200 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                        <img className='w-32 h-32 border-4 border-white rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
                       ) : (
-                        <img className='w-32 h-32 border-4 border-slate-200 rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                        <img className='w-32 h-32 border-4 border-white rounded-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
                       )
                     )
                   }
@@ -89,7 +89,7 @@ const UserProfile = () => {
           </div>
         </div>
 
-        <div className='flex gap-4 mt-10'>
+        <div className='flex gap-4 mt-32'>
           <button onClick={() => setActiveTab('information')} className={`${activeTab === "information" ? "border-b-2 border-blue-600 text-blue-600 font-medium " : ""} cursor-pointer text-sm`}>Tiedot</button>
           <button onClick={() => setActiveTab('kuva')} className={`${activeTab === "kuva" ? "border-b-2 border-blue-600 text-blue-600 font-medium " : ""} cursor-pointer text-sm`}>Kuva</button>
           <button onClick={() => setActiveTab('all')} className={`${activeTab === "all" ? "border-b-2 border-blue-600 text-blue-600 font-medium" : ""} cursor-pointer text-sm`}>Kaikki (⭐)</button>
@@ -245,7 +245,7 @@ const UserProfile = () => {
 
           <hr className={`${activeTab === "all" || activeTab === "kuva" ? "hidden" : ""} text-slate-200 md:hidden mt-6 mb-6`} />
 
-          <div className={`${activeTab === "all" || activeTab === "kuva" ? "hidden" : ""} flex flex-col md:mt-10 w-full md:pr-4`}>
+          <div className={`${activeTab === "all" || activeTab === "kuva" ? "hidden" : ""} flex flex-col w-full md:pr-4`}>
             <h4 className='text-sm font-semibold text-slate-600 flex items-center gap-2 mb-4'><BsPersonWorkspace size={20}  className='font-bold' />My bio :</h4>
             <div className='flex flex-col gap-3.5 mt-2'>
               <p className='text-slate-600 font-semibold text-sm'>
