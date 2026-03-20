@@ -49,9 +49,8 @@ const UserProfile = () => {
       <Header />
       <div className='flex flex-col py-4  px-2 gap-5 w-full mb-10'>
 
-        <div className='relative mb-16'>
-          <div className='w-full h-52 bg-slate-100 rounded'></div>
-            <div className='absolute top-1/2.5 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+        <div className='relative'>
+            <div className=''>
               <div className='flex flex-col items-center gap-1'>
 
                 <div>
@@ -90,7 +89,7 @@ const UserProfile = () => {
           </div>
         </div>
 
-        <div className='flex gap-4 mt-12'>
+        <div className='flex gap-4 mt-10'>
           <button onClick={() => setActiveTab('information')} className={`${activeTab === "information" ? "border-b-2 border-blue-600 text-blue-600 font-medium " : ""} cursor-pointer text-sm`}>Tiedot</button>
           <button onClick={() => setActiveTab('kuva')} className={`${activeTab === "kuva" ? "border-b-2 border-blue-600 text-blue-600 font-medium " : ""} cursor-pointer text-sm`}>Kuva</button>
           <button onClick={() => setActiveTab('all')} className={`${activeTab === "all" ? "border-b-2 border-blue-600 text-blue-600 font-medium" : ""} cursor-pointer text-sm`}>Kaikki (⭐)</button>
@@ -98,8 +97,8 @@ const UserProfile = () => {
           
         <div className='md:flex md:gap-0 gap-[20%] w-full'>
           
-          <div className='w-full md:w-[50%]'> 
-            <div>
+          <div className='w-full'> 
+            <div className='w-full'>
               {activeTab === "information" && (
                 <div className='flex flex-col gap-3.5 w-full'>
                   <div className='mb-2'>
