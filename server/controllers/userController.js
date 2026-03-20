@@ -274,7 +274,7 @@ export const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const user = await Auth.findById(id).select("-password");
+    const user = await Auth.findById(id).select("-password -emailVerificationToken -emailVerificationExpires");
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found" });
     }
@@ -289,7 +289,7 @@ export const getProfileUserById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const user = await Auth.findById(id).select("-password -notes");
+    const user = await Auth.findById(id).select("-password -notes -emailVerificationToken -emailVerificationExpires");
   
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found" });

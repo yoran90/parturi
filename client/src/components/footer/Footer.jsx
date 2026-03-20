@@ -27,7 +27,7 @@ const Footer = () => {
   
 
   return (
-    <div className='bg-black text-white md:p-12 py-12 px-4'>
+    <div className='bg-black text-white md:p-12 py-12 px-4 relative'>
       <footer>
         <div className="md:grid md:grid-cols-4 flex flex-col gap-8" style={{ gridTemplateColumns: "2.5fr 1fr 1fr 1fr" }}>
           <div className='flex flex-col gap-5.5'>
@@ -103,7 +103,11 @@ const Footer = () => {
           <div>
             <img src={headerLogo?.url} alt="Site Logo" className='w-5 h-5 mr-2 ml-2 rounded-full border border-slate-300' />
           </div>
-          <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
+          <div className='flex items-center gap-1.5'>
+            <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
+            <GiRazor size={12} />
+            <p>www.razorr.fi</p>
+          </div>
         </div>
         {/* for mobile */}
          <div className='md:hidden flex flex-col gap-0.5 items-center text-center justify-center mt-8 text-xs'>
@@ -113,7 +117,11 @@ const Footer = () => {
           <div className='mt-1 mb-1'>
             <img src={headerLogo?.url} alt="Site Logo" className='w-5 h-5 rounded-full border border-slate-300' />
           </div>
-          <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
+          <div className='flex gap-1.5 items-center'>
+            <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
+            <GiRazor size={12} />
+            <p>www.razorr.fi</p>
+          </div>
         </div>
       </footer>
     </div>
