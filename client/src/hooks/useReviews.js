@@ -100,10 +100,9 @@ export function getUserReviewsForProfileUser(id) {
       try {
         setLoading(true);
         const response = await axios.get(
-          `http://localhost:8001/api/reviwes/getUserReviews/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/reviwes/getUserReviews/${id}`,
           { withCredentials: true }
         );
-        console.log(response);
         
         setGetReviewForProfile(response.data);
         setLoading(false);
