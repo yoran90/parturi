@@ -93,7 +93,7 @@ const UserProfile = () => {
         <div className='flex gap-4 mt-12'>
           <button onClick={() => setActiveTab('information')} className={`${activeTab === "information" ? "border-b-2 border-blue-600 text-blue-600 font-medium " : ""} cursor-pointer text-sm`}>Tiedot</button>
           <button onClick={() => setActiveTab('kuva')} className={`${activeTab === "kuva" ? "border-b-2 border-blue-600 text-blue-600 font-medium " : ""} cursor-pointer text-sm`}>Kuva</button>
-          <button onClick={() => setActiveTab('all')} className={`${activeTab === "all" ? "border-b-2 border-blue-600 text-blue-600 font-medium" : ""} cursor-pointer text-sm`}>Kaikki ⭐</button>
+          <button onClick={() => setActiveTab('all')} className={`${activeTab === "all" ? "border-b-2 border-blue-600 text-blue-600 font-medium" : ""} cursor-pointer text-sm`}>Kaikki (⭐)</button>
         </div>
           
         <div className='md:flex md:gap-0 gap-[20%] w-full'>
@@ -147,8 +147,20 @@ const UserProfile = () => {
             <div>
               {activeTab === "all" && (
                 <div className='flex flex-col gap-2.5'>
+                  {getReviewForProfile?.length > 0 ? (
+                      <div className='flex items-center gap-1.5'>
+                        <h5 className='text-sm font-semibold text-slate-600'>Kaikki arvostelut ({getReviewForProfile?.length})</h5>
+                      </div>
+                    ) : (
+                      <div className='flex items-center text-center justify-center mt-12 mb-12 gap-1.5'>
+                        <h5 className='text-sm font-semibold text-center justify-center items-center flex text-red-600'>Ei arvosteluja</h5>
+                      </div>
+
+                    )
+
+                  }
                   {getReviewForProfile?.map((review, index) => (
-                      <div key={index} className='flex flex-col border border-slate-200 shadow-2xl rounded-md overflow-hidden'>
+                      <div key={index} className='flex flex-col border border-slate-200 shadow rounded-md overflow-hidden'>
                         <div className='flex items-center justify-between p-2'>
                           <div className='flex items-center gap-1'>
                             <p className='text-sm border border-slate-300 p-1 rounded'>
