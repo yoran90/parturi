@@ -247,10 +247,10 @@ const UserProfile = () => {
 
           <div className={`${activeTab === "all" || activeTab === "kuva" ? "hidden" : ""} flex flex-col md:mt-10 w-full md:pr-4`}>
             <h4 className='text-sm font-semibold text-slate-600 flex items-center gap-2 mb-4'><BsPersonWorkspace size={20}  className='font-bold' />My bio :</h4>
-            <div>
-              <h4 className='text-md font-semibold'>
+            <div className='flex flex-col gap-3.5 mt-2'>
+              <p className='text-slate-600 font-semibold text-sm'>
                 {userProfile?.titleBio}
-              </h4>
+              </p>
               <p className='flex text-justify text-sm'>{userProfile?.bio}</p>
             </div>
           </div>
