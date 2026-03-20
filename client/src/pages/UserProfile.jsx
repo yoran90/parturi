@@ -15,7 +15,6 @@ import { FaCity } from "react-icons/fa6";
 import Footer from '../components/footer/Footer';
 import { PiMapPinSimpleAreaBold } from "react-icons/pi";
 import { BsPersonWorkspace } from "react-icons/bs";
-import useReviews from '../hooks/useReviews';
 import { getUserReviewsForProfileUser } from '../hooks/useReviews';
 import { MdOutlineReplyAll } from "react-icons/md";
 
@@ -29,6 +28,7 @@ const UserProfile = () => {
   const [activeTab, setActiveTab] = React.useState("information");
 
  
+
 
   
   
@@ -248,7 +248,12 @@ const UserProfile = () => {
 
           <div className={`${activeTab === "all" || activeTab === "kuva" ? "hidden" : ""} flex flex-col md:mt-10 w-full md:pr-4`}>
             <h4 className='text-sm font-semibold text-slate-600 flex items-center gap-2 mb-4'><BsPersonWorkspace size={20}  className='font-bold' />My bio :</h4>
-            <p className='flex text-justify text-sm'>{userProfile?.bio}</p>
+            <div>
+              <h4 className='text-md font-semibold'>
+                {userProfile?.titleBio}
+              </h4>
+              <p className='flex text-justify text-sm'>{userProfile?.bio}</p>
+            </div>
           </div>
         </div>
       </div>

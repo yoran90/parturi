@@ -96,6 +96,9 @@ const ProfileUser = () => {
   const [timezone, setTimezone] = useState('');
   const [profileImage, setProfileImage] = useState(null);
 
+  console.log("Sending data:", {
+  titleBio,
+});
 
   useEffect(() => {
     if (user) {
