@@ -28,8 +28,8 @@ const HolyDay = () => {
 
   return (
     <div>
-      <div className='sticky top-0 flex items-center text-red-600 bg-black text-sm text-center justify-center py-4 holyDaysAnimation'>
-        <div className='z-50 pt-4' dangerouslySetInnerHTML={{__html: getInformation?.holyday}} />
+      <div className='sticky top-0 flex items-center bg-black text-sm text-center justify-center py-4 holyDaysAnimation'>
+        <div className='z-50 pt-2 pb-2 text-[#ff4d4d]' dangerouslySetInnerHTML={{__html: getInformation?.holyday}} />
       </div>
     </div>
   )
