@@ -14,10 +14,14 @@ const GoogleReviews = () => {
     const fetchGoogleReviews = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/google-reviews/get-google-reviews`);
-        setGoogleReview(response.data.reviews);
-        setGoogleRating(response.data.rating);
+        console.log(response.data);
+        /* setGoogleReview(response.data.reviews);
+        setGoogleRating(response.data.rating); */
+        setGoogleReview(response.data.result?.reviews || []);
+        setGoogleRating(response.data.result?.rating || 0);
       } catch (error) {
        console.log(error);
+
       }
     };
     fetchGoogleReviews();
@@ -29,7 +33,7 @@ const GoogleReviews = () => {
   return (
       <div>
         <div className='md:grid md:grid-cols-3 flex flex-col gap-1.5'>
-          {googlereview.length === 0 && <p>No reviews available yet.</p>}
+          {/* {googlereview.length === 0 && <p>No reviews available yet</p>} */}
           {googlereview.slice(0, 3).map((review, index) => (
             <div key={index} className='bg-white shadow px-4 py-7 border border-slate-200 rounded-xl'>
               <div className='flex justify-between mb-6'>
@@ -54,8 +58,8 @@ const GoogleReviews = () => {
             target="_blank"
             rel="noopener noreferrer"
             >
-            Näytä kaikki arvostelut Googlessa
-            <LuArrowUpRight />
+            {/* Näytä kaikki arvostelut Googlessa
+            <LuArrowUpRight /> */}
             
           </a>
         </div>

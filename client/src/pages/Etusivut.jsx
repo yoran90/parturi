@@ -187,7 +187,7 @@ const Etusivut = () => {
         </div>
       </div>
       {/* why choose us */}
-      <div className='flex flex-col w-[98%] items-center justify-center m-auto mb-12'>
+      <div className='flex flex-col w-[98%] items-center justify-center m-auto'>
         <h3 className='text-lg font-semibold mb-4'>💈 Miksi Valita Meidät 💈</h3>
         <p className='text-sm  text-center mb-6 md:w-[95%]'>Razor Parturissa yhdistyvät ammattitaito, intohimo ja aito välittäminen.
           Olemme licensed ja kokeneita alan ammattilaisia, jotka seuraavat trendejä ja kehittävät osaamistaan jatkuvasti.
@@ -222,8 +222,8 @@ const Etusivut = () => {
       </div>
 
       {/* google reviews */}
-      <div className='flex flex-col w-[98%] items-center justify-center m-auto mb-12'>
-        <h3 className='text-lg font-semibold mb-4'>🌟 Google Arvostelut 🌟</h3>
+      <div className='flex flex-col w-[98%] items-center justify-center m-auto'>
+        {/* <h3 className='text-lg font-semibold mb-4'>🌟 Google Arvostelut 🌟</h3> */}
         <GoolgleReviews />
       </div>
 
