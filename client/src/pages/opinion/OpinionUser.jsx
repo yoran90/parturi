@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import useShop from '../../hooks/useShop'
 import GoogleReviews from './GoogleReviews'
 import HeaderText from '../../components/header-text/HeaderText'
-
+import { GiArrowDunk } from "react-icons/gi";
 
 
 
@@ -155,8 +155,16 @@ const OpinionUser = () => {
         </div>
         {/* left side form */}
         <div className='w-full'>
-          <div>
-            <h3 className='text-lg font-semibold mb-4'>Arvostelut</h3>
+          <div className='flex justify-between'>
+            <div>
+              <h3 className='text-lg font-semibold mb-4'>Arvostelut</h3>
+            </div>
+            <div>
+              <a className='text-sm text-blue-600' href={"https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&hl=fi-FI&sxsrf=ANbL-n7236avhQ8RSjEhTWaC-iMcP66O9Q:1780696287947&uds=ALYpb_ncDc7jTlmw6Mmq7NjuX5c-Zze-fIOBg0L0hgRWHzdLESc2f9-7spOmdq_Bvg5GeBdeFRztkOg_Bwt5bmN94jlLuwkW2MkeRUzBhDnlmhi-105x-huJPLWdwdUgU9wR0T0nn0hSbb1Ckm_GlP5fEk9uBisOJG_Sc9NeknE7eL_AfN59WMc&q=Razor+Parturi+Barber+Shop+Arvostelut&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qORmNCphyzj2pI8HMPhbb20ci7MWt3uoODEAABtYr0MdN5xAC_dEc9VMMwXVNPIbjIUQle37CBTt2iM5grwym2J-_GUJOVlbce1f9vI980sB7wDAz6g%3D%3D&sa=X&ved=2ahUKEwijscjNivGUAxU0PRAIHYrVGlEQ_4MLegQIKxAM&biw=1920&bih=945&dpr=1"} target="_blank" rel="noopener noreferrer">
+                Kirjoita google arvostelu
+                <GiArrowDunk className="inline ml-1 -scale-y-100" />
+              </a>
+            </div>
           </div>
           {/* <p className='text-sm text-slate-800'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, qui? Iusto sint saepe harum neque quos optio, voluptas quas voluptates unde commodi cum nam laboriosam expedita provident quasi nulla natus.
@@ -187,11 +195,7 @@ const OpinionUser = () => {
               Google Arvostelut
             </button>
           </div>
-          <div className='mt-1 w-full flex items-center justify-center'>
-            <a className='text-sm bg-blue-500 text-white font-medium w-full border border-black/50  text-center py-2 rounded max-w-full' href={"https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&hl=fi-FI&sxsrf=ANbL-n7236avhQ8RSjEhTWaC-iMcP66O9Q:1780696287947&uds=ALYpb_ncDc7jTlmw6Mmq7NjuX5c-Zze-fIOBg0L0hgRWHzdLESc2f9-7spOmdq_Bvg5GeBdeFRztkOg_Bwt5bmN94jlLuwkW2MkeRUzBhDnlmhi-105x-huJPLWdwdUgU9wR0T0nn0hSbb1Ckm_GlP5fEk9uBisOJG_Sc9NeknE7eL_AfN59WMc&q=Razor+Parturi+Barber+Shop+Arvostelut&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qORmNCphyzj2pI8HMPhbb20ci7MWt3uoODEAABtYr0MdN5xAC_dEc9VMMwXVNPIbjIUQle37CBTt2iM5grwym2J-_GUJOVlbce1f9vI980sB7wDAz6g%3D%3D&sa=X&ved=2ahUKEwijscjNivGUAxU0PRAIHYrVGlEQ_4MLegQIKxAM&biw=1920&bih=945&dpr=1"} target="_blank" rel="noopener noreferrer">
-              Kirjoita google arvostelu
-            </a>
-          </div>
+          
           {
             activeTab === "reviews" ? (
               <div className='mt-4'>
