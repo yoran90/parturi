@@ -8,6 +8,7 @@ export const fi = {
   forgotPasswordAdmin: "Unohtuiko salasana?",
   resendVerificationEmail: "Lähetä vahvistussähköposti uudelleen",
   resendVerifyAgain: "lähetetään vahvistussähköposti uudelleen",
+
   
 };
 
@@ -21,6 +22,7 @@ export const en = {
   forgotPasswordAdmin: "Forgot password?",
   resendVerificationEmail: "Resend Verification Email",
   resendVerifyAgain: "sending verify email again",
+
  
 };
 
@@ -51,6 +53,7 @@ export const fiUser = {
   resendVerifyAgain: "lähetetään vahvistussähköposti uudelleen",
   loginWithGoogle: "Kirjaudu sisään Googlella",
   rememberMeTranslation: "Muista minut",
+  or: "Tai",
 };
 
 export const enUser = {
@@ -80,6 +83,7 @@ export const enUser = {
   resendVerifyAgain: "sending verify email again",
   loginWithGoogle: "Login with Google",
   rememberMeTranslation: "Remember me",
+  or: "Or",
 };
 
 export const svUser = {
@@ -109,6 +113,7 @@ export const svUser = {
   resendVerifyAgain: "skickar verifieringsmejl igen",
   loginWithGoogle: "Logga in med Google",
   rememberMeTranslation: "Kom ihåg mig",
+  or: "Eller",
 };
 
 export const ruUser = {
@@ -138,6 +143,7 @@ export const ruUser = {
   resendVerifyAgain: "повторная отправка письма подтверждения",
   loginWithGoogle: "Войти через Google",
   rememberMeTranslation: "Запомнить меня",
+  or: "Или",
 };
 
 export const etUser = {
@@ -167,6 +173,7 @@ export const etUser = {
   resendVerifyAgain: "kinnituskirja uuesti saatmine",
   loginWithGoogle: "Logi sisse Google’iga",
   rememberMeTranslation: "Pea mind meeles",
+  or: "Või",
 };
 
 export const elUser = {
@@ -196,6 +203,7 @@ export const elUser = {
   resendVerifyAgain: "αποστολή email επιβεβαίωσης ξανά",
   loginWithGoogle: "Σύνδεση με Google",
   rememberMeTranslation: "Να με θυμάσαι",
+  or: "Ή",
 };
 
 export const frUser = {
@@ -225,6 +233,7 @@ export const frUser = {
   resendVerifyAgain: "renvoi de l'email de vérification",
   loginWithGoogle: "Se connecter avec Google",
   rememberMeTranslation: "Se souvenir de moi",
+  or: "Ou"
 };
 
 export const esUser = {
@@ -254,6 +263,7 @@ export const esUser = {
   resendVerifyAgain: "reenviando correo de verificación",
   loginWithGoogle: "Iniciar sesión con Google",
   rememberMeTranslation: "Recordarme",
+  or: "O"
 };
 
 export const itUser = {
@@ -283,6 +293,7 @@ export const itUser = {
   resendVerifyAgain: "invio di nuovo dell'email di verifica",
   loginWithGoogle: "Accedi con Google",
   rememberMeTranslation: "Ricordami",
+  or: "O"
 };
 
 export const arUser = {
@@ -312,6 +323,7 @@ export const arUser = {
   resendVerifyAgain: "إعادة إرسال بريد التحقق",
   loginWithGoogle: "تسجيل الدخول باستخدام Google",
   rememberMeTranslation: "تذكرني",
+  or: "أو",
 };
 
 export const trUser = {
@@ -341,6 +353,7 @@ export const trUser = {
   resendVerifyAgain: "doğrulama e-postası tekrar gönderiliyor",
   loginWithGoogle: "Google ile giriş yap",
   rememberMeTranslation: "Beni hatırla",
+  or: "Veya",
 };
 
 export const faUser = {
@@ -370,6 +383,7 @@ export const faUser = {
   resendVerifyAgain: "ارسال دوباره ایمیل تأیید",
   loginWithGoogle: "ورود با گوگل",
   rememberMeTranslation: "مرا به خاطر بسپار",
+  or: "یا",
 };
 
 export const kuUser = {
@@ -399,4 +413,5 @@ export const kuUser = {
   resendVerifyAgain: "ناردنی ئیمەیڵی دڵنیابوون دوبارە دەکرێت",
   loginWithGoogle: "چوونەژورەوە بە گووگڵ",
   rememberMeTranslation: "بەخاطرم بەخشە",
+  or: "یا",
 };

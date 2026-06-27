@@ -535,7 +535,12 @@ const Kirjaudu = () => {
               </button>
             </div>
           </form>
-          <div className='w-full'>
+          <div className='flex items-center justify-center gap-2 mt-3'>
+            <hr className='text-slate-400 w-full' />
+            <p className='text-slate-400 text-center text-sm'>{translate.or}</p>
+            <hr className='text-slate-400 w-full' />
+          </div>
+          <div className='w-full mt-3'>
             <GoogleLoginButton onSuccess={handleGoogleLogin} className='w-full' />
           </div>
           <hr className='text-slate-400 mt-8' />

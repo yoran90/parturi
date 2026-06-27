@@ -22,7 +22,7 @@ import { AiOutlineLogin } from "react-icons/ai";
 import { FaUserPlus } from "react-icons/fa";
 import { GiRazor } from "react-icons/gi";
 import useInformation from '../../hooks/useInformation';
-
+import { FcGoogle } from "react-icons/fc";
 import { BsInfoSquareFill } from "react-icons/bs";
 
 
@@ -173,6 +173,9 @@ const Header = () => {
           <NavLink to={'/opinion'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Mielipide
           </NavLink>
+          <a href="https://www.google.com/search?sca_esv=4995decb4bdc4888&rlz=1C1VDKB_enFI1134FI1134&sxsrf=APpeQntiSbhJcrBEMU12ZWfY2bp85TkKCg:1782598096705&q=Razor+Parturi+Barber+Shop+Arvostelut&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxI2tDAzNDU1MzYxMbc0NjewsLA03MDI-IpRJSixKr9IISCxqKS0KFPBKbEoKbVIITgjv0DBsagsv7gkNae0ZBErUcoAp_-QmWgAAAA&rldimm=1861556344793708891&tbm=lcl&hl=fi-FI&sa=X&ved=2ahUKEwi-9NKyt6iVAxUyFBAIHULSOWcQ9fQKegQITRAG&biw=1920&bih=945&dpr=1#lkt=LocalPoiReviews" target='_blank' className={'text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2'}>
+            Google-arvostelu
+          </a>
           <NavLink to={'/yhteystiedot'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Yhteystiedot
           </NavLink>
@@ -432,6 +435,10 @@ const Header = () => {
               <MdReviews  className='text-amber-300' size={18} />
               <button onClick={clickTheMenuShowHeader} className='text-amber-300 ml-1 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Mielipide</button>
             </NavLink>
+            <a href="https://www.google.com/search?sca_esv=4995decb4bdc4888&rlz=1C1VDKB_enFI1134FI1134&sxsrf=APpeQntiSbhJcrBEMU12ZWfY2bp85TkKCg:1782598096705&q=Razor+Parturi+Barber+Shop+Arvostelut&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxI2tDAzNDU1MzYxMbc0NjewsLA03MDI-IpRJSixKr9IISCxqKS0KFPBKbEoKbVIITgjv0DBsagsv7gkNae0ZBErUcoAp_-QmWgAAAA&rldimm=1861556344793708891&tbm=lcl&hl=fi-FI&sa=X&ved=2ahUKEwi-9NKyt6iVAxUyFBAIHULSOWcQ9fQKegQITRAG&biw=1920&bih=945&dpr=1#lkt=LocalPoiReviews" target='_blank' className={'flex items-center gap-2.5 ml-7'}>
+              <FcGoogle size={18} />
+              <p className='text-amber-300 ml-1 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Google-arvostelu</p>
+            </a>
             <NavLink to={'/yhteystiedot'} className={'flex items-center gap-2.5 ml-7'}>
               <MdContactPhone   className='text-amber-300' size={16} />
               <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[14px] ml-1 font-medium p-2 hover:bg-slate-800'>Yhteystiedot</button>

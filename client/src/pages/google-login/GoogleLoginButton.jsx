@@ -25,7 +25,7 @@ const GoogleLoginButton = ({ onSuccess }) => {
 
 
   return (
-    <div  className='mt-6 rounded w-full bg-white border border-gray-300 cursor-pointer'>
+    <div  className='rounded w-full bg-white border border-gray-300 cursor-pointer'>
       <div
       id="googleLoginDiv"
       className="w-full flex justify-center items-center"
