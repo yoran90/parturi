@@ -435,7 +435,7 @@ const Header = () => {
               <MdReviews  className='text-amber-300' size={18} />
               <button onClick={clickTheMenuShowHeader} className='text-amber-300 ml-1 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Mielipide</button>
             </NavLink>
-            <a href="https://www.google.com/search?sca_esv=4995decb4bdc4888&rlz=1C1VDKB_enFI1134FI1134&sxsrf=APpeQntiSbhJcrBEMU12ZWfY2bp85TkKCg:1782598096705&q=Razor+Parturi+Barber+Shop+Arvostelut&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxI2tDAzNDU1MzYxMbc0NjewsLA03MDI-IpRJSixKr9IISCxqKS0KFPBKbEoKbVIITgjv0DBsagsv7gkNae0ZBErUcoAp_-QmWgAAAA&rldimm=1861556344793708891&tbm=lcl&hl=fi-FI&sa=X&ved=2ahUKEwi-9NKyt6iVAxUyFBAIHULSOWcQ9fQKegQITRAG&biw=1920&bih=945&dpr=1#lkt=LocalPoiReviews" target='_blank' className={'flex items-center gap-2.5 ml-7'}>
+            <a href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&hl=fi-FI&sxsrf=ANbL-n7236avhQ8RSjEhTWaC-iMcP66O9Q:1780696287947&uds=ALYpb_ncDc7jTlmw6Mmq7NjuX5c-Zze-fIOBg0L0hgRWHzdLESc2f9-7spOmdq_Bvg5GeBdeFRztkOg_Bwt5bmN94jlLuwkW2MkeRUzBhDnlmhi-105x-huJPLWdwdUgU9wR0T0nn0hSbb1Ckm_GlP5fEk9uBisOJG_Sc9NeknE7eL_AfN59WMc&q=Razor+Parturi+Barber+Shop+Arvostelut&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qORmNCphyzj2pI8HMPhbb20ci7MWt3uoODEAABtYr0MdN5xAC_dEc9VMMwXVNPIbjIUQle37CBTt2iM5grwym2J-_GUJOVlbce1f9vI980sB7wDAz6g%3D%3D&sa=X&ved=2ahUKEwijscjNivGUAxU0PRAIHYrVGlEQ_4MLegQIKxAM&biw=1920&bih=945&dpr=1" target='_blank' className={'flex items-center gap-2.5 ml-7'}>
               <FcGoogle size={18} />
               <p className='text-amber-300 ml-1 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Google-arvostelu</p>
             </a>
