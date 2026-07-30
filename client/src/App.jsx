@@ -58,7 +58,8 @@ import FeedBack from './feedBack/FeedBack'
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 import DisplayFeedBack from './admin/pages/DisplayFeedBack'
 import Calendar from './components/calendar/Calendar'
-
+import { BsQuestion } from "react-icons/bs";
+import Question from './question/Question'
 
 
 
@@ -73,6 +74,7 @@ const App = () => {
 
   const location = useLocation();
 
+  const [openQuestion, setOpenQuestion] = useState(false);
   const [openFeedBack, setOpenFeedBack] = useState(false);
   const [openCalendar , setOpenCalendar] = useState(false);
   const [visibleCalendar, setVisibleCalendar] = useState(false);
@@ -101,6 +103,19 @@ const App = () => {
   ];
 
   const showCalandary = calendarRoutes.some((route) => route === location.pathname);
+
+  const questionRoutes = [
+    "/",
+    "/meista",
+    "/palvelut",  
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showQuestion = questionRoutes.some((route) => route === location.pathname);
 
 
   useEffect(() => {
@@ -286,6 +301,24 @@ const App = () => {
         )
       }
       {/* end feed back */}
+
+      {/* question */}
+      {showQuestion && (
+          <>
+            <button onClick={() => setOpenQuestion(!openQuestion)} type='button' className={`fixed bottom-16 left-5 border-2 border-amber-700 bg-slate-50 text-white rounded-full cursor-pointer w-10 h-10 flex items-center justify-center ${openFeedBack ? 'hidden' : 'block'}`}>
+              <BsQuestion size={32} className={`text-amber-600 z-50`} />
+            </button>
+
+            {openQuestion && (
+              <Question onClose={() => setOpenQuestion(false)} />
+              )
+            }
+          </>
+        )
+      };
+      
+      {/* end question */}
+
       {/* calandery */}
       {showCalandary && !openFeedBack && visibleCalendar && (
           <div>
