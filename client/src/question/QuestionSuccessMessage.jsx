@@ -4,7 +4,7 @@ import { GiRazor } from 'react-icons/gi'
 const QuestionSuccessMessage = ({ onClose, closeMessage }) => {
   return (
      <div className='fixed  flex items-center justify-center z-50'>
-      <div className='bg-white shadow-xl w-[95%] max-w-lg border border-slate-300 rounded py-6 px-3 relative h-full max-h-[98vh] md:overflow-hidden overflow-y-scroll scrollbarStyle'> 
+      <div className='bg-white shadow-xl w-[95%] max-w-lg border border-slate-300 rounded py-6 px-3 relative '> 
         <div className='w-full flex items-center justify-between'>
           
           <GiRazor size={20} className='text-red-600' />
@@ -50,7 +50,7 @@ const QuestionSuccessMessage = ({ onClose, closeMessage }) => {
 
         <div className='mt-6 flex gap-2.5 items-center justify-center'>
           <button type='button' onClick={() => {onClose(); closeMessage();}}  className='bg-green-600 text-white py-2 text-sm px-6 rounded'>Sulje</button>
-          <a href="/" className='bg-red-600 text-white py-2 text-sm px-6 rounded'>Takaisin kotisivulle</a>
+          <button type='button' onClick={() => {onClose(); closeMessage();}}  className='bg-red-600 text-white py-2 text-sm px-6 rounded'>Ok</button>
         </div>
       </div>
     </div>

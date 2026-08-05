@@ -3,6 +3,7 @@ import { GiRazor } from "react-icons/gi";
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import QuestionSuccessMessage from './QuestionSuccessMessage';
+import Loading from '../loading/Loading';
 
 const Question = ({ onClose }) => {
 
@@ -68,7 +69,18 @@ const Question = ({ onClose }) => {
                   placeholder='Esim. "Etsin parturia, joka tekee hyviä fade-leikkauksia."'
                 />
               </div>
-              <button type="submit" className="bg-red-700 py-2 px-3 text-white rounded hover:bg-red-600 cursor-pointer text-sm">Lähetä kysymys</button>
+              <button type="submit" className="bg-red-700 py-2 px-3 text-white rounded hover:bg-red-600 cursor-pointer text-sm">
+                {loading ? (
+                  <div className='flex items-center justify-center gap-2'>
+                    <p>Odota kysymyksen lähettämistä</p>
+                    <Loading width={20} height={20} border='3px' topBorder='3px' borderColor='white' borderTopColor='red' />
+                  </div>
+                ) : (
+                  <p>Lähetä kysymys</p>
+                )
+
+                }
+              </button>
             </div>
           </form>
 
