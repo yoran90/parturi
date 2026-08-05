@@ -22,6 +22,8 @@ import jobApplicationRoutes from './routes/jobApplicationRoute.js';
 import googleReviewsRoute from './routes/googleReviewsRoute.js';
 import notificationRoutes from './routes/notificationRoute.js';
 import feedBackRoutes from './routes/feedBackRoute.js';
+import questionRoutes from './routes/questionRoute.js';
+
 
 import { SitemapStream, streamToPromise } from 'sitemap';
 import { Readable } from 'stream';
@@ -198,6 +200,7 @@ app.use("/api/job", jobApplicationRoutes);
 app.use("/api/google-reviews", googleReviewsRoute);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/feedback", feedBackRoutes);
+app.use("/api/questions", questionRoutes);
 
 
 export default app
