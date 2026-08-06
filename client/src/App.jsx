@@ -60,6 +60,7 @@ import DisplayFeedBack from './admin/pages/DisplayFeedBack'
 import Calendar from './components/calendar/Calendar'
 import { BsQuestion } from "react-icons/bs";
 import Question from './question/Question'
+import DisplayQuestions from './admin/pages/DisplayQuestions'
 
 
 
@@ -267,6 +268,7 @@ const App = () => {
               <Route path='edit-user/:id' element={<EditUser />}></Route>
               <Route path="review/:id" element={<SingleReview />}></Route>
               <Route path="displayFeedback" element={<DisplayFeedBack />}></Route>
+              <Route path="displayQuestions" element={<DisplayQuestions />}></Route>
             </Route>
 
             <Route path='/login' element={<Login />}></Route>

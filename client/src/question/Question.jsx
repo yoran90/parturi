@@ -26,8 +26,8 @@ const Question = ({ onClose }) => {
     }
 
     try {
+      setLoading(true);
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/questions/addQuestion`, { email, question });
-
       if (response.status === 201) {
         setSuccessMessage(true);
       } else {

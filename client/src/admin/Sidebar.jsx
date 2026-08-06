@@ -18,6 +18,7 @@ import { FaUsers } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import { MdReviews } from "react-icons/md";
 import { FcFeedback } from "react-icons/fc";
+import { LuMailQuestion } from "react-icons/lu";
 
 
 
@@ -114,6 +115,12 @@ const adminSidebarMenuItems = [
     label: (<div className='flex flex-col'>Display Feedback </div>),
     path: '/admin/displayFeedback',
     icons: <FcFeedback className='text-gray-500'  size={20} />
+  },
+  {
+    id: 'displayQuestions',
+    label: (<div className='flex flex-col'>Display Questions </div>),
+    path: '/admin/displayQuestions',
+    icons: <LuMailQuestion  className='text-gray-500'  size={20} />
   },
   {
     id: 'titleforPages',
