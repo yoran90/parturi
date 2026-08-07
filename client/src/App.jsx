@@ -81,6 +81,7 @@ const App = () => {
   const [openFeedBack, setOpenFeedBack] = useState(false);
   const [openCalendar , setOpenCalendar] = useState(false);
   const [visibleCalendar, setVisibleCalendar] = useState(false);
+  const [openGoogleReview, setOpenGoogleReview] = useState(false);
 
   const feedBackRoutes = [
     "/",
@@ -119,6 +120,19 @@ const App = () => {
   ];
 
   const showQuestion = questionRoutes.some((route) => route === location.pathname);
+
+  const googleReviewRoutes = [
+    "/",
+    "/meista",
+    "/palvelut",  
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showGoogleReview = googleReviewRoutes.some((route) => route === location.pathname);
 
 
   useEffect(() => {
@@ -308,9 +322,12 @@ const App = () => {
       {/* end feed back */}
       
       {/* google review  */}
-      <a href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&q=Razor+Parturi+Barber+Shop+Arvostelut&hl=fi-FI&sa=X&ved=2ahUKEwj0mtHzu4-WAxUwKhAIHfyQFvoQkc0JKAB6BAgPEAE&ictx=1&biw=1920&bih=945&dpr=1" target='_blank' className='fixed bottom-27 left-5 border-2 border-amber-700 bg-slate-100 text-white rounded-full cursor-pointer w-10 h-10 flex items-center justify-center'>
-        <FcGoogle size={34} />
-      </a>
+      {showGoogleReview && (
+          <a href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&q=Razor+Parturi+Barber+Shop+Arvostelut&hl=fi-FI&sa=X&ved=2ahUKEwj0mtHzu4-WAxUwKhAIHfyQFvoQkc0JKAB6BAgPEAE&ictx=1&biw=1920&bih=945&dpr=1" target='_blank' className='fixed bottom-27 left-5 border-2 border-amber-700 bg-slate-100 text-white rounded-full cursor-pointer w-10 h-10 flex items-center justify-center'>
+            <FcGoogle size={34} />
+          </a>
+        )
+      }
       {/* end google review  */}
 
       {/* question */}
