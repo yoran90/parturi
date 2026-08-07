@@ -14,17 +14,17 @@ const DisplayQuestions = () => {
   const [loadingForAllQuestions, setLoadingForAllQuestions] = React.useState(false);
 
 
+  console.log(questions);
+
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/questions/getAllQuestions`, {
-          method: "GET",
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/questions/getAllQuestions`, {
           headers: {
             "Content-Type": "application/json",
           },
         });
-        const data = await response.json();
-        setQuestions(data);
+        setQuestions(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -104,7 +104,7 @@ const DisplayQuestions = () => {
           )
         }
         <div className='flex flex-col gap-2'>
-          {questions?.map((question, index) => (
+          {Array.isArray(questions) && questions?.map((question, index) => (
             <div key={index} className='flex flex-col relative items-start overflow-hidden justify-start border border-slate-300 rounded'>
               <Link to={`/admin/question/${question._id}`} className='w-full'>
                 <div className='flex flex-col gap-1 px-2 py-1 w-full'>
