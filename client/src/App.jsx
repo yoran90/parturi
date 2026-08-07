@@ -62,6 +62,7 @@ import { BsQuestion } from "react-icons/bs";
 import Question from './question/Question'
 import DisplayQuestions from './admin/pages/DisplayQuestions'
 import GetSingleQuestion from './admin/pages/GetSingleQuestion'
+import { FcGoogle } from "react-icons/fc";
 
 
 
@@ -305,6 +306,12 @@ const App = () => {
         )
       }
       {/* end feed back */}
+      
+      {/* google review  */}
+      <a href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&q=Razor+Parturi+Barber+Shop+Arvostelut&hl=fi-FI&sa=X&ved=2ahUKEwj0mtHzu4-WAxUwKhAIHfyQFvoQkc0JKAB6BAgPEAE&ictx=1&biw=1920&bih=945&dpr=1" target='_blank' className='fixed bottom-27 left-5 border-2 border-amber-700 bg-slate-100 text-white rounded-full cursor-pointer w-10 h-10 flex items-center justify-center'>
+        <FcGoogle size={34} />
+      </a>
+      {/* end google review  */}
 
       {/* question */}
       {showQuestion && (
