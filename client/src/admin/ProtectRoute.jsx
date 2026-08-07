@@ -32,18 +32,18 @@ const ProtectRoute = ({ isAuthenticated, admin, loading, children }) => {
 
   if (isAuthenticated && location.pathname.includes("/login")) {
     if ( admin?.role === "admin" || admin?.role === "super-admin") {
-      return <Navigate to="/admin" />;
+      return <Navigate to="/admin" />
     } else {
-      return <Navigate to="/" />;
+      return <Navigate to="/" />
     }
   }
 
 
   if (isAuthenticated && admin && admin?.role !== "admin" && admin?.role !== "super-admin" && location.pathname.includes("/admin")) {
-    return <Navigate to="/unauth-page" />;
+    return <Navigate to="/unauth-page" />
   }
 
-  return <>{children}</>;
+  return <>{children}</>
 };
 
 

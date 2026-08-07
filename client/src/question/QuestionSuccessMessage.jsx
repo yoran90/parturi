@@ -8,7 +8,7 @@ const QuestionSuccessMessage = ({ onClose, closeMessage }) => {
         <div className='w-full flex items-center justify-between'>
           
           <GiRazor size={20} className='text-red-600' />
-          <button className='text-xs cursor-pointer' >❌</button>
+          <button onClick={closeMessage} className='text-xs cursor-pointer' >❌</button>
           
         </div>
         <div className='flex items-center justify-center mb-6'>

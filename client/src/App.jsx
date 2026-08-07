@@ -61,6 +61,7 @@ import Calendar from './components/calendar/Calendar'
 import { BsQuestion } from "react-icons/bs";
 import Question from './question/Question'
 import DisplayQuestions from './admin/pages/DisplayQuestions'
+import GetSingleQuestion from './admin/pages/GetSingleQuestion'
 
 
 
@@ -269,6 +270,7 @@ const App = () => {
               <Route path="review/:id" element={<SingleReview />}></Route>
               <Route path="displayFeedback" element={<DisplayFeedBack />}></Route>
               <Route path="displayQuestions" element={<DisplayQuestions />}></Route>
+              <Route path="question/:id" element={<GetSingleQuestion />}></Route>
             </Route>
 
             <Route path='/login' element={<Login />}></Route>
