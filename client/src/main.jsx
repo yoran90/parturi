@@ -31,9 +31,9 @@ axios.interceptors.response.use(
     }
     return Promise.reject(error);
   }
-);
+)
 export function Root() {
-  const [bgColor, setBgColor] = useState('#ffffff');
+  const [bgColor, setBgColor] = useState('#ffffff')
   
 
   return (
@@ -65,5 +65,5 @@ export function Root() {
   )
 }
 
-createRoot(document.getElementById('root')).render(<Root />);
+createRoot(document.getElementById('root')).render(<Root />)
 

@@ -309,7 +309,7 @@ const App = () => {
       {/* feed back */}
       {showFeedBack && (
           <>
-            <button type='button' onClick={() => setOpenFeedBack(true)} className={`fixed bottom-5 left-5 border-2 border-amber-700 bg-amber-400 text-white rounded-full cursor-pointer w-10 h-10 flex items-center justify-center ${openFeedBack ? 'hidden' : 'block'}`}>
+            <button type='button' onClick={() => setOpenFeedBack(true)} className={`fixed bottom-5 left-5 border-2 border-amber-700 bg-amber-400 text-white rounded-full cursor-pointer w-9 h-9 flex items-center justify-center ${openFeedBack ? 'hidden' : 'block'}`}>
               <IoChatbubbleEllipsesSharp  size={22} className={`text-white z-50`}/>
             </button>
             {openFeedBack && (
@@ -323,8 +323,8 @@ const App = () => {
       
       {/* google review  */}
       {showGoogleReview && (
-          <a href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&q=Razor+Parturi+Barber+Shop+Arvostelut&hl=fi-FI&sa=X&ved=2ahUKEwj0mtHzu4-WAxUwKhAIHfyQFvoQkc0JKAB6BAgPEAE&ictx=1&biw=1920&bih=945&dpr=1" target='_blank' className='fixed bottom-27 left-5 border-2 border-amber-700 bg-slate-100 text-white rounded-full cursor-pointer w-10 h-10 flex items-center justify-center'>
-            <FcGoogle size={34} />
+          <a href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&q=Razor+Parturi+Barber+Shop+Arvostelut&hl=fi-FI&sa=X&ved=2ahUKEwj0mtHzu4-WAxUwKhAIHfyQFvoQkc0JKAB6BAgPEAE&ictx=1&biw=1920&bih=945&dpr=1" target='_blank' className='fixed bottom-25.25 left-5 border-2 border-amber-700 bg-slate-100 text-white rounded-full cursor-pointer w-9 h-9 flex items-center justify-center'>
+            <FcGoogle size={26} />
           </a>
         )
       }
@@ -333,7 +333,7 @@ const App = () => {
       {/* question */}
       {showQuestion && (
           <>
-            <button onClick={() => setOpenQuestion(!openQuestion)} type='button' className={`fixed bottom-16 left-5 border-2 border-amber-700 bg-slate-50 text-white rounded-full cursor-pointer w-10 h-10 flex items-center justify-center ${openFeedBack ? 'hidden' : 'block'}`}>
+            <button onClick={() => setOpenQuestion(!openQuestion)} type='button' className={`fixed bottom-15 left-5 border-2 border-amber-700 bg-slate-50 text-white rounded-full cursor-pointer w-9 h-9 flex items-center justify-center ${openFeedBack ? 'hidden' : 'block'}`}>
               <BsQuestion size={32} className={`text-amber-600 z-50`} />
             </button>
 
@@ -350,8 +350,8 @@ const App = () => {
       {/* calandery */}
       {showCalandary && !openFeedBack && visibleCalendar && (
           <div>
-            <button onClick={() => setOpenCalendar(!openCalendar)} className='fixed bottom-5 right-5  border-2 border-red-900 w-10 h-10 flex items-center justify-center bg-red-500 text-white text-sm rounded-full cursor-pointer gap-2.5'>
-              <img src="https://play-lh.googleusercontent.com/ttdkcjLXS5B8CLYYfCkrmMcjPk1jJjJZEIcd3S5eP9pLO48Yy3RnRnQgHy0n2WroqYA" alt="calandery" className="w-5 h-5" />
+            <button onClick={() => setOpenCalendar(!openCalendar)} className='fixed bottom-5 right-5  border-2 border-red-900 w-9 h-9 flex items-center justify-center bg-red-500 text-white text-sm rounded-full cursor-pointer gap-2.5'>
+              <img src="https://play-lh.googleusercontent.com/ttdkcjLXS5B8CLYYfCkrmMcjPk1jJjJZEIcd3S5eP9pLO48Yy3RnRnQgHy0n2WroqYA" alt="calandery" className="w-4 h-4" />
             </button>
 
             {openCalendar &&  (
