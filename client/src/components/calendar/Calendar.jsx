@@ -82,7 +82,7 @@ const Calendar = () => {
         
 
         <div className='w-full max-w-md bg-white shadow border-2 border-slate-300 border-b-4 rounded-t-lg rounded-b-sm overflow-hidden'>
-          <div className='flex flex-col gap-2 items-center justify-between py-3 mt-5 bg-red-700 px-4 text-white w-full'>
+          <div className='flex flex-col gap-2 items-center justify-between py-3 mt-5 bg-red-700 px-6 text-white w-full'>
             <div className='flex items-center justify-between text-xs w-full'>
               <button onClick={prevMonth} className='border-2  rounded-full p-0.5'>
                 <IoIosArrowBack />
@@ -107,7 +107,7 @@ const Calendar = () => {
           </div>
 
           <div className='w-full'>
-            <div className='grid grid-cols-7 gap-2 mb-3'>
+            <div className='grid grid-cols-7 gap-2 mb-3 px-2'>
               {prevMonthDays.map((day, index) => (
                 <div key={`prev-${index}`} className='text-gray-400 text-center text-xs'>
                   {day.getDate()}

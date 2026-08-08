@@ -74,4 +74,4 @@ const ReviewForHome = () => {
   );
 };
 
-export default ReviewForHome;
+export default ReviewForHome

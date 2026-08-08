@@ -664,5 +664,5 @@ const ProfileUser = () => {
   );
 };
 
-export default ProfileUser;
+export default ProfileUser
 

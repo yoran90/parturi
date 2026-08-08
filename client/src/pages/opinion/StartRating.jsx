@@ -22,4 +22,4 @@ const StarRating = ({ rating, setRating }) => {
   );
 };
 
-export default StarRating;
+export default StarRating

@@ -343,7 +343,7 @@ const App = () => {
             }
           </>
         )
-      };
+      }
       
       {/* end question */}
 

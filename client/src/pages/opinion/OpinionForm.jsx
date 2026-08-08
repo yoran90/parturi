@@ -174,4 +174,4 @@ const OpinionForm = ({ closeModel, isOpen }) => {
   );
 };
 
-export default OpinionForm;
+export default OpinionForm

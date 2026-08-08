@@ -119,4 +119,4 @@ const PalvelutHinta = () => {
   );
 };
 
-export default PalvelutHinta;
+export default PalvelutHinta

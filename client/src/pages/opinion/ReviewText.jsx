@@ -42,4 +42,4 @@ const ReviewText = ({ text }) => {
   );
 };
 
-export default ReviewText;
+export default ReviewText

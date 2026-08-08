@@ -31,4 +31,4 @@ const JobSuccessMessage = ({ closeSuccessMessage }) => {
   );
 };
 
-export default JobSuccessMessage;
+export default JobSuccessMessage
