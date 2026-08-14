@@ -63,7 +63,7 @@ import Question from './question/Question'
 import DisplayQuestions from './admin/pages/DisplayQuestions'
 import GetSingleQuestion from './admin/pages/GetSingleQuestion'
 import { FcGoogle } from "react-icons/fc";
-
+import { FaMapPin } from "react-icons/fa";
 
 
 
@@ -134,6 +134,18 @@ const App = () => {
 
   const showGoogleReview = googleReviewRoutes.some((route) => route === location.pathname);
 
+  const mapRoutes = [
+    "/",
+    "/meista",
+    "/palvelut",  
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showMap = mapRoutes.some((route) => route === location.pathname);
 
   useEffect(() => {
 
@@ -346,6 +358,19 @@ const App = () => {
       }
       
       {/* end question */}
+
+      {/* map */}
+      {showMap && (
+        <div className='fixed bottom-5 left-16 border-2 border-amber-700 bg-slate-100 text-red-800 rounded-full cursor-pointer w-9.75 h-9.75 flex items-center justify-center'>
+          <a href="https://www.google.com/maps/place/Razor+Parturi+Barber+Shop/@60.2077421,25.1420102,17z/data=!3m1!4b1!4m16!1m9!4m8!1m0!1m6!1m2!1s0x46920f7a6f6b2c71:0x19d593a1f4cdb95b!2sRazor+Parturi+Barber+Shop,+Vuotie+45,+00980+Helsinki!2m2!1d25.1445851!2d60.2077421!3m5!1s0x46920f7a6f6b2c71:0x19d593a1f4cdb95b!8m2!3d60.2077421!4d25.1445851!16s%2Fg%2F11vy_c9z9d?hl=fi&entry=ttu&g_ep=EgoyMDI2MDgxMS4wIKXMDSoASAFQAw%3D%3D" target='_blank'>
+            <FaMapPin size={20} />
+          </a>
+        </div>
+      )
+
+      }
+
+      {/* end map */}
 
       {/* calandery */}
       {showCalandary && /* && !openFeedBack && visibleCalendar && */ (
