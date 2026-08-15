@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import Etusivut from './pages/Etusivut'
@@ -64,6 +64,7 @@ import DisplayQuestions from './admin/pages/DisplayQuestions'
 import GetSingleQuestion from './admin/pages/GetSingleQuestion'
 import { FcGoogle } from "react-icons/fc";
 import { FaMapPin } from "react-icons/fa";
+import { TbAppsFilled } from "react-icons/tb";
 
 
 
@@ -77,11 +78,45 @@ const App = () => {
 
   const location = useLocation();
 
+
+  const [openFloatingMenu, setOpenFloatingMenu] = useState(false);
+
   const [openQuestion, setOpenQuestion] = useState(false);
   const [openFeedBack, setOpenFeedBack] = useState(false);
   const [openCalendar , setOpenCalendar] = useState(false);
   const [visibleCalendar, setVisibleCalendar] = useState(false);
   const [openGoogleReview, setOpenGoogleReview] = useState(false);
+
+  const ref = useRef(null);
+
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setOpenFloatingMenu(false);
+        setOpenQuestion(false);
+        setOpenFeedBack(false);
+        setOpenCalendar(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const appMenuRoutes = [
+    "/",
+    "/meista",
+    "/palvelut",  
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showAppMenu = appMenuRoutes.some((route) => route === location.pathname);
 
   const feedBackRoutes = [
     "/",
@@ -331,86 +366,104 @@ const App = () => {
           <Route path='/unauth-page' element={<UnAuthPage />} />
 
       </Routes>
-      {/* feed back */}
-      {showFeedBack && (
-          <>
-            <button type='button' onClick={() => setOpenFeedBack(true)} className={`fixed bottom-5 left-5 border-2 border-amber-700 bg-amber-400 text-white rounded-full cursor-pointer w-9.75 h-9.75 flex items-center justify-center ${openFeedBack ? 'hidden' : 'block'}`}>
-              <IoChatbubbleEllipsesSharp  size={22} className={`text-white z-50`}/>
-            </button>
-            {openFeedBack && (
-                <FeedBack onClose={() => setOpenFeedBack(false)} setOpenFeedBack={setOpenFeedBack} /> 
-              )  
-            }
-          </>
-        )
-      }
-      {/* end feed back */}
-      
-      {/* google review  */}
-      {showGoogleReview && (
-          <a href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&q=Razor+Parturi+Barber+Shop+Arvostelut&hl=fi-FI&sa=X&ved=2ahUKEwj0mtHzu4-WAxUwKhAIHfyQFvoQkc0JKAB6BAgPEAE&ictx=1&biw=1920&bih=945&dpr=1" target='_blank' className='fixed bottom-27 left-5 border-2 border-amber-700 bg-slate-100 text-white rounded-full cursor-pointer w-9.75 h-9.75 flex items-center justify-center'>
-            <FcGoogle size={26} />
-          </a>
-        )
-      }
-      {/* end google review  */}
 
-      {/* question */}
-      {showQuestion && (
-          <>
-            <button onClick={() => setOpenQuestion(!openQuestion)} type='button' className={`fixed bottom-16 left-5 border-2 border-amber-700 bg-slate-50 text-white rounded-full cursor-pointer w-9.75 h-9.75 flex items-center justify-center ${openFeedBack ? 'hidden' : 'block'}`}>
-              <BsQuestion size={32} className={`text-amber-600 z-50`} />
-            </button>
-
-            {openQuestion && (
-              <Question onClose={() => setOpenQuestion(false)} />
+      {openFloatingMenu && (
+        <div ref={ref} className="fixed bg-slate-100 shadow-2xl border border-slate-200 rounded-r-md flex flex-col justify-center items-center gap-5.5 w-20 h-fit py-10 bottom-0 z-50">
+          {/* feed back */}
+            {showFeedBack && (
+                <>
+                  <button type='button' onClick={() => setOpenFeedBack(true)} className={` bg-amber-500 rounded-full p-2 w-9 h-9 flex items-center justify-center ${openFeedBack ? 'hidden' : 'block'}`}>
+                    <IoChatbubbleEllipsesSharp  size={22} className={`text-white z-50`}/>
+                  </button>
+                  {openFeedBack && (
+                      <FeedBack onClose={() => setOpenFeedBack(false)} setOpenFeedBack={setOpenFeedBack} /> 
+                    )  
+                  }
+                </>
               )
             }
-          </>
-        )
-      }
-      
-      {/* end question */}
+          {/* end feed back */}
+            
+          {/* google review  */}
+            {showGoogleReview && (
+                <a className='bg-slate-200 border border-slate-300 rounded-full w-9 h-9 flex items-center justify-center' href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&q=Razor+Parturi+Barber+Shop+Arvostelut&hl=fi-FI&sa=X&ved=2ahUKEwj0mtHzu4-WAxUwKhAIHfyQFvoQkc0JKAB6BAgPEAE&ictx=1&biw=1920&bih=945&dpr=1" target='_blank' >
+                  <FcGoogle size={26} />
+                </a>
+              )
+            }
+          {/* end google review  */}
 
-      {/* map */}
-      {showMap && (
-        <div className='fixed bottom-5 left-16 border-2 border-amber-700 bg-slate-100 text-red-800 rounded-full cursor-pointer w-9.75 h-9.75 flex items-center justify-center'>
-          <a href="https://www.google.com/maps/place/Razor+Parturi+Barber+Shop/@60.2077421,25.1420102,17z/data=!3m1!4b1!4m16!1m9!4m8!1m0!1m6!1m2!1s0x46920f7a6f6b2c71:0x19d593a1f4cdb95b!2sRazor+Parturi+Barber+Shop,+Vuotie+45,+00980+Helsinki!2m2!1d25.1445851!2d60.2077421!3m5!1s0x46920f7a6f6b2c71:0x19d593a1f4cdb95b!8m2!3d60.2077421!4d25.1445851!16s%2Fg%2F11vy_c9z9d?hl=fi&entry=ttu&g_ep=EgoyMDI2MDgxMS4wIKXMDSoASAFQAw%3D%3D" target='_blank'>
-            <FaMapPin size={20} />
-          </a>
-        </div>
-      )
+          {/* question */}
+            {showQuestion && (
+                <>
+                  <button onClick={() => setOpenQuestion(!openQuestion)} type='button' className={` bg-amber-500 rounded-full text-white  w-9 h-9 flex items-center justify-center ${openFeedBack ? 'hidden' : 'block'}`}>
+                    <BsQuestion size={28} />
+                  </button>
 
-      }
+                  {openQuestion && (
+                    <Question onClose={() => setOpenQuestion(false)} />
+                    )
+                  }
+                </>
+              )
+            }
+            
+          {/* end question */}
 
-      {/* end map */}
-      
-      {/* call */}
-      {showCall && (
-        <div className='fixed bottom-16 left-16 border-2 border-red-900 bg-red-500 text-white rounded-full cursor-pointer w-9.5 h-9.5 flex items-center justify-center'>
-          <a href="tel:+358505011350" target='_blank' rel='noopener noreferrer'>
-            <FaPhone size={18} />
-          </a>
-        </div>
-      )}
-      {/* end call */}
-
-      {/* calandery */}
-      {showCalandary && /* && !openFeedBack && visibleCalendar && */ (
-          <div>
-            <button onClick={() => setOpenCalendar(!openCalendar)} className='fixed bottom-5 right-5  border-2 border-red-900 w-10 h-10 flex items-center justify-center bg-red-500 text-white text-sm rounded-lg cursor-pointer gap-2.5'>
-              <img src="https://play-lh.googleusercontent.com/ttdkcjLXS5B8CLYYfCkrmMcjPk1jJjJZEIcd3S5eP9pLO48Yy3RnRnQgHy0n2WroqYA" alt="calandery" className="w-7 h-7" />
-            </button>
-
-            {openCalendar &&  (
-              <Calendar onClose={() => setOpenCalendar(false)} />
+          {/* map */}
+            {showMap && (
+              <div className='bg-black text-white rounded-full p-2 w-9 h-9 flex items-center justify-center'>
+                <a href="https://www.google.com/maps/place/Razor+Parturi+Barber+Shop/@60.2077421,25.1420102,17z/data=!3m1!4b1!4m16!1m9!4m8!1m0!1m6!1m2!1s0x46920f7a6f6b2c71:0x19d593a1f4cdb95b!2sRazor+Parturi+Barber+Shop,+Vuotie+45,+00980+Helsinki!2m2!1d25.1445851!2d60.2077421!3m5!1s0x46920f7a6f6b2c71:0x19d593a1f4cdb95b!8m2!3d60.2077421!4d25.1445851!16s%2Fg%2F11vy_c9z9d?hl=fi&entry=ttu&g_ep=EgoyMDI2MDgxMS4wIKXMDSoASAFQAw%3D%3D" target='_blank'>
+                  <FaMapPin size={20} />
+                </a>
+              </div>
             )
 
             }
-          </div>
-        )
-      }
+
+          {/* end map */}
+            
+          {/* call */}
+            {showCall && (
+              <div className='bg-red-500 text-white rounded-full p-2 w-9 h-9 flex items-center justify-center'>
+                <a href="tel:+358505011350" target='_blank' rel='noopener noreferrer'>
+                  <FaPhone size={18} />
+                </a>
+              </div>
+            )}
+          {/* end call */}
+
+          
+
+        </div>
+      )}
+      
+      {/* calandery */}
+        {showCalandary && /* && !openFeedBack && visibleCalendar && */ (
+            <div>
+              <button onClick={() => setOpenCalendar(!openCalendar)} className='fixed bottom-5 right-5  border-2 border-red-900 w-10 h-10 flex items-center justify-center bg-red-500 text-white text-sm rounded-sm cursor-pointer gap-2.5'>
+                <img src="https://play-lh.googleusercontent.com/ttdkcjLXS5B8CLYYfCkrmMcjPk1jJjJZEIcd3S5eP9pLO48Yy3RnRnQgHy0n2WroqYA" alt="calandery" className="w-6 h-6" />
+              </button>
+
+              {openCalendar &&  (
+                <Calendar onClose={() => setOpenCalendar(false)} />
+              )
+
+              }
+            </div>
+          )
+        }
       {/* end calandery */}
+
+      {/* App icon */}
+        {showAppMenu && (
+          <button onClick={() => setOpenFloatingMenu(!openFloatingMenu)} className={`fixed bottom-5 left-5  border-2 border-amber-700 w-9.75 h-9.75 flex items-center justify-center bg-amber-500 text-white text-sm rounded-full cursor-pointer gap-2.5`}>
+            <TbAppsFilled size={26} />
+          </button>
+
+        )}
+      {/* End App icon */} 
+
     </>
   )
 }
