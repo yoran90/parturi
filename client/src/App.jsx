@@ -51,7 +51,7 @@ import AdminVerifyEmail from './admin/pages/verifyEmail/AdminVerifyEmail'
 import UserLayout from './User-Layouts/UserLayout'
 import AdminLayout from './Admin-Layouts/AdminLayout'
 import AuthLayout from './User-Layouts/Register-Login/AuthLayout'
-import { FaCalendarAlt } from "react-icons/fa";
+import { FaCalendarAlt, FaPhone } from "react-icons/fa";
 import razorLogo from './assets/Razor.png'
 import ScrollToTop from './Scroll-to-top/ScrollToTop'
 import FeedBack from './feedBack/FeedBack'
@@ -146,6 +146,19 @@ const App = () => {
   ];
 
   const showMap = mapRoutes.some((route) => route === location.pathname);
+
+  const callRoutes = [
+    "/",
+    "/meista",
+    "/palvelut",  
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showCall = callRoutes.some((route) => route === location.pathname);
 
   useEffect(() => {
 
@@ -371,6 +384,16 @@ const App = () => {
       }
 
       {/* end map */}
+      
+      {/* call */}
+      {showCall && (
+        <div className='fixed bottom-16 left-16 border-2 border-red-900 bg-red-500 text-white rounded-full cursor-pointer w-9.5 h-9.5 flex items-center justify-center'>
+          <a href="tel:+358505011350" target='_blank' rel='noopener noreferrer'>
+            <FaPhone size={18} />
+          </a>
+        </div>
+      )}
+      {/* end call */}
 
       {/* calandery */}
       {showCalandary && /* && !openFeedBack && visibleCalendar && */ (
