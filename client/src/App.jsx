@@ -459,7 +459,7 @@ const App = () => {
 
       {/* App icon */}
         {showAppMenu && (
-          <button onClick={() => setOpenFloatingMenu(!openFloatingMenu)} className={`fixed bottom-5 left-5  border-2 border-amber-700 w-9.75 h-9.75 flex items-center justify-center bg-amber-500 text-white text-sm rounded-full cursor-pointer gap-2.5`}>
+          <button onClick={() => setOpenFloatingMenu(!openFloatingMenu)} className={`fixed bottom-5 left-5 border-2 border-amber-700 w-10 h-10 flex items-center justify-center bg-amber-500 text-white text-sm rounded-full cursor-pointer gap-2.5`}>
             <TbAppsFilled size={26} />
           </button>
 
