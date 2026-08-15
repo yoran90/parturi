@@ -368,7 +368,7 @@ const App = () => {
       </Routes>
 
       {openFloatingMenu && (
-        <div ref={ref} className="fixed bg-slate-100 shadow-2xl border border-slate-200 rounded-r-md flex flex-col justify-center items-center gap-5.5 w-20 h-fit py-10 bottom-0 z-50">
+        <div ref={ref} className="fixed bg-white shadow-2xl border border-slate-200 rounded-r-md flex flex-col justify-center items-center gap-5.5 w-20 h-fit py-10 bottom-0 z-50">
           {/* feed back */}
             {showFeedBack && (
                 <>
