@@ -43,7 +43,7 @@ const Question = ({ onClose }) => {
 
   return (
     <div className='fixed left-0 right-0 top-0 bottom-0 bg-black/70 flex justify-center items-center z-50'>
-      <div className='bg-white shadow xl:w-[60%] md:w-[80%] w-[95%] relative py-6 px-4 rounded'>
+      <div className='bg-white shadow xl:w-[50%] md:w-[60%] w-[95%] relative py-6 px-4 rounded'>
          <div className="flex flex-col gap-3">
           <button onClick={onClose} className="text-xs absolute top-3 right-3 cursor-pointer">❌</button>
           <p className="flex gap-1 text-red-600"> Razor <GiRazor className='razorSidebar' /> Parturi</p>
@@ -64,8 +64,8 @@ const Question = ({ onClose }) => {
               </div>
               <div className='flex flex-col gap-1 w-full text-sm'>
                 <p className='text-slate-700 '>❓ Kysymys</p>
-                <textarea name="question" id="question" value={question} onChange={(e) => setQuestion(e.target.value)} className='border p-2 rounded outline-none text-sm'
-                  rows={4}
+                <textarea name="question" id="question" value={question} onChange={(e) => setQuestion(e.target.value)} className='border resize-none p-2 rounded outline-none text-sm'
+                  rows={8}
                   placeholder='Esim. "Etsin parturia, joka tekee hyviä fade-leikkauksia."'
                 />
               </div>
