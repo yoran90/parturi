@@ -51,7 +51,7 @@ import AdminVerifyEmail from './admin/pages/verifyEmail/AdminVerifyEmail'
 import UserLayout from './User-Layouts/UserLayout'
 import AdminLayout from './Admin-Layouts/AdminLayout'
 import AuthLayout from './User-Layouts/Register-Login/AuthLayout'
-import { FaCalendarAlt, FaPhone } from "react-icons/fa";
+import { FaCalendarAlt, FaEnvelope, FaPhone } from "react-icons/fa";
 import razorLogo from './assets/Razor.png'
 import ScrollToTop from './Scroll-to-top/ScrollToTop'
 import FeedBack from './feedBack/FeedBack'
@@ -194,6 +194,19 @@ const App = () => {
   ];
 
   const showCall = callRoutes.some((route) => route === location.pathname);
+
+  const emailRoutes = [
+    "/",
+    "/meista",
+    "/palvelut",  
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showEmail = emailRoutes.some((route) => route === location.pathname);
 
   useEffect(() => {
 
@@ -442,6 +455,22 @@ const App = () => {
               </div>
             )}
           {/* end call */}
+
+          {/* email */}
+          {showEmail && (
+              <div className='bg-sky-500 text-white rounded-full p-2 cursor-pointer w-9 h-9 flex items-center justify-center'>
+                <a
+                  href="mailto:razorparturi@gmail.com"
+                  className="bg-sky-500 text-white rounded-full p-2 w-9 h-9 flex items-center justify-center"
+                >
+                  <FaEnvelope size={18} />
+                </a>
+              </div>
+            ) 
+
+          }
+
+          {/* end email */}
 
            {/* calandery */}
           {showCalandary && /* && !openFeedBack && visibleCalendar && */ (
