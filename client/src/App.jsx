@@ -368,7 +368,17 @@ const App = () => {
       </Routes>
 
       {openFloatingMenu && (
-        <div ref={ref} className="fixed bg-white shadow-2xl border border-slate-200 rounded-r-md flex flex-col justify-center items-center gap-5.5 w-20 h-fit py-10 bottom-0 z-50">
+        <div
+          ref={ref}
+          className={`fixed left-0 bottom-0 z-50 w-20 py-8
+            flex flex-col items-center justify-center gap-5
+            bg-white border border-slate-200 rounded-tr-md shadow-2xl
+            transition-transform duration-900 ease-out
+            ${
+              openFloatingMenu ? "translate-x-0" : "-translate-x-full"
+            }`}
+        >
+        
           {/* feed back */}
             {showFeedBack && (
                 <>
