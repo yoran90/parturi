@@ -387,9 +387,7 @@ const App = () => {
             flex flex-col items-center justify-center gap-5
             bg-white border border-slate-200 rounded-tr-md shadow-2xl
             transition-transform duration-900 ease-out
-            ${
-              openFloatingMenu ? "translate-x-0" : "-translate-x-full"
-            }`}
+          }`}
         >
         
           {/* feed back */}
