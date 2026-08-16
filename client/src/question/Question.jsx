@@ -65,7 +65,7 @@ const Question = ({ onClose }) => {
               <div className='flex flex-col gap-1 w-full text-sm'>
                 <p className='text-slate-700 '>❓ Kysymys</p>
                 <textarea name="question" id="question" value={question} onChange={(e) => setQuestion(e.target.value)} className='border resize-none p-2 rounded outline-none text-sm'
-                  rows={8}
+                  rows={4}
                   placeholder='Esim. "Etsin parturia, joka tekee hyviä fade-leikkauksia."'
                 />
               </div>
