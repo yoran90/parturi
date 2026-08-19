@@ -105,7 +105,7 @@ const Footer = () => {
           </div>
           <div className='flex items-center gap-1.5'>
             <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
-            <GiRazor size={12} />
+            <GiRazor className='razorSidebar' size={12} />
             <p>www.razorr.fi</p>
           </div>
         </div>

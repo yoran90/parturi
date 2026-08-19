@@ -285,7 +285,7 @@ const Header = () => {
               <>
                <div className='flex items-center ml-4 gap-1.5 mb-1'>
                 <Link to={'/kirjaudu'}>
-                  <button  className='text-black bg-white/90 hover:bg-white flex items-center gap-1 border border-slate-300 justify-center cursor-pointer text-xs px-1.25 rounded-full'>
+                  <button  className='text-black bg-white/90 hover:bg-white flex items-center gap-1 border border-slate-300 justify-center cursor-pointer text-xs py-1.25 px-2.5 rounded-full'>
                     {/* <FaUser /> */}
                     Kirjaudu
                   </button>

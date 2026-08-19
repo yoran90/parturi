@@ -51,7 +51,7 @@ import AdminVerifyEmail from './admin/pages/verifyEmail/AdminVerifyEmail'
 import UserLayout from './User-Layouts/UserLayout'
 import AdminLayout from './Admin-Layouts/AdminLayout'
 import AuthLayout from './User-Layouts/Register-Login/AuthLayout'
-import { FaCalendarAlt, FaEnvelope, FaPhone } from "react-icons/fa";
+import { FaBriefcase, FaCalendarAlt, FaEnvelope, FaPhone } from "react-icons/fa";
 import razorLogo from './assets/Razor.png'
 import ScrollToTop from './Scroll-to-top/ScrollToTop'
 import FeedBack from './feedBack/FeedBack'
@@ -65,6 +65,7 @@ import GetSingleQuestion from './admin/pages/GetSingleQuestion'
 import { FcGoogle } from "react-icons/fc";
 import { FaMapPin } from "react-icons/fa";
 import { TbAppsFilled } from "react-icons/tb";
+import JobApplication from './pages/Job-Application/JobApplication'
 
 
 
@@ -86,6 +87,7 @@ const App = () => {
   const [openCalendar , setOpenCalendar] = useState(false);
   const [visibleCalendar, setVisibleCalendar] = useState(false);
   const [openGoogleReview, setOpenGoogleReview] = useState(false);
+  const [openJobApplication, setOpenJobApplication] = useState(false);
 
   const ref = useRef(null);
 
@@ -207,6 +209,19 @@ const App = () => {
   ];
 
   const showEmail = emailRoutes.some((route) => route === location.pathname);
+
+  const jobApplicationRoutes = [
+    "/",
+    "/meista",
+    "/palvelut",  
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showJobApplication = jobApplicationRoutes.some((route) => route === location.pathname);
 
   useEffect(() => {
 
@@ -431,6 +446,8 @@ const App = () => {
             
           {/* end question */}
 
+          
+
           {/* map */}
             {showMap && (
               <div className='bg-black text-white rounded-full p-2 w-9 h-9 flex items-center justify-center'>
@@ -453,6 +470,22 @@ const App = () => {
               </div>
             )}
           {/* end call */}
+
+          {/* job application */}
+          {showJobApplication && (
+            <>
+              <button onClick={() => setOpenJobApplication(!openJobApplication)} className='bg-amber-500 rounded-full p-2 w-9 h-9 flex items-center justify-center'>
+                <FaBriefcase className='text-white' />
+              </button>
+              {openJobApplication && (
+                <JobApplication close={() => setOpenJobApplication(false)} />
+              )}
+            </>
+          )
+
+          }
+
+          {/* end job application */}
 
           {/* email */}
           {showEmail && (
