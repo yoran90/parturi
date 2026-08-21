@@ -66,6 +66,8 @@ import { FcGoogle } from "react-icons/fc";
 import { FaMapPin } from "react-icons/fa";
 import { TbAppsFilled } from "react-icons/tb";
 import JobApplication from './pages/Job-Application/JobApplication'
+import { FaSackDollar } from "react-icons/fa6";
+import PriceApp from './price/PriceApp'
 
 
 
@@ -81,6 +83,7 @@ const App = () => {
 
 
   const [openFloatingMenu, setOpenFloatingMenu] = useState(false);
+  const[openPriceApp, setOpenPriceApp] = useState(false);
 
   const [openQuestion, setOpenQuestion] = useState(false);
   const [openFeedBack, setOpenFeedBack] = useState(false);
@@ -222,6 +225,19 @@ const App = () => {
   ];
 
   const showJobApplication = jobApplicationRoutes.some((route) => route === location.pathname);
+
+  const priceAppRoutes = [
+    "/",
+    "/meista",
+    "/palvelut",  
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showPriceApp = priceAppRoutes.some((route) => route === location.pathname);
 
   useEffect(() => {
 
@@ -433,7 +449,7 @@ const App = () => {
             {showQuestion && (
                 <>
                   <button onClick={() => setOpenQuestion(!openQuestion)} type='button' className={` bg-amber-500 rounded-full text-white  w-9 h-9 flex items-center justify-center ${openFeedBack ? 'hidden' : 'block'}`}>
-                    <BsQuestion size={28} />
+                    <BsQuestion size={30} />
                   </button>
 
                   {openQuestion && (
@@ -446,6 +462,21 @@ const App = () => {
             
           {/* end question */}
 
+          {/* price */}
+          {showPriceApp && (
+              <>
+                <button onClick={() => setOpenPriceApp(!openPriceApp)} className='bg-[#d28519] text-white rounded-full p-2 w-9 h-9 flex items-center justify-center'>
+                  <FaSackDollar size={18} />
+                </button>
+                {openPriceApp && (
+                  <PriceApp onClose={() => setOpenPriceApp(false)} />
+                )
+
+                }
+              </>
+            )
+          }
+          {/* end price */}
           
 
           {/* map */}
@@ -475,10 +506,10 @@ const App = () => {
           {showJobApplication && (
             <>
               <button onClick={() => setOpenJobApplication(!openJobApplication)} className='bg-amber-500 rounded-full p-2 w-9 h-9 flex items-center justify-center'>
-                <FaBriefcase className='text-white' />
+                <FaBriefcase size={18} className='text-white' />
               </button>
               {openJobApplication && (
-                <JobApplication close={() => setOpenJobApplication(false)} />
+                <JobApplication  close={() => setOpenJobApplication(false)} />
               )}
             </>
           )
