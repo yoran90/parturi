@@ -136,3 +136,7 @@ body::-webkit-scrollbar {
   background-color: #fff3cd; 
   transition: background-color 1s ease;
 }
+
+.giftImage {
+  object-position: right center;
+}

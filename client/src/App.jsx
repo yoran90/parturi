@@ -51,7 +51,7 @@ import AdminVerifyEmail from './admin/pages/verifyEmail/AdminVerifyEmail'
 import UserLayout from './User-Layouts/UserLayout'
 import AdminLayout from './Admin-Layouts/AdminLayout'
 import AuthLayout from './User-Layouts/Register-Login/AuthLayout'
-import { FaBriefcase, FaCalendarAlt, FaEnvelope, FaPhone } from "react-icons/fa";
+import { FaBriefcase, FaCalendarAlt, FaEnvelope, FaGift, FaPhone } from "react-icons/fa";
 import razorLogo from './assets/Razor.png'
 import ScrollToTop from './Scroll-to-top/ScrollToTop'
 import FeedBack from './feedBack/FeedBack'
@@ -67,8 +67,9 @@ import { FaMapPin } from "react-icons/fa";
 import { TbAppsFilled } from "react-icons/tb";
 import JobApplication from './pages/Job-Application/JobApplication'
 import { FaSackDollar } from "react-icons/fa6";
+import { GiRazor } from "react-icons/gi";
 import PriceApp from './price/PriceApp'
-
+import GiftApp from './giftApp/GiftApp'
 
 
 
@@ -84,6 +85,7 @@ const App = () => {
 
   const [openFloatingMenu, setOpenFloatingMenu] = useState(false);
   const[openPriceApp, setOpenPriceApp] = useState(false);
+  const [openGiftApp, setOpenGiftApp] = useState(false);
 
   const [openQuestion, setOpenQuestion] = useState(false);
   const [openFeedBack, setOpenFeedBack] = useState(false);
@@ -238,6 +240,19 @@ const App = () => {
   ];
 
   const showPriceApp = priceAppRoutes.some((route) => route === location.pathname);
+
+  const giftAppRoutes = [
+    "/",
+    "/meista",
+    "/palvelut",  
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showGiftApp = giftAppRoutes.some((route) => route === location.pathname);
 
   useEffect(() => {
 
@@ -465,8 +480,8 @@ const App = () => {
           {/* price */}
           {showPriceApp && (
               <>
-                <button onClick={() => setOpenPriceApp(!openPriceApp)} className='bg-[#d28519] text-white rounded-full p-2 w-9 h-9 flex items-center justify-center'>
-                  <FaSackDollar size={18} />
+                <button onClick={() => setOpenPriceApp(!openPriceApp)} className='bg-[#c47e1e] text-white rounded-full p-2 w-9 h-9 flex items-center justify-center'>
+                  <GiRazor  size={20} />
                 </button>
                 {openPriceApp && (
                   <PriceApp onClose={() => setOpenPriceApp(false)} />
@@ -517,6 +532,22 @@ const App = () => {
           }
 
           {/* end job application */}
+
+          {/* gift */}
+          {showGiftApp && (
+            <>
+              <button onClick={() => setOpenGiftApp(!openGiftApp)} className='bg-[#db6565] rounded-full p-2 w-9 h-9 flex items-center justify-center'>
+                <FaGift size={18} className='text-white' />
+              </button>
+              {openGiftApp && (
+                <GiftApp close={() => setOpenGiftApp(false)} />
+              )}
+            </>
+            
+          )
+
+          }
+          {/* end gift */}
 
           {/* email */}
           {showEmail && (

@@ -12,12 +12,12 @@ const PriceApp = ({ onClose }) => {
             <IoClose size={25} />
           </button>
         </div>
-        <div className='flex items-center gap-0.5 font-semibold text-xl text-center justify-center'>
+        <div className='flex items-center gap-0.5 font-semibold text-2xl text-center justify-center'>
           <h2 className='text-white'>HINNASTO</h2>
           <h2 className='text-slate-600'>MME</h2>
         </div>
         <hr className='mt-4 text-slate-200 mb-4' />
-        <div className='flex items-center justify-between gap-0.5 font-semibold text-md text-white'>
+        <div className='flex items-center justify-between gap-0.5 font-semibold text-lg text-white'>
           <div className='flex flex-col'>
             <h2>HIUSTENLEIKKAUS </h2>
             <h2>ELÄKELÄISILLE</h2>
@@ -25,13 +25,13 @@ const PriceApp = ({ onClose }) => {
           <h2>15 €</h2>
         </div>
         <hr className='mt-2 text-slate-200 mb-3' />
-        <div className='flex items-center justify-between gap-0.5 font-semibold text-md text-white'>
+        <div className='flex items-center justify-between gap-0.5 font-semibold text-lg text-white'>
           <h2>HIUSTENLEIKKAUS </h2>  
           <h2>15 €</h2>
         </div>
         <hr className='mt-4 text-slate-200 mb-4' />
 
-        <div className='flex items-center justify-between gap-0.5 font-semibold text-md text-white'>
+        <div className='flex items-center justify-between gap-0.5 font-semibold text-lg text-white'>
           <div className='flex flex-col'>
             <h2>LASTEN (10V ASTI) </h2>  
             <h2>HIUSTENLEIKKAUS </h2>
@@ -40,17 +40,17 @@ const PriceApp = ({ onClose }) => {
         </div>
         <hr className='mt-2 text-slate-200 mb-3' />
 
-        <div className='flex items-center justify-between gap-0.5 font-semibold text-md text-white'>
+        <div className='flex items-center justify-between gap-0.5 font-semibold text-lg text-white'>
           <h2>SKIN FADE</h2>  
           <h2>25 €</h2>
         </div>
-        <hr className='mt-4 text-slate-200 mb-4' />
+        <hr className='mt-4 text-slate-200 mb-3' />
 
-        <div className='flex items-center justify-between gap-0.5 font-semibold text-md text-white'>
+        <div className='flex items-center justify-between gap-0.5 font-semibold text-lg text-white'>
           <h2>KONEAJO </h2>  
           <h2>15 €</h2>
         </div>
-        <hr className='mt-2 text-slate-200 mb-3' />
+        <hr className='mt-4 text-slate-200 mb-3' />
 
         <div className='flex items-center justify-between gap-0.5 font-semibold text-md text-white'>
           <h2>PARANAJO </h2>  
@@ -58,7 +58,7 @@ const PriceApp = ({ onClose }) => {
         </div>
         <hr className='mt-4 text-slate-200 mb-6' />
 
-        <div className='flex items-center justify-center gap-0.5 font-semibold text-md text-white'>
+        <div className='flex items-center justify-center gap-0.5 font-semibold text-2xl text-white'>
           <h2>ILMAN AJANVARAUSTA </h2>  
         </div>
 
