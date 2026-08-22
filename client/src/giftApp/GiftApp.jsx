@@ -3,7 +3,7 @@ import { CgCloseO } from "react-icons/cg";
 
 const GiftApp = ({ close}) => {
   return (
-    <div className='fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center'>
+    <div className='fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-black/80'>
       <div className='md:w-full bg-white border border-slate-300 shadow-2xl pb-6 w-[98%] max-w-xl relative rounded overflow-hidden'>
         <div className='flex flex-col items-center justify-center w-full relative'>
         <button onClick={close} className='absolute top-1 right-1 cursor-pointer'>
