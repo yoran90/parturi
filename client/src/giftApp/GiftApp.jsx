@@ -32,9 +32,7 @@ const GiftApp = ({ close}) => {
              
             </div>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGsdMwD1uDkBr4Tpbm2-EPhrpihOERrfWRVwilBR-iD57nd4lkewHuK2MC&s=10" className='h-full w-32 object-right giftImage' />
-          </div>
-          <h2 className='absolute text-white top-0 left-2 font-semibold'>Lahjakortti</h2>
-          
+          </div>          
         </div>
 
         {/* text */}
