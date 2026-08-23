@@ -289,7 +289,7 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (!loading || firstHitLoading) {
+  if (loading || firstHitLoading) {
     return (
       <div className="flex flex-col items-center justify-center h-screen w-full loadingImg">
         <div className="flex flex-col items-center justify-center text-center text-slate-200 gap-4 mb-12 font-semibold">
