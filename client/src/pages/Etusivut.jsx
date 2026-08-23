@@ -142,10 +142,10 @@ const Etusivut = () => {
           <div className='flex flex-col items-center'>
             <h3 className='text-sm font-semibold mb-2 mt-6'>TERVETULOA</h3>
             <div className='px-4 py-4 w-full'>
-              <p className='text-sm mb-4 font-semibold'>
+              <p className='text-sm mb-4 text-[#000000]'>
                 Tervetuloa Razor parturiin, jossa hiukset saavat ansaitsemansa huomion ja asiakkaat palvellaan sydämellä. Meiltä saat yksilöllistä palvelua, ammattitaitoa ja rennon tunnelman – juuri sellaisen parturikokemuksen kuin sinulle sopii.
                 </p>
-              <p className='text-sm'>
+              <p className='text-sm text-[#000000]'>
                 Olitpa tulossa pieneen siistimiseen tai isompaan tyylimuutokseen, autamme löytämään juuri sinulle sopivan ilmeen. Käytämme laadukkaita tuotteita ja pidämme huolta, että jokainen käynti on mukava hetki arjen keskellä. Astut sisään, rentoudut – ja lähdet pois raikkaana, hyvällä mielellä ja tyylikkäänä.
               </p>
             </div>

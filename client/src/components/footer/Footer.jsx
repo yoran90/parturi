@@ -99,7 +99,7 @@ const Footer = () => {
 
         <div className='mt-6 relative md:hidden'>
           <a href="https://www.google.com/maps/dir//Razor+Parturi+Barber+Shop,+Vuotie+45,+00980+Helsinki/@60.2079337,25.1413876,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x46920f7a6f6b2c71:0x19d593a1f4cdb95b!2m2!1d25.1445851!2d60.2077421?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D" target='_blank' rel="noopener noreferrer">
-            <img src="https://img.goodfon.com/original/1920x1080/5/a6/karta-mira-chernyi-fon-neon-materiki-zemlia-world-map-black.jpg" alt="" />
+            <img src="https://www.shutterstock.com/shutterstock/videos/1097683367/thumb/1.jpg?ip=x480" alt="" />
             <FaMapMarkerAlt className='text-red-500 text-xs absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2' />
           </a>
         </div>

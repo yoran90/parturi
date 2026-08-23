@@ -59,10 +59,10 @@ const Information = () => {
         </div>
       </div>
       {/* for mobile screen */}
-      <div className='bg-white text-slate-800 flex flex-col gap-2 md:hidden items-center py-3'>
+      <div className='bg-white text-[#000000] flex flex-col gap-2 md:hidden items-center py-3'>
         <div className='text-xs flex gap-3 w-full justify-center mr-4'>
           <GiRazor size={20} className='razor' />
-          <div className='flex flex-col items-center text-[16px] font-semibold text-slate-700 justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
+          <div className='flex flex-col items-center text-[16px] font-semibold text-[#000000] justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
           <GiRazor size={20} className='razorRight' />
 
         </div>
@@ -80,7 +80,7 @@ const Information = () => {
             ))
           }
         </div>
-        <div className='flex flex-col gap-2.5 font-semibold text-slate-700 justify-between text-xs w-full px-2 text-[15px]'>
+        <div className='flex flex-col gap-2.5 font-semibold text-[#000000] justify-between text-xs w-full px-2 text-[15px]'>
           <div>
            <a className='flex flex-col gap-0.5'
               href={getInformation?.addressUrl}
