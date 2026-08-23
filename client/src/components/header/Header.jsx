@@ -145,7 +145,7 @@ const Header = () => {
 
   return (
     <>
-      <div ref={menuRef} className='md:flex sticky top-0 p-2 hidden items-center justify-between bg-black text-white border-t-2 border-b-2  border-slate-800 z-50'>
+      <div ref={menuRef} className='md:flex sticky top-0 p-2 hidden items-center justify-between bg-white text-slate-800 border-t-2 border-b-2  border-slate-800 z-50'>
         <div className='bg-black'>
           {headerLogo && headerLogo.url && (
             <Link to={'/'}>
@@ -155,28 +155,28 @@ const Header = () => {
           
         </div>
         <div className='flex justify-end px-4.5'>
-          <NavLink to={`/`} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={`/`} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''}  cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Etusivu
           </NavLink>
-          <NavLink to={'/meista'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={'/meista'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Meistä
           </NavLink>
-          <NavLink to={'/palvelut'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={'/palvelut'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''}  cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Palvelut
           </NavLink>
-          <NavLink to={'/galleria'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={'/galleria'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''}  cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
            Galleria
           </NavLink>
-          <NavLink to={'/tuotet'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={'/tuotet'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Tuote
           </NavLink>
-          <NavLink to={'/opinion'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={'/opinion'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''}  cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Mielipide
           </NavLink>
-          <a href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&hl=fi-FI&sxsrf=ANbL-n7236avhQ8RSjEhTWaC-iMcP66O9Q:1780696287947&uds=ALYpb_ncDc7jTlmw6Mmq7NjuX5c-Zze-fIOBg0L0hgRWHzdLESc2f9-7spOmdq_Bvg5GeBdeFRztkOg_Bwt5bmN94jlLuwkW2MkeRUzBhDnlmhi-105x-huJPLWdwdUgU9wR0T0nn0hSbb1Ckm_GlP5fEk9uBisOJG_Sc9NeknE7eL_AfN59WMc&q=Razor+Parturi+Barber+Shop+Arvostelut&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qORmNCphyzj2pI8HMPhbb20ci7MWt3uoODEAABtYr0MdN5xAC_dEc9VMMwXVNPIbjIUQle37CBTt2iM5grwym2J-_GUJOVlbce1f9vI980sB7wDAz6g%3D%3D&sa=X&ved=2ahUKEwijscjNivGUAxU0PRAIHYrVGlEQ_4MLegQIKxAM&biw=1920&bih=945&dpr=1" target='_blank' className={'text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2'}>
+          <a href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&hl=fi-FI&sxsrf=ANbL-n7236avhQ8RSjEhTWaC-iMcP66O9Q:1780696287947&uds=ALYpb_ncDc7jTlmw6Mmq7NjuX5c-Zze-fIOBg0L0hgRWHzdLESc2f9-7spOmdq_Bvg5GeBdeFRztkOg_Bwt5bmN94jlLuwkW2MkeRUzBhDnlmhi-105x-huJPLWdwdUgU9wR0T0nn0hSbb1Ckm_GlP5fEk9uBisOJG_Sc9NeknE7eL_AfN59WMc&q=Razor+Parturi+Barber+Shop+Arvostelut&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qORmNCphyzj2pI8HMPhbb20ci7MWt3uoODEAABtYr0MdN5xAC_dEc9VMMwXVNPIbjIUQle37CBTt2iM5grwym2J-_GUJOVlbce1f9vI980sB7wDAz6g%3D%3D&sa=X&ved=2ahUKEwijscjNivGUAxU0PRAIHYrVGlEQ_4MLegQIKxAM&biw=1920&bih=945&dpr=1" target='_blank' className={' cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2'}>
             Google-arvostelu
           </a>
-          <NavLink to={'/yhteystiedot'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''} text-white cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+          <NavLink to={'/yhteystiedot'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''}  cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Yhteystiedot
           </NavLink>
           <div className='flex relative items-center  justify-center'>
@@ -291,7 +291,7 @@ const Header = () => {
                   </button>
                 </Link>
                 <Link to={'/register'}>
-                  <button className='flex items-center gap-1 border border-slate-300 hover:bg-slate-900 text-white justify-center cursor-pointer text-xs px-3 py-[5.5px] rounded-full'>
+                  <button className='flex items-center gap-1 border border-slate-300 hover:bg-slate-900 text-black justify-center cursor-pointer text-xs px-3 py-[5.5px] rounded-full'>
                     {/* <FaUserLock  /> */}
                     rekisteröidy
                   </button>
@@ -412,36 +412,36 @@ const Header = () => {
           </div>
           <div className='flex flex-col gap-1.5 mt-10 text-slate-800 font-semibold uppercase pt-20'>
             <NavLink to={'/'} className={'flex items-center  gap-2.5 ml-7'}>
-              <FaHome  size={19} />
-              <button onClick={clickTheMenuShowHeader} className=' mt-0.5 cursor-pointer text-[14px]  uppercase  p-2 hover:bg-slate-800'>Etusivu</button>
+              <FaHome  size={22} />
+              <button onClick={clickTheMenuShowHeader} className=' mt-0.5 cursor-pointer text-[16px]  uppercase  p-2 hover:bg-slate-800'>Etusivu</button>
             </NavLink>
             <NavLink to={'/meista'} className={'flex items-center gap-2.5 ml-7'}>
-              <BsInfoSquareFill   size={15} />
-              <button className=' cursor-pointer text-[14px]  ml-1 text-sm p-2 mt-0.5 uppercase  hover:bg-slate-800'>Meistä</button>
+              <BsInfoSquareFill   size={18} />
+              <button className=' cursor-pointer text-[16px]  ml-1 text-sm p-2 mt-0.5 uppercase  hover:bg-slate-800'>Meistä</button>
             </NavLink>
             <NavLink to={'/palvelut'} className={'flex items-center gap-2.5 ml-7'}>
-              <IoIosPricetags   size={19} />
-              <button onClick={clickTheMenuShowHeader} className=' mt-0.5 cursor-pointer uppercase  text-[14px]  p-2 hover:bg-slate-800'>Palvelut</button>
+              <IoIosPricetags   size={22} />
+              <button onClick={clickTheMenuShowHeader} className=' mt-0.5 cursor-pointer uppercase  text-[16px]  p-2 hover:bg-slate-800'>Palvelut</button>
             </NavLink>
             <NavLink to={'/galleria'} className={'flex items-center gap-2.5 ml-7'}>
-              <IoIosImages  size={18} />
-              <button onClick={clickTheMenuShowHeader} className='cursor-pointer text-[14px] uppercase  p-2 hover:bg-slate-800'>Galleria</button>
+              <IoIosImages  size={22} />
+              <button onClick={clickTheMenuShowHeader} className='cursor-pointer text-[16px] uppercase  p-2 hover:bg-slate-800'>Galleria</button>
             </NavLink>
             <NavLink to={'/tuotet'} className={'flex items-center gap-2.5 ml-7'}>
-              <BiSolidShoppingBags  size={19} />
-              <button onClick={clickTheMenuShowHeader} className=' cursor-pointer text-[14px] ml-0.5 uppercase  p-2 hover:bg-slate-800'>Tuote</button>
+              <BiSolidShoppingBags  size={24} />
+              <button onClick={clickTheMenuShowHeader} className=' cursor-pointer text-[16px] ml-0.5 uppercase  p-2 hover:bg-slate-800'>Tuote</button>
             </NavLink>
             <NavLink to={'/opinion'} className={'flex items-center gap-2.5 ml-7'}>
-              <MdReviews   size={18} />
-              <button onClick={clickTheMenuShowHeader} className=' ml-1 cursor-pointer text-[14px] uppercase  p-2 hover:bg-slate-800'>Mielipide</button>
+              <MdReviews   size={22} />
+              <button onClick={clickTheMenuShowHeader} className=' ml-1 cursor-pointer text-[16px] uppercase  p-2 hover:bg-slate-800'>Mielipide</button>
             </NavLink>
             <a href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&hl=fi-FI&sxsrf=ANbL-n7236avhQ8RSjEhTWaC-iMcP66O9Q:1780696287947&uds=ALYpb_ncDc7jTlmw6Mmq7NjuX5c-Zze-fIOBg0L0hgRWHzdLESc2f9-7spOmdq_Bvg5GeBdeFRztkOg_Bwt5bmN94jlLuwkW2MkeRUzBhDnlmhi-105x-huJPLWdwdUgU9wR0T0nn0hSbb1Ckm_GlP5fEk9uBisOJG_Sc9NeknE7eL_AfN59WMc&q=Razor+Parturi+Barber+Shop+Arvostelut&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qORmNCphyzj2pI8HMPhbb20ci7MWt3uoODEAABtYr0MdN5xAC_dEc9VMMwXVNPIbjIUQle37CBTt2iM5grwym2J-_GUJOVlbce1f9vI980sB7wDAz6g%3D%3D&sa=X&ved=2ahUKEwijscjNivGUAxU0PRAIHYrVGlEQ_4MLegQIKxAM&biw=1920&bih=945&dpr=1" target='_blank' className={'flex items-center gap-2.5 ml-7'}>
-              <FcGoogle size={18} />
-              <p className=' ml-1 cursor-pointer text-[14px] uppercase  p-2 hover:bg-slate-800'>Google-arvostelu</p>
+              <FcGoogle size={24} />
+              <p className=' ml-1 cursor-pointer text-[16px] uppercase  p-2 hover:bg-slate-800'>Google-arvostelu</p>
             </a>
             <NavLink to={'/yhteystiedot'} className={'flex items-center gap-2.5 ml-7'}>
-              <MdContactPhone    size={16} />
-              <button onClick={clickTheMenuShowHeader} className=' cursor-pointer text-[14px] ml-1 uppercase  p-2 hover:bg-slate-800'>Yhteystiedot</button>
+              <MdContactPhone    size={20} />
+              <button onClick={clickTheMenuShowHeader} className=' cursor-pointer text-[16px] ml-1 uppercase  p-2 hover:bg-slate-800'>Yhteystiedot</button>
             </NavLink>
             {
               user ? (
@@ -469,14 +469,14 @@ const Header = () => {
                 <>
                 <div className='flex flex-col gap-1 ml-7'>
                     <Link to={'/kirjaudu'}>
-                      <button  className=' flex items-center gap-5.5 py-2 justify-center uppercase  cursor-pointer text-[14px]  hover:text-blue-300'>
-                        <LuLogIn size={20} className='-ml-1' />
+                      <button  className=' flex items-center gap-5.5 py-2 justify-center uppercase  cursor-pointer text-[16px]  hover:text-blue-300'>
+                        <LuLogIn size={24} className='-ml-1' />
                         Kirjaudu
                       </button>
                     </Link>
                     <Link to={'/register'}>
-                      <button className='flex items-center gap-5 justify-center uppercase  cursor-pointer py-2 text-[14px] hover:text-red-500'>
-                        <FaUserPlus  size={18} />
+                      <button className='flex items-center gap-5 justify-center uppercase  cursor-pointer py-2 text-[16px] hover:text-red-500'>
+                        <FaUserPlus  size={22} />
                         Rekisteröidy
                       </button>
                     </Link>
@@ -487,7 +487,7 @@ const Header = () => {
             
           </div>
           
-          <div className='absolute bottom-2 w-full text-center text-slate-800 text-xs px-2'>
+          <div className='absolute bottom-2 w-full text-center text-slate-800 text-sm px-2'>
             <small className='flex items-center gap-1.5 justify-center text-center'>
               Razor Parturi <GiRazor size={15} className='razorSidebar' /> Tyylisi meidän käsiimme
             </small>

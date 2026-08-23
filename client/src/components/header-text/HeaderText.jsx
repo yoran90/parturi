@@ -9,7 +9,7 @@ const HeaderText = () => {
 
   return (
      <>
-      {getInformation && <div className='bg-white border border-slate-50 p-3 text-slate-800 text-center' dangerouslySetInnerHTML={{ __html: getInformation?.headerText }} />}
+      {getInformation && <div className='bg-white border font-semibold text-slate-700 text-[18px] border-slate-50 p-3  text-center' dangerouslySetInnerHTML={{ __html: getInformation?.headerText }} />}
      </>
   )
 }
