@@ -66,7 +66,6 @@ import { FcGoogle } from "react-icons/fc";
 import { FaMapPin } from "react-icons/fa";
 import { TbAppsFilled } from "react-icons/tb";
 import JobApplication from './pages/Job-Application/JobApplication'
-import { FaSackDollar } from "react-icons/fa6";
 import { GiRazor } from "react-icons/gi";
 import PriceApp from './price/PriceApp'
 import GiftApp from './giftApp/GiftApp'
@@ -301,7 +300,7 @@ const App = () => {
           <img
             src={razorLogo}
             alt="header logo"
-            className="w-full h-full p-1 rounded-full"
+            className="w-full h-full rounded-full"
           />
         </div>
 
