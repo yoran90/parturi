@@ -145,8 +145,8 @@ const Header = () => {
 
   return (
     <>
-      <div ref={menuRef} className='md:flex sticky top-0 p-2 hidden items-center justify-between bg-white text-slate-800 border-t-2 border-b-2  border-slate-800 z-50'>
-        <div className='bg-black'>
+      <div ref={menuRef} className='md:flex sticky top-0 p-2 hidden items-center justify-between bg-white text-slate-800 border-t-2 border-b  border-slate-200 z-50'>
+        <div>
           {headerLogo && headerLogo.url && (
             <Link to={'/'}>
               <img src={headerLogo?.url} alt="Header Logo" className='w-12 h-12 rounded-full border border-slate-500 ml-4' />
@@ -203,12 +203,12 @@ const Header = () => {
                     <div className='flex items-center mb-1'>
                       <div>
                         {n.sender?.profileImage?.url ? (
-                          <img className='w-9 h-9 rounded-full border border-slate-300 inline-block mr-2' src={n.sender.profileImage.url} alt={`${n.sender.firstName} ${n.sender.lastName}`} />
+                          <img className='w-9 h-9 rounded-full border border-slate-500 inline-block mr-2' src={n.sender.profileImage.url} alt={`${n.sender.firstName} ${n.sender.lastName}`} />
                         ) : (
                           n.sender?.gender === 'men' ? (
-                            <img className='w-9 h-9 rounded-full border border-slate-300 inline-block mr-2' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt={`${n.sender.firstName} ${n.sender.lastName}`} />
+                            <img className='w-9 h-9 rounded-full border border-slate-500 inline-block mr-2' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt={`${n.sender.firstName} ${n.sender.lastName}`} />
                           ) : (
-                            <img className='w-9 h-9 rounded-full border border-slate-300 inline-block mr-2' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt={`${n.sender.firstName} ${n.sender.lastName}`} />
+                            <img className='w-9 h-9 rounded-full border border-slate-500 inline-block mr-2' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt={`${n.sender.firstName} ${n.sender.lastName}`} />
                           )
                         )}
                       </div>
@@ -237,12 +237,12 @@ const Header = () => {
                 <button className='cursor-pointer' onClick={handleOpenUserMenu}>
                   {
                     user?.profileImage?.url ? (
-                      <img className='w-7.5 h-7.5 border border-slate-100 rounded-full' src={user?.profileImage?.url} alt="" />
+                      <img className='w-7.5 h-7.5 border border-slate-500 rounded-full' src={user?.profileImage?.url} alt="" />
                     ) : (
                       user?.gender === 'men' ? (
-                        <img className='w-7.5 h-7.5 rounded-full border border-slate-100 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                        <img className='w-7.5 h-7.5 rounded-full border border-slate-500 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
                       ) : (
-                        <img className='w-7.5 h-7.5  rounded-full border border-slate-100' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                        <img className='w-7.5 h-7.5  rounded-full border border-slate-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
                       )
                     )
                   }
@@ -318,7 +318,7 @@ const Header = () => {
                       <span className='absolute -top-2 -right-1 bg-red-500 text-white rounded-full w-4.5 h-4.5 flex items-center text-center font-semibold justify-center text-[11px]'>{unreadCount}</span>
                     )
                   }
-                  <button type='button' className='cursor-pointer text-white' onClick={() => toggleNotifications()}><IoMdNotifications size={23} /></button>
+                  <button type='button' className='cursor-pointer text-black' onClick={() => toggleNotifications()}><IoMdNotifications size={23} /></button>
                 </div>
               )
             }
@@ -449,16 +449,16 @@ const Header = () => {
                   <Link to={'/profile'} className='cursor-pointer flex flex-col items-center gap-2'>
                     {
                       user?.profileImage?.url ? (
-                        <img className='w-8.5 h-8.5 border border-slate-100 rounded-full' src={user?.profileImage?.url} alt="" />
+                        <img className='w-8.5 h-8.5 border border-slate-500 rounded-full' src={user?.profileImage?.url} alt="" />
                       ) : (
                         user?.gender === 'men' ? (
-                          <img className='w-8.5 h-8.5 rounded-full border border-slate-100 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
+                          <img className='w-8.5 h-8.5 rounded-full border border-slate-500 ' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxz7qJ9pU6Xj2EJKaRDVz-9Bd0xh2LnMklGw&s" alt="" />
                         ) : (
-                          <img className='w-8.5 h-8.5  rounded-full border border-slate-100' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
+                          <img className='w-8.5 h-8.5  rounded-full border border-slate-500' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyTL7U0B5VtD9t_jDuPez9aEnn3qyIjTHzug&s" alt="" />
                         )
                       )
                     }
-                    <p className='text-white'>{user?.firstName} {user?.lastName}</p>
+                    <p className='text-[#000000]'>{user?.firstName} {user?.lastName}</p>
                   </Link>
                   <button onClick={handleLogout} className='flex items-center justify-center gap-2 py-1 w-full text-red-400 tex-sm mt-2 px-2 cursor-pointer rounded'>
                     Lougout
