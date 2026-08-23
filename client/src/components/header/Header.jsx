@@ -304,8 +304,8 @@ const Header = () => {
         </div>
       </div>
       {/* for mobile screen */}
-      <div className='md:hidden sticky top-0 z-50 flex items-center justify-between bg-black border-t-2 border-slate-800'>
-        <Link to={'/'} className='bg-black p-2'> 
+      <div className='md:hidden sticky top-0 z-50 flex items-center justify-between bg-white text-black border-t-2 border-slate-200'>
+        <Link to={'/'} className=' p-2'> 
           <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
         </Link>
         <div className='flex relative items-center justify-center'>
@@ -329,7 +329,7 @@ const Header = () => {
               showTheHeader && <CgClose onClick={clickTheMenuShowHeader} className='text-white' size={25} /> 
             } */}
             {
-              !showTheHeader && <LuMenu onClick={clickTheMenuShowHeader} className='text-white' size={25} />
+              !showTheHeader && <LuMenu onClick={clickTheMenuShowHeader} className='text-black' size={25} />
             }
           </div>
         
@@ -383,7 +383,7 @@ const Header = () => {
         </div>
         <div
           className={`
-            bg-black fixed top-0 left-0 bottom-0 z-50 flex flex-col w-[90%] border-r border-slate-900
+            bg-white fixed top-0 left-0 bottom-0 z-50 flex flex-col w-[90%] border-r border-slate-50
             transform transition-transform duration-300 ease-in-out
             ${showTheHeader 
               ? 'translate-x-0 opacity-100' 
@@ -402,46 +402,46 @@ const Header = () => {
           }
         >
 
-          <div className=' relative w-full'>
-            <img src="https://columbus.fi/wp-content/uploads/2024/02/Razor.png" alt='razor' className='h-24' />
-            <button onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer'>
-              <GiRazor className='text-amber-500 rotate-180' size={15} />
-              <GiRazor className='text-amber-500 -mt-2.5' size={15} />
+          <div className=' relative w-full text-slate-600'>
+            {/* <img src="https://columbus.fi/wp-content/uploads/2024/02/Razor.png" alt='razor' className='h-24 w-24 mt-2 ml-2 bg-transparent rounded-full' /> */}
+            <button onClick={clickTheMenuShowHeader} className='absolute top-4 right-4 cursor-pointer'>
+              <GiRazor className='rotate-180' size={15} />
+              <GiRazor className='-mt-2.5' size={15} />
               {/* <IoClose onClick={clickTheMenuShowHeader} className='text-white absolute top-4 right-4 cursor-pointer' size={22} /> */}
             </button>
           </div>
-          <div className='flex flex-col gap-1.5 mt-10'>
+          <div className='flex flex-col gap-1.5 mt-10 text-slate-800 pt-20'>
             <NavLink to={'/'} className={'flex items-center gap-2.5 ml-7'}>
-              <FaHome className='text-amber-300' size={19} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-300 mt-0.5 cursor-pointer text-[14px] font-medium font- p-2 hover:bg-slate-800'>Etusivu</button>
+              <FaHome  size={19} />
+              <button onClick={clickTheMenuShowHeader} className=' mt-0.5 cursor-pointer text-[14px] font-medium font- p-2 hover:bg-slate-800'>Etusivu</button>
             </NavLink>
             <NavLink to={'/meista'} className={'flex items-center gap-2.5 ml-7'}>
-              <BsInfoSquareFill  className='text-amber-300' size={15} />
-              <button className='text-amber-300 cursor-pointer text-[14px] font-medium ml-1 text-sm p-2 mt-0.5 hover:bg-slate-800'>Meistä</button>
+              <BsInfoSquareFill   size={15} />
+              <button className=' cursor-pointer text-[14px] font-medium ml-1 text-sm p-2 mt-0.5 hover:bg-slate-800'>Meistä</button>
             </NavLink>
             <NavLink to={'/palvelut'} className={'flex items-center gap-2.5 ml-7'}>
-              <IoIosPricetags  className='text-amber-300' size={19} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-300 mt-0.5 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Palvelut</button>
+              <IoIosPricetags   size={19} />
+              <button onClick={clickTheMenuShowHeader} className=' mt-0.5 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Palvelut</button>
             </NavLink>
             <NavLink to={'/galleria'} className={'flex items-center gap-2.5 ml-7'}>
-              <IoIosImages className='text-amber-300' size={18} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Galleria</button>
+              <IoIosImages  size={18} />
+              <button onClick={clickTheMenuShowHeader} className='cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Galleria</button>
             </NavLink>
             <NavLink to={'/tuotet'} className={'flex items-center gap-2.5 ml-7'}>
-              <BiSolidShoppingBags className='text-amber-300' size={19} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[14px] ml-0.5 font-medium p-2 hover:bg-slate-800'>Tuote</button>
+              <BiSolidShoppingBags  size={19} />
+              <button onClick={clickTheMenuShowHeader} className=' cursor-pointer text-[14px] ml-0.5 font-medium p-2 hover:bg-slate-800'>Tuote</button>
             </NavLink>
             <NavLink to={'/opinion'} className={'flex items-center gap-2.5 ml-7'}>
-              <MdReviews  className='text-amber-300' size={18} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-300 ml-1 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Mielipide</button>
+              <MdReviews   size={18} />
+              <button onClick={clickTheMenuShowHeader} className=' ml-1 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Mielipide</button>
             </NavLink>
             <a href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&hl=fi-FI&sxsrf=ANbL-n7236avhQ8RSjEhTWaC-iMcP66O9Q:1780696287947&uds=ALYpb_ncDc7jTlmw6Mmq7NjuX5c-Zze-fIOBg0L0hgRWHzdLESc2f9-7spOmdq_Bvg5GeBdeFRztkOg_Bwt5bmN94jlLuwkW2MkeRUzBhDnlmhi-105x-huJPLWdwdUgU9wR0T0nn0hSbb1Ckm_GlP5fEk9uBisOJG_Sc9NeknE7eL_AfN59WMc&q=Razor+Parturi+Barber+Shop+Arvostelut&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qORmNCphyzj2pI8HMPhbb20ci7MWt3uoODEAABtYr0MdN5xAC_dEc9VMMwXVNPIbjIUQle37CBTt2iM5grwym2J-_GUJOVlbce1f9vI980sB7wDAz6g%3D%3D&sa=X&ved=2ahUKEwijscjNivGUAxU0PRAIHYrVGlEQ_4MLegQIKxAM&biw=1920&bih=945&dpr=1" target='_blank' className={'flex items-center gap-2.5 ml-7'}>
               <FcGoogle size={18} />
-              <p className='text-amber-300 ml-1 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Google-arvostelu</p>
+              <p className=' ml-1 cursor-pointer text-[14px] font-medium p-2 hover:bg-slate-800'>Google-arvostelu</p>
             </a>
             <NavLink to={'/yhteystiedot'} className={'flex items-center gap-2.5 ml-7'}>
-              <MdContactPhone   className='text-amber-300' size={16} />
-              <button onClick={clickTheMenuShowHeader} className='text-amber-300 cursor-pointer text-[14px] ml-1 font-medium p-2 hover:bg-slate-800'>Yhteystiedot</button>
+              <MdContactPhone    size={16} />
+              <button onClick={clickTheMenuShowHeader} className=' cursor-pointer text-[14px] ml-1 font-medium p-2 hover:bg-slate-800'>Yhteystiedot</button>
             </NavLink>
             {
               user ? (
@@ -469,13 +469,13 @@ const Header = () => {
                 <>
                 <div className='flex flex-col gap-1 ml-7'>
                     <Link to={'/kirjaudu'}>
-                      <button  className='text-blue-400 flex items-center gap-5.5 py-2 justify-center cursor-pointer text-[14px]  hover:text-blue-300'>
+                      <button  className=' flex items-center gap-5.5 py-2 justify-center cursor-pointer text-[14px]  hover:text-blue-300'>
                         <LuLogIn size={20} className='-ml-1' />
                         Kirjaudu
                       </button>
                     </Link>
                     <Link to={'/register'}>
-                      <button className='flex items-center gap-5 justify-center cursor-pointer py-2 text-red-400 text-[14px] hover:text-red-500'>
+                      <button className='flex items-center gap-5 justify-center cursor-pointer py-2 text-[14px] hover:text-red-500'>
                         <FaUserPlus  size={18} />
                         Rekisteröidy
                       </button>
@@ -487,7 +487,7 @@ const Header = () => {
             
           </div>
           
-          <div className='absolute bottom-2 w-full text-center text-slate-200 text-xs px-2'>
+          <div className='absolute bottom-2 w-full text-center text-slate-800 text-xs px-2'>
             <small className='flex items-center gap-1.5 justify-center text-center'>
               Razor Parturi <GiRazor size={15} className='razorSidebar' /> Tyylisi meidän käsiimme
             </small>

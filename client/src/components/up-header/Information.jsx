@@ -59,7 +59,7 @@ const Information = () => {
         </div>
       </div>
       {/* for mobile screen */}
-      <div className='bg-black text-white flex flex-col gap-2 md:hidden items-center py-3'>
+      <div className='bg-white text-slate-800 flex flex-col gap-2 md:hidden items-center py-3'>
         <div className='text-xs flex gap-3 w-full justify-center mr-4'>
           <GiRazor size={20} className='razor' />
           <div className='flex flex-col items-center justify-center' dangerouslySetInnerHTML={{ __html: getInformation?.openingHours }} />
@@ -70,12 +70,12 @@ const Information = () => {
           {
             getInformation?.socialMedia?.map((sm, index) => (
               <a key={index} href={sm?.url} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>
-                {sm.platform === "facebook" && <FaFacebookF className='bg-blue-600 border rounded-full p-1'  size={22} />}
-                {sm.platform === "instagram" && <IoLogoInstagram className='bg-pink-900 border rounded-full p-1'  size={22} />}
-                {sm.platform === "tiktok" && <FaTiktok className='bg-black border rounded-full p-1'  size={22} />}
-                {sm.platform === "snapchat" && <FaSnapchatGhost  className='bg-yellow-400 border rounded-full p-1'  size={22} />}
-                {sm.platform === "twitter" && <FaTwitter className='bg-blue-400 border rounded-full p-1'  size={22} />}
-                {sm.platform === "youtube" && <FaYoutube className='bg-red-600 border rounded-full p-1'  size={22} />}
+                {sm.platform === "facebook" && <FaFacebookF className='bg-blue-600 text-white border rounded-full p-1'  size={22} />}
+                {sm.platform === "instagram" && <IoLogoInstagram className='bg-pink-900 text-white border rounded-full p-1'  size={22} />}
+                {sm.platform === "tiktok" && <FaTiktok className='bg-black text-white border rounded-full p-1'  size={22} />}
+                {sm.platform === "snapchat" && <FaSnapchatGhost  className='bg-yellow-400 text-white border rounded-full p-1'  size={22} />}
+                {sm.platform === "twitter" && <FaTwitter className='bg-blue-400 text-white border rounded-full p-1'  size={22} />}
+                {sm.platform === "youtube" && <FaYoutube className='bg-red-600 text-white border rounded-full p-1'  size={22} />}
               </a>
             ))
           }
@@ -103,7 +103,7 @@ const Information = () => {
           </div>
         </div>
       </div>
-      <hr className='text-slate-800' />
+      <hr className='text-slate-200' />
     </>
   )
 }

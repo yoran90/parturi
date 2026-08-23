@@ -429,7 +429,7 @@ const App = () => {
       {openFloatingMenu && (
         <div
           ref={ref}
-          className={`fixed left-0 bottom-0 z-50 w-20 py-8
+          className={`fixed left-0 bottom-0  z-50 w-20 py-8
             flex flex-col items-center justify-center gap-5
             bg-white border border-slate-200 rounded-tr-md shadow-2xl
             transition-transform duration-900 ease-out

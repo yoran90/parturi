@@ -5,7 +5,7 @@ import { IoClose } from "react-icons/io5";
 
 const PriceApp = ({ onClose }) => {
   return (
-    <div className='fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center'>
+    <div className='fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-black/80'>
       <div className='md:w-full bg-[#c7a371] w-[98%] max-w-xl relative py-12 px-4 rounded'>
         <div>
           <button onClick={onClose} className='text-xs absolute top-1 right-1 cursor-pointer text-white'>
