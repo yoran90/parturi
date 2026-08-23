@@ -140,7 +140,7 @@ const Etusivut = () => {
         <div className='md:flex gap-2.5 w-[98%] h-auto m-auto mt-12 bg-white shadow border overflow-hidden border-slate-200 md:rounded-2xl mb-12'>
         {/* text side */}
           <div className='flex flex-col items-center'>
-            <h3 className='text-sm font-semibold  mb-12 mt-6'>TERVETULOA</h3>
+            <h3 className='text-sm font-semibold mb-2 mt-6'>TERVETULOA</h3>
             <div className='px-4 py-4 w-full'>
               <p className='text-sm mb-4 font-semibold'>
                 Tervetuloa Razor parturiin, jossa hiukset saavat ansaitsemansa huomion ja asiakkaat palvellaan sydämellä. Meiltä saat yksilöllistä palvelua, ammattitaitoa ja rennon tunnelman – juuri sellaisen parturikokemuksen kuin sinulle sopii.
