@@ -152,7 +152,7 @@ const Etusivut = () => {
           </div>
           {/* image side */}
           <div >
-            <img className='rounded-md w-full h-full' src="https://plus.unsplash.com/premium_photo-1661645788141-8196a45fb483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFyYmVyfGVufDB8fDB8fHww&fm=jpg&q=60&w=3000" alt="" />
+            <img className='rounded-md w-full h-full' src="https://parmishairandbeauty.nl/wp-content/uploads/2024/02/MAN-HAIRCUT_PARMIS-BEAUTY_DELFT-scaled-1.jpg" alt="" />
           </div>
         </div>
       </div>
@@ -163,7 +163,7 @@ const Etusivut = () => {
           <p className='text-sm  text-center font-semibold mb-4'>Razor parturiin saavat ansaitsemansa huomion ja asiakkaat palvellaan sydaremellä.</p>
           <div className='md:flex gap-2.5 w-[98%] m-auto' style={{zoom: '0.8'}}>
             <div className='md:w-[50%]'>
-              <img className='rounded-2xl' src="https://assets.nicepagecdn.com/d2cc3eaa/6401142/images/handsome-man-cutting-beard-barber-4.jpg" alt="" />
+              <img className='rounded-2xl' src="https://www.bonhomme.com/wp-content/uploads/2023/07/Trouver-le-meilleur-barbier-de-Paris-quels-criteres-selectionner.png" alt="" />
             </div>
             <div className='md:w-[50%] grid grid-cols-2 gap-4.5 md:mt-0 mt-6'>
               <div className='bg-orange-600 flex flex-col gap-2 items-center justify-center rounded-2xl p-5'>
