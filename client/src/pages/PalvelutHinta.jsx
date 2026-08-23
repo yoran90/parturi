@@ -78,7 +78,7 @@ const PalvelutHinta = () => {
       <Header />
       <div className='flex flex-col gap-5.5 mb-12'>
         <div className='flex flex-col items-center text-center gap-2.5 mt-6'>
-          <h1 className='text-lg  font-semibold'>{getTitleForPage?.titleForPage?.serviceTitle}</h1>
+          <h1 className='text-lg  font-semibold uppercase'>{getTitleForPage?.titleForPage?.serviceTitle}</h1>
           <div className='text-sm w-[98%] m-auto ' dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.serviceDescription}} />
         </div>
 
