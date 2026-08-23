@@ -14,7 +14,13 @@ server side  test code failed
     notificationController.test.js */
 
 
-
+<div class="mkdf-column-content mkdf-grid-col-3">
+    <div id="media_image-3" class="widget mkdf-footer-column-4 widget_media_image">
+        <a href="https://goo.gl/maps/M7BUx6XyM9uuASiq7">
+        <img width="234" height="124" src="https://adamsplace.fi/wp-content/uploads/2022/11/mapglobal.png" class="image wp-image-5865  attachment-full size-full" alt="" style="max-width: 100%; height: auto;" decoding="async">
+        </a>
+    </div>                
+</div>
 
 
 

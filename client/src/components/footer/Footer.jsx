@@ -95,6 +95,9 @@ const Footer = () => {
           </div>
           
         </div>
+
+
+
         <hr className='mt-6 text-slate-500' />
         <div className='md:flex hidden items-center justify-center mt-8 text-xs gap-0.5'>
           <div>
