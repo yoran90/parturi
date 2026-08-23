@@ -289,35 +289,45 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading || firstHitLoading) {
+  if (!loading || firstHitLoading) {
     return (
       <div className="flex flex-col items-center justify-center h-screen w-full loadingImg">
         <div className="flex flex-col items-center justify-center text-center text-slate-200 gap-4 mb-12 font-semibold">
-          <div className="text-2xl flex items-center justify-center gap-1">Tervetuloa <p className="flex flex-col mb-7 mr-1 ml-1 items-center justify-center gap-1"> <GiRazor /> Razor </p>  parturiin!</div>
+          <div className="text-2xl flex items-center justify-center gap-1">Tervetuloa <p className="flex flex-col mb-7 mr-1 ml-1 items-center justify-center gap-1"> <GiRazor className="razorSidebar" /> Razor </p>  parturiin!</div>
           <p>Meillä saat ammattitaitoista ja rentoa palvelua juuri sinun tyyliisi. Olipa kyseessä siisti leikkaus, uusi tyyli tai parran huolto, pidämme huolen siitä, että lähdet liikkeestä hyvillä mielin.</p>
           <p>Tervetuloa – nähdään parturissa!</p>
         </div>
-       {/*  <div className="loader">
+        <div className="loader">
           <img
             src={razorLogo}
             alt="header logo"
             className="w-full h-full p-1 rounded-full"
           />
-        </div> */}
+        </div>
 
         <style>{`
           .loader {
             position: relative;
-            width: 80px;
-            height: 80px;
+            width: 120px;
+            height: 120px;
+            border: 4px solid #bfbfbf;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             overflow: hidden;
+            animation: softFloat 2.5s ease-in-out infinite;
+          }
+          @keyframes softFloat {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-10px);
+            }
           }
 
-          .loader::before {
+          /* .loader::before {
             content: "";
             position: absolute;
             inset: 0;
@@ -333,7 +343,7 @@ const App = () => {
             to {
               transform: rotate(360deg);
             }
-          }
+          } */
         `}</style>
       </div>
     );
