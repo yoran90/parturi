@@ -160,7 +160,7 @@ const Etusivut = () => {
       <div className='mt-8 mb-12' >
         <div>
           <h3 className=' font-semibold text-center mb-4'>Razor parturipalvelut</h3>
-          <p className='text-sm  text-center font-semibold mb-4'>Razor parturiin saavat ansaitsemansa huomion ja asiakkaat palvellaan sydaremellä.</p>
+          <p className='text-sm  text-center mb-4'>Razor parturiin saavat ansaitsemansa huomion ja asiakkaat palvellaan sydaremellä.</p>
           <div className='md:flex gap-2.5 w-[98%] m-auto' style={{zoom: '0.8'}}>
             <div className='md:w-[50%]'>
               <img className='rounded-2xl' src="https://www.bonhomme.com/wp-content/uploads/2023/07/Trouver-le-meilleur-barbier-de-Paris-quels-criteres-selectionner.png" alt="" />
