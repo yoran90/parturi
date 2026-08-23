@@ -137,6 +137,18 @@ body::-webkit-scrollbar {
   transition: background-color 1s ease;
 }
 
-.giftImage {
-  object-position: right center;
+.loadingImg {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("https://img.magnific.com/premium-photo/classic-barber-pole-solid-black-background-photo-with-vibrant-red-white-blue-stripe_1037875-3521.jpg?semt=ais_hybrid&w=740&q=80");
+   background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
 }
