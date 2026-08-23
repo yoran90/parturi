@@ -467,7 +467,7 @@ const App = () => {
             
           {/* google review  */}
             {showGoogleReview && (
-                <a className='bg-slate-200 border border-slate-300 rounded-full w-9 h-9 flex items-center justify-center' href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&q=Razor+Parturi+Barber+Shop+Arvostelut&hl=fi-FI&sa=X&ved=2ahUKEwj0mtHzu4-WAxUwKhAIHfyQFvoQkc0JKAB6BAgPEAE&ictx=1&biw=1920&bih=945&dpr=1" target='_blank' >
+                <a className='bg-[#FFF5EE] border border-slate-300 rounded-full w-9 h-9 flex items-center justify-center' href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&q=Razor+Parturi+Barber+Shop+Arvostelut&hl=fi-FI&sa=X&ved=2ahUKEwj0mtHzu4-WAxUwKhAIHfyQFvoQkc0JKAB6BAgPEAE&ictx=1&biw=1920&bih=945&dpr=1" target='_blank' >
                   <FcGoogle size={26} />
                 </a>
               )
@@ -510,7 +510,7 @@ const App = () => {
 
           {/* map */}
             {showMap && (
-              <div className='bg-black text-white rounded-full p-2 w-9 h-9 flex items-center justify-center'>
+              <div className='bg-[#e3811e] text-white rounded-full p-2 w-9 h-9 flex items-center justify-center'>
                 <a href="https://www.google.com/maps/place/Razor+Parturi+Barber+Shop/@60.2077421,25.1420102,17z/data=!3m1!4b1!4m16!1m9!4m8!1m0!1m6!1m2!1s0x46920f7a6f6b2c71:0x19d593a1f4cdb95b!2sRazor+Parturi+Barber+Shop,+Vuotie+45,+00980+Helsinki!2m2!1d25.1445851!2d60.2077421!3m5!1s0x46920f7a6f6b2c71:0x19d593a1f4cdb95b!8m2!3d60.2077421!4d25.1445851!16s%2Fg%2F11vy_c9z9d?hl=fi&entry=ttu&g_ep=EgoyMDI2MDgxMS4wIKXMDSoASAFQAw%3D%3D" target='_blank'>
                   <FaMapPin size={20} />
                 </a>
