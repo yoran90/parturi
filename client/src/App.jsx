@@ -69,6 +69,8 @@ import JobApplication from './pages/Job-Application/JobApplication'
 import { GiRazor } from "react-icons/gi";
 import PriceApp from './price/PriceApp'
 import GiftApp from './giftApp/GiftApp'
+import { MdCookie } from "react-icons/md";
+import CookieBanner from './cookie-banner/CookieBanner'
 
 
 
@@ -85,6 +87,7 @@ const App = () => {
   const [openFloatingMenu, setOpenFloatingMenu] = useState(false);
   const[openPriceApp, setOpenPriceApp] = useState(false);
   const [openGiftApp, setOpenGiftApp] = useState(false);
+  const [openCookieBanner, setOpenCookieBanner] = useState(false);
 
   const [openQuestion, setOpenQuestion] = useState(false);
   const [openFeedBack, setOpenFeedBack] = useState(false);
@@ -252,6 +255,19 @@ const App = () => {
   ];
 
   const showGiftApp = giftAppRoutes.some((route) => route === location.pathname);
+
+  const cookieBannerAppRoutes = [
+    "/",
+    "/meista",
+    "/palvelut",  
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showCookieBanner = cookieBannerAppRoutes.some((route) => route === location.pathname);
 
   useEffect(() => {
 
@@ -595,6 +611,25 @@ const App = () => {
             )
           }
         {/* end calandery */}
+
+        {/* cookie banner */}
+        {showCookieBanner && (
+          <>
+            <button
+              onClick={() => setOpenCookieBanner(prev => !prev)}
+              className="bg-[#fb1717] rounded-full w-9 h-9 flex items-center justify-center"
+            >
+              <MdCookie size={20} className="text-white" />
+            </button>
+
+            {openCookieBanner && (
+              <CookieBanner
+                onClose={() => setOpenCookieBanner(false)}
+              />
+            )}
+          </>
+        )}
+        {/* end cookie banner */}
 
           
 

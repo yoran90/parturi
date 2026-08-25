@@ -9,7 +9,7 @@ import { FaCheck } from "react-icons/fa6";
 
 
 
-const CookieBanner = () => {
+const CookieBanner = ({ onClose }) => {
 
   const [show, setShow] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(false);

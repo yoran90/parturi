@@ -1,5 +1,6 @@
 import React from 'react'
 import { CgCloseO } from "react-icons/cg";
+import { FaArrowsAltV } from "react-icons/fa";
 
 const GiftApp = ({ close}) => {
   return (
@@ -10,7 +11,7 @@ const GiftApp = ({ close}) => {
           <CgCloseO className='text-2xl text-white' />
         </button>
           <div className='flex h-52 w-full'>
-            <div className='flex flex-col items-center justify-center w-full'>
+            <div className='flex flex-col items-center justify-center w-full h-52'>
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMtyb9KiIO6XRBm-kdpfP3m9EcIJGN1k9DEw&s" className='h-full w-full'  />
               <div className='flex gap-5 text-white bg-black w-full justify-center py-2'>
                 <div className='flex'>
@@ -31,13 +32,13 @@ const GiftApp = ({ close}) => {
               </div>
              
             </div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGsdMwD1uDkBr4Tpbm2-EPhrpihOERrfWRVwilBR-iD57nd4lkewHuK2MC&s=10" className='h-full w-32 object-right giftImage' />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGsdMwD1uDkBr4Tpbm2-EPhrpihOERrfWRVwilBR-iD57nd4lkewHuK2MC&s=10" className='h-52 w-32 object-right giftImage' />
           </div>          
         </div>
 
         {/* text */}
         <div className='flex flex-col  w-full mt-4 px-4 gap-5 text-slate-600 text-sm leading.5'>
-          <h1 className='text-2xl font-semibold text-slate-600 mb-2'>Lahjakortti</h1>
+          <h1 className='text-2xl font-semibold text-slate-600 mb-2 flex items-center gap-1.5'>Lahjakortti <FaArrowsAltV /></h1>
           <p>🎁 Anna lahjaksi uusi tyyli ja hyvä fiilis! ✂️💈</p>
           <p>Haluatko ilahduttaa ystävää, puolisoa, perheenjäsentä tai vaikka työkaveria? Meiltä saat lahjakortin parturipalveluihin, joka sopii täydellisesti lahjaksi jokaiseen tilanteeseen.</p>
           <p>Lahjakortin voit ostaa helposti suoraan meidän liikkeestämme. Tule käymään paikan päällä, niin autamme mielellämme sopivan lahjakortin kanssa.</p>
