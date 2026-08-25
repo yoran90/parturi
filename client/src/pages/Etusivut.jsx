@@ -152,7 +152,7 @@ const Etusivut = () => {
           </div>
           {/* image side */}
           <div >
-            <img className='rounded-md w-full h-full' src="https://parmishairandbeauty.nl/wp-content/uploads/2024/02/MAN-HAIRCUT_PARMIS-BEAUTY_DELFT-scaled-1.jpg" alt="" />
+            <img className='rounded-t-md rounded-b-xs w-full h-full' src="https://parmishairandbeauty.nl/wp-content/uploads/2024/02/MAN-HAIRCUT_PARMIS-BEAUTY_DELFT-scaled-1.jpg" alt="" />
           </div>
         </div>
       </div>
