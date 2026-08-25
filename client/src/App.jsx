@@ -619,7 +619,7 @@ const App = () => {
               onClick={() => setOpenCookieBanner(prev => !prev)}
               className="bg-[#fb1717] rounded-full w-9 h-9 flex items-center justify-center"
             >
-              <MdCookie size={20} className="text-white" />
+              <MdCookie size={22} className="text-white" />
             </button>
 
             {openCookieBanner && (
