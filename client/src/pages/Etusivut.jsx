@@ -171,28 +171,28 @@ const Etusivut = () => {
             </div>
             
             <div className='md:w-[50%] grid grid-cols-1 gap-4.5 md:mt-0 mt-6'>
-              <div className='bg-white border border-slate-200 shadow-md flex flex-col items-center justify-center rounded-2xl'>
+              <div className='bg-white border border-slate-200 shadow-md flex flex-col items-center justify-center rounded-2xl h-72'>
                 <img src="https://static.thenounproject.com/png/8170822-200.png" alt="" className='w-38 h-38' />
                 <div className='flex flex-col gap-2 items-center justify-center pb-5 px-5'>
                   <h3 className='text-black/90 text-2xl font-semibold'>Hiustenleikkaus</h3>
                   <p className='text-lg text-center text-black/90'>Moderni ja huolellinen hiustenleikkaus juuri sinun tyyliisi.</p>
                 </div>
               </div>
-              <div className='bg-white border border-slate-200 shadow-md flex flex-col items-center justify-center rounded-2xl'>
+              <div className='bg-white border border-slate-200 shadow-md flex flex-col items-center justify-center rounded-2xl h-72'>
                 <img src="https://static.vecteezy.com/system/resources/previews/049/296/405/non_2x/barber-icon-set-straight-razor-blade-graphic-signs-isolated-on-white-background-barber-symbols-illustration-vector.jpg" alt="" className='w-38 h-38' />
                 <div className='flex flex-col gap-2 items-center justify-center pb-5 px-5'>
                   <h3 className='text-black/90 text-2xl font-semibold'>Parranajo</h3>
                   <p className='text-lg text-center text-black/90'>Tarkka ja viimeistelty parranajo ammattitaidolla.</p>
                 </div>
               </div>
-              <div className='bg-white border border-slate-200 shadow-md flex flex-col items-center justify-center rounded-2xl'>
+              <div className='bg-white border border-slate-200 shadow-md flex flex-col items-center justify-center rounded-2xl h-72'>
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7_A2qbjjp-90S4a8LPRMZcv6kNve601b8IgwyDy1dDP4qhgWJjhbCmXU1&s=10" alt="" className='w-32 h-32' />
                 <div className='flex flex-col gap-2 items-center justify-center pb-5 px-5'>
                   <h3 className='text-black/90 text-2xl font-semibold'>Parran siistiminen</h3>
                   <p className='text-lg text-center text-black/90'>Muotoilu, rajaukset ja viimeistely täydelliseen lopputulokseen.</p>
                 </div>
               </div>
-              <div className='bg-white border border-slate-200 shadow-md flex flex-col items-center justify-center rounded-2xl'>
+              <div className='bg-white border border-slate-200 shadow-md flex flex-col items-center justify-center rounded-2xl h-72'>
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/046/273/178/small/cherubic-charm-black-icon-of-toddler-face-little-love-toddler-face-in-black-vector.jpg" alt="" className='w-20 h-20 mb-4 mt-4' />
                 <div className='flex flex-col gap-2 items-center justify-center pb-5 px-5'>
                   <h3 className='text-black/90 text-2xl font-semibold'>Lasten hiustenleikkaus</h3>
