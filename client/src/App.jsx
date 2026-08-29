@@ -71,6 +71,8 @@ import PriceApp from './price/PriceApp'
 import GiftApp from './giftApp/GiftApp'
 import { MdCookie } from "react-icons/md";
 import CookieBanner from './cookie-banner/CookieBanner'
+import { IoTimeSharp } from "react-icons/io5";
+import Hours from './open-hours/Hours'
 
 
 
@@ -88,6 +90,7 @@ const App = () => {
   const[openPriceApp, setOpenPriceApp] = useState(false);
   const [openGiftApp, setOpenGiftApp] = useState(false);
   const [openCookieBanner, setOpenCookieBanner] = useState(false);
+  const [openHours, setOpenHours] = useState(false);
 
   const [openQuestion, setOpenQuestion] = useState(false);
   const [openFeedBack, setOpenFeedBack] = useState(false);
@@ -268,6 +271,20 @@ const App = () => {
   ];
 
   const showCookieBanner = cookieBannerAppRoutes.some((route) => route === location.pathname);
+
+
+  const openHoursAppRoutes = [
+    "/",
+    "/meista",
+    "/palvelut",  
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showOpenHours = openHoursAppRoutes.some((route) => route === location.pathname);
 
   useEffect(() => {
 
@@ -611,6 +628,22 @@ const App = () => {
             )
           }
         {/* end calandery */}
+
+        {/* open hours */}
+        {showOpenHours && (
+          <>
+            <button onClick={() => setOpenHours(!openHours)} className='bg-amber-500 rounded-full w-9 h-9 flex items-center justify-center'>
+              <IoTimeSharp size={24} className='text-white' />
+            </button>
+            {openHours && (
+                <Hours onClose={() => setOpenHours(false)} />
+              )
+            }
+          </>
+        )
+
+        }
+        {/* end open hours */}
 
         {/* cookie banner */}
         {showCookieBanner && (
