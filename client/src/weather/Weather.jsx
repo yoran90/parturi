@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { TiWeatherWindyCloudy } from "react-icons/ti";
 
 function Weather() {
   const [weather, setWeather] = useState(null);
@@ -34,7 +35,7 @@ function Weather() {
   }, []);
 
   if (loading) {
-    return <p>wait ...</p>;
+    return <TiWeatherWindyCloudy size={30} />;
   }
 
   if (error) {
