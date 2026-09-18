@@ -305,7 +305,7 @@ const Header = () => {
         </div>
       </div>
       {/* for mobile screen */}
-      <div className='md:hidden sticky top-0 z-50  flex items-center justify-between bg-white text-black border-t border-b border-slate-200'>
+      <div className='md:hidden sticky top-0 z-50 py-1  flex items-center justify-between bg-white text-black border-t border-b border-slate-200'>
         <div className='flex items-center justify-center gap-4'>
           <Link to={'/'} className=' p-2'> 
             <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
