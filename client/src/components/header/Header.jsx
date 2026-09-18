@@ -329,7 +329,7 @@ const Header = () => {
               showTheHeader && <CgClose onClick={clickTheMenuShowHeader} className='text-white' size={25} /> 
             } */}
             {
-              !showTheHeader && <LuMenu onClick={clickTheMenuShowHeader} className='text-black' size={35} />
+              !showTheHeader && <LuMenu onClick={clickTheMenuShowHeader} className='text-black' size={40} />
             }
           </div>
         
