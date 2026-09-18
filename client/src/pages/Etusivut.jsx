@@ -165,12 +165,12 @@ const Etusivut = () => {
         <div>
           <div className='md:flex gap-2.5 w-[98%] m-auto items-center justify-center' style={{zoom: '0.8'}}>
             <div className='md:w-[50%] relative flex flex-col items-center justify-center md:mb-0 mb-6 g-white shadow h-94 border border-slate-200 rounded-2xl p-6'>
-              <GiRazor className='absolute rotate-240 bottom-0 text-slate-800 left-0' size={60}/>
-              <GiRazor className='absolute rotate-340 top-0 text-slate-800 left-0' size={60}/>
+              <GiRazor className='absolute rotate-240 bottom-0 text-slate-800 left-0' size={50}/>
+              <GiRazor className='absolute rotate-340 top-0 text-slate-800 left-0' size={50}/>
               <h3 className=' font-semibold text-center mb-4'>Razor parturipalvelut</h3>
               <p className='text-sm  text-center mb-4'>Razor parturiin saavat ansaitsemansa huomion ja asiakkaat palvellaan sydaremellä.</p>
-              <GiRazor className='absolute rotate-140 bottom-0 text-slate-800 right-0' size={60}/>
-              <GiRazor className='absolute rotate-60 top-0 text-slate-800 right-0' size={60}/>
+              <GiRazor className='absolute rotate-140 bottom-0 text-slate-800 right-0' size={50}/>
+              <GiRazor className='absolute rotate-60 top-0 text-slate-800 right-0' size={50}/>
             </div>
             <div className='md:w-[50%]'>
               <img className='rounded-2xl' src="https://www.bonhomme.com/wp-content/uploads/2023/07/Trouver-le-meilleur-barbier-de-Paris-quels-criteres-selectionner.png" alt="" />
