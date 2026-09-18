@@ -20,7 +20,7 @@ import HolyDay from '../components/holy-day/HolyDay';
 import { GoArrowUpRight } from "react-icons/go";
 import useTitleForPage from '../hooks/useTitleForPage';
 import ReviewForHome from './opinion/ReviewForHome';
-
+import { GiRazor } from "react-icons/gi";
 import GoolgleReviews from './GoogleReviews';
 import HeaderText from '../components/header-text/HeaderText';
 
@@ -163,14 +163,22 @@ const Etusivut = () => {
       {/* parturipalvelut */}
       <div className='mt-8 mb-12' >
         <div>
-          <h3 className=' font-semibold text-center mb-4'>Razor parturipalvelut</h3>
-          <p className='text-sm  text-center mb-4'>Razor parturiin saavat ansaitsemansa huomion ja asiakkaat palvellaan sydaremellä.</p>
-          <div className='md:flex gap-2.5 w-[98%] m-auto' style={{zoom: '0.8'}}>
+          <div className='md:flex gap-2.5 w-[98%] m-auto items-center justify-center' style={{zoom: '0.8'}}>
+            <div className='md:w-[50%] relative flex flex-col items-center justify-center md:mb-0 mb-6 g-white shadow h-94 border border-slate-200 rounded-2xl p-6'>
+              <GiRazor className='absolute rotate-240 bottom-0 text-slate-800 left-0' size={100}/>
+              <GiRazor className='absolute rotate-340 top-0 text-slate-800 left-0' size={100}/>
+              <h3 className=' font-semibold text-center mb-4'>Razor parturipalvelut</h3>
+              <p className='text-sm  text-center mb-4'>Razor parturiin saavat ansaitsemansa huomion ja asiakkaat palvellaan sydaremellä.</p>
+              <GiRazor className='absolute rotate-140 bottom-0 text-slate-800 right-0' size={100}/>
+              <GiRazor className='absolute rotate-60 top-0 text-slate-800 right-0' size={100}/>
+            </div>
             <div className='md:w-[50%]'>
               <img className='rounded-2xl' src="https://www.bonhomme.com/wp-content/uploads/2023/07/Trouver-le-meilleur-barbier-de-Paris-quels-criteres-selectionner.png" alt="" />
             </div>
+          </div>
             
-            <div className='md:w-[50%] grid grid-cols-1 gap-4.5 md:mt-0 mt-6'>
+          <div className='md:flex gap-2.5 w-[98%] mt-6 m-auto' style={{zoom: '0.8'}}>
+            <div className='md:w-full grid grid-cols-1 md:grid-cols-2 gap-4.5 md:mt-0 mt-6'>
               <div className='bg-white border border-slate-200 shadow-md flex flex-col items-center justify-center rounded-2xl h-72'>
                 <img src="https://static.thenounproject.com/png/8170822-200.png" alt="" className='w-38 h-38' />
                 <div className='flex flex-col gap-2 items-center justify-center pb-5 px-5'>
