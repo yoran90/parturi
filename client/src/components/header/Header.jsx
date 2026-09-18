@@ -24,6 +24,7 @@ import { GiRazor } from "react-icons/gi";
 import useInformation from '../../hooks/useInformation';
 import { FcGoogle } from "react-icons/fc";
 import { BsInfoSquareFill } from "react-icons/bs";
+import Weather from '../../weather/Weather';
 
 
 
@@ -305,9 +306,12 @@ const Header = () => {
       </div>
       {/* for mobile screen */}
       <div className='md:hidden sticky top-0 z-50  flex items-center justify-between bg-white text-black border-t border-b border-slate-200'>
-        <Link to={'/'} className=' p-2'> 
-          <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
-        </Link>
+        <div className='flex items-center justify-center gap-4'>
+          <Link to={'/'} className=' p-2'> 
+            <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
+          </Link>
+          <Weather />
+        </div>
         <div className='flex relative items-center justify-center'>
           <div className='flex items-center ml-2 mr-3 mt-2 justify-center'>
             {
