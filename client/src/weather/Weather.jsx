@@ -88,12 +88,12 @@ function Weather() {
 
 
   return (
-    <div className="flex items-center justify-center gap-2">
-      <p className="text-2xl">
+    <div className="flex md:flex-col lg:flex-col font-semibold text-[#000000] items-center justify-center gap-2">
+      <p className="text-4xl">
         {getWeatherIcon(weather.current.weather_code)} 
       </p>
-      <div className="flex flex-col text-xs">
-        <p>{weather.current.temperature_2m}°C</p>
+      <div className="flex flex-col text-[12px]">
+        <p>{weather.current.temperature_2m} °C</p>
         <p>Helsinki</p>
       </div>
 

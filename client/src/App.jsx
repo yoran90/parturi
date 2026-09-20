@@ -73,7 +73,8 @@ import { MdCookie } from "react-icons/md";
 import CookieBanner from './cookie-banner/CookieBanner'
 import { IoTimeSharp } from "react-icons/io5";
 import Hours from './open-hours/Hours'
-
+import { TiWeatherDownpour } from "react-icons/ti";
+import WeatherWorld from './weather/WeatherWorld'
 
 
 const App = () => {
@@ -91,6 +92,7 @@ const App = () => {
   const [openGiftApp, setOpenGiftApp] = useState(false);
   const [openCookieBanner, setOpenCookieBanner] = useState(false);
   const [openHours, setOpenHours] = useState(false);
+  const [openWeatherWorldApp, setOpenWeatherWorldApp] = useState(false);
 
   const [openQuestion, setOpenQuestion] = useState(false);
   const [openFeedBack, setOpenFeedBack] = useState(false);
@@ -129,6 +131,20 @@ const App = () => {
   ];
 
   const showAppMenu = appMenuRoutes.some((route) => route === location.pathname);
+
+
+  const weatherWorldRoutes = [
+     "/",
+    "/meista",
+    "/palvelut",
+    "/galleria",
+    "/opinion",
+    "/tuotet",
+    "/tuote/:id",
+    "/yhteystiedot"
+  ];
+
+  const showWeatherWorld = weatherWorldRoutes.some((route) => route === location.pathname);
 
   const feedBackRoutes = [
     "/",
@@ -324,7 +340,7 @@ const App = () => {
   if (loading || firstHitLoading) {
     return (
       <div className="flex flex-col items-center justify-center h-screen w-full loadingImg">
-        <div className="flex flex-col items-center justify-center text-center text-slate-200 gap-4 mb-12 font-semibold">
+        <div className="flex flex-col items-center justify-center md:w-[80%] lg:w-[80%] text-center text-slate-200 gap-4 mb-12 font-semibold">
           <div className="text-2xl flex items-center justify-center gap-1">Tervetuloa <p className="flex flex-col mb-7 mr-1 ml-1 items-center justify-center gap-1"> <GiRazor className="razorSidebar" /> Razor </p>  parturiin!</div>
           <p>Meillä saat ammattitaitoista ja rentoa palvelua juuri sinun tyyliisi. Olipa kyseessä siisti leikkaus, uusi tyyli tai parran huolto, pidämme huolen siitä, että lähdet liikkeestä hyvillä mielin.</p>
           <p>Tervetuloa – nähdään parturissa!</p>
@@ -476,40 +492,48 @@ const App = () => {
       {openFloatingMenu && (
         <div
           ref={ref}
-          className={`fixed left-0 bottom-0  z-50 w-20 py-8
-            flex flex-col items-center justify-center gap-5
-            bg-white border border-slate-200 rounded-tr-md shadow-2xl
-            transition-transform duration-900 ease-out
-          }`}
+          className="
+            fixed left-0 bottom-0 z-50
+            w-20 
+            flex flex-col items-center
+            gap-5
+            py-5
+            bg-white border border-slate-200
+            rounded-tr-md shadow-2xl
+          "
         >
+
+         
         
           {/* feed back */}
             {showFeedBack && (
-                <>
+                <div>
                   <button type='button' onClick={() => setOpenFeedBack(true)} className={` bg-amber-500 rounded-full p-2 w-9 h-9 flex items-center justify-center ${openFeedBack ? 'hidden' : 'block'}`}>
-                    <IoChatbubbleEllipsesSharp  size={22} className={`text-white z-50`}/>
+                    <IoChatbubbleEllipsesSharp  size={22} className={`text-white`}/>
                   </button>
                   {openFeedBack && (
                       <FeedBack onClose={() => setOpenFeedBack(false)} setOpenFeedBack={setOpenFeedBack} /> 
                     )  
                   }
-                </>
+                </div>
               )
             }
           {/* end feed back */}
             
           {/* google review  */}
             {showGoogleReview && (
+              <div>
                 <a className='bg-[#FFF5EE] border border-slate-300 rounded-full w-9 h-9 flex items-center justify-center' href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&q=Razor+Parturi+Barber+Shop+Arvostelut&hl=fi-FI&sa=X&ved=2ahUKEwj0mtHzu4-WAxUwKhAIHfyQFvoQkc0JKAB6BAgPEAE&ictx=1&biw=1920&bih=945&dpr=1" target='_blank' >
                   <FcGoogle size={26} />
                 </a>
+              </div>
               )
             }
           {/* end google review  */}
 
           {/* question */}
             {showQuestion && (
-                <>
+                <div>
                   <button onClick={() => setOpenQuestion(!openQuestion)} type='button' className={` bg-amber-500 rounded-full text-white  w-9 h-9 flex items-center justify-center ${openFeedBack ? 'hidden' : 'block'}`}>
                     <BsQuestion size={30} />
                   </button>
@@ -518,7 +542,7 @@ const App = () => {
                     <Question onClose={() => setOpenQuestion(false)} />
                     )
                   }
-                </>
+                </div>
               )
             }
             
@@ -526,7 +550,7 @@ const App = () => {
 
           {/* price */}
           {showPriceApp && (
-              <>
+              <div>
                 <button onClick={() => setOpenPriceApp(!openPriceApp)} className='bg-[#c47e1e] text-white rounded-full p-2 w-9 h-9 flex items-center justify-center'>
                   <GiRazor  size={20} />
                 </button>
@@ -535,7 +559,7 @@ const App = () => {
                 )
 
                 }
-              </>
+              </div>
             )
           }
           {/* end price */}
@@ -566,14 +590,14 @@ const App = () => {
 
           {/* job application */}
           {showJobApplication && (
-            <>
+            <div>
               <button onClick={() => setOpenJobApplication(!openJobApplication)} className='bg-amber-500 rounded-full p-2 w-9 h-9 flex items-center justify-center'>
                 <FaBriefcase size={18} className='text-white' />
               </button>
               {openJobApplication && (
                 <JobApplication  close={() => setOpenJobApplication(false)} />
               )}
-            </>
+            </div>
           )
 
           }
@@ -582,14 +606,14 @@ const App = () => {
 
           {/* gift */}
           {showGiftApp && (
-            <>
+            <div>
               <button onClick={() => setOpenGiftApp(!openGiftApp)} className='bg-[#db6565] rounded-full p-2 w-9 h-9 flex items-center justify-center'>
                 <FaGift size={18} className='text-white' />
               </button>
               {openGiftApp && (
                 <GiftApp close={() => setOpenGiftApp(false)} />
               )}
-            </>
+            </div>
             
           )
 
@@ -631,7 +655,7 @@ const App = () => {
 
         {/* open hours */}
         {showOpenHours && (
-          <>
+          <div>
             <button onClick={() => setOpenHours(!openHours)} className='bg-amber-500 rounded-full w-9 h-9 flex items-center justify-center'>
               <IoTimeSharp size={24} className='text-white' />
             </button>
@@ -639,7 +663,7 @@ const App = () => {
                 <Hours onClose={() => setOpenHours(false)} />
               )
             }
-          </>
+          </div>
         )
 
         }
@@ -647,7 +671,7 @@ const App = () => {
 
         {/* cookie banner */}
         {showCookieBanner && (
-          <>
+          <div>
             <button
               onClick={() => setOpenCookieBanner(prev => !prev)}
               className="bg-[#fb1717] rounded-full w-9 h-9 flex items-center justify-center"
@@ -660,7 +684,7 @@ const App = () => {
                 onClose={() => setOpenCookieBanner(false)}
               />
             )}
-          </>
+          </div>
         )}
         {/* end cookie banner */}
 
@@ -669,7 +693,21 @@ const App = () => {
         </div>
       )}
       
-     
+      {/* weather world */}
+
+        {showWeatherWorld &&  (
+          <div>
+            <button onClick={() => setOpenWeatherWorldApp(true)} className={`fixed bottom-17 left-5 border-2 border-blue-700 w-10 h-10 flex items-center justify-center  text-white text-sm rounded-full cursor-pointer gap-2.5 bg-[#3e82ffc9] `}>
+              <TiWeatherDownpour size={24} />
+            </button>
+            {openWeatherWorldApp && (
+              <WeatherWorld onClose={() => setOpenWeatherWorldApp(false)} />
+            )
+
+            }
+          </div>
+        )}
+      {/* end weather world */}
 
       {/* App icon */}
         {showAppMenu && (
