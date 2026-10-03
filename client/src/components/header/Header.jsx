@@ -25,6 +25,7 @@ import useInformation from '../../hooks/useInformation';
 import { FcGoogle } from "react-icons/fc";
 import { BsInfoSquareFill } from "react-icons/bs";
 import Weather from '../../weather/Weather';
+import WeatherWorld from '../../weather/WeatherWorld';
 
 
 
@@ -41,6 +42,7 @@ const Header = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [openReplyInput, setOpenReplyInput] = useState(null);
 
+  const [openWeather, setOpenWeather] = useState(false);
   
 
   const toggleNotifications = () => {
@@ -310,7 +312,16 @@ const Header = () => {
           <Link to={'/'} className=' p-2'> 
             <img src={headerLogo?.url} alt="Header Logo" className='w-10 h-10 rounded-full border border-slate-500 ml-4' />
           </Link>
-          <Weather />
+          <button onClick={() => setOpenWeather(true)}>
+            <Weather />
+          </button>
+
+          {openWeather && (
+            <WeatherWorld onClose={() => setOpenWeather(false)} />
+          )
+
+          }
+
         </div>
         <div className='flex relative items-center justify-center'>
           <div className='flex items-center ml-2 mr-3 mt-2 justify-center'>
