@@ -85,7 +85,7 @@ const SearchBar = ({ onSearch, onLocationSearch, loading }) => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             disabled={loading} 
-            className="w-full pl-6 pr-24 py-2 bg-white/30 backdrop:blur-xl hover:bg-white/25  text-sm border border-white/30 rounded-full text-white placeholder:white/50 focus:ring-2 focus:outline-none focus:ring-white/30 focus:border-white/40 transition-all duration-300 hover:bg-whiute/15 " 
+            className="w-full pl-6 pr-24 py-2 bg-white/20 backdrop:blur-xl hover:bg-white/25  text-sm border border-white/80 rounded-full text-white placeholder:white/70 focus:ring-2 focus:outline-none focus:ring-white/30 focus:border-white/60 transition-all duration-300 hover:bg-whiute/15 " 
             placeholder="Etsi mitä tahansa kaupunkia ympäri maailmaa ..."
           />
 
@@ -112,7 +112,7 @@ const SearchBar = ({ onSearch, onLocationSearch, loading }) => {
       {showSuggestions && (suggestions.length > 0 || searchLoading) && (
         <div className="w-full absolute z-50 right-0 text-black/80 bg-white backdrop:blur-xl mt-6 transition-all duration-300 border border-black/30 rounded-lg shadow-lg ">
             {searchLoading ? (
-                <div className="p-6 text-center text-white/70">
+                <div className="p-6 text-center text-white/90">
                   <div className="animate-spin rounded-full h-6 w-6 border-2 border-t-white mx-auto border-white/30"></div>
                   <p>Search cities ...</p>
                 </div>

@@ -34,10 +34,10 @@ const WeatherWorld = ({onClose}) => {
   return (
     <div className="fixed bottom-0 left-0 w-full h-full z-50 flex items-center justify-center bg-black/40 bg-opacity-50">
       <div className='absolute inset-0 bg-cover bg-center bg-no-repeat' style={{backgroundImage: "url('https://balthazar.club/o/uploads/posts/2024-01/1705346645_balthazar-club-p-krasivii-fon-oblaka-krasivo-6.jpg')"}}>
-       <button onClick={onClose} className='absolute top-2 right-2 text-2xl text-white cursor-pointer z-50'>
-        <IoClose />
+       <button onClick={onClose} className="absolute right-4 top-4 text-white cursor-pointer hover:text-white transition-all duration-300">
+        <IoClose className='w-5 h-5' />
        </button>
-      <div className="absolute inset-0 bg-black/30 overflow-y-scroll w-full scrollbarStyle py-12 px-2 md:px-16 lg:px-22 xl:px-72">
+      <div className="absolute inset-0 bg-black/40 overflow-y-scroll w-full scrollbarStyle py-12 px-2 md:px-16 lg:px-22 xl:px-72">
 
         <div className="">
           <div className="flex flex-col items-center justify-center text-center text-white/80">

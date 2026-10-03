@@ -45,10 +45,10 @@ const WeatherCard = ({ weather, unit}) => {
   ]
 
   return (
-    <div className="bg-white/30 border border-white/30 backdrop-blur-xl rounded-xl mb-4 p-4 shadow-2xl hover:bg-white/25 transition-all duration-300">
+    <div className="bg-white/10 border border-white/80 backdrop-blur-xl rounded-xl mb-4 p-4 shadow-2xl hover:bg-white/25 transition-all duration-300">
       <div className="flex flex-col  justify-between mb-8">
         <div className="flex items-center gap-4">
-          <div className="p-2 bg-white/20 w-fit rounded-full">
+          <div className="p-2 bg-white/10 w-fit rounded-full">
             <FaMapMarkerAlt className="w-4 h-4 text-white/70" />
           </div>
 
@@ -110,7 +110,7 @@ const WeatherCard = ({ weather, unit}) => {
 
       {weatherStats.map((stat, index) => (
         <div key={index} >
-          <div className="bg-white/5 border border-white/30 backdrop-blur-sm rounded-xl p-4 text-center hover:bg-white/10 transition-all duration-300 group">
+          <div className="bg-white/10 border border-white/30 backdrop-blur-sm rounded-xl p-4 text-center hover:bg-white/10 transition-all duration-300 group">
             <div className="flex items-center space-x-3 mb-2">
               <div className={`p-2 rounded-full bg-white/10 gtoup-hover:bg-white/20 transition-all`}>
 

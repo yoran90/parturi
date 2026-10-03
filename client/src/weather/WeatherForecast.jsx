@@ -25,9 +25,9 @@ const WeatherForecast = ({ forecast, unit }) => {
   const dailyItems = Object.values(dailyForecast).slice(0, 5);
 
   return (
-    <div className="flex flex-col gap-4 bg-white/30 backdrop-blur-xl border border-white/30 rounded-lg shadow-lg p-4 w-full max-w-2xl">
+    <div className="flex flex-col gap-4 bg-white/10 backdrop-blur-xl border border-white/60 rounded-lg shadow-lg p-4 w-full max-w-2xl">
       <div className="flex items-center space-x-4 mb-3">
-        <div className="p-3 bg-white/20 rounded-full">
+        <div className="p-3 bg-white/10 rounded-full">
           <FaCalendarAlt className="w-6 h-6 text-white/70" />
         </div>
 
@@ -62,7 +62,7 @@ const WeatherForecast = ({ forecast, unit }) => {
           return (
             <div
               key={index}
-              className="flex items-center justify-between bg-white/20 backdrop-blur-xl border border-white/30 rounded-lg shadow-lg p-4"
+              className="flex items-center justify-between bg-white/10 backdrop-blur-xl border border-white/30 rounded-lg shadow-lg p-4"
             >
               <div className="flex items-center space-x-5 flex-1">
                 <div className="text-white">
