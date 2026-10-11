@@ -47,7 +47,7 @@ export function Root() {
               <div className='top-0 items-center left-0 fixed z-50 md:flex hidden'>
                 <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-12 h-8 rounded-lg cursor-pointer" />
               </div>
-              <div className='top-2 items-center right-4 fixed z-50 md:flex hidden'>
+              <div className='top-2 items-center right-6 fixed z-50 md:flex hidden'>
                 <Weather />
               </div>
               <div id='appBackground' style={{ backgroundColor: bgColor, minHeight: "100vh"}}>
