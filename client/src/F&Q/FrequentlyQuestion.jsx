@@ -6,6 +6,9 @@ import Header from '../components/header/Header'
 import { FaPlus, FaMinus } from "react-icons/fa";
 import Map from '../components/map/Map'
 import Footer from '../components/footer/Footer'
+import { Link } from 'react-router-dom'
+import { GiPriceTag } from "react-icons/gi";
+import { WiDirectionUpRight } from "react-icons/wi";
 
 const frequentlyQuestions = [
   {
@@ -66,7 +69,12 @@ const frequentlyQuestions = [
   },
   {
     question: "Mistä löydän hiustenleikkausten hinnat?",
-    answer: "Kaikkien palveluidemme hinnat löydät kotisivujemme Hinnasto-osiosta. Haluamme pitää hinnoittelun selkeänä, jotta tiedät jo etukäteen, mitä palvelu maksaa. Jos jokin hinta mietityttää, voit aina kysyä meiltä lisätietoja."
+    answer: "Kaikkien palveluidemme hinnat löydät kotisivujemme Hinnasto-osiosta. Haluamme pitää hinnoittelun selkeänä, jotta tiedät jo etukäteen, mitä palvelu maksaa. Jos jokin hinta mietityttää, voit aina kysyä meiltä lisätietoja.",
+    link: {
+      text: "Katso hinnasto tästä",
+      path: "/palvelut",
+      icon: <WiDirectionUpRight size={22} />
+    }
   },
   {
     question: "Sisältyykö hiustenmuotoilu hiustenleikkauksen hintaan?",
@@ -78,15 +86,30 @@ const frequentlyQuestions = [
   },
   {
     question: "Missä parturiliikkeenne sijaitsee",
-    answer: "Löydät liikkeemme tarkan osoitteen kotisivujemme Yhteystiedot-osiosta. Sieltä löydät myös mahdolliset karttaohjeet, joiden avulla pääset helposti perille. Olet lämpimästi tervetullut tutustumaan liikkeeseemme!"
+    answer: "Löydät liikkeemme tarkan osoitteen kotisivujemme Yhteystiedot-osiosta. Sieltä löydät myös mahdolliset karttaohjeet, joiden avulla pääset helposti perille. Olet lämpimästi tervetullut tutustumaan liikkeeseemme!",
+    link: {
+      text: "Katso sijainti tästä",
+      path: "/yhteystiedot",
+      icon: <WiDirectionUpRight size={22} />
+    }
   },
   {
     question: " Mitkä ovat liikkeenne aukioloajat?",
-    answer: "Aukioloaikamme löydät kotisivujemme Yhteystiedot-osiosta. Suosittelemme tarkistamaan aukioloajat ennen liikkeeseen saapumista, jotta voit suunnitella käyntisi helposti. Palvelemme asiakkaita ilmoitettuina aukioloaikoina."
+    answer: "Aukioloaikamme löydät kotisivujemme Yhteystiedot-osiosta. Suosittelemme tarkistamaan aukioloajat ennen liikkeeseen saapumista, jotta voit suunnitella käyntisi helposti. Palvelemme asiakkaita ilmoitettuina aukioloaikoina.",
+    link: {
+      text: "Katso aukioloajat tästä",
+      path: "/",
+      icon: <WiDirectionUpRight size={22} />
+    }
   },
   {
     question: "Miten voin ottaa teihin yhteyttä?",
-    answer: "Voit ottaa meihin yhteyttä kotisivuiltamme löytyvien yhteystietojen kautta. Autamme mielellämme palveluihin, hintoihin ja muihin kysymyksiin liittyvissä asioissa. Voit kysyä meiltä myös silloin, kun et ole varma, mikä palvelu sopii sinulle parhaiten."
+    answer: "Voit ottaa meihin yhteyttä kotisivuiltamme löytyvien yhteystietojen kautta. Autamme mielellämme palveluihin, hintoihin ja muihin kysymyksiin liittyvissä asioissa. Voit kysyä meiltä myös silloin, kun et ole varma, mikä palvelu sopii sinulle parhaiten.",
+    link: {
+      text: "Katso yhteystiedot tästä",
+      path: "/yhteystiedot",
+      icon: <WiDirectionUpRight size={22} />
+    }
   },
 ]
 
@@ -127,12 +150,26 @@ const FrequentlyQuestion = () => {
                   {isOpen ? <FaMinus /> : <FaPlus />}
                 </span>
               </button>
-              
+              <div>
                 {isOpen && (
-                  <p className='text-[14px] md:text-[17px] lg:text-[20px]'>{item.answer}</p>
-                )
-
+                    <p className='text-[14px] md:text-[17px] lg:text-[20px]'>{item.answer}</p>
+                  )
+                
                 }
+              </div>
+              <div className='flex justify-end items-center mr-4'>
+                {item.link && isOpen && (
+                  <Link
+                    to={item?.link.path}
+                    className="flex items-center text-end justify-end text-sm gap-1 w-fit text-blue-600 hover:text-blue-800 transition-colors"
+                  >
+                      <div className='flex items-center'>
+                        <span>{item.link.text}</span>
+                        <span>{item.link.icon}</span>
+                      </div>
+                    </Link>
+                  )}
+              </div>
               
             </div>
           )
