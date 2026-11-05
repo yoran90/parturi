@@ -75,6 +75,7 @@ import { IoTimeSharp } from "react-icons/io5";
 import Hours from './open-hours/Hours'
 import { TiWeatherDownpour } from "react-icons/ti";
 import WeatherWorld from './weather/WeatherWorld'
+import FrequentlyQuestion from './F&Q/FrequentlyQuestion'
 
 
 const App = () => {
@@ -427,6 +428,7 @@ const App = () => {
             }>
             </Route>
             <Route path='/opinion' element={<OpinionUser />}></Route>
+            <Route path='/frequently-question' element={<FrequentlyQuestion />}></Route>
             <Route path='/profile/:id' element={<UserProfile />}></Route>
           </Route>
         

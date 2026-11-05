@@ -26,8 +26,7 @@ import { FcGoogle } from "react-icons/fc";
 import { BsInfoSquareFill } from "react-icons/bs";
 import Weather from '../../weather/Weather';
 import WeatherWorld from '../../weather/WeatherWorld';
-
-
+import { FcFaq } from "react-icons/fc";
 
 
 
@@ -175,6 +174,9 @@ const Header = () => {
           </NavLink>
           <NavLink to={'/opinion'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''}  cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
             Mielipide
+          </NavLink>
+          <NavLink to={'/frequently-question'} className={({ isActive}) => `${isActive ? 'border-b-2 border-blue-500' : ''}  cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2`}>
+            F&Q 
           </NavLink>
           <a href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&hl=fi-FI&sxsrf=ANbL-n7236avhQ8RSjEhTWaC-iMcP66O9Q:1780696287947&uds=ALYpb_ncDc7jTlmw6Mmq7NjuX5c-Zze-fIOBg0L0hgRWHzdLESc2f9-7spOmdq_Bvg5GeBdeFRztkOg_Bwt5bmN94jlLuwkW2MkeRUzBhDnlmhi-105x-huJPLWdwdUgU9wR0T0nn0hSbb1Ckm_GlP5fEk9uBisOJG_Sc9NeknE7eL_AfN59WMc&q=Razor+Parturi+Barber+Shop+Arvostelut&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qORmNCphyzj2pI8HMPhbb20ci7MWt3uoODEAABtYr0MdN5xAC_dEc9VMMwXVNPIbjIUQle37CBTt2iM5grwym2J-_GUJOVlbce1f9vI980sB7wDAz6g%3D%3D&sa=X&ved=2ahUKEwijscjNivGUAxU0PRAIHYrVGlEQ_4MLegQIKxAM&biw=1920&bih=945&dpr=1" target='_blank' className={' cursor-pointer text-[13px] font-medium p-2 hover:border-slate-400 hover:border-b-2'}>
             Google-arvostelu
@@ -449,6 +451,10 @@ const Header = () => {
             <NavLink to={'/opinion'} className={'flex items-center gap-2.5 ml-7'}>
               <MdReviews   size={22} />
               <button onClick={clickTheMenuShowHeader} className=' ml-1 cursor-pointer text-[16px] uppercase  p-2 hover:bg-slate-800'>Mielipide</button>
+            </NavLink>
+            <NavLink to={'/frequently-question'} className={'flex items-center gap-2.5 ml-7'}>
+             <FcFaq size={22} />
+              <button onClick={clickTheMenuShowHeader} className=' ml-1 cursor-pointer text-[16px] uppercase  p-2 hover:bg-slate-800'>Usein kysyttyä</button>
             </NavLink>
             <a href="https://www.google.com/search?sca_esv=453cbd3ddf1993fe&rlz=1C1VDKB_enFI1134FI1134&hl=fi-FI&sxsrf=ANbL-n7236avhQ8RSjEhTWaC-iMcP66O9Q:1780696287947&uds=ALYpb_ncDc7jTlmw6Mmq7NjuX5c-Zze-fIOBg0L0hgRWHzdLESc2f9-7spOmdq_Bvg5GeBdeFRztkOg_Bwt5bmN94jlLuwkW2MkeRUzBhDnlmhi-105x-huJPLWdwdUgU9wR0T0nn0hSbb1Ckm_GlP5fEk9uBisOJG_Sc9NeknE7eL_AfN59WMc&q=Razor+Parturi+Barber+Shop+Arvostelut&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qORmNCphyzj2pI8HMPhbb20ci7MWt3uoODEAABtYr0MdN5xAC_dEc9VMMwXVNPIbjIUQle37CBTt2iM5grwym2J-_GUJOVlbce1f9vI980sB7wDAz6g%3D%3D&sa=X&ved=2ahUKEwijscjNivGUAxU0PRAIHYrVGlEQ_4MLegQIKxAM&biw=1920&bih=945&dpr=1" target='_blank' className={'flex items-center gap-2.5 ml-7'}>
               <FcGoogle size={24} />
