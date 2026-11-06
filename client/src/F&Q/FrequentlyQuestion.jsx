@@ -40,6 +40,30 @@ const frequentlyQuestions = [
     answer: "Totta kai! Voit näyttää meille puhelimestasi kuvan hiusmallista, jonka haluaisit. Kuva auttaa meitä ymmärtämään paremmin toiveitasi ja haluamaasi tyyliä. Keskustelemme tarvittaessa myös siitä, miten kyseinen malli sopii hiuksiisi."
   },
   {
+  question: "Teettekö parran muotoilua tai parran siistimistä?",
+  answer: "Voit kysyä meiltä myös parran siistimiseen ja muotoiluun liittyvistä palveluista. Kerromme mielellämme, mitä palveluita liikkeessämme on saatavilla."
+},
+{
+  question: "Voinko maksaa kortilla?",
+  answer: "Voit tarkistaa hyväksymämme maksutavat liikkeessämme tai ottamalla meihin yhteyttä ennen käyntiä. Haluamme tehdä asioinnista mahdollisimman helppoa ja sujuvaa."
+},
+{
+  question: "Onko parturiliikkeessänne mahdollista joutua jonottamaan?",
+  answer: "Koska palvelemme asiakkaita ilman ajanvarausta, jonotusaika riippuu liikkeen asiakastilanteesta. Hiljaisina hetkinä pääset yleensä nopeasti palveltavaksi, kun taas kiireisinä aikoina saatat joutua odottamaan hieman."
+},
+{
+  question: "Voinko tulla hiustenleikkaukseen heti liikkeen avautuessa?",
+  answer: "Totta kai! Voit tulla liikkeeseemme aukioloaikojen puitteissa myös heti avaamisen jälkeen. Palvelemme asiakkaita saapumisjärjestyksessä."
+},
+{
+  question: "Mitä minun kannattaa kertoa parturille ennen hiustenleikkausta?",
+  answer: "Voit kertoa meille esimerkiksi haluamasi hiusten pituuden, suosikkityylisi ja sen, kuinka paljon hiuksia haluat lyhennettävän. Myös inspiraatiokuva auttaa meitä ymmärtämään toiveesi paremmin."
+},
+{
+  question: "Voinko pyytää parturia muuttamaan hiusmallia leikkauksen aikana?",
+  answer: "Totta kai! Voit kertoa toiveistasi myös leikkauksen aikana. Keskustelemme mielellämme kanssasi, jotta lopputulos vastaa mahdollisimman hyvin odotuksiasi."
+},
+  {
     question: " Leikkaatteko myös pitkät miesten hiukset?",
     answer: "Kyllä! Palvelemme asiakkaita erilaisilla hiusten pituuksilla. Voimme lyhentää hiuksia, siistiä latvoja tai muotoilla hiukset haluamallasi tavalla. Kerro meille, millaista lopputulosta tavoittelet."
   },
@@ -58,6 +82,10 @@ const frequentlyQuestions = [
   {
     question: "Voinko tulla lapsen kanssa hiustenleikkaukseen?",
     answer: "Kyllä! Myös lapset ovat tervetulleita hiustenleikkaukseen. Haluamme tarjota ystävällisen ja mukavan palvelukokemuksen kaikenikäisille asiakkaille. Vanhempi voi tarvittaessa olla mukana leikkauksen aikana."
+  },
+  {
+    question: "Kuinka kauan miesten hiustenleikkaus kestää?",
+    answer: "Hiustenleikkauksen kesto riippuu valitsemastasi hiusmallista ja työn laajuudesta. Tavallinen miesten hiustenleikkaus kestää yleensä noin 20–30 minuuttia. Teemme jokaisen leikkauksen huolellisesti, jotta lopputulos vastaa toiveitasi."
   },
   {
     question: "Leikkaatteko myös nuorten hiuksia?",
@@ -143,14 +171,30 @@ const FrequentlyQuestion = () => {
         {frequentlyQuestions.map((item, index) => {
           const isOpen = openIndex === index;
           return (
-            <div key={index} className='flex flex-col w-full gap-3.5 mb-5 px-2 md:px-4 lg:px-6 border rounded border border-[#d4dae3] py-3 text-[#071935] bg-white shadow'>
-              <button onClick={() => setOpenIndex(openIndex === index ? null : index)} className='flex justify-between text-start items-center w-full'>
-                <h3 className='text-[15px] md:text-[17px] lg:text-[18px] font-semibold'>{item.question}</h3>
-                <span className='text-[15px] md:text-[20px] lg:text-[22px]  ml-2 cursor-pointer'>
-                  {isOpen ? <FaMinus /> : <FaPlus />}
+            <div key={index} className='flex flex-col w-full gap-3.5 mb-5 px-2 md:px-4 lg:px-6 border rounded border-[#d4dae3] py-3 text-[#071935] bg-white shadow'>
+              <button
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                className="flex justify-between text-start items-center w-full"
+              >
+                <h3 className="text-[15px] md:text-[17px] lg:text-[18px] font-semibold">
+                  {item.question}
+                </h3>
+
+                <span className="text-[15px] md:text-[20px] lg:text-[22px] ml-2">
+                  <span className={`inline-block transition-transform duration-300 ${
+                    isOpen ? 'rotate-180' : 'rotate-0'
+                  }`}>
+                    {isOpen ? <FaMinus /> : <FaPlus />}
+                  </span>
                 </span>
               </button>
-              <div>
+              <div
+                className={`grid transition-all duration-300 ease-in-out ${
+                  isOpen
+                    ? 'grid-rows-[1fr] opacity-100'
+                    : 'grid-rows-[0fr] opacity-0'
+                }`}
+              >
                 {isOpen && (
                     <p className='text-[14px] md:text-[17px] lg:text-[20px]'>{item.answer}</p>
                   )
