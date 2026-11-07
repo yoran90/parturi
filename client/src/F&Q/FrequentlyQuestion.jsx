@@ -153,15 +153,11 @@ const FrequentlyQuestion = () => {
       <Header />
 
       {/* F&Q Header */}
-      <div className='flex flex-col items-center justify-center text-center gap-3.5 mt-10 mb-12 px-5 md:px-10 lg:px-14'>
+      <div className='flex flex-col items-center max-w-prose text-justify hyphens-auto gap-3.5 mt-4 mb-4  px-3 md:px-10 lg:px-14'>
         <h3 className='text-[20px] md:text-[24px] lg:text-[20px] font-semibold text-gray-800'>Usein kysyttyä</h3>
         <p className='text-[15px] md:text-[18px] lg:text-[16px] text-black font-medium'>
           Haluamme tehdä asioinnistasi mahdollisimman helppoa ja sujuvaa. Tälle sivulle olemme koonneet vastauksia yleisimpiin kysymyksiin parturipalveluistamme, hiustenleikkauksista, hinnoista ja asioinnista liikkeessämme.
-        </p>
-        <p className='text-[15px] md:text-[18px] lg:text-[16px] text-black font-medium'>
           Tutustu alla oleviin kysymyksiin ja löydä helposti tarvitsemasi tiedot. Jos et löydä etsimääsi vastausta tai haluat kysyä jotain lisää, voit aina ottaa meihin yhteyttä. Autamme mielellämme ja vastaamme kysymyksiisi.
-        </p>
-        <p className='text-[15px] md:text-[18px] lg:text-[16px] text-black font-medium'>
           Meille jokainen asiakas on tärkeä. Tavoitteenamme on tarjota laadukasta palvelua, huolellista työnjälkeä ja mukava kokemus jokaisella parturikäynnillä. Tervetuloa asiakkaaksemme!
         </p>
       </div>
