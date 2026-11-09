@@ -113,10 +113,15 @@ const Footer = () => {
           <div>
             <img src={headerLogo?.url} alt="Site Logo" className='w-5 h-5 mr-2 ml-2 rounded-full border border-slate-300' />
           </div>
-          <div className='flex items-center gap-1.5'>
+          {/* <div className='flex items-center gap-1.5'>
             <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
             <GiRazor className='razorSidebar' size={12} />
             <p>www.razorr.fi</p>
+          </div> */}
+          <div className='flex items-center justify-center  gap-1 text-xs'>
+            <p>Powered by  </p>
+            <GiRazor className='razorSidebar' size={12} />
+            <p className='text-red-500'>Razor-Parturi</p>
           </div>
         </div>
         {/* for mobile */}
@@ -127,10 +132,15 @@ const Footer = () => {
           <div className='mt-1 mb-1'>
             <img src={headerLogo?.url} alt="Site Logo" className='w-5 h-5 rounded-full border border-slate-300' />
           </div>
-          <div className='flex gap-1.5 items-center'>
+          {/* <div className='flex gap-1.5 items-center'>
             <div dangerouslySetInnerHTML={{__html: getTitleForPage?.titleForPage?.footerFooter}} />
             <GiRazor className='razorSidebar' size={12} />
             <p>www.razorr.fi</p>
+          </div> */}
+          <div className='flex items-center justify-center  gap-1 text-xs'>
+            <p>Powered by  </p>
+            <GiRazor className='razorSidebar' size={12} />
+            <p className='text-red-500'>Razor-Parturi</p>
           </div>
         </div>
       </footer>
