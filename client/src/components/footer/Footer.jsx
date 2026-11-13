@@ -14,6 +14,9 @@ import { GiRazor } from "react-icons/gi";
 import { SiGitconnected } from "react-icons/si";
 import AnalogClock from '../analogClock/AnalogClock';
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { LuPower } from "react-icons/lu";
+
+
 
 const Footer = () => {
 
@@ -118,10 +121,12 @@ const Footer = () => {
             <GiRazor className='razorSidebar' size={12} />
             <p>www.razorr.fi</p>
           </div> */}
-          <div className='flex items-center justify-center  gap-1 text-xs'>
+          <div className='flex items-center justify-center gap-1 text-xs'>
             <p>Powered by  </p>
-            <GiRazor className='razorSidebar' size={12} />
-            <p className='text-red-500'>Razor-Parturi</p>
+            <LuPower className='text-white' />
+            <div className='flex items-center gap-1.5 relative'>
+              <p>Razor parturi</p>
+            </div>
           </div>
         </div>
         {/* for mobile */}
@@ -137,10 +142,12 @@ const Footer = () => {
             <GiRazor className='razorSidebar' size={12} />
             <p>www.razorr.fi</p>
           </div> */}
-          <div className='flex items-center justify-center  gap-1 text-xs'>
+          <div className='flex items-center justify-center gap-1 text-xs'>
             <p>Powered by  </p>
-            <GiRazor className='razorSidebar' size={12} />
-            <p className='text-red-500'>Razor-Parturi</p>
+            <LuPower className='text-white' />
+            <div className='flex items-center gap-1.5 relative'>
+              <p>Razor parturi</p>
+            </div>
           </div>
         </div>
       </footer>
